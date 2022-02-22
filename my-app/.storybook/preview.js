@@ -1,3 +1,6 @@
+import { ThemeProvider } from 'styled-components';
+import { Theme } from '../src/UI/utility/Theme';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -6,4 +9,13 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: 'fullscreen',
 }
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={Theme}>
+      <Story />
+    </ThemeProvider>
+  ),
+];

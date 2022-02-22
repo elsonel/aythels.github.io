@@ -6,10 +6,11 @@ export default {
   title: 'Example/Button',
   component: Button,
   args: {
-    primary: 'true',
+    primary: true,
     size: 'small',
     label: 'Feature',
   },
+  argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -21,6 +22,7 @@ Primary.args = {
   ...Primary.args,
   primary: true,
   label: 'Button',
+  margin: '30px',
 };
 
 export const Secondary = Template.bind({});
