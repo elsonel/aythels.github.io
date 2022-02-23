@@ -1,6 +1,7 @@
 export interface MainInterface {
     margin?: string | number;
     padding?: string | number;
+
 }
 
 export const Main = ({

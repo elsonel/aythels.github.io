@@ -1,36 +1,44 @@
-
-/*
 import React from 'react';
 import styled from "styled-components";
 
 export type ParagraphProps = {
-    value: string;  // text
-    color?: string; // text color
+    children: string;  // text
     size?: string;  // font size
+    weight?: string; // font weight
+    textAlign?: string; // text alignment
+    lineHeight?: string; // line height
+    color?: string; // text color
 }
 
 export const Paragraph = ({
-    value,
-    color = 'text',
+    children,
     size = 'default',
+    weight = 'regular',
+    textAlign = 'left',
+    lineHeight = 'normal',
+    color = 'text',
     ...props
   }: ParagraphProps) => {
     return (
-      <Text color={color} size={size} {...props}>{value}</Text>
+      <Text size={size} weight={weight} textAlign={textAlign} lineHeight={lineHeight} color={color}>{children}</Text>
     );
   };
 
   const Text = styled.p<ParagraphProps>`
-    // Base Styles
-    ${({
-        theme,
-        color = 'text',
-        size = 'default',
-    }): string => `
-        color: ${theme.colors[color] || color};
-        font-size: ${theme.font.size[size] || size};
-    `}
+  ${({
+    theme,
+    color = 'text',
+    size = 'default',
+    weight = 'regular',
+    textAlign = 'left',
+    lineHeight= 'normal',
+}): string => `
+    font-family: ${theme.font.family};
+    font-size: ${theme.font.size[size] || size};
+    font-weight: ${theme.font.weight[weight] || weight};
+    text-align: ${textAlign};
+    line-height: ${lineHeight};
+    color: ${theme.colors[color] || color};
+    margin: 0;
+`}
 `;
-*/
-
-export const b = 21;

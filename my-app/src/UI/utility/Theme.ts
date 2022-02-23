@@ -1,5 +1,14 @@
 export interface ThemeInterface {
     font: {
+        family: string;
+        weight: {
+            light1: number;
+            light2: number;
+            regular: number;
+            medium: number;
+            bold1: number;
+            bold2: number;
+        };
         size: {
             default: string;
             small: string;
@@ -9,7 +18,7 @@ export interface ThemeInterface {
             h4: string;
             h5: string;
             h6: string;
-        }
+        };
     };
     colors: {
         text: string;
@@ -21,6 +30,15 @@ export interface ThemeInterface {
 
 export const Theme: ThemeInterface = {
     font: {
+        family: `'Manrope', sans-serif;`,
+        weight: {
+            light1: 200,
+            light2: 300,
+            regular: 400,
+            medium: 500,
+            bold1: 600,
+            bold2: 700,
+        },
         size: {
             default: '1rem',
             small: '0.85rem',

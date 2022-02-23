@@ -1,4 +1,3 @@
-/*
 import { Meta, Story } from '@storybook/react';
 import { Paragraph, ParagraphProps } from './Paragraph';
 
@@ -6,12 +5,38 @@ export default {
     title: 'Text/Paragraph',
     component: Paragraph,
     args: {
-        value: 'Hello World',
+        children: 'Hello World',
     },
 } as Meta;
 
-export const Basic: Story<ParagraphProps> = (args) => (
-    <Paragraph {...args}/>
-);*/
+const Template: Story<ParagraphProps> = (args) => <Paragraph {...args} />;
 
-export const a = 21;
+export const Small = Template.bind({});
+Small.args = {
+  ...Small.args,
+  size: 'small',
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...Large.args,
+  size: 'large',
+};
+
+export const Light = Template.bind({});
+Light.args = {
+  ...Light.args,
+  weight: 'light1',
+};
+
+export const Bold = Template.bind({});
+Bold.args = {
+  ...Bold.args,
+  weight: 'bold2',
+};
+
+export const Center = Template.bind({});
+Center.args = {
+  ...Center.args,
+  textAlign: 'center',
+};
