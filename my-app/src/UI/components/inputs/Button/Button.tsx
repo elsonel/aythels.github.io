@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import { MainInterface, Main } from '../../utility/Main';
-import { Responsive } from '../../utility/Responsive';
+import { MainInterface, Main } from '../../../utility/Main';
+import { ResponsiveLessThan } from '../../../utility/Responsive';
 
 export interface ButtonProps extends MainInterface{
   /**
@@ -66,7 +66,7 @@ const ButtonMain = styled.button<{ primary: boolean }>`
   background-color: ${({theme, primary}) => primary ? theme.colors.primary : theme.colors.background};
   box-shadow: ${({primary}) => primary ? "none" : "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset"};
 
-  ${Responsive('tablet', `
+  ${ResponsiveLessThan('tablet', `
     width: 100%;
   `)}
 `;

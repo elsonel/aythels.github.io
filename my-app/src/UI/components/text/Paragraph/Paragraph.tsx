@@ -20,7 +20,7 @@ export const Paragraph = ({
     ...props
   }: ParagraphProps) => {
     return (
-      <Text size={size} weight={weight} textAlign={textAlign} lineHeight={lineHeight} color={color}>{children}</Text>
+      <Text size={size} weight={weight} textAlign={textAlign} lineHeight={lineHeight} color={color} {...props}>{children}</Text>
     );
   };
 
@@ -39,6 +39,6 @@ export const Paragraph = ({
     text-align: ${textAlign};
     line-height: ${lineHeight};
     color: ${theme.colors[color] || color};
-    margin: 0;
+    margin: 0px;
 `}
 `;
