@@ -5,6 +5,14 @@ import { Image } from '../../images/Image/Image';
 import { ChipList } from '../../other/ChipList/ChipList';
 import { Chip } from '../../other/Chip/Chip';
 import { DesignServices } from 'styled-icons/material';
+import { RoundBrush } from '@styled-icons/entypo/RoundBrush';
+import { Web } from '@styled-icons/material-outlined/Web';
+import { InsertPhoto } from '@styled-icons/material/InsertPhoto';
+import { Camera } from '@styled-icons/boxicons-solid/Camera';
+import { Bank } from '@styled-icons/boxicons-solid/Bank';
+import { Cube } from '@styled-icons/evaicons-solid/Cube';
+import { Bone } from '@styled-icons/boxicons-solid/Bone';
+import { Man } from '@styled-icons/entypo/Man';
 
 export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -18,11 +26,11 @@ export const About: React.FC<AboutProps> = ({
   ...props
 }): React.ReactElement => { 
   return (
-  <div>
+  <PageWrapper>
   <LeftDiv>
-    <Paragraph size="4em" weight="bold2">DEVELOPER,</Paragraph>
-    <Paragraph size="4em" weight="bold2">DESIGNER,</Paragraph>
-    <Paragraph size="4em" weight="bold2">ARTIST.</Paragraph>
+    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">DEVELOPER,</Paragraph>
+    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">DESIGNER,</Paragraph>
+    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">ARTIST.</Paragraph>
     <Paragraph>
       Hi! I'm Elson, a Toronto and Vancouver based software developer with a formal design background and passion for the visual arts across multiple disciplines.
     </Paragraph>
@@ -36,17 +44,23 @@ export const About: React.FC<AboutProps> = ({
     </div>
   </LeftDiv>
   <ChipList>
-    <Chip icon={<DesignServices/>} label="PAINTING"/>
+    <Chip icon={<RoundBrush/>} label="PAINTING"/>
     <Chip icon={<DesignServices/>} label="GRAPHIC DESIGN"/>
-    <Chip icon={<DesignServices/>} label="UI/UX DESIGN"/>
-    <Chip icon={<DesignServices/>} label="PHOTO MANIPULATION"/>
-    <Chip icon={<DesignServices/>} label="RENDERING"/>
-    <Chip icon={<DesignServices/>} label="ARCHITECTURE"/>
-    <Chip icon={<DesignServices/>} label="3D MODELING"/>
-    <Chip icon={<DesignServices/>} label="RIGGING"/>
+    <Chip icon={<Web/>} label="UI/UX DESIGN"/>
+    <Chip icon={<InsertPhoto/>} label="PHOTO MANIPULATION"/>
+    <Chip icon={<Camera/>} label="RENDERING"/>
+    <Chip icon={<Bank/>} label="ARCHITECTURE"/>
+    <Chip icon={<Cube/>} label="3D MODELING"/>
+    <Chip icon={<Man/>} label="ANIMATION"/>
   </ChipList>
-  </div>
+  </PageWrapper>
 )};
+
+const PageWrapper = styled.div`
+    width: 100%;
+    padding: 0px 10%;
+    box-sizing: border-box;
+`
 
 const LeftDiv = styled.div`
     width: 500px;

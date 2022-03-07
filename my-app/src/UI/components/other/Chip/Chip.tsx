@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   display: inline-flex;
   align-items: center;
   
-  padding: 4px 14px;
+  padding: 6px 14px;
   
   background: ${({theme}) => theme.colors.textPassive4};
   border-radius: 100px;
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   }
 
   & :nth-child(2) {
-    margin-left: 14px;
+    margin-left: 10px;
     color: ${({theme}) => theme.colors.textPassive2};
     font-size: ${({theme}) => theme.font.size.small};
     font-weight: ${({theme}) => theme.font.weight.medium};
