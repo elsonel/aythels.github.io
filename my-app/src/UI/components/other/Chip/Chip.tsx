@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { StyledIcon, StyledIconProps } from '@styled-icons/styled-icon'
+import { StyledIconProps } from '@styled-icons/styled-icon'
+import { IconProps } from '../Icon/Icon';
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The icon of the ship
    */
-  icon: React.ReactElement<StyledIcon>;
+  icon: React.ReactElement;
   /**
    * The label of the chip
    */
@@ -21,11 +22,11 @@ export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Chip: React.FC<ChipProps> = ({
   icon,
   label,
-  size=20,
   ...props
 }): React.ReactElement => { 
 
-  const iconProps: StyledIconProps = { size: size };
+  const size = 20;
+  const iconProps: StyledIconProps | IconProps = { ...icon.props, size: icon.props.size ? icon.props.size : size };
 
   return (
   <Wrapper {...props}>

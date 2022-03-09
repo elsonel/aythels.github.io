@@ -11,7 +11,6 @@ import { InsertPhoto } from '@styled-icons/material/InsertPhoto';
 import { Camera } from '@styled-icons/boxicons-solid/Camera';
 import { Bank } from '@styled-icons/boxicons-solid/Bank';
 import { Cube } from '@styled-icons/evaicons-solid/Cube';
-import { Bone } from '@styled-icons/boxicons-solid/Bone';
 import { Man } from '@styled-icons/entypo/Man';
 import { Icon } from '../../other/Icon/Icon';
 
@@ -54,9 +53,11 @@ export const About: React.FC<AboutProps> = ({
     <Chip icon={<Cube/>} label="3D MODELING"/>
     <Chip icon={<Man/>} label="ANIMATION"/>
   </ChipList>
+
+  <StyledButton><Paragraph>GITHUB</Paragraph></StyledButton>
   <ChipList>
-    <Chip icon={<Icon src="/icons/Photoshop.svg"/>} label="PHOTOSHOP" size={18} />
-    <Chip icon={<DesignServices/>} label="ILLUSTRATOR"/>
+    <Chip icon={<Icon src="/icons/Photoshop.svg" size={18}/>} label="PHOTOSHOP" />
+    <Chip icon={<DesignServices />} label="ILLUSTRATOR"/>
     <Chip icon={<Web/>} label="ADOBE XD"/>
     <Chip icon={<InsertPhoto/>} label="FIGMA"/>
     <Chip icon={<Camera/>} label="BLENDER"/>

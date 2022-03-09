@@ -20,6 +20,10 @@ export interface ThemeInterface {
             h5: string;
             h6: string;
         };
+        spacing: {
+            default: string;
+            button: string;
+        }
     };
     colors: {
         text: string;
@@ -59,6 +63,10 @@ export const Theme: ThemeInterface = {
             h5: '1.3rem',
             h6: '1.2rem',
         },
+        spacing: {
+            default: 'normal',
+            button: '0.05rem',
+        }
     },
     colors: {
         text: 'black',
