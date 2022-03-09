@@ -12,15 +12,20 @@ export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
    * The label of the chip
    */
   label: string;
+  /**
+   * The size of the chip
+   */
+  size?: number;
 }
 
 export const Chip: React.FC<ChipProps> = ({
   icon,
   label,
+  size=20,
   ...props
 }): React.ReactElement => { 
 
-  const iconProps: StyledIconProps = { size: 20 };
+  const iconProps: StyledIconProps = { size: size };
 
   return (
   <Wrapper {...props}>

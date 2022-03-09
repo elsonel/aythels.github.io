@@ -13,6 +13,7 @@ import { Bank } from '@styled-icons/boxicons-solid/Bank';
 import { Cube } from '@styled-icons/evaicons-solid/Cube';
 import { Bone } from '@styled-icons/boxicons-solid/Bone';
 import { Man } from '@styled-icons/entypo/Man';
+import { Icon } from '../../other/Icon/Icon';
 
 export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -52,6 +53,16 @@ export const About: React.FC<AboutProps> = ({
     <Chip icon={<Bank/>} label="ARCHITECTURE"/>
     <Chip icon={<Cube/>} label="3D MODELING"/>
     <Chip icon={<Man/>} label="ANIMATION"/>
+  </ChipList>
+  <ChipList>
+    <Chip icon={<Icon src="/icons/Photoshop.svg"/>} label="PHOTOSHOP" size={18} />
+    <Chip icon={<DesignServices/>} label="ILLUSTRATOR"/>
+    <Chip icon={<Web/>} label="ADOBE XD"/>
+    <Chip icon={<InsertPhoto/>} label="FIGMA"/>
+    <Chip icon={<Camera/>} label="BLENDER"/>
+    <Chip icon={<Bank/>} label="AUTOCAD"/>
+    <Chip icon={<Cube/>} label="RHINO"/>
+    <Chip icon={<Man/>} label="GRASSHOPPER"/>
   </ChipList>
   </PageWrapper>
 )};

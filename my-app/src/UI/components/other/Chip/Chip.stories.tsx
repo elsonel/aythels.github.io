@@ -8,6 +8,7 @@ export default {
     args: {
       icon: <DesignServices/>,
       label: "GRAPHIC DESIGN",
+      size: 20,
     },
 } as Meta;
 
@@ -24,4 +25,11 @@ export const Short = Template.bind({});
 Short.args = {
   ...Short.args,
   label: "CSS",
+};
+
+export const ShortLargeIcon = Template.bind({});
+ShortLargeIcon.args = {
+  ...ShortLargeIcon.args,
+  label: "CSS",
+  size: 32,
 };

@@ -21,7 +21,7 @@ export interface ChipListProps extends React.HTMLAttributes<HTMLDivElement> {
 export const ChipList: React.FC<ChipListProps> = ({
   children,
   marginTop=6,
-  marginLeft=8,
+  marginLeft=10,
   ...props
 }): React.ReactElement => { 
   return (

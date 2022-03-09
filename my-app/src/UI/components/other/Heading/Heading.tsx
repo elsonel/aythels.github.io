@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { HeaderTitles } from '../HeaderTitles/HeaderTitles';
-import { Logo } from '../Logo/Logo';
+import { Icon } from "../Icon/Icon";
 
 export type HeadingProps = {
     activeTitle?: "projects" | "about";
@@ -14,7 +14,7 @@ export const Heading = ({
     return (
       <Wrapper {...props}>
         <LogoLink href="https://www.w3schools.com">
-          <Logo size={32} />
+          <Icon src="/icons/logo.svg" size={32} />
         </LogoLink>
         <TitlesWrapper activeTitle={activeTitle} />
       </Wrapper>
