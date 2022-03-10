@@ -18,7 +18,6 @@ export const Heading: React.FC<HeadingProps> = ({
 )};
 
 const Text = styled(Paragraph)`
-  margin: 12px 0;
-  font-size: ${({theme}) => theme.font.size.h3};
+  font-size: ${({theme}) => theme.font.size.h4};
   font-weight: ${({theme}) => theme.font.weight.bold1};
 `;

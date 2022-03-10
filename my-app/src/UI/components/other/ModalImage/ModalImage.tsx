@@ -4,7 +4,7 @@ import { Image } from '../../images/Image/Image';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { Theme } from '../../../utility/Theme';
 import { ButtonModal } from '../../inputs/ButtonModal/ButtonModal';
-import { ResponsiveLessThan } from '../../../utility/Responsive';
+import { LessThan } from '../../../utility/ResponsiveCSS';
 import { RowCenter } from '../../layout/RowCenter/RowCenter';
 import { useState } from 'react';
 
@@ -84,7 +84,7 @@ const NextButton = styled(ButtonModal)`
     width: 120px;
   }
 
-  ${ResponsiveLessThan('mobileLarge', `
+  ${LessThan('mobileLarge', `
     width: 50%;
 
     &:hover {
@@ -113,7 +113,7 @@ const Caption = styled(Paragraph)`
     padding: 0 40px;
     overflow: hidden;
 
-    ${ResponsiveLessThan('mobileLarge', `
+    ${LessThan('mobileLarge', `
       display: none;
   `)}
 `;

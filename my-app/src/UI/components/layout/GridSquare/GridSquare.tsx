@@ -2,11 +2,11 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from "styled-components";
-import { ResponsiveLessThan } from '../../../utility/Responsive';
+import { LessThan } from '../../../utility/ResponsiveCSS';
 import { Thumbnail } from '../../images/Thumbnail/Thumbnail';
 
 export interface GridSquareProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactElement[];
+  children?: React.ReactElement[] | React.ReactElement;
 }
 
 export const GridSquare: React.FC<GridSquareProps> = ({
@@ -22,11 +22,11 @@ export const GridSquare: React.FC<GridSquareProps> = ({
 
   return (
     <Wrapper {...props}>
-      {children.map((Component, index) => 
+      {children instanceof Array ? children.map((Component, index) => 
         <ItemWrapper key={index} $visible={visible} $index={index}>
           {Component}
         </ItemWrapper>
-      )}
+      ) : children}
     </Wrapper>
 )};
 
@@ -45,15 +45,15 @@ const ItemWrapper = styled.div<{$visible: boolean; $index: number}>`
 
   width: 25%;
 
-  ${ResponsiveLessThan(900, `
+  ${LessThan(900, `
     width: ${100/3}%;
   `)}
 
-  ${ResponsiveLessThan(700, `
+  ${LessThan(700, `
     width: ${100/2}%;
   `)}
 
-  ${ResponsiveLessThan(500, `
+  ${LessThan(500, `
     width: ${100/1}%;
   `)}
 

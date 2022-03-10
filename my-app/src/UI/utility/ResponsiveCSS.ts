@@ -4,13 +4,15 @@ const Media: { [key: string]: number } = {
     tablet: 834,
 }
 
-export const ResponsiveLessThan = (media:keyof typeof Media | string, style:string): string => `
+// Excluding upper bound
+export const LessThan = (media:keyof typeof Media | number, style:string): string => `
     @media (max-width: ${Media[media] ? Media[media] + 1: media}px) {
         ${style}
     }
 `;
 
-export const ResponsiveGreaterThan = (media:keyof typeof Media | string, style:string): string => `
+// Including lower bound
+export const GreaterThan = (media:keyof typeof Media | number, style:string): string => `
     @media (min-width: ${Media[media] ? Media[media] + 1: media}px) {
         ${style}
     }

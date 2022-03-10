@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { StyledIconProps } from '@styled-icons/styled-icon'
-import { IconProps } from '../Icon/Icon';
+import { Icon, IconProps } from '../Icon/Icon';
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -16,30 +16,38 @@ export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The size of the chip
    */
-  size?: number;
+  size?: "medium" | "small";
 }
 
 export const Chip: React.FC<ChipProps> = ({
   icon,
   label,
+  size="medium",
   ...props
 }): React.ReactElement => { 
 
-  const size = 20;
-  const iconProps: StyledIconProps | IconProps = { ...icon.props, size: icon.props.size ? icon.props.size : size };
+  const iconSize = (size === "medium" ? 20 : 16) - (icon.type === Icon ? 2 : 0);
+  const iconProps: StyledIconProps | IconProps = { size: iconSize };
 
   return (
-  <Wrapper {...props}>
-    {React.isValidElement(icon) && React.cloneElement(icon, iconProps)}
-  <Paragraph>{label}</Paragraph>
-  </Wrapper>
+  <div {...props}>
+    {size === "medium" ? 
+      <Medium>
+        {React.isValidElement(icon) && React.cloneElement(icon, iconProps)}
+        <Paragraph>{label}</Paragraph>
+      </Medium>   
+      :
+      <Small>
+        {React.isValidElement(icon) && React.cloneElement(icon, iconProps)}
+        <Paragraph>{label}</Paragraph>
+      </Small>
+    }
+  </div>
 )};
 
 const Wrapper = styled.div`
   display: inline-flex;
   align-items: center;
-  
-  padding: 6px 14px;
   
   background: ${({theme}) => theme.colors.textPassive4};
   border-radius: 100px;
@@ -49,9 +57,23 @@ const Wrapper = styled.div`
   }
 
   & :nth-child(2) {
-    margin-left: 10px;
     color: ${({theme}) => theme.colors.textPassive2};
-    font-size: ${({theme}) => theme.font.size.small};
     font-weight: ${({theme}) => theme.font.weight.medium};
   }
 `
+
+const Medium = styled(Wrapper)`
+  padding: 6px 14px;
+  & :nth-child(2) {
+    margin-left: 10px;
+    font-size: ${({theme}) => theme.font.size.small};
+  }
+`;
+
+const Small = styled(Wrapper)`
+  padding: 4px 12px;
+  & :nth-child(2) {
+    margin-left: 8px;
+    font-size: ${({theme}) => theme.font.size.tiny};
+  }
+`;

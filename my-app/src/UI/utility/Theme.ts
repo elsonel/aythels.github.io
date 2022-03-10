@@ -65,7 +65,7 @@ export const Theme: ThemeInterface = {
         },
         spacing: {
             default: 'normal',
-            button: '0.05rem',
+            button: '0.08rem',
         }
     },
     colors: {

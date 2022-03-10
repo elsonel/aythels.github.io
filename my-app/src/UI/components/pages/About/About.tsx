@@ -13,6 +13,9 @@ import { Bank } from '@styled-icons/boxicons-solid/Bank';
 import { Cube } from '@styled-icons/evaicons-solid/Cube';
 import { Man } from '@styled-icons/entypo/Man';
 import { Icon } from '../../other/Icon/Icon';
+import { ButtonLanding } from '../../inputs/ButtonLanding/ButtonLanding';
+import { Github } from '@styled-icons/boxicons-logos/Github';
+import { Title } from '../../text/Title/Title';
 
 export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -28,9 +31,9 @@ export const About: React.FC<AboutProps> = ({
   return (
   <PageWrapper>
   <LeftDiv>
-    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">DEVELOPER,</Paragraph>
-    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">DESIGNER,</Paragraph>
-    <Paragraph size="4em" lineHeight="1.2em" weight="bold2">ARTIST.</Paragraph>
+    <Title size='large'>DEVELOPER,</Title>
+    <Title size='large'>DESIGNER,</Title>
+    <Title size='large'>ARTIST</Title>
     <Paragraph>
       Hi! I'm Elson, a Toronto and Vancouver based software developer with a formal design background and passion for the visual arts across multiple disciplines.
     </Paragraph>
@@ -39,8 +42,8 @@ export const About: React.FC<AboutProps> = ({
       Currently, I'm studying at the University of Toronto where I specialize in the Technology of Architecture.
     </Paragraph>
     <div>
-      <StyledButton><Paragraph>MORE</Paragraph></StyledButton>
-      <StyledButton><Paragraph>CONTACT</Paragraph></StyledButton>
+      <ButtonLanding>MORE</ButtonLanding>
+      <ButtonLanding>CONTACT</ButtonLanding>
     </div>
   </LeftDiv>
   <ChipList>
@@ -54,9 +57,13 @@ export const About: React.FC<AboutProps> = ({
     <Chip icon={<Man/>} label="ANIMATION"/>
   </ChipList>
 
-  <StyledButton><Paragraph>GITHUB</Paragraph></StyledButton>
+  <Paragraph size="4em" lineHeight="1.2em" weight="bold2">DEVELOPER</Paragraph>
+  <Paragraph>
+    I've been able to gather a few skills here and there throughout my academic and professional experiences, and I'm always eager to continue developing them, as well as learning new skills.
+  </Paragraph>
+  <ButtonLanding>GITHUB</ButtonLanding>
   <ChipList>
-    <Chip icon={<Icon src="/icons/Photoshop.svg" size={18}/>} label="PHOTOSHOP" />
+    <Chip icon={<Icon src="/icons/Photoshop.svg"/>} label="PHOTOSHOP" />
     <Chip icon={<DesignServices />} label="ILLUSTRATOR"/>
     <Chip icon={<Web/>} label="ADOBE XD"/>
     <Chip icon={<InsertPhoto/>} label="FIGMA"/>
@@ -76,25 +83,4 @@ const PageWrapper = styled.div`
 
 const LeftDiv = styled.div`
     width: 500px;
-`
-const StyledButton = styled.button`
-  margin-right: 12px;
-    background: black;
-
-    ${({theme}) => `
-    padding: 12px 40px;
-
-    border: 1.5px solid ${theme.colors.textPassive2};
-    transition: ${theme.speed.normal};
-
-    color: ${theme.colors.text};
-
-    background: ${theme.colors.background};
-
-    &:hover {
-      background: ${theme.colors.primary};
-      color: ${theme.colors.background};
-    }
-    `
-  };
-`
+`;

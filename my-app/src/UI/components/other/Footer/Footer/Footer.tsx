@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import { ResponsiveLessThan, ResponsiveGreaterThan } from '../../../../utility/Responsive';
+import { LessThan, GreaterThan } from '../../../../utility/ResponsiveCSS';
 import { FooterDesktop } from '../FooterDesktop/FooterDesktop';
 import { FooterMobile } from '../FooterMobile/FooterMobile';
 
@@ -16,7 +16,7 @@ export const Footer: React.FC = ({
 const Desktop = styled(FooterDesktop)`
   display: none;
 
-  ${ResponsiveGreaterThan('tablet', `
+  ${GreaterThan('tablet', `
     display: flex;
   `)}
 `;
@@ -24,7 +24,7 @@ const Desktop = styled(FooterDesktop)`
 const Mobile = styled(FooterMobile)`
   display: none;
 
-  ${ResponsiveLessThan('tablet', `
+  ${LessThan('tablet', `
     display: flex;
   `)}
 `;

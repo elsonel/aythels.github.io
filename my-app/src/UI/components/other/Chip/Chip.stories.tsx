@@ -8,7 +8,7 @@ export default {
     args: {
       icon: <DesignServices/>,
       label: "GRAPHIC DESIGN",
-      size: 20,
+      size: "medium",
     },
 } as Meta;
 
@@ -17,7 +17,6 @@ const Template: Story<ChipProps> = (args) => <Chip {...args} />;
 export const Long = Template.bind({});
 Long.args = {
   ...Long.args,
-  icon: <DesignServices/>,
   label: "GRAPHIC DESIGN",
 }
 
@@ -27,9 +26,8 @@ Short.args = {
   label: "CSS",
 };
 
-export const ShortLargeIcon = Template.bind({});
-ShortLargeIcon.args = {
-  ...ShortLargeIcon.args,
-  label: "CSS",
-  size: 32,
+export const Small = Template.bind({});
+Small.args = {
+  ...Small.args,
+  size: "small",
 };

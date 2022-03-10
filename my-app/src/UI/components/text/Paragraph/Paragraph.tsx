@@ -40,5 +40,6 @@ export const Paragraph = ({
     line-height: ${lineHeight};
     color: ${theme.colors[color] || color};
     margin: 0px;
+    transition: ${theme.speed.normal};
 `}
 `;
