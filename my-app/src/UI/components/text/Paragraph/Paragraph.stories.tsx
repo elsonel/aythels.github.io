@@ -2,11 +2,11 @@ import { Meta, Story } from '@storybook/react';
 import { Paragraph, ParagraphProps } from './Paragraph';
 
 export default {
-    title: 'Text/Paragraph',
-    component: Paragraph,
-    args: {
-        children: 'Hello World',
-    },
+  title: 'Text/Paragraph',
+  component: Paragraph,
+  args: {
+    children: 'Hello World',
+  },
 } as Meta;
 
 const Template: Story<ParagraphProps> = (args) => <Paragraph {...args} />;

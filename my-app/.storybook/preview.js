@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { Theme } from '../src/UI/utility/Theme';
+import { MemoryRouter } from "react-router";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -18,4 +19,5 @@ export const decorators = [
       <Story />
     </ThemeProvider>
   ),
+  (Story) => (<MemoryRouter><Story/></MemoryRouter>)
 ];

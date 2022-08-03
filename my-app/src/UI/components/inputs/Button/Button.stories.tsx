@@ -1,47 +1,66 @@
 import { Meta, Story } from '@storybook/react';
 import { Button, ButtonProps } from './Button';
+import { Sword } from '@styled-icons/remix-fill/Sword';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Input/Button',
+  title: 'Inputs/Button',
   component: Button,
   args: {
-    primary: true,
-    size: 'small',
-    label: 'Feature',
+    children: 'ESCAPE',
+    isDisabled: false,
+    primary: '#F37676',
+    secondary: 'white',
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary = Template.bind({});
-Primary.args = {
-  ...Primary.args,
-  primary: true,
-  label: 'Button',
-  margin: '30px',
+export const Basic = Template.bind({});
+
+export const BasicColored = Template.bind({});
+BasicColored.args = {
+  ...BasicColored.args,
+  primary: 'red',
+  secondary: 'blue',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  ...Secondary.args,
-  label: 'Button',
+export const BasicDisabled = Template.bind({});
+BasicDisabled.args = {
+  ...BasicDisabled.args,
+  isDisabled: true,
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  ...Large.args,
-  size: 'large',
-  label: 'Button',
+export const Icon = Template.bind({});
+Icon.args = {
+  ...Icon.args,
+  icon: <Sword />,
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  ...Small.args,
+export const IconColored = Template.bind({});
+IconColored.args = {
+  ...IconColored.args,
+  icon: <Sword />,
+  primary: 'red',
+  secondary: 'blue',
+};
+
+export const IconDisabled = Template.bind({});
+IconDisabled.args = {
+  ...IconDisabled.args,
+  icon: <Sword />,
+  isDisabled: true,
+};
+
+export const BasicSmall = Template.bind({});
+BasicSmall.args = {
+  ...BasicSmall.args,
   size: 'small',
-  label: 'Button',
 };
 
+export const IconSmall = Template.bind({});
+IconSmall.args = {
+  ...IconSmall.args,
+  size: 'small',
+  icon: <Sword />,
+};

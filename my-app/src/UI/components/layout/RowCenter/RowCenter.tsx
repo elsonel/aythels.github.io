@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export interface RowCenterProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -15,49 +15,46 @@ export interface RowCenterProps extends React.HTMLAttributes<HTMLDivElement> {
 export const RowCenter: React.FC<RowCenterProps> = ({
   children,
   center,
-  justify='space-between',
+  justify = 'space-between',
   ...props
 }): React.ReactElement => (
-  <MainWrapper {...props}>
-    <RowWrapper>
-      <Row1 $justify={justify}>
-        {children}
-      </Row1>
-      <Row2>
-        {center}
-      </Row2>
-    </RowWrapper>
-  </MainWrapper>
+  <Wrapper {...props}>
+    <RowBackground $justify={justify}>
+      {children}
+      <RowForeground>{center}</RowForeground>
+    </RowBackground>
+  </Wrapper>
 );
 
-const MainWrapper = styled.div`
-  width: 100%;
-  height: 50px;
+const Wrapper = styled.div`
   box-sizing: border-box;
+  width: 100%;
 `;
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
+const RowBackground = styled.div<{ $justify: string }>`
+  position: relative;
   height: 100%;
   width: 100%;
-`;
 
-const RowWrapper = styled(Row)`
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
+
+  justify-content: ${({ $justify }) => $justify};
 `;
 
-const Row1 = styled(Row)<{ $justify: string}>`
-  position: absolute;
+const RowForeground = styled.div`
+  position absolute;
   width: 100%;
-  justify-content: ${({$justify}) => $justify};
-`;
+  height: 100%;
 
-const Row2 = styled(Row)`
-  position: absolute;
-  width: auto;
+  display: flex;
+  align-items: center;
   justify-content: center;
+
+  pointer-events: none; 
+
+  > * {
+    pointer-events: auto;
+  }
 `;

@@ -1,88 +1,106 @@
-import React from 'react';
-import styled from "styled-components";
-import { MainInterface, Main } from '../../../utility/Main';
-import { LessThan } from '../../../utility/ResponsiveCSS';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { StyledIcon, StyledIconProps } from '@styled-icons/styled-icon';
+import { TextButton } from '../../text/TextButton';
 
-export interface ButtonProps extends MainInterface{
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  children?: string;
+  icon?: React.ReactElement<StyledIcon>;
+  isDisabled?: boolean;
+  border?: string;
+  primary?: string;
+  secondary?: string;
+  size?: 'medium' | 'small';
   onClick?: () => void;
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({
-  primary = false,
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  icon,
+  isDisabled = false,
+  border,
+  primary = '#F37676',
+  secondary = 'white',
   size = 'medium',
-  label,
   onClick,
   ...props
-}: ButtonProps) => {
+}): React.ReactElement => {
+  const iconProps: StyledIconProps = { size: size === 'medium' ? 18 : 16 };
+  const [hoverState, setHoverState] = useState(false);
+
   return (
-    <Wrapper {...props}>
-      {((size) => {
-        switch(size){
-          case 'small':
-              return <SmallButton onClick={onClick} primary={primary}>{label}</SmallButton>;
-          case 'medium':
-              return <MediumButton onClick={onClick} primary={primary}>{label}</MediumButton>;
-          case 'large':
-              return <LargeButton onClick={onClick} primary={primary}>{label}</LargeButton>;
-        }
-      })(size)}
-    </Wrapper>
+    <ButtonStyled
+      $size={size}
+      $hoverState={hoverState}
+      onMouseEnter={() => setHoverState(true)}
+      onMouseLeave={() => setHoverState(false)}
+      onMouseDown={() => setHoverState(false)}
+      onMouseUp={() => setHoverState(true)}
+      $border={border || primary}
+      $primary={primary}
+      $isDisabled={isDisabled}
+      onClick={onClick}
+      {...props}
+    >
+      <ButtonContent $size={size} $secondary={secondary}>
+        {React.isValidElement(icon) && React.cloneElement(icon, iconProps)}
+        {children && <TextButton size={size}>{children}</TextButton>}
+      </ButtonContent>
+    </ButtonStyled>
   );
 };
 
-const Wrapper = styled.div`
-  ${(props: MainInterface) => Main(props)}
+const ButtonMedium = css`
+  padding: 0px 16px;
+  height: 36px;
 `;
 
-const ButtonMain = styled.button<{ primary: boolean }>`
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border: 0;
-  border-radius: 3em;
+const ButtonSmall = css`
+  padding: 0px 12px;
+  height: 32px;
+`;
+
+const ButtonDisabled = css`
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+`;
+
+const ButtonEnabled = css<{ $hoverState: boolean }>`
+  opacity: ${({ $hoverState }) => ($hoverState ? 0.8 : 1.0)};
   cursor: pointer;
-  display: inline-block;
-  line-height: 1;
-  width: auto;
-
-  color: ${(props) => props.primary ? "white" : "#333"};
-  background-color: ${({theme, primary}) => primary ? theme.colors.primary : theme.colors.background};
-  box-shadow: ${({primary}) => primary ? "none" : "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset"};
-
-  ${LessThan('tablet', `
-    width: 100%;
-  `)}
 `;
 
-const SmallButton = styled(ButtonMain)`
-  font-size: 12px;
-  padding: 10px 16px;
+const ButtonStyled = styled.button<{
+  $size: 'medium' | 'small';
+  $isDisabled: boolean;
+  $border: string;
+  $primary: string;
+  $hoverState: boolean;
+}>`
+  user-select: none;
+  box-sizing: border-box;
+
+  border: 1.5px solid ${({ $border }) => $border};
+  background-color: ${({ $primary }) => $primary};
+  transition: ${({ theme }) => theme.speed.normal};
+
+  ${({ $size }) => ($size === 'medium' ? ButtonMedium : ButtonSmall)}
+  ${({ $isDisabled }) => ($isDisabled ? ButtonDisabled : ButtonEnabled)}
 `;
 
-const MediumButton = styled(ButtonMain)`
-  font-size: 14px;
-  padding: 11px 20px;
-`;
+const ButtonContent = styled.div<{
+  $size: 'medium' | 'small';
+  $secondary: string;
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  column-gap: ${({ $size }) => ($size === 'medium' ? 4 : 3)}px;
 
-const LargeButton = styled(ButtonMain)`
-  font-size: 16px;
-  padding: 12px 24px;
+  & * {
+    color: ${({ $secondary }) => $secondary};
+    transition: ${({ theme }) => theme.speed.normal};
+  }
 `;
-

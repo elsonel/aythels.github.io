@@ -1,63 +1,90 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import { LessThan } from '../../../utility/ResponsiveCSS';
-import { Thumbnail } from '../../images/Thumbnail/Thumbnail';
+import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
+
+const calculateWidth = (gapPixels: number, columnCount: number) => {
+  return `
+    width: calc((100% - (${gapPixels}px * ${
+    columnCount - 1
+  })) / ${columnCount});
+  `;
+};
 
 export interface GridSquareProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactElement[] | React.ReactElement;
+  children?: React.ReactElement<ImageThumbnailProps>[];
+  columnCount?: number;
 }
 
 export const GridSquare: React.FC<GridSquareProps> = ({
   children,
+  columnCount = 4,
   ...props
-}): React.ReactElement => { 
-
+}): React.ReactElement => {
   const [visible, setVisible] = useState(false);
+  columnCount = Math.max(0, Math.min(Math.round(columnCount), 4));
 
   useEffect(() => {
-    setVisible(true);
-  }, [setVisible]);
+    setTimeout(() => setVisible(true), 100);
+  }, []);
 
   return (
     <Wrapper {...props}>
-      {children instanceof Array ? children.map((Component, index) => 
-        <ItemWrapper key={index} $visible={visible} $index={index}>
-          {Component}
-        </ItemWrapper>
-      ) : children}
+      {children &&
+        children.map((Component, index) => (
+          <ItemWrapper
+            $columnCount={columnCount}
+            key={index}
+            $visible={visible}
+            $index={index}
+          >
+            {Component}
+          </ItemWrapper>
+        ))}
     </Wrapper>
-)};
+  );
+};
 
 // https://spectrum.chat/styled-components/general/how-to-apply-styles-to-children~adf92232-33f8-47a6-a378-77c64d649a40
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   width: 100%;
+  padding: 20px;
+
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 `;
 
-const ItemWrapper = styled.div<{$visible: boolean; $index: number}>`
-  opacity: ${({$visible}) => $visible ? 1 : 0};
-  pointer-event: ${({$visible}) => $visible ? 'auto' : 'none'};
-  transition: opacity ${({theme}) => theme.speed.slow} ease-out ${({$index}) => $index * 60}ms;
+const SquareSize = (columnCount: number) => css`
+  ${calculateWidth(20, columnCount)}
 
-  width: 25%;
+  ${LessThan(1200, calculateWidth(20, Math.min(3, columnCount)))}
 
-  ${LessThan(900, `
-    width: ${100/3}%;
-  `)}
+  ${LessThan(800, calculateWidth(20, Math.min(2, columnCount)))}
 
-  ${LessThan(700, `
-    width: ${100/2}%;
-  `)}
+  ${LessThan(600, calculateWidth(20, Math.min(1, columnCount)))}
+`;
 
-  ${LessThan(500, `
-    width: ${100/1}%;
-  `)}
+const ItemWrapper = styled.div<{
+  $columnCount: number;
+  $visible: boolean;
+  $index: number;
+}>`
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  pointer-event: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  transition: opacity ${({ theme }) => theme.speed.slow} ease-out
+    ${({ $index }) => $index * 60}ms;
 
   > * {
-    width: 100%;
+    width: 100% !important;
+    height: 100% !important;
   }
-`
+
+  ${({ $columnCount }) => SquareSize($columnCount)};
+  aspect-ratio: 1;
+`;

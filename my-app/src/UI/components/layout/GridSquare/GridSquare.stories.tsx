@@ -1,21 +1,64 @@
 import { Meta, Story } from '@storybook/react';
 import { GridSquare, GridSquareProps } from './GridSquare';
-import { Thumbnail } from '../../images/Thumbnail/Thumbnail';
+import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 
 export default {
-    title: 'Layout/GridSquare',
-    component: GridSquare,
-    args: {children: <Thumbnail src="/thumbnails/thumb.jpg"/>},
+  title: 'Layout/GridSquare',
+  component: GridSquare,
+  args: {
+    columnCount: 4,
+    children: [<ImageThumbnail key={1} src="/example/square.jpg" />],
+  },
 } as Meta;
 
-const Template: Story<GridSquareProps> = (args) => (
-  <GridSquare {...args}>
-    <Thumbnail src="/thumbnails/thumb.jpg" title="SOARING SKIES" subtitle="2020"/>
-    <Thumbnail src="/thumbnails/thumb.jpg" title="SOARING SKIES" subtitle="2020"/>
-    <Thumbnail src="/thumbnails/thumb.jpg" title="SOARING SKIES" subtitle="2020"/>
-    <Thumbnail src="/thumbnails/thumb.jpg" title="SOARING SKIES" subtitle="2020"/>
-    <Thumbnail src="/thumbnails/thumb.jpg" title="SOARING SKIES" subtitle="2020"/>
-  </GridSquare>
-);
+const Template: Story<GridSquareProps> = (args) => <GridSquare {...args} />;
 
-export const Basic = Template.bind({});
+export const Few = Template.bind({});
+Few.args = {
+  ...Few.args,
+  children: [
+    <ImageThumbnail
+      key={1}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+  ],
+};
+
+export const Many = Template.bind({});
+Many.args = {
+  ...Many.args,
+  children: [
+    <ImageThumbnail
+      key={1}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+    <ImageThumbnail
+      key={2}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+    <ImageThumbnail
+      key={3}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+    <ImageThumbnail
+      key={4}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+    <ImageThumbnail
+      key={5}
+      src="/example/square.jpg"
+      title="SOARING SKIES"
+      subtitle="2020"
+    />,
+  ],
+};
