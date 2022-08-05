@@ -91,6 +91,11 @@ const ModalContent = styled.div`
 `;
 
 const TabText = styled(Paragraph)`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+
   color: ${({ theme }) => `${theme.colors.text}`};
   transition: ${({ theme }) => theme.speed.normal};
 

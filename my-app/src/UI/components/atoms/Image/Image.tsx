@@ -24,4 +24,5 @@ export const Image: React.FC<ImageProps> = ({
 const ImageStyled = styled.img`
   display: block;
   user-select: none;
+  pointer-events: none;
 `;

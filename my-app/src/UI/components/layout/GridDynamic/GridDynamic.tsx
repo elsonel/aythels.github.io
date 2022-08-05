@@ -15,7 +15,9 @@ function sliceIntoChunks(array: any[], parts: number) {
 }
 
 export interface GridDynamicProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactElement<ImageThumbnailProps>[];
+  children?:
+    | React.ReactElement<ImageThumbnailProps>[]
+    | React.ReactElement<ImageThumbnailProps>;
 }
 
 export const GridDynamic: React.FC<GridDynamicProps> = ({
@@ -33,6 +35,7 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
   if (LessThanHook(600)) COLUMN_COUNT = 1;
 
   const createColumns = () => {
+    !Array.isArray(children) && (children = [children]);
     const childPartitions = sliceIntoChunks(children, COLUMN_COUNT);
     let imageIndex = 0;
     const elements: any[] = [];
@@ -83,7 +86,7 @@ const ColumnWrapper = styled.div<{ $COLUMN_COUNT: number }>`
 
 const ItemWrapper = styled.div<{ $visible: boolean; $index: number }>`
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  pointer-event: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   transition: opacity ${({ theme }) => theme.speed.slow} ease-out
     ${({ $index }) => $index * 60}ms;
 

@@ -6,20 +6,28 @@ const Media: { [key: string]: number } = {
 
 // Excluding upper bound
 export const LessThan = (
-  media: keyof typeof Media | number,
+  media: keyof typeof Media | number | string,
   style: string
-): string => `
-    @media all and (max-width: ${Media[media] ? Media[media] + 1 : media}px) {
+): string => {
+  if (Media[media]) media = Media[media] + 1;
+  else if (typeof media === 'number') media = `${media}px`;
+  return `
+    @media all and (max-width: ${media}) {
         ${style}
     }
 `;
+};
 
 // Including lower bound
 export const GreaterThan = (
   media: keyof typeof Media | number,
   style: string
-): string => `
-    @media all and (min-width: ${Media[media] ? Media[media] + 1 : media}px) {
+): string => {
+  if (Media[media]) media = Media[media] + 1;
+  else if (typeof media === 'number') media = `${media}px`;
+  return `
+    @media all and (min-width: ${media}) {
         ${style}
     }
 `;
+};

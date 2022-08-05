@@ -76,6 +76,13 @@ NoTabs.args = {
   ...NoTabs.args,
   tabs: [],
 };
+NoTabs.parameters = {
+  ...NoTabs.parameters,
+  viewport: {
+    ...MINIMAL_VIEWPORTS,
+    defaultViewport: 'mobile1',
+  },
+};
 
 export const NoLinks = Template.bind({});
 NoLinks.args = {
@@ -103,18 +110,32 @@ NoLinks.args = {
     onClick: () => {},
   },
 };
+NoLinks.parameters = {
+  ...NoLinks.parameters,
+  viewport: {
+    ...MINIMAL_VIEWPORTS,
+    defaultViewport: 'mobile1',
+  },
+};
 
 export const LongText = Template.bind({});
 LongText.args = {
   ...LongText.args,
   tabs: [
     {
-      label: 'PROJECTSSSSSSSSSSSSSSSSSS',
+      label: 'PROJECT SSSSSSSSSSSSSSSSSS',
       onClick: () => {},
     },
   ],
   tabLogo: {
     label: 'HOME',
     onClick: () => {},
+  },
+};
+LongText.parameters = {
+  ...LongText.parameters,
+  viewport: {
+    ...MINIMAL_VIEWPORTS,
+    defaultViewport: 'mobile1',
   },
 };

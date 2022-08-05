@@ -15,16 +15,20 @@ const calculateWidth = (gapPixels: number, columnCount: number) => {
 };
 
 export interface GridSquareProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactElement<ImageThumbnailProps>[];
+  children?:
+    | React.ReactElement<ImageThumbnailProps>[]
+    | React.ReactElement<ImageThumbnailProps>;
   columnCount?: number;
 }
 
 export const GridSquare: React.FC<GridSquareProps> = ({
-  children,
+  children = [],
   columnCount = 4,
   ...props
 }): React.ReactElement => {
   const [visible, setVisible] = useState(false);
+
+  !Array.isArray(children) && (children = [children]);
   columnCount = Math.max(0, Math.min(Math.round(columnCount), 4));
 
   useEffect(() => {
@@ -33,17 +37,16 @@ export const GridSquare: React.FC<GridSquareProps> = ({
 
   return (
     <Wrapper {...props}>
-      {children &&
-        children.map((Component, index) => (
-          <ItemWrapper
-            $columnCount={columnCount}
-            key={index}
-            $visible={visible}
-            $index={index}
-          >
-            {Component}
-          </ItemWrapper>
-        ))}
+      {children.map((component, index) => (
+        <ItemWrapper
+          $columnCount={columnCount}
+          key={index}
+          $visible={visible}
+          $index={index}
+        >
+          {component}
+        </ItemWrapper>
+      ))}
     </Wrapper>
   );
 };
@@ -76,7 +79,7 @@ const ItemWrapper = styled.div<{
   $index: number;
 }>`
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  pointer-event: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   transition: opacity ${({ theme }) => theme.speed.slow} ease-out
     ${({ $index }) => $index * 60}ms;
 

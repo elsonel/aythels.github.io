@@ -1,83 +1,97 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { ProjectSection } from '../../groups/ProjectSection';
-import { ScrollHandler } from '../../inputs/ScrollHandler';
-
-let timeout: any = null;
-let isScrollLocked: boolean = true;
+import { Theme } from '../../../utility/Theme';
+import { Paragraph } from '../../text/Paragraph';
+import { IconScroll } from '../IconScroll';
+import { Image } from '../Image/Image';
 
 export interface ProjectLandingProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  isLandingVisible: boolean;
+  src: string;
+  subtitle?: string;
+  title?: string;
+  isContained?: boolean;
+  textColor?: string;
 }
 
 export const ProjectLanding: React.FC<ProjectLandingProps> = ({
-  isLandingVisible,
-  children,
+  src,
+  subtitle = '',
+  title = '',
+  isContained = false,
+  textColor = Theme.colors.background,
   ...props
 }): React.ReactElement => {
-  const [isVisible, setIsVisible] = useState(isLandingVisible);
-
-  useEffect(() => {
-    clearTimeout(timeout);
-
-    if (isVisible) isScrollLocked = true;
-    else if (!isVisible)
-      timeout = setTimeout(() => (isScrollLocked = false), 400);
-  }, [isVisible]);
-
-  const onDown = () => {
-    setIsVisible(false);
-  };
-
-  const onUp = () => {
-    if (window.pageYOffset === 0) setIsVisible(true);
-  };
-
-  const onScroll = () => {
-    onDown();
-    if (isScrollLocked) document.documentElement.scrollTop = 0;
-  };
-
   return (
     <Wrapper {...props}>
-      <ScrollHandler onDown={onDown} onUp={onUp} onScrollWindow={onScroll}>
-        <ContentWrapper $isVisible={isVisible}>
-          <ProjectSection title="OVERVIEW" children={[]} />
-        </ContentWrapper>
-        <ImageWrapper onClick={onDown} $isVisible={isVisible} />
-      </ScrollHandler>
+      <ContentWrapper>
+        <ImageStyled $isContained={isContained} src={src} />
+        <BottomWrapper>
+          <TextWrapper>
+            <TextSubtitle $color={textColor}>{subtitle}</TextSubtitle>
+            <TextTitle $color={textColor}>{title}</TextTitle>
+          </TextWrapper>
+          <Icon color={textColor} />
+        </BottomWrapper>
+      </ContentWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 100%;
-`;
-
-const ImageWrapper = styled.div<{ $isVisible: boolean }>`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
   width: 100vw;
   height: 100vh;
-
-  background: yellow;
-
-  user-select: none;
-  cursor: pointer;
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-  transition: ${({ theme }) => theme.speed.normal};
 `;
 
-const ContentWrapper = styled.div<{ $isVisible: boolean }>`
-  position: absolute;
-  top: ${({ $isVisible }) => ($isVisible ? '50%' : '0%')};
-  left: 0px;
+const ContentWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  position: relative;
 
-  opacity: ${({ $isVisible }) => ($isVisible ? 0 : 1)};
-  transition: ${({ theme }) => theme.speed.normal};
+  user-select: none;
+`;
+
+const ImageStyled = styled(Image)<{ $isContained: boolean }>`
+  height: 100%;
+  width: 100%;
+  object-fit: ${({ $isContained }) => ($isContained ? 'contain' : 'cover')};
+`;
+
+const BottomWrapper = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 20px;
+`;
+
+const Icon = styled(IconScroll)`
+  flex-shrink: 0;
+`;
+
+const TextWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const Text = styled(Paragraph)<{ $color: string }>`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  color: ${({ $color }) => $color};
+`;
+
+const TextSubtitle = styled(Text)`
+  font-size: ${({ theme }) => theme.font.size.default};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+const TextTitle = styled(Text)`
+  font-size: ${({ theme }) => theme.font.size.h5};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

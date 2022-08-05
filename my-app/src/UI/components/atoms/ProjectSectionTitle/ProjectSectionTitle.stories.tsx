@@ -25,3 +25,9 @@ LongTitle.args = {
   children:
     'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
 };
+
+export const NoTitle = Template.bind({});
+NoTitle.args = {
+  ...NoTitle.args,
+  children: undefined,
+};

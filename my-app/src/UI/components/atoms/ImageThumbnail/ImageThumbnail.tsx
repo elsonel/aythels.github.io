@@ -47,16 +47,8 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
       >
         <ImageExtended $hovered={hovered} src={src} />
         <TextContainer $hovered={isTitleVisible ? true : hovered}>
-          {subtitle && (
-            <Text size="small" color={Theme.colors.background}>
-              {subtitle}
-            </Text>
-          )}
-          {title && (
-            <Text size="large" weight="bold1" color={Theme.colors.background}>
-              {title}
-            </Text>
-          )}
+          {subtitle && <TextSubtitle>{subtitle}</TextSubtitle>}
+          {title && <TextTitle>{title}</TextTitle>}
         </TextContainer>
         <Border />
       </Wrapper>
@@ -122,6 +114,16 @@ const TextContainer = styled.div<{ $hovered: boolean }>`
   `};
 `;
 
-const Text = styled(Paragraph)`
+const TextSubtitle = styled(Paragraph)`
   white-space: nowrap;
+  color: ${({ theme }) => theme.colors.background};
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+const TextTitle = styled(Paragraph)`
+  white-space: nowrap;
+  color: ${({ theme }) => theme.colors.background};
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

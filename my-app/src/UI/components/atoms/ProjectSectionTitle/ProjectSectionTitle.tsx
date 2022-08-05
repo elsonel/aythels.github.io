@@ -4,7 +4,7 @@ import { TextTitle } from '../../text/TextTitle';
 
 export interface ProjectSectionTitleProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  children: string;
+  children?: string;
 }
 
 export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
@@ -13,7 +13,7 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <Text size="small">{children}</Text>
+      {children && <Text size="small">{children}</Text>}
       <DividerWrapper>
         <Divider />
       </DividerWrapper>
@@ -23,6 +23,7 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 32px;
 
   display: flex;
   align-items: center;

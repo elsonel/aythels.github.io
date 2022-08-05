@@ -11,18 +11,22 @@ export interface ProjectMenuTab {
 export interface ProjectMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   tabs: ProjectMenuTab[];
   isVisible?: boolean;
+  subtitle?: string;
+  title?: string;
 }
 
 export const ProjectMenu: React.FC<ProjectMenuProps> = ({
   tabs,
   isVisible = true,
+  subtitle = '',
+  title = '',
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
       <Contents $isVisible={isVisible}>
-        <Subtitle>UI/UX</Subtitle>
-        <Title>SPOTLIGHT</Title>
+        <Subtitle>{subtitle}</Subtitle>
+        <Title>{title}</Title>
         <TabWrapper>
           {tabs.map((e, i) => (
             <TabRow
@@ -44,10 +48,7 @@ export const ProjectMenu: React.FC<ProjectMenuProps> = ({
 const Wrapper = styled.div`
   box-sizing: border-box;
 
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 250px;
+  width: 240px;
   padding: 20px;
 `;
 
@@ -65,14 +66,20 @@ const Contents = styled.div<{ $isVisible: boolean }>`
   user-select: none;
 `;
 
-const Title = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.h6};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+const Text = styled(Paragraph)`
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-const Subtitle = styled(Paragraph)`
+const Subtitle = styled(Text)`
+  white-space: nowrap;
   font-size: ${({ theme }) => theme.font.size.small};
-  font-weight: ${({ theme }) => theme.font.weight.bold1};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+const Title = styled(Text)`
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;
 
 const TabWrapper = styled.div`
@@ -87,13 +94,15 @@ const TabRow = styled.div<{ $isVisible: boolean; $index: number }>`
   align-items: center;
 
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.slow};
   transition-delay: ${({ $index, $isVisible }) =>
     $isVisible ? $index * 30 + 30 : 0}ms;
   cursor: pointer;
 `;
 
 const TabBullet = styled.div<{ $isSelected: boolean }>`
+  flex-shrink: 0;
+
   width: 4px;
   height: 4px;
   margin-right: 10px;
@@ -104,10 +113,8 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
   transition: ${({ theme }) => theme.speed.normal};
 `;
 
-const TabText = styled(Paragraph)<{ $isSelected: boolean }>`
+const TabText = styled(Text)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.small};
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.colors.text : theme.colors.textPassive2};
   transition: ${({ theme }) => theme.speed.normal};

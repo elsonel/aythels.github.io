@@ -30,3 +30,9 @@ const Template: Story<ScrollHandlerProps> = (args) => (
 );
 
 export const Basic = Template.bind({});
+
+export const NoOverflow = Template.bind({});
+NoOverflow.args = {
+  ...NoOverflow.args,
+  children: <Box />,
+};

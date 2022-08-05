@@ -8,12 +8,14 @@ export interface ScrollHandlerProps
   onUp?: (e: SyntheticEvent) => void;
   onDown?: (e: SyntheticEvent) => void;
   onScrollWindow?: (e: Event) => void;
+  onScrollWindowDependents?: any[];
 }
 
 export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
   onUp,
   onDown,
   onScrollWindow,
+  onScrollWindowDependents = [],
   children,
   ...props
 }): React.ReactElement => {
@@ -25,7 +27,7 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, onScrollWindowDependents);
 
   // When mouse wheel is triggered
   const handleWheel = (e: React.WheelEvent) => {
@@ -47,11 +49,32 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
     else if (startY < endY - TOLERANCE) onUp && onUp(e);
   };
 
+  //onkeypress
+  const upKeys: { [key: string]: boolean } = {
+    ArrowUp: true,
+    PageUp: false,
+    Home: false,
+  };
+
+  const downKeys: { [key: string]: boolean } = {
+    ArrowDown: true,
+    PageDown: false,
+    End: false,
+    ' ': false,
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (downKeys[e.key] || downKeys[e.code]) onDown && onDown(e);
+    else if (upKeys[e.key] || upKeys[e.code]) onUp && onUp(e);
+  };
+
   return (
     <div
+      tabIndex={0}
       onWheel={handleWheel}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {children}

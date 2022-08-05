@@ -13,6 +13,7 @@ export interface ThemeInterface {
       default: string;
       tiny: string;
       small: string;
+      large: string;
       h1: string;
       h2: string;
       h3: string;
@@ -57,6 +58,7 @@ export const Theme: ThemeInterface = {
       default: '0.96rem',
       tiny: '0.70rem',
       small: '0.80rem',
+      large: '1.1rem',
       h1: '2rem',
       h2: '1.75rem',
       h3: '1.55rem',
