@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Image } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
-import { Theme } from '../../../utility/Theme';
 import { LessThan } from '../../../utility/ResponsiveCSS';
 import { RowCenter } from '../../layout/RowCenter/RowCenter';
 import { useState } from 'react';
-import { ButtonReverse } from '../../inputs/ButtonReverse';
 import { Close } from '@styled-icons/zondicons/Close';
 import { ArrowRight } from '@styled-icons/zondicons/ArrowRight';
 import { ArrowLeft } from '@styled-icons/zondicons/ArrowLeft';
 import { TextCaption } from '../../text/TextCaption';
+import { GlobalScrollHidden } from '../../../utility/Styles';
+import { ButtonModal } from '../../inputs/ButtonModal';
+import { getElementAt } from '../../../utility/Array';
+
+const createPane = (srcArray: any[], index: number) => {
+  return [
+    <ImageStyled
+      key={getElementAt(srcArray, index - 1).src}
+      $index={index - 1}
+      src={getElementAt(srcArray, index - 1).src}
+    />,
+    <ImageStyled
+      key={getElementAt(srcArray, index).src}
+      $index={index}
+      src={getElementAt(srcArray, index).src}
+    />,
+    <ImageStyled
+      key={getElementAt(srcArray, index + 1).src}
+      $index={index + 1}
+      src={getElementAt(srcArray, index + 1).src}
+    />,
+  ];
+};
 
 export interface ImageProps {
   src: string;
@@ -19,143 +40,79 @@ export interface ImageProps {
 }
 
 export interface ModalImageProps {
-  srcArray: Array<ImageProps>;
-  visible: boolean;
+  srcArray: ImageProps[];
+  indexOffset?: number;
+  isVisible?: boolean;
   onClick?: () => void;
 }
 
 export const ModalImage = ({
   srcArray,
-  visible = false,
+  indexOffset = 0,
+  isVisible = false,
   onClick,
   ...props
 }: ModalImageProps) => {
-  let displayNextButtons = true;
+  if (srcArray.length === 0) throw new Error('Need at least one image!');
 
-  // Must have at least three elements in props array for slider to work properly
-  if (srcArray.length === 1) {
-    displayNextButtons = false;
-    srcArray = [...srcArray, ...srcArray, ...srcArray];
-  } else if (srcArray.length === 2) {
-    srcArray = [...srcArray, ...srcArray];
-  }
+  const displayNextButtons = srcArray.length <= 1 ? false : true;
+  const [index, setIndex] = useState(indexOffset);
+  const [currentPane, setCurrentPane] = useState(createPane(srcArray, index));
+  const [isAnimated, setIsAnimated] = useState(false);
 
-  const [srcIndex, setSrcIndex] = useState(0);
-  const [lastSrcIndex, setLastSrcIndex] = useState(0);
+  useEffect(() => {
+    changeImage(indexOffset);
+    setIsAnimated(false);
+  }, [indexOffset]);
 
-  const getIndex = (index: number) => {
-    if (index > 0) return index % srcArray.length;
-    else return (index + srcArray.length) % srcArray.length;
+  const changeImage = (newIndex: number) => {
+    setIsAnimated(true);
+    setCurrentPane(createPane(srcArray, newIndex));
+    setIndex(newIndex);
   };
 
   return (
-    <Wrapper $visible={visible} {...props}>
+    <Wrapper $isVisible={isVisible} {...props}>
+      {isVisible && <GlobalScrollHidden />}
       <Row
         justify="right"
-        center={
-          srcArray[srcIndex].title && (
-            <Title size="h6" weight="bold2">
-              {srcArray[srcIndex].title!}
-            </Title>
-          )
-        }
+        center={<Title>{getElementAt(srcArray, index).title}</Title>}
       >
-        <ButtonClose
-          onClick={onClick}
-          size="small"
-          border={Theme.colors.textPassive3}
-          borderReversed={Theme.colors.text}
-          primary={'transparent'}
-          secondary={Theme.colors.textPassive3}
-          primaryReversed={Theme.colors.background}
-          secondaryReversed={Theme.colors.text}
-          icon={<Close />}
-        />
+        <ButtonClose onClick={onClick} icon={<Close />} />
       </Row>
-      <ImageContainer>
-        {srcArray.map((element, index) => {
-          if (index === getIndex(srcIndex - 1))
-            return (
-              <ImageExtended
-                key={index}
-                $side={-1}
-                $prevImage={lastSrcIndex === index}
-                src={element.src}
-              />
-            );
-          else if (index === getIndex(srcIndex + 1))
-            return (
-              <ImageExtended
-                key={index}
-                $side={1}
-                $prevImage={lastSrcIndex === index}
-                src={element.src}
-              />
-            );
-          else if (index === srcIndex)
-            return (
-              <ImageExtended
-                key={index}
-                $side={0}
-                $prevImage={true}
-                src={element.src}
-              />
-            );
-          return null;
-        })}
-      </ImageContainer>
-      <Row
-        center={
-          srcArray[srcIndex].caption && (
-            <Caption>{srcArray[srcIndex].caption!}</Caption>
-          )
-        }
-      >
-        {displayNextButtons && (
+      <WrapperMiddle>
+        <ImageContainer $isAnimated={isAnimated} $offset={index}>
+          {currentPane}
+        </ImageContainer>
+      </WrapperMiddle>
+      <Row center={<Caption>{getElementAt(srcArray, index).caption}</Caption>}>
+        {displayNextButtons && [
           <ButtonNext
-            size="small"
-            border={Theme.colors.textPassive3}
-            borderReversed={Theme.colors.text}
-            primary={'transparent'}
-            secondary={Theme.colors.textPassive3}
-            primaryReversed={Theme.colors.background}
-            secondaryReversed={Theme.colors.text}
+            key={'left'}
             icon={<ArrowLeft />}
-            onClick={() => {
-              setLastSrcIndex(srcIndex);
-              setSrcIndex(getIndex(srcIndex - 1));
-            }}
-          />
-        )}
-        {displayNextButtons && (
+            onClick={() => changeImage(index - 1)}
+          />,
           <ButtonNext
-            size="small"
-            border={Theme.colors.textPassive3}
-            borderReversed={Theme.colors.text}
-            primary={'transparent'}
-            secondary={Theme.colors.textPassive3}
-            primaryReversed={Theme.colors.background}
-            secondaryReversed={Theme.colors.text}
+            key={'right'}
             icon={<ArrowRight />}
-            onClick={() => {
-              setLastSrcIndex(srcIndex);
-              setSrcIndex(getIndex(srcIndex + 1));
-            }}
-          />
-        )}
+            onClick={() => changeImage(index + 1)}
+          />,
+        ]}
       </Row>
     </Wrapper>
   );
 };
 
-const ButtonClose = styled(ButtonReverse)`
+const IMAGE_DISTANCE = 200;
+
+const ButtonClose = styled(ButtonModal)`
   width: 32px;
   height: 32px;
   padding: 0px;
   margin: 0 10px;
 `;
 
-const ButtonNext = styled(ButtonReverse)`
+const ButtonNext = styled(ButtonModal)`
   width: 100px;
   height: 100%;
 
@@ -184,12 +141,22 @@ const Caption = styled(TextCaption)`
 
 const Title = styled(Paragraph)`
   max-width: calc(100% - 100px);
+
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.size.h6};
 `;
 
-const Wrapper = styled.div<{ $visible: boolean }>`
+const Wrapper = styled.div<{ $isVisible: boolean }>`
+  z-index: ${({ theme }) => theme.layer.modal};
+  position: fixed;
+
+  top: 0px;
+  left: 0px;
+  width: 100vw;
   height: 100vh;
 
   display: flex;
@@ -201,51 +168,38 @@ const Wrapper = styled.div<{ $visible: boolean }>`
   transition: ${({ theme }) => `${theme.speed.slow}`};
   transition-property: opacity;
   background: ${({ theme }) => theme.colors.background};
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
 
   overflow: hidden;
 `;
 
-const ImageContainer = styled.div`
-  height: calc(100vh - 100px);
-  width: 100vw;
+const WrapperMiddle = styled.div`
+  flex-grow: 1;
+  width: 100%;
 
   box-sizing: border-box;
-  position: relative;
-  margin: 8px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  user-select: none;
+  padding: 10px;
 `;
 
-const ImageExtended = styled(Image)<{ $side: -1 | 0 | 1; $prevImage: boolean }>`
-  height: 100%;
+const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`
   width: 100%;
-  object-fit: contain;
+  height: 100%;
 
+  left: ${({ $offset }) => `${-$offset * IMAGE_DISTANCE}vw`};
+  transition: ${({ theme, $isAnimated }) =>
+    $isAnimated ? `${theme.speed.normal} ease` : 'none'};
+
+  position: relative;
+`;
+
+const ImageStyled = styled(Image)<{ $index: number }>`
   position: absolute;
+  width: 100%;
+  height: 100%;
 
-  transition: ${({ theme }) => `${theme.speed.normal} ease-in`};
-
-  ${({ theme, $side, $prevImage }) => {
-    let position;
-    if ($side === -1) position = '-250vw';
-    else if ($side === 0) position = '0';
-    else if ($side === 1) position = '250vw';
-
-    let transition;
-    if ($side === -1) transition = $prevImage ? theme.speed.slow : 'none';
-    else if ($side === 0) transition = theme.speed.slow;
-    else if ($side === 1) transition = $prevImage ? theme.speed.slow : 'none';
-
-    return `
-      transition: ${transition} ease;
-      transform: translate(${position});
-    `;
-  }}
+  object-fit: contain;
+  left: ${({ $index }) => `${$index * IMAGE_DISTANCE}vw`};
 `;
 
 const Row = styled(RowCenter)`

@@ -25,6 +25,9 @@ export interface ThemeInterface {
       default: string;
       button: string;
     };
+    wordSpacing: {
+      default: string;
+    };
   };
   colors: {
     text: string;
@@ -35,10 +38,15 @@ export interface ThemeInterface {
     background: string;
     highlight: string;
   };
+  layer: {
+    header: number;
+    modal: number;
+  };
   speed: {
     fast: string;
     normal: string;
     slow: string;
+    loading: string;
     test: string;
   };
 }
@@ -70,6 +78,9 @@ export const Theme: ThemeInterface = {
       default: 'normal',
       button: '0.08rem',
     },
+    wordSpacing: {
+      default: '0.08rem',
+    },
   },
   colors: {
     text: '#1a1a1a',
@@ -80,10 +91,15 @@ export const Theme: ThemeInterface = {
     background: '#ffffff',
     highlight: '#C92C2C',
   },
+  layer: {
+    header: 9998,
+    modal: 9999,
+  },
   speed: {
     fast: '0.15s',
     normal: '0.25s',
     slow: '0.4s',
+    loading: '1s',
     test: '3s',
   },
 };

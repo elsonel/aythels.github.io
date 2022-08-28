@@ -40,3 +40,18 @@ Center.args = {
   ...Center.args,
   textAlign: 'center',
 };
+
+export const LongText = Template.bind({});
+LongText.args = {
+  ...LongText.args,
+  children:
+    'FFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+};
+
+export const LineLongText = Template.bind({});
+LineLongText.args = {
+  ...LineLongText.args,
+  isWrapped: false,
+  children:
+    'FFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+};

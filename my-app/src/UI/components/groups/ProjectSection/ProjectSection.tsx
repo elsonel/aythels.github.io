@@ -5,7 +5,7 @@ import { ProjectSectionTitle } from '../../atoms/ProjectSectionTitle';
 export interface ProjectSectionProps
   extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  children?: React.ReactElement[] | React.ReactElement;
+  children?: React.ReactNode;
 }
 
 export const ProjectSection: React.FC<ProjectSectionProps> = ({

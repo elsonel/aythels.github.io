@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { LoadingFadeIn } from './UI/components/other/Loading';
-import { LoadingFadeOut } from './UI/components/other/LoadingFadeOut';
+import { Loading } from './UI/components/other/Loading';
 
 let ActiveHook: any = null;
-let redirectCallback: any = null;
-
-export const handlePageTransition = (onFinish: () => void) => {
-  redirectCallback = onFinish;
-
-  if (ActiveHook) {
-    ActiveHook(true);
-  } else {
-    redirectCallback();
-    redirectCallback = null;
-  }
-};
 
 export const finishLoad = () => {
   if (ActiveHook) ActiveHook(false);
+};
+
+export const startLoad = () => {
+  if (ActiveHook) ActiveHook(true);
 };
 
 export const Loader = (): React.ReactElement => {
@@ -32,16 +23,7 @@ export const Loader = (): React.ReactElement => {
 
   return (
     <div>
-      <LoadingFadeOut
-        isVisible={isLoadingVisible}
-        onFinish={() => {
-          if (redirectCallback) {
-            redirectCallback();
-            redirectCallback = null;
-          }
-        }}
-      />
-      <LoadingFadeIn isVisible={isLoadingVisible} />
+      <Loading isVisible={isLoadingVisible} />
     </div>
   );
 };

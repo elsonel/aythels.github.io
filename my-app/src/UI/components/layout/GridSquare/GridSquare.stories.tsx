@@ -6,8 +6,25 @@ export default {
   title: 'Layout/GridSquare',
   component: GridSquare,
   args: {
-    columnCount: 4,
     children: [<ImageThumbnail key={1} src="/example/square.jpg" />],
+    breakpoints: [
+      {
+        minWidth: 0,
+        columnCount: 1,
+      },
+      {
+        minWidth: 600,
+        columnCount: 2,
+      },
+      {
+        minWidth: 800,
+        columnCount: 3,
+      },
+      {
+        minWidth: 1200,
+        columnCount: 4,
+      },
+    ],
   },
 } as Meta;
 

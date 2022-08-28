@@ -7,7 +7,6 @@ export default {
   component: Loading,
   args: {
     isVisible: true,
-    onFinish: () => {},
   },
 } as Meta;
 

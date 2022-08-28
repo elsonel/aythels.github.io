@@ -5,7 +5,7 @@ export default {
   title: 'Groups/GalleryHeader',
   component: GalleryHeader,
   args: {
-    tabs: [
+    pageTabs: [
       {
         label: 'VISUAL ARTS',
         isSelected: false,
@@ -18,6 +18,28 @@ export default {
       },
       {
         label: 'ARCHITECTURE',
+        isSelected: false,
+        onClick: () => {},
+      },
+    ],
+    sortTabs: [
+      {
+        label: 'NEWEST',
+        isSelected: false,
+        onClick: () => {},
+      },
+      {
+        label: 'OLDEST',
+        isSelected: false,
+        onClick: () => {},
+      },
+      {
+        label: 'A - Z',
+        isSelected: false,
+        onClick: () => {},
+      },
+      {
+        label: 'Z - A',
         isSelected: false,
         onClick: () => {},
       },

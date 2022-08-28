@@ -8,6 +8,7 @@ export default {
     children: 'Click me',
     link: '/home',
   },
+  argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
 const Template: Story<LinkInternalProps> = (args) => <LinkInternal {...args} />;

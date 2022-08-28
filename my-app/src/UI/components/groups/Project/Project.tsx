@@ -12,6 +12,8 @@ const MENU_WIDTH = 220;
 let timeout: any = null;
 let isScrollLocked: boolean = true;
 
+let lockCount = 0;
+
 export interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
   landingComponent: React.ReactElement<ProjectLandingProps>;
   children?: React.ReactElement<ProjectSectionProps>[];

@@ -2,26 +2,36 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { LessThanHook } from '../../../utility/ResponsiveProps';
+import { distributeIntoChunks } from '../../../utility/Array';
+import { GreaterThanHook } from '../../../utility/ResponsiveProps';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
-
-function sliceIntoChunks(array: any[], parts: number) {
-  array = [...array];
-  let result = [];
-  for (let i = parts; i > 0; i--) {
-    result.push(array.splice(0, Math.ceil(array.length / i)));
-  }
-  return result;
-}
+import { GridBreakpoint } from '../GridSquare';
 
 export interface GridDynamicProps extends React.HTMLAttributes<HTMLDivElement> {
   children?:
     | React.ReactElement<ImageThumbnailProps>[]
     | React.ReactElement<ImageThumbnailProps>;
+  breakpoints?: GridBreakpoint[];
 }
+
+const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
+  {
+    minWidth: 0,
+    columnCount: 1,
+  },
+  {
+    minWidth: 600,
+    columnCount: 2,
+  },
+  {
+    minWidth: 800,
+    columnCount: 3,
+  },
+];
 
 export const GridDynamic: React.FC<GridDynamicProps> = ({
   children = [],
+  breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
   const [visible, setVisible] = useState(false);
@@ -31,12 +41,21 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
   }, []);
 
   let COLUMN_COUNT = 3;
-  if (LessThanHook(800)) COLUMN_COUNT = 2;
-  if (LessThanHook(600)) COLUMN_COUNT = 1;
+
+  for (let i = 0; i < breakpoints.length; i++) {
+    const breakpoint = breakpoints[i];
+    if (GreaterThanHook(breakpoint.minWidth))
+      COLUMN_COUNT = breakpoint.columnCount;
+  }
 
   const createColumns = () => {
     !Array.isArray(children) && (children = [children]);
-    const childPartitions = sliceIntoChunks(children, COLUMN_COUNT);
+
+    const childPartitions: React.ReactElement[][] = distributeIntoChunks(
+      children,
+      COLUMN_COUNT
+    );
+
     let imageIndex = 0;
     const elements: any[] = [];
 
@@ -46,7 +65,7 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       // eslint-disable-next-line no-loop-func
       childPartitions[i].forEach((e, j) => {
         imageElements.push(
-          <ItemWrapper $visible={visible} $index={imageIndex}>
+          <ItemWrapper key={j} $visible={visible} $index={imageIndex}>
             {e}
           </ItemWrapper>
         );

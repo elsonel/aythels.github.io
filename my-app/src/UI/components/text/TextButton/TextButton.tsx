@@ -6,20 +6,22 @@ export interface TextButtonProps extends ParagraphProps {
   /**
    * Text
    */
-  children: string;
+  children?: React.ReactNode; // text
 }
 
 export const TextButton: React.FC<TextButtonProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  return <Text {...props}>{children}</Text>;
+  return (
+    <Text isWrapped {...props}>
+      {children}
+    </Text>
+  );
 };
 
 const Text = styled(Paragraph)`
   font-weight: ${({ theme }) => theme.font.weight.regular};
   letter-spacing: ${({ theme }) => theme.font.spacing.button};
-  white-space: nowrap;
-
   padding-left: ${({ theme }) => theme.font.spacing.button};
 `;

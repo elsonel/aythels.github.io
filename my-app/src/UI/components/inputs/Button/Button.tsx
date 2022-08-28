@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { StyledIcon, StyledIconProps } from '@styled-icons/styled-icon';
 import { TextButton } from '../../text/TextButton';
+import { IIconProps } from '../../atoms/IIcon';
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children?: string;
-  icon?: React.ReactElement<StyledIcon>;
+  icon?: React.ReactElement<IIconProps>;
   isDisabled?: boolean;
   border?: string;
   primary?: string;
@@ -25,7 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   ...props
 }): React.ReactElement => {
-  const iconProps: StyledIconProps = { size: size === 'medium' ? 18 : 16 };
+  const iconProps: IIconProps = { size: size === 'medium' ? 18 : 16 };
   const [hoverState, setHoverState] = useState(false);
 
   return (
@@ -67,7 +68,7 @@ const ButtonDisabled = css`
 `;
 
 const ButtonEnabled = css<{ $hoverState: boolean }>`
-  opacity: ${({ $hoverState }) => ($hoverState ? 0.8 : 1.0)};
+  opacity: ${({ $hoverState }) => ($hoverState ? 0.9 : 1.0)};
   cursor: pointer;
 `;
 

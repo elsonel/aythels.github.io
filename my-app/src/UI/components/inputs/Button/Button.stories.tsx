@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { Button, ButtonProps } from './Button';
 import { Sword } from '@styled-icons/remix-fill/Sword';
+import { IIconSVG } from '../../atoms/IIconSVG';
 
 export default {
   title: 'Inputs/Button',
@@ -34,13 +35,13 @@ BasicDisabled.args = {
 export const Icon = Template.bind({});
 Icon.args = {
   ...Icon.args,
-  icon: <Sword />,
+  icon: <IIconSVG src={Sword} />,
 };
 
 export const IconColored = Template.bind({});
 IconColored.args = {
   ...IconColored.args,
-  icon: <Sword />,
+  icon: <IIconSVG src={Sword} />,
   primary: 'red',
   secondary: 'blue',
 };
@@ -48,7 +49,7 @@ IconColored.args = {
 export const IconDisabled = Template.bind({});
 IconDisabled.args = {
   ...IconDisabled.args,
-  icon: <Sword />,
+  icon: <IIconSVG src={Sword} />,
   isDisabled: true,
 };
 
@@ -62,5 +63,5 @@ export const IconSmall = Template.bind({});
 IconSmall.args = {
   ...IconSmall.args,
   size: 'small',
-  icon: <Sword />,
+  icon: <IIconSVG src={Sword} />,
 };

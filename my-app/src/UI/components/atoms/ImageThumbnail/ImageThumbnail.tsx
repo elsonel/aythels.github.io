@@ -81,6 +81,8 @@ const Border = styled.div`
 
 const ImageExtended = styled(Image)<{ $hovered: boolean }>`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 
   display: block;
   user-select: none;
@@ -103,27 +105,40 @@ const TextContainer = styled.div<{ $hovered: boolean }>`
   bottom: 0px;
   left: 0px;
   padding: 16px;
+  width: 100%;
+  height: 20%;
 
   user-select: none;
   pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   ${({ $hovered, theme }) => `
     transition: ${theme.speed.slow};
     transition-delay: ${$hovered ? 0 : 400}ms;
     opacity: ${$hovered ? 1 : 0};
   `};
+
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.49653364763874297) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 `;
 
 const TextSubtitle = styled(Paragraph)`
   white-space: nowrap;
   color: ${({ theme }) => theme.colors.background};
-  font-size: ${({ theme }) => theme.font.size.small};
+  font-size: ${({ theme }) => theme.font.size.default};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 const TextTitle = styled(Paragraph)`
   white-space: nowrap;
   color: ${({ theme }) => theme.colors.background};
-  font-size: ${({ theme }) => theme.font.size.large};
+  font-size: ${({ theme }) => theme.font.size.h6};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

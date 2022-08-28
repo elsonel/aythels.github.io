@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { IIcon, IIconProps } from '../IIcon';
 
-export interface IconScrollProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IconScrollProps extends IIconProps {
   color?: string;
 }
 
@@ -10,11 +11,11 @@ export const IconScroll: React.FC<IconScrollProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Wrapper {...props}>
+    <IIcon {...props}>
       <IconWrapper>
         <Icon $color={color} />
       </IconWrapper>
-    </Wrapper>
+    </IIcon>
   );
 };
 
@@ -29,14 +30,9 @@ const Animation = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
-  width: 24px;
-  height: 40px;
-`;
-
 const IconWrapper = styled.div`
   position: relative;
-  width: 100%;
+  width: 60%;
   height: 100%;
 `;
 
@@ -50,8 +46,8 @@ const Icon = styled.div<{ $color: string }>`
   &:before {
     position: absolute;
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 15%;
+    aspect-ratio: 1 / 1;
     left: 0;
     right: 0;
     margin: auto;

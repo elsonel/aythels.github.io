@@ -1,46 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { finishLoad, handlePageTransition } from '../Loader';
-import { HeaderMain } from '../UI/components/groups/HeaderMain';
+import React, { useEffect } from 'react';
+import { finishLoad, startLoad } from '../Loader';
+import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
+import { GridSquare } from '../UI/components/layout/GridSquare';
+import { HeaderFooter } from './templates/HeaderFooter';
 
-export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {
+  resetCallback: () => void;
+}
 
 export const About: React.FC<AboutProps> = ({
+  resetCallback,
   ...props
 }): React.ReactElement => {
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    finishLoad();
-  });
-
   return (
-    <div>
-      <HeaderMain
-        headerTabs={[
-          {
-            label: 'DEV PROJECTS',
-            link: '/projects',
-            onLinkClick: (route) => handlePageTransition(() => navigate(route)),
-          },
-          {
-            label: 'DESIGN GALLERY',
-            link: '/gallery',
-            onLinkClick: (route) => handlePageTransition(() => navigate(route)),
-          },
-          {
-            label: 'ABOUT',
-            link: '/about',
-            onLinkClick: (route) => handlePageTransition(() => navigate(route)),
-          },
-        ]}
-        logoTab={{
-          label: 'HOME',
-          link: '/',
-          onLinkClick: (route) => handlePageTransition(() => navigate(route)),
-        }}
-      />
-      This is the About Page
+    <div {...props}>
+      <HeaderFooter reset={resetCallback}>
+        <div>This is the about page</div>
+        <GridSquare>
+          <ImageThumbnail src="/example/square.jpg" />
+          <ImageThumbnail src="/example/square.jpg" />
+          <ImageThumbnail src="/example/square.jpg" />
+          <ImageThumbnail src="/example/square.jpg" />
+        </GridSquare>
+      </HeaderFooter>
     </div>
   );
 };

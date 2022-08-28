@@ -16,7 +16,7 @@ export const ProjectSectionText: React.FC<ProjectSectionTextProps> = ({
   return (
     <Wrapper {...props}>
       {title && <Title>{title}</Title>}
-      <Body>{children}</Body>
+      <Paragraph>{children}</Paragraph>
     </Wrapper>
   );
 };
@@ -30,12 +30,4 @@ const Title = styled(Paragraph)`
 
   font-size: ${({ theme }) => theme.font.size.h6};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-const Body = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.medium};
-  text-overflow: ellipsis;
-  overflow: hidden;
 `;

@@ -55,7 +55,7 @@ ExampleGallery.args = {
   ...ExampleGallery.args,
   title: 'GALLERY',
   children: [
-    <StyledGridSquare columnCount={3}>
+    <StyledGridSquare>
       <ImageThumbnail src="/example/square.jpg" />
       <ImageThumbnail src="/example/square.jpg" />
       <ImageThumbnail src="/example/square.jpg" />

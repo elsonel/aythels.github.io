@@ -27,7 +27,8 @@ export default {
         caption: 'This is the image caption 4.',
       },
     ],
-    visible: true,
+    indexOffset: 0,
+    isVisible: true,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -35,6 +36,12 @@ export default {
 const Template: Story<ModalImageProps> = (args) => <ModalImage {...args} />;
 
 export const Basic = Template.bind({});
+
+export const WithOffset = Template.bind({});
+WithOffset.args = {
+  ...WithOffset.args,
+  indexOffset: 1,
+};
 
 export const ThreeImage = Template.bind({});
 ThreeImage.args = {
@@ -56,7 +63,6 @@ ThreeImage.args = {
       caption: 'This is the image caption 3.',
     },
   ],
-  visible: true,
 };
 
 export const TwoImage = Template.bind({});
@@ -74,7 +80,6 @@ TwoImage.args = {
       caption: 'This is the image caption 2.',
     },
   ],
-  visible: true,
 };
 
 export const OneImage = Template.bind({});
@@ -87,7 +92,6 @@ OneImage.args = {
       caption: 'This is the image caption 1.',
     },
   ],
-  visible: true,
 };
 
 export const NoCaption = Template.bind({});
@@ -100,7 +104,6 @@ NoCaption.args = {
       caption: undefined,
     },
   ],
-  visible: true,
 };
 
 export const LongCaption = Template.bind({});
@@ -122,5 +125,10 @@ LongCaption.args = {
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
   ],
-  visible: true,
+};
+
+export const NoImage = Template.bind({});
+NoImage.args = {
+  ...NoImage.args,
+  srcArray: [],
 };

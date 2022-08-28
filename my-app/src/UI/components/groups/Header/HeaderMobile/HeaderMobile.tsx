@@ -3,7 +3,7 @@ import { HeaderBrowser, HeaderTab } from '../HeaderBrowser';
 import { useState } from 'react';
 import { LinkInternal } from '../../../other/LinkInternal';
 import { Paragraph } from '../../../text/Paragraph';
-import { HiddenTouchScrollY } from '../../../../utility/ScrollStyle';
+import { GlobalScrollHidden } from '../../../../utility/Styles';
 
 export interface HeaderMobileProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,10 +19,10 @@ export const HeaderMobile: React.FC<HeaderMobileProps> = ({
   ...props
 }: HeaderMobileProps) => {
   const [isVisible, setIsVisible] = useState(isMenuOpen);
-  console.log('hi');
 
   return (
     <Wrapper {...props}>
+      {isVisible && <GlobalScrollHidden />}
       <HeaderBrowser
         tabs={[
           {
@@ -36,7 +36,12 @@ export const HeaderMobile: React.FC<HeaderMobileProps> = ({
         <ModalContent>
           {tabs.map((e, i) =>
             e.link ? (
-              <LinkInternal key={i} onClick={e.onClick} link={e.link}>
+              <LinkInternal
+                key={i}
+                onClick={e.onClick}
+                onNavigate={e.onNavigate}
+                link={e.link}
+              >
                 <TabText size="h2">{e.label}</TabText>
               </LinkInternal>
             ) : (
@@ -52,18 +57,25 @@ export const HeaderMobile: React.FC<HeaderMobileProps> = ({
 };
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100%;
-  height: 100vh;
 
   display: flex;
   flex-direction: column;
 `;
 
 const Modal = styled.div<{ $isVisible: boolean }>`
+  z-index: ${({ theme }) => theme.layer.modal};
+
   overflow: hidden;
   box-sizing: border-box;
 
+  position: absolute;
+  top: 100%;
+  left: 0px;
   width: 100%;
+  height: calc(100vh - 100%);
+
   padding: 0px 20px 20px 20px;
   flex-grow: 1;
 

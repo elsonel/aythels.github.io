@@ -56,7 +56,22 @@ export default {
         <ProjectSectionFact label="GITHUB">Link</ProjectSectionFact>
       </ProjectSection>,
       <ProjectSection title="GALLERY" key={1}>
-        <StyledGridSquare columnCount={3}>
+        <StyledGridSquare
+          breakpoints={[
+            {
+              minWidth: 0,
+              columnCount: 1,
+            },
+            {
+              minWidth: 600,
+              columnCount: 2,
+            },
+            {
+              minWidth: 1100,
+              columnCount: 3,
+            },
+          ]}
+        >
           <ImageThumbnail src="/example/square.jpg" />
           <ImageThumbnail src="/example/square.jpg" />
           <ImageThumbnail src="/example/square.jpg" />

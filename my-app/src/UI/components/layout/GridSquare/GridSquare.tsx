@@ -2,8 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { css } from 'styled-components';
-import { LessThan } from '../../../utility/ResponsiveCSS';
+import { GreaterThan } from '../../../utility/ResponsiveCSS';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
 
 const calculateWidth = (gapPixels: number, columnCount: number) => {
@@ -14,22 +13,45 @@ const calculateWidth = (gapPixels: number, columnCount: number) => {
   `;
 };
 
+const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
+  {
+    minWidth: 0,
+    columnCount: 1,
+  },
+  {
+    minWidth: 600,
+    columnCount: 2,
+  },
+  {
+    minWidth: 800,
+    columnCount: 3,
+  },
+  {
+    minWidth: 1200,
+    columnCount: 4,
+  },
+];
+
+export interface GridBreakpoint {
+  minWidth: number;
+  columnCount: number;
+}
+
 export interface GridSquareProps extends React.HTMLAttributes<HTMLDivElement> {
   children?:
     | React.ReactElement<ImageThumbnailProps>[]
     | React.ReactElement<ImageThumbnailProps>;
-  columnCount?: number;
+  breakpoints?: GridBreakpoint[];
 }
 
 export const GridSquare: React.FC<GridSquareProps> = ({
   children = [],
-  columnCount = 4,
+  breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
   const [visible, setVisible] = useState(false);
 
   !Array.isArray(children) && (children = [children]);
-  columnCount = Math.max(0, Math.min(Math.round(columnCount), 4));
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 100);
@@ -39,7 +61,7 @@ export const GridSquare: React.FC<GridSquareProps> = ({
     <Wrapper {...props}>
       {children.map((component, index) => (
         <ItemWrapper
-          $columnCount={columnCount}
+          $breakpoints={breakpoints}
           key={index}
           $visible={visible}
           $index={index}
@@ -63,21 +85,12 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const SquareSize = (columnCount: number) => css`
-  ${calculateWidth(20, columnCount)}
-
-  ${LessThan(1200, calculateWidth(20, Math.min(3, columnCount)))}
-
-  ${LessThan(800, calculateWidth(20, Math.min(2, columnCount)))}
-
-  ${LessThan(600, calculateWidth(20, Math.min(1, columnCount)))}
-`;
-
 const ItemWrapper = styled.div<{
-  $columnCount: number;
+  $breakpoints: GridBreakpoint[];
   $visible: boolean;
   $index: number;
 }>`
+  flex-shrink: 0;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
   transition: opacity ${({ theme }) => theme.speed.slow} ease-out
@@ -88,6 +101,9 @@ const ItemWrapper = styled.div<{
     height: 100% !important;
   }
 
-  ${({ $columnCount }) => SquareSize($columnCount)};
+  ${({ $breakpoints }) =>
+    $breakpoints
+      .map((e) => GreaterThan(e.minWidth, calculateWidth(20, e.columnCount)))
+      .join('\r\n')};
   aspect-ratio: 1;
 `;

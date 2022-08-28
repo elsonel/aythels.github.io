@@ -1,38 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LessThan, GreaterThan } from '../../../../utility/ResponsiveCSS';
-import { FooterDesktop } from '../FooterDesktop/FooterDesktop';
-import { FooterMobile } from '../FooterMobile/FooterMobile';
+import { FooterCopyright } from '../FooterCopyright';
+import { FooterIconRow } from '../FooterIconRow';
+import { FooterLink } from '../FooterLink';
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Footer: React.FC<FooterProps> = ({
   ...props
 }): React.ReactElement => (
-  <div {...props}>
-    <Mobile />
-    <Desktop />
-  </div>
+  <Wrapper {...props}>
+    <FooterIconRowStyled />
+    <FooterCopyright />
+    <FooterLink />
+  </Wrapper>
 );
 
-const Desktop = styled(FooterDesktop)`
-  display: none;
+const Wrapper = styled.div`
+  box-sizing: border-box;
 
-  ${GreaterThan(
-    'tablet',
-    `
-    display: flex;
-  `
-  )}
+  width: 100%;
+
+  padding: 20px;
+  border-top: 1px solid ${({ theme }) => theme.colors.textPassive4};
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-const Mobile = styled(FooterMobile)`
-  display: none;
-
-  ${LessThan(
-    'tablet',
-    `
-    display: flex;
-  `
-  )}
+const FooterIconRowStyled = styled(FooterIconRow)`
+  margin-bottom: 10px;
 `;

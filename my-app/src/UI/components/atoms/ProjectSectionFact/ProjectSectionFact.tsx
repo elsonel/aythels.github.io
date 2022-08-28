@@ -6,7 +6,7 @@ import { LessThan } from '../../../utility/ResponsiveCSS';
 export interface ProjectSectionFactProps
   extends React.HTMLAttributes<HTMLDivElement> {
   label: string;
-  children: React.ReactElement | string;
+  children: React.ReactNode;
 }
 
 export const ProjectSectionFact: React.FC<ProjectSectionFactProps> = ({
@@ -16,7 +16,9 @@ export const ProjectSectionFact: React.FC<ProjectSectionFactProps> = ({
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <Label>{label}</Label>
+      <Content>
+        <Label isWrapped={false}>{label}</Label>
+      </Content>
       <Content>
         {typeof children === 'string' ? <Text>{children}</Text> : children}
       </Content>
@@ -30,44 +32,26 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 `;
 
-const Label = styled(Paragraph)`
-  box-sizing: border-box;
-
-  width: 50%;
-  padding-right: 20px;
+const Content = styled.div`
+  width: calc(50% - 10px);
   ${LessThan(
     600,
     `
     width: 100%;
-    padding-right: 0px;
   `
   )}
+`;
 
+const Label = styled(Paragraph)`
   color: ${({ theme }) => theme.colors.textPassive2};
   font-size: ${({ theme }) => theme.font.size.tiny};
   letter-spacing: ${({ theme }) => theme.font.spacing.button};
   font-weight: ${({ theme }) => theme.font.weight.medium};
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const Content = styled.div`
-  width: 50%;
-  ${LessThan(
-    600,
-    `
-    width: 100%;
-  `
-  )}
 `;
 
 const Text = styled(Paragraph)`
-  width: 100%;
   font-weight: ${({ theme }) => theme.font.weight.bold2};
-
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;

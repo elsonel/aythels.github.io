@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../atoms/Icon';
-import { LessThanHook } from '../../../../utility/ResponsiveProps';
+import { IIconSVG } from '../../../atoms/IIconSVG';
 import { LinkInternal } from '../../../other/LinkInternal';
 import { Paragraph } from '../../../text/Paragraph';
 
@@ -8,6 +7,7 @@ export interface HeaderTab {
   label: string;
   link?: string;
   onClick?: () => void;
+  onNavigate?: () => void;
 }
 
 export interface HeaderBrowserProps
@@ -26,14 +26,17 @@ export const HeaderBrowser: React.FC<HeaderBrowserProps> = ({
       <HeaderWrapper>
         <HeaderLogoWrapper>
           {tabLogo.link ? (
-            <LinkInternal onClick={tabLogo.onClick} link={tabLogo.link}>
-              <Icon src="/icons/logo.svg" alt={tabLogo.label} size={24} />
+            <LinkInternal
+              onClick={tabLogo.onClick}
+              onNavigate={tabLogo.onNavigate}
+              link={tabLogo.link}
+            >
+              <IIconSVG src="/icons/logo.svg" size={24} />
             </LinkInternal>
           ) : (
-            <Icon
+            <IIconSVG
               onClick={tabLogo.onClick}
               src="/icons/logo.svg"
-              alt={tabLogo.label}
               size={24}
             />
           )}
@@ -41,11 +44,16 @@ export const HeaderBrowser: React.FC<HeaderBrowserProps> = ({
         <TabWrapper>
           {tabs.map((e, i) =>
             e.link ? (
-              <LinkInternal key={i} onClick={e.onClick} link={e.link}>
-                <TabText size="medium">{e.label}</TabText>
+              <LinkInternal
+                key={i}
+                onClick={e.onClick}
+                onNavigate={e.onNavigate}
+                link={e.link}
+              >
+                <TabText size="small">{e.label}</TabText>
               </LinkInternal>
             ) : (
-              <TabText key={i} onClick={e.onClick} size="medium">
+              <TabText key={i} onClick={e.onClick} size="small">
                 {e.label}
               </TabText>
             )

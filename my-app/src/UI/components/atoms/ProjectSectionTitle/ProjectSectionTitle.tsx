@@ -13,10 +13,12 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      {children && <Text size="small">{children}</Text>}
-      <DividerWrapper>
+      <Row>
+        {children && (
+          <TextTitle isWrapped={false} size="small" children={children} />
+        )}
         <Divider />
-      </DividerWrapper>
+      </Row>
     </Wrapper>
   );
 };
@@ -24,31 +26,21 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
 const Wrapper = styled.div`
   width: 100%;
   height: 32px;
+  overflow: hidden;
+`;
+
+const Row = styled.div`
+  width: calc(100% + 20px);
+  height: 100%;
 
   display: flex;
   align-items: center;
-
-  user-select: none;
-`;
-
-const DividerWrapper = styled.div`
-  flex-grow: 1;
-
-  display: flex;
-  justify-content: right;
+  gap: 20px;
 `;
 
 const Divider = styled.div`
-  height: 1px;
-  width: calc(100% - 20px);
-
+  flex-grow 1;
+  height: 0.8px;
   background: ${({ theme }) => theme.colors.text};
-`;
-
-const Text = styled(TextTitle)`
-  max-width: 100%;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 `;

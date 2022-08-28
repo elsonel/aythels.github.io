@@ -3,11 +3,13 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 // https://stackoverflow.com/questions/53845595/wrong-react-hooks-behaviour-with-event-listener
 // useStateRef !!!!
 
+let oldValue = window.pageYOffset;
+
 export interface ScrollHandlerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   onUp?: (e: SyntheticEvent) => void;
   onDown?: (e: SyntheticEvent) => void;
-  onScrollWindow?: (e: Event) => void;
+  onScrollWindow?: (e: number) => void;
   onScrollWindowDependents?: any[];
 }
 
@@ -21,7 +23,14 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
 }): React.ReactElement => {
   useEffect(() => {
     const handleScroll = (e: Event) => {
-      onScrollWindow && onScrollWindow(e);
+      const newValue = window.pageYOffset;
+
+      onScrollWindow && onScrollWindow(oldValue - newValue);
+
+      //if (oldValue - newValue < 0) direction = 'DOWN';
+      // else if (oldValue - newValue > 0) direction = 'UP';
+
+      oldValue = newValue;
     };
     window.addEventListener('scroll', handleScroll);
     return () => {

@@ -24,7 +24,6 @@ export const HiddenTouchScrollX = css`
   ::-webkit-scrollbar {
     /* WebKit */
     width: 0;
-    height: 0;
   }
 `;
 
@@ -35,7 +34,6 @@ export const HiddenTouchScrollY = css`
 
   ::-webkit-scrollbar {
     /* WebKit */
-    width: 0;
     height: 0;
   }
 `;

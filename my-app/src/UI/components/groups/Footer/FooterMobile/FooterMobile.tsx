@@ -1,31 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FooterIconRow } from '../FooterIconRow/FooterIconRow';
-import { Paragraph } from '../../../text/Paragraph';
+import { TextFooter } from '../../../text/TextFooter';
 
 export const FooterMobile: React.FC = ({ ...props }): React.ReactElement => (
   <Wrapper {...props}>
-    <FooterIconRowStyled size={24} />
+    <FooterIconRowStyled />
     <TextWrapper>
-      <TextName size={'tiny'}>© 2022</TextName>
-      <TextName size={'tiny'} weight={'bold2'}>
-        ELSON LIANG
-      </TextName>
+      <TextFooter size={'tiny'} children="© 2022&nbsp;" />
+      <TextFooter size={'tiny'} children="ELSON LIANG" />
     </TextWrapper>
-    <TextLink size={'tiny'}>
+    <TextFooter size={'tiny'}>
       <Link href="https://www.w3schools.com" target="_blank" rel="noreferrer">
         Designed from scratch and built with React.
       </Link>
-    </TextLink>
+    </TextFooter>
   </Wrapper>
 );
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 40px 20px;
+  padding: 20px;
   box-sizing: border-box;
 
-  border-top: 1px solid ${({ theme }) => theme.colors.textPassive3};
+  border-top: 1px solid ${({ theme }) => theme.colors.textPassive4};
 
   display: flex;
   flex-direction: column;
@@ -35,26 +33,18 @@ const Wrapper = styled.div`
 
 const TextWrapper = styled.div`
   display: flex;
-  gap: 4px;
-`;
-
-const TextName = styled(Paragraph)`
-  color: ${({ theme }) => theme.colors.textPassive2};
-`;
-
-const TextLink = styled(Paragraph)`
-  color: ${({ theme }) => theme.colors.textPassive2};
-  text-align: center;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
-  }
 `;
 
 const Link = styled.a`
   color: inherit;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.textPassive1};
+  }
+
+  transition: ${({ theme }) => theme.speed.normal};
 `;
 
 const FooterIconRowStyled = styled(FooterIconRow)`
-  padding-bottom: 12px;
+  margin-bottom: 10px;
 `;

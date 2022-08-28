@@ -71,5 +71,5 @@ const ButtonStyled = styled(Button)<{
   ${({ $isHovered }) => $isHovered && ButtonHovered}
 
   opacity: ${({ isDisabled, $isClicked }) =>
-    !isDisabled && ($isClicked ? 0.8 : 1.0)};
+    !isDisabled && ($isClicked ? 0.9 : 1.0)};
 `;

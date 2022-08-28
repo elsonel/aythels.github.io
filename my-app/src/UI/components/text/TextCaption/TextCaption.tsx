@@ -6,21 +6,24 @@ export interface TextCaptionProps extends ParagraphProps {
   /**
    * Text to be used as caption
    */
-  children: string;
+  children?: React.ReactNode; // text
 }
 
 export const TextCaption: React.FC<TextCaptionProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  return <Text {...props}>{children}</Text>;
+  return (
+    <Text {...props} size="small">
+      {children}
+    </Text>
+  );
 };
 
 const Text = styled(Paragraph)`
   ${({ theme }) => `
     text-align:	center;
     color: ${theme.colors.textPassive2};
-
     font-size: ${theme.font.size.small};
   `};
 `;

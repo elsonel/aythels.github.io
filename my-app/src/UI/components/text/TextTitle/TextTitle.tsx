@@ -6,7 +6,7 @@ export interface TextTitleProps extends ParagraphProps {
   /**
    * Text to be used as title
    */
-  children: string;
+  children?: React.ReactNode; // text
   /**
    * Text size
    */

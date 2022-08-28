@@ -17,7 +17,7 @@ export const ProjectSectionImage: React.FC<ProjectSectionImageProps> = ({
   return (
     <Wrapper {...props}>
       <StyledImage src={src} />
-      <StyledTextCaption>{children}</StyledTextCaption>
+      <TextCaption>{children}</TextCaption>
     </Wrapper>
   );
 };
@@ -28,10 +28,4 @@ const Wrapper = styled.div`
 
 const StyledImage = styled(Image)`
   width: 100%;
-`;
-
-const StyledTextCaption = styled(TextCaption)`
-  width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
 `;
