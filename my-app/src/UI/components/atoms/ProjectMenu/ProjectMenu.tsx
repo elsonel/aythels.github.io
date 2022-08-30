@@ -108,7 +108,7 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
   margin-right: 10px;
 
   background: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.colors.text : 'transparent'};
+    $isSelected ? theme.color.text : 'transparent'};
 
   transition: ${({ theme }) => theme.speed.normal};
 `;
@@ -116,10 +116,10 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
 const TabText = styled(Text)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.small};
   color: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.colors.text : theme.colors.textPassive2};
+    $isSelected ? theme.color.text : theme.color.textPassive2};
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.color.text};
   }
 `;

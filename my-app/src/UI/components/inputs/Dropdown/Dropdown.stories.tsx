@@ -1,19 +1,12 @@
 import { Meta, Story } from '@storybook/react';
-import { DropdownHeader } from '../../atoms/DropdownHeader';
-import { ChevronUpDown } from '@styled-icons/fluentui-system-regular/ChevronUpDown';
 import { Dropdown, DropdownProps } from './Dropdown';
 
 export default {
   title: 'Inputs/Dropdown',
   component: Dropdown,
   args: {
-    header: (
-      <DropdownHeader
-        icon={<ChevronUpDown />}
-        subtitle="SORT :&nbsp;"
-        title="NEWEST"
-      />
-    ),
+    labelPrefix: 'SORT :\u00A0',
+    label: undefined,
     tabs: [
       {
         isSelected: true,
@@ -47,13 +40,5 @@ export const Medium = Template.bind({});
 export const Small = Template.bind({});
 Small.args = {
   ...Small.args,
-  header: (
-    <DropdownHeader
-      size="small"
-      icon={<ChevronUpDown />}
-      subtitle="SORT :&nbsp;"
-      title="NEWEST"
-    />
-  ),
   size: 'small',
 };

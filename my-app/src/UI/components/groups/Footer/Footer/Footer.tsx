@@ -21,8 +21,8 @@ const Wrapper = styled.div`
 
   width: 100%;
 
-  padding: 20px;
-  border-top: 1px solid ${({ theme }) => theme.colors.textPassive4};
+  padding: 40px 20px;
+  border-top: 1px solid ${({ theme }) => theme.color.textPassive4};
 
   display: flex;
   flex-direction: column;

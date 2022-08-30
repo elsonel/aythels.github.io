@@ -3,11 +3,11 @@ import { DropdownHeader, DropdownHeaderProps } from './DropdownHeader';
 import { ChevronUpDown } from '@styled-icons/fluentui-system-regular/ChevronUpDown';
 
 export default {
-  title: 'Atoms/DropdownHeader',
+  title: 'Inputs/DropdownHeader',
   component: DropdownHeader,
   args: {
     size: 'medium',
-    icon: <ChevronUpDown />,
+    icon: ChevronUpDown,
     subtitle: 'SORT BY :\u00a0',
     title: 'NEWEST',
   },

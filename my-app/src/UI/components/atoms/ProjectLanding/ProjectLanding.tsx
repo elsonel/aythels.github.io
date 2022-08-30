@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/Theme';
+import { Theme } from '../../../utility/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 import { IconScroll } from '../IconScroll';
 import { Image } from '../Image/Image';
@@ -19,7 +19,7 @@ export const ProjectLanding: React.FC<ProjectLandingProps> = ({
   subtitle = '',
   title = '',
   isContained = false,
-  textColor = Theme.colors.background,
+  textColor = Theme.color.background,
   ...props
 }): React.ReactElement => {
   return (

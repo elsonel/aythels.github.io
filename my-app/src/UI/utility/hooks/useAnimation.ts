@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-export const useAnimationFrame = (
+// https://css-tricks.com/using-requestanimationframe-with-react-hooks/
+export const useAnimation = (
   callback: (deltaTime: number) => void,
   fps?: number
 ) => {
-  // https://css-tricks.com/using-requestanimationframe-with-react-hooks/
-
   const requestRef = useRef(0);
   const previousTimeRef = useRef(-1);
 

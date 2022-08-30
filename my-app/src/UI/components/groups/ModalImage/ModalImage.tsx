@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Image } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
-import { LessThan } from '../../../utility/ResponsiveCSS';
+import { LessThan } from '../../../utility/styles/ResponsiveCSS';
 import { RowCenter } from '../../layout/RowCenter/RowCenter';
 import { useState } from 'react';
 import { Close } from '@styled-icons/zondicons/Close';
 import { ArrowRight } from '@styled-icons/zondicons/ArrowRight';
 import { ArrowLeft } from '@styled-icons/zondicons/ArrowLeft';
 import { TextCaption } from '../../text/TextCaption';
-import { GlobalScrollHidden } from '../../../utility/Styles';
 import { ButtonModal } from '../../inputs/ButtonModal';
-import { getElementAt } from '../../../utility/Array';
+import { getElementAt } from '../../../utility/scripts/Array';
+import { IIconSVG } from '../../atoms/IIconSVG';
+import { GlobalScrollHidden } from '../../../utility/styles/GlobalStyles';
 
 const createPane = (srcArray: any[], index: number) => {
   return [
@@ -78,7 +79,7 @@ export const ModalImage = ({
         justify="right"
         center={<Title>{getElementAt(srcArray, index).title}</Title>}
       >
-        <ButtonClose onClick={onClick} icon={<Close />} />
+        <ButtonClose onClick={onClick} icon={<IIconSVG src={Close} />} />
       </Row>
       <WrapperMiddle>
         <ImageContainer $isAnimated={isAnimated} $offset={index}>
@@ -89,12 +90,12 @@ export const ModalImage = ({
         {displayNextButtons && [
           <ButtonNext
             key={'left'}
-            icon={<ArrowLeft />}
+            icon={<IIconSVG src={ArrowLeft} />}
             onClick={() => changeImage(index - 1)}
           />,
           <ButtonNext
             key={'right'}
-            icon={<ArrowRight />}
+            icon={<IIconSVG src={ArrowRight} />}
             onClick={() => changeImage(index + 1)}
           />,
         ]}
@@ -167,7 +168,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
 
   transition: ${({ theme }) => `${theme.speed.slow}`};
   transition-property: opacity;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.color.background};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
 
@@ -206,5 +207,5 @@ const Row = styled(RowCenter)`
   box-sizing: border-box;
   height: 50px;
 
-  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.colors.textPassive3}`} inset;
+  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.textPassive3}`} inset;
 `;

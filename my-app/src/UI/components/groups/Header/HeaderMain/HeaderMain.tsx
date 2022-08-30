@@ -1,4 +1,4 @@
-import { LessThanHook } from '../../../../utility/ResponsiveProps';
+import { LessThanHook } from '../../../../utility/hooks/ResponsiveProps';
 import { HeaderBrowser, HeaderTab } from '../HeaderBrowser';
 import { HeaderMobile } from '../HeaderMobile';
 

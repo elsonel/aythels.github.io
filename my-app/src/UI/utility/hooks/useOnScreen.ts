@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef, RefObject } from 'react';
 
-//https://stackoverflow.com/questions/58341787/intersectionobserver-with-react-hooks
-// Using rootMargin in options might bug out due to Storybook.js
-// Fix by setting root to document when in Storybook.js!
+// https://stackoverflow.com/questions/58341787/intersectionobserver-with-react-hooks
+// Using rootMargin in observer options might bug out dimensions due to Storybook.js viewport
+// Fix by setting the observer root option to document when in Storybook.js!
 export default function useOnScreen(
   ref: RefObject<HTMLElement>,
   triggers: any[] = [], // Add triggers
@@ -30,3 +30,15 @@ export default function useOnScreen(
 
   return isOnScreen;
 }
+
+/*
+// Example Usage
+function DumbComponent() {
+
+  const ref = useRef()
+
+  const onScreen = useOnScreen(ref)
+
+  return <div ref={ref}>{onScreen && "I'm on screen!"}</div>
+}
+*/

@@ -57,7 +57,7 @@ const Text = styled.p<{
     font-weight: ${theme.font.weight[$weight] || $weight};
     text-align: ${$textAlign};
     line-height: ${$lineHeight};
-    color: ${theme.colors[$color] || $color};
+    color: ${theme.color[$color] || $color};
     transition: ${theme.speed.normal};
     word-spacing: ${theme.font.wordSpacing.default};
 `}

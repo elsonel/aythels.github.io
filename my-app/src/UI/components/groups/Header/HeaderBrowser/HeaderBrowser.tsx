@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
 
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.color.background};
 `;
 
 const HeaderWrapper = styled.div`
@@ -88,11 +88,11 @@ const TabWrapper = styled.div`
 `;
 
 const TabText = styled(Paragraph)`
-  color: ${({ theme }) => `${theme.colors.text}`};
+  color: ${({ theme }) => `${theme.color.text}`};
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
+    color: ${({ theme }) => theme.color.textPassive1};
   }
 
   cursor: pointer;

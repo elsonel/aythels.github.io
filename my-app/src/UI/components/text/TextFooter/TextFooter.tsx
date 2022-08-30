@@ -19,7 +19,7 @@ export const TextFooter: React.FC<TextFooterProps> = ({
 const Text = styled(Paragraph)`
   ${({ theme }) => `
     text-align:	center;
-    color: ${theme.colors.textPassive2};
+    color: ${theme.color.textPassive2};
 
     font-size: ${theme.font.size.tiny};
   `};

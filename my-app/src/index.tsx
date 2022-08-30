@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-import { Theme, ThemeInterface } from './UI/utility/Theme';
+import { Theme, ThemeInterface } from './UI/utility/themes/Theme';
 import './index.css';
 import { createGlobalStyle } from 'styled-components';
 import { App } from './App';
@@ -9,7 +9,7 @@ import { Loader } from './Loader';
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeInterface }>`
   body {
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.color.background};
   }
 `;
 

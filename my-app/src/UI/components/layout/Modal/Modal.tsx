@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GlobalScrollHidden } from '../../../utility/Styles';
+import { GlobalScrollHidden } from '../../../utility/styles/GlobalStyles';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isVisible?: boolean;

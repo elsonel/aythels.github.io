@@ -10,7 +10,7 @@ import {
   _GalleryUIUXData,
   _GalleryVisualArtsData,
 } from '../../data/data';
-import { GalleryHeader } from '../../UI/components/groups/GalleryHeader';
+import { GalleryHeaderMain } from '../../UI/components/groups/GalleryHeader/GalleryHeaderMain';
 import { ModalImage } from '../../UI/components/groups/ModalImage';
 import { HeaderFooter, HeaderFooterProps } from '../templates/HeaderFooter';
 import { GalleryArchitecture } from './GalleryArchitecture';
@@ -104,7 +104,7 @@ export const Gallery: React.FC<GalleryProps> = ({
   return (
     <div {...props}>
       <HeaderFooter reset={reset}>
-        <GalleryHeader
+        <GalleryHeaderMain
           pageTabs={Object.keys(PAGES).map((key) => {
             const entry = PAGES[key as keyof typeof PAGES];
             return {

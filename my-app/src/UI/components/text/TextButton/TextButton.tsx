@@ -14,7 +14,7 @@ export const TextButton: React.FC<TextButtonProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Text isWrapped {...props}>
+    <Text isWrapped={false} {...props}>
       {children}
     </Text>
   );

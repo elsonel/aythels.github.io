@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Image } from '../Image/Image';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { Theme } from '../../../utility/Theme';
+import { Theme } from '../../../utility/themes/Theme';
 import { useState } from 'react';
 
 export interface ImageThumbnailProps {
@@ -76,7 +76,7 @@ const Border = styled.div`
   left: 0px;
   width: 100%;
   height: 100%;
-  box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.colors.textPassive2}`};
+  box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.color.textPassive2}`};
 `;
 
 const ImageExtended = styled(Image)<{ $hovered: boolean }>`
@@ -131,14 +131,14 @@ const TextContainer = styled.div<{ $hovered: boolean }>`
 
 const TextSubtitle = styled(Paragraph)`
   white-space: nowrap;
-  color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.color.background};
   font-size: ${({ theme }) => theme.font.size.default};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 const TextTitle = styled(Paragraph)`
   white-space: nowrap;
-  color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.color.background};
   font-size: ${({ theme }) => theme.font.size.h6};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

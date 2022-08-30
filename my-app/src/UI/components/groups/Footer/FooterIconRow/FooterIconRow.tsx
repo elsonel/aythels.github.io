@@ -12,12 +12,12 @@ export const FooterIconRow: React.FC<FooterIconRowProps> = ({
 }): React.ReactElement => {
   return (
     <RowIcon size={24} {...props}>
-      <IconExternalLink src={Github} to="https://github.com/aythels" />
+      <IconExternalLink src={Github} to="https://github.com/elsonel" />
       <IconExternalLink
         src={Linkedin}
         to="https://www.linkedin.com/in/elson-liang/"
       />
-      <IconExternalLink src={Email} to="mailto:elsonliang@gmail.com" />
+      <IconExternalLink src={Email} to="mailto:elsonliangel@gmail.com" />
     </RowIcon>
   );
 };

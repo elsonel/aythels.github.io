@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { distributeIntoChunks } from '../../../utility/Array';
-import { GreaterThanHook } from '../../../utility/ResponsiveProps';
+import { distributeIntoChunks } from '../../../utility/scripts/Array';
+import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
 import { GridBreakpoint } from '../GridSquare';
 

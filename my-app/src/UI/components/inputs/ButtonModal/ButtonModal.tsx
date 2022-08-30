@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/Theme';
+import { Theme } from '../../../utility/themes/Theme';
 import { ButtonReverse, ButtonReverseProps } from '../ButtonReverse';
 
 export interface ButtonModalProps extends ButtonReverseProps {
@@ -8,19 +8,18 @@ export interface ButtonModalProps extends ButtonReverseProps {
 }
 
 export const ButtonModal: React.FC<ButtonModalProps> = ({
-  icon,
   onClick,
   ...props
 }): React.ReactElement => {
   return (
     <ButtonReverse
       size="small"
-      border={Theme.colors.textPassive3}
-      borderReversed={Theme.colors.text}
+      border={Theme.color.textPassive3}
+      borderReversed={Theme.color.text}
       primary={'transparent'}
-      secondary={Theme.colors.textPassive3}
-      primaryReversed={Theme.colors.background}
-      secondaryReversed={Theme.colors.text}
+      secondary={Theme.color.textPassive3}
+      primaryReversed={Theme.color.background}
+      secondaryReversed={Theme.color.text}
       onClick={onClick}
       {...props}
     />

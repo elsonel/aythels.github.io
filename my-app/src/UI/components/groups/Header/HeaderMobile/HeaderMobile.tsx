@@ -3,7 +3,7 @@ import { HeaderBrowser, HeaderTab } from '../HeaderBrowser';
 import { useState } from 'react';
 import { LinkInternal } from '../../../other/LinkInternal';
 import { Paragraph } from '../../../text/Paragraph';
-import { GlobalScrollHidden } from '../../../../utility/Styles';
+import { GlobalScrollHidden } from '../../../../utility/styles/GlobalStyles';
 
 export interface HeaderMobileProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -81,7 +81,7 @@ const Modal = styled.div<{ $isVisible: boolean }>`
 
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   user-select: none;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.color.background};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => theme.speed.normal};
   transition-property: opacity;
@@ -108,11 +108,11 @@ const TabText = styled(Paragraph)`
   overflow: hidden;
   max-width: 100%;
 
-  color: ${({ theme }) => `${theme.colors.text}`};
+  color: ${({ theme }) => `${theme.color.text}`};
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
+    color: ${({ theme }) => theme.color.textPassive1};
   }
 
   cursor: pointer;

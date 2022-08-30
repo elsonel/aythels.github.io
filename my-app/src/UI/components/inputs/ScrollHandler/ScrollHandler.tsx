@@ -1,8 +1,5 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 
-// https://stackoverflow.com/questions/53845595/wrong-react-hooks-behaviour-with-event-listener
-// useStateRef !!!!
-
 let oldValue = window.pageYOffset;
 
 export interface ScrollHandlerProps

@@ -41,6 +41,6 @@ const Row = styled.div`
 const Divider = styled.div`
   flex-grow 1;
   height: 0.8px;
-  background: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.color.text};
   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 `;

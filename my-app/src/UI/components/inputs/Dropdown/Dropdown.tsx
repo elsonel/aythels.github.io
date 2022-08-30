@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { DropdownHeaderProps } from '../../atoms/DropdownHeader';
-import { DropdownItem } from '../../atoms/DropdownItem';
+import { ChevronUpDown } from '@styled-icons/fluentui-system-regular/ChevronUpDown';
+import { DropdownHeader, DropdownHeaderProps } from '../DropdownHeader';
+import { DropdownItem } from '../DropdownItem';
 
 export interface DropdownItemData {
   isSelected?: boolean;
@@ -11,25 +12,38 @@ export interface DropdownItemData {
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'medium' | 'small';
-  header: React.ReactElement<DropdownHeaderProps>;
+  labelPrefix?: string;
+  label?: string;
   tabs?: DropdownItemData[];
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   size = 'medium',
-  header,
+  labelPrefix: prefix,
+  label,
   tabs = [],
   ...props
 }): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+  const selectedTab = tabs.find((e) => e.isSelected);
 
   return (
     <Wrapper {...props}>
-      <HeaderWrapper $isVisible={isOpen} onClick={() => setIsOpen(!isOpen)}>
-        {header}
-      </HeaderWrapper>
-
-      <Content $isVisible={isOpen}>
+      <HeaderStyled
+        onMouseLeave={() => setIsOpen(false)}
+        onMouseEnter={() => isOpen && setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
+        $isOpen={isOpen}
+        size={size}
+        icon={ChevronUpDown}
+        subtitle={prefix}
+        title={label !== undefined ? label : selectedTab && selectedTab.label}
+      />
+      <Content
+        $isVisible={isOpen}
+        onMouseEnter={() => isOpen && setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      >
         {tabs.map((e, i) => (
           <DropdownItem
             key={i}
@@ -56,18 +70,14 @@ const Wrapper = styled.div`
   user-select: none;
 `;
 
-const HeaderWrapper = styled.div<{ $isVisible: boolean }>`
+const HeaderStyled = styled(DropdownHeader)<{ $isOpen: boolean }>`
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid
-    ${({ theme, $isVisible }) =>
-      $isVisible ? theme.colors.textPassive3 : 'transparent'};
-  border-bottom: transparent;
-  transition: ${({ theme }) => `${theme.speed.normal}`};
 
-  > * {
-    width: 100%;
-  }
+  border: 1px solid
+    ${({ theme, $isOpen }) =>
+      $isOpen ? theme.color.textPassive3 : 'transparent'};
+  transition: ${({ theme }) => `${theme.speed.normal}`};
 `;
 
 const Content = styled.div<{ $isVisible: boolean }>`
@@ -79,7 +89,8 @@ const Content = styled.div<{ $isVisible: boolean }>`
   left: 0px;
   width: 100%;
 
-  border: 1px solid ${({ theme }) => theme.colors.textPassive3};
+  border: 1px solid ${({ theme }) => theme.color.textPassive3};
+  border-top: 0px;
 
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};

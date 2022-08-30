@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export interface IIconProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number | string;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 export const IIcon: React.FC<IIconProps> = ({

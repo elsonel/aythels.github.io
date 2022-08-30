@@ -10,7 +10,7 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
   return (
     <TextFooter size={'tiny'} isWrapped={false} {...props}>
       <Link href="https://www.w3schools.com" target="_blank" rel="noreferrer">
-        Designed from scratch and built with React.
+        Designed and built from scratch with React.
       </Link>
     </TextFooter>
   );
@@ -20,7 +20,7 @@ const Link = styled.a`
   color: inherit;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
+    color: ${({ theme }) => theme.color.textPassive1};
   }
 
   transition: ${({ theme }) => theme.speed.normal};

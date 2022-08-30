@@ -4,8 +4,8 @@ import { ProjectSectionProps } from '../ProjectSection';
 import { ScrollHandler } from '../../inputs/ScrollHandler';
 import { ProjectLandingProps } from '../../atoms/ProjectLanding';
 import { ProjectMenu } from '../../atoms/ProjectMenu';
-import { LessThan } from '../../../utility/ResponsiveCSS';
-import useOnScreen from '../../../utility/useOnScreen';
+import { LessThan } from '../../../utility/styles/ResponsiveCSS';
+import useOnScreen from '../../../utility/hooks/useOnScreen';
 
 const TOP_OFFSET = 64;
 const MENU_WIDTH = 220;

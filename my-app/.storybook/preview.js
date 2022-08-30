@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { Theme } from '../src/UI/utility/Theme';
+import { Theme } from '../src/UI/utility/themes/Theme';
 import { MemoryRouter } from "react-router";
 
 export const parameters = {

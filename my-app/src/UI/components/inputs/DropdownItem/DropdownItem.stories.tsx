@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { DropdownItem, DropdownItemProps } from './DropdownItem';
 
 export default {
-  title: 'Atoms/DropdownItem',
+  title: 'Inputs/DropdownItem',
   component: DropdownItem,
   args: {
     size: 'medium',

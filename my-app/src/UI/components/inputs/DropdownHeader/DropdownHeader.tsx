@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TextButton } from '../../text/TextButton';
-import { ChevronUpDown } from '@styled-icons/fluentui-system-regular/ChevronUpDown';
 import { StyledIcon } from '@styled-icons/styled-icon';
+import { IIconSVG } from '../../atoms/IIconSVG';
 
 export interface DropdownHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'medium' | 'small';
-  icon?: React.ReactElement<StyledIcon>;
+  icon?:
+    | string
+    | React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
   subtitle?: string;
   title?: string;
   onClick?: () => void;
@@ -29,7 +31,7 @@ export const DropdownHeader: React.FC<DropdownHeaderProps> = ({
       <TextSelected isWrapped={false} $size={size}>
         {title}
       </TextSelected>
-      <IconWrapper $size={size}>{icon}</IconWrapper>
+      {icon && <Icon $size={size} src={icon} />}
     </Wrapper>
   );
 };
@@ -37,6 +39,7 @@ export const DropdownHeader: React.FC<DropdownHeaderProps> = ({
 const Wrapper = styled.div<{ $size: 'medium' | 'small' }>`
   box-sizing: border-box;
   width: 100%;
+  height: ${({ $size }) => ($size === 'medium' ? `40px` : `32px`)};
   padding: ${({ $size }) => ($size === 'medium' ? `10px` : `8px`)};
 
   display: flex;
@@ -44,7 +47,7 @@ const Wrapper = styled.div<{ $size: 'medium' | 'small' }>`
 
   cursor: pointer;
   user-select: none;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.color.background};
 `;
 
 const Text = styled(TextButton)<{
@@ -57,6 +60,8 @@ const Text = styled(TextButton)<{
 const TextPrefix = styled(Text)`
   flex-shrink: 1;
   flex-grow: 0;
+
+  color: ${({ theme }) => theme.color.textPassive2};
 `;
 
 const TextSelected = styled(Text)`
@@ -67,17 +72,12 @@ const TextSelected = styled(Text)`
   font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;
 
-const IconWrapper = styled.div<{ $size: 'medium' | 'small' }>`
+const Icon = styled(IIconSVG)<{ $size: 'medium' | 'small' }>`
   flex-shrink: 0;
 
   margin-left: 10px;
   width: ${({ $size }) => ($size === 'medium' ? `16px` : `12px`)};
   height: ${({ $size }) => ($size === 'medium' ? `16px` : `12px`)};
-  display: flex;
 
-  > * {
-    width: 100%;
-    height: 100%;
-    color: ${({ theme }) => theme.colors.text};
-  }
+  color: ${({ theme }) => theme.color.textPassive2};
 `;

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   padding: 20px;
   box-sizing: border-box;
 
-  border-top: 1px solid ${({ theme }) => theme.colors.textPassive4};
+  border-top: 1px solid ${({ theme }) => theme.color.textPassive4};
 
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ const Link = styled.a`
   color: inherit;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
+    color: ${({ theme }) => theme.color.textPassive1};
   }
 
   transition: ${({ theme }) => theme.speed.normal};

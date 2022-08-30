@@ -30,7 +30,7 @@ const Text = styled(Paragraph)`
 
   transition: ${({ theme }) => theme.speed.normal};
   &:hover {
-    color: ${({ theme }) => theme.colors.textPassive1};
+    color: ${({ theme }) => theme.color.textPassive1};
   }
 `;
 

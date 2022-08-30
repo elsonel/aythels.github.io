@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
-import { LessThan } from '../../../utility/ResponsiveCSS';
+import { LessThan } from '../../../utility/styles/ResponsiveCSS';
 
 export interface ProjectSectionFactProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -46,7 +46,7 @@ const Content = styled.div`
 `;
 
 const Label = styled(Paragraph)`
-  color: ${({ theme }) => theme.colors.textPassive2};
+  color: ${({ theme }) => theme.color.textPassive2};
   font-size: ${({ theme }) => theme.font.size.tiny};
   letter-spacing: ${({ theme }) => theme.font.spacing.button};
   font-weight: ${({ theme }) => theme.font.weight.medium};

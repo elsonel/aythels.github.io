@@ -1,18 +1,21 @@
 import { Meta, Story } from '@storybook/react';
-import { GalleryHeader, GalleryHeaderProps } from './GalleryHeader';
+import {
+  GalleryHeaderBrowser,
+  GalleryHeaderBrowserProps,
+} from './GalleryHeaderBrowser';
 
 export default {
-  title: 'Groups/GalleryHeader',
-  component: GalleryHeader,
+  title: 'Groups/GalleryHeader/GalleryHeaderBrowser',
+  component: GalleryHeaderBrowser,
   args: {
     pageTabs: [
       {
         label: 'VISUAL ARTS',
-        isSelected: false,
+        isSelected: true,
         onClick: () => {},
       },
       {
-        label: 'UI UX',
+        label: 'UI / UX',
         isSelected: false,
         onClick: () => {},
       },
@@ -25,7 +28,7 @@ export default {
     sortTabs: [
       {
         label: 'NEWEST',
-        isSelected: false,
+        isSelected: true,
         onClick: () => {},
       },
       {
@@ -48,8 +51,8 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<GalleryHeaderProps> = (args) => (
-  <GalleryHeader {...args} />
+const Template: Story<GalleryHeaderBrowserProps> = (args) => (
+  <GalleryHeaderBrowser {...args} />
 );
 
 export const Basic = Template.bind({});

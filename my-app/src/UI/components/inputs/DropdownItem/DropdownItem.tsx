@@ -31,6 +31,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
 const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
   box-sizing: border-box;
   width: 100%;
+  height: ${({ $size }) => ($size === 'medium' ? `36px` : `28px`)};
   padding: ${({ $size }) => ($size === 'medium' ? `10px` : `8px`)};
 
   display: flex;
@@ -40,10 +41,10 @@ const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
   user-select: none;
   transition: ${({ theme }) => `${theme.speed.normal}`};
   background: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.colors.textPassive4 : theme.colors.background};
+    $isSelected ? theme.color.textPassive4 : theme.color.background};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.textPassive4};
+    background: ${({ theme }) => theme.color.textPassive4};
 
     > * {
       font-weight: ${({ theme, $size }) =>

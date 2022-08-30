@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { GridBreakpoint } from '../../layout/GridSquare';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
-import { GreaterThanHook } from '../../../utility/ResponsiveProps';
+import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { HorizontalBulletMenu } from '../../atoms/HorizontalBulletMenu';
 import { GridSquareLong } from '../../layout/GridSquareLong';
 
@@ -113,7 +113,7 @@ export const Explore: React.FC<ExploreProps> = ({
 
 const Wrapper = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.color.text};
 `;
 
 const HeaderWrapper = styled.div`
@@ -121,7 +121,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   padding: 20px;
 
-  border: 1px solid ${({ theme }) => theme.colors.textPassive1};
+  border: 1px solid ${({ theme }) => theme.color.textPassive1};
 `;
 
 const Header = styled.div`
@@ -151,5 +151,5 @@ const TitleText = styled(Paragraph)`
 
   font-size: ${({ theme }) => theme.font.size.h4};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
-  color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.color.background};
 `;
