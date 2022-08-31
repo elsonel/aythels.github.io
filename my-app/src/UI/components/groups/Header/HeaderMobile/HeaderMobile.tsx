@@ -21,7 +21,7 @@ export const HeaderMobile: React.FC<HeaderMobileProps> = ({
   const [isVisible, setIsVisible] = useState(isMenuOpen);
 
   return (
-    <Wrapper {...props}>
+    <Wrapper $isVisible={isVisible} {...props}>
       {isVisible && <GlobalScrollHidden />}
       <HeaderBrowser
         tabs={[
@@ -56,12 +56,22 @@ export const HeaderMobile: React.FC<HeaderMobileProps> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isVisible: boolean }>`
   position: relative;
   width: 100%;
 
   display: flex;
   flex-direction: column;
+
+  background: ${({ theme, $isVisible }) =>
+    $isVisible ? theme.color.background : `transparent`};
+
+  transition: ${({ theme }) => theme.speed.normal};
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
 `;
 
 const Modal = styled.div<{ $isVisible: boolean }>`
@@ -112,8 +122,10 @@ const TabText = styled(Paragraph)`
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.color.textPassive1};
+    color: ${({ theme }) => theme.color.textHovered};
   }
 
   cursor: pointer;
+
+  background: ${({ theme }) => theme.color.background};
 `;

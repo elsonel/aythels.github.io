@@ -116,7 +116,7 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
 const TabText = styled(Text)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.small};
   color: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.color.text : theme.color.textPassive2};
+    $isSelected ? theme.color.text : theme.color.textNeutral};
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {

@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { GalleryProjectEntry } from '../../data/data';
 import { ImageThumbnail } from '../../UI/components/atoms/ImageThumbnail';
-import {
-  GridBreakpoint,
-  GridSquare,
-} from '../../UI/components/layout/GridSquare';
+import { GridBreakpoint, Grid } from '../../UI/components/layout/Grid';
 
 const BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -33,7 +30,7 @@ export const GalleryArchitecture: React.FC<GalleryArchitectureProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <GridSquare breakpoints={BREAKPOINTS} {...props}>
+    <Grid breakpoints={BREAKPOINTS} {...props}>
       {data.map((e, i) => (
         <ImageThumbnail
           key={e.src}
@@ -42,8 +39,10 @@ export const GalleryArchitecture: React.FC<GalleryArchitectureProps> = ({
           title={e.title}
           src={e.src}
           isTitleVisible={true}
+          imageWidth={1}
+          imageHeight={1}
         />
       ))}
-    </GridSquare>
+    </Grid>
   );
 };

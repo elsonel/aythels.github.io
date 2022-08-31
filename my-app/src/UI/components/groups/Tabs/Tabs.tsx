@@ -39,8 +39,8 @@ export const Tabs: React.FC<TabsProps> = ({
     <Wrapper ref={callback} {...props}>
       <TabRow>
         {tabs.map((e, i) => (
-          <div ref={childRefs[i]}>
-            <Tab isSelected={e.isSelected} onClick={e.onClick} key={i}>
+          <div ref={childRefs[i]} key={i}>
+            <Tab isSelected={e.isSelected} onClick={e.onClick}>
               {e.label}
             </Tab>
           </div>

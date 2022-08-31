@@ -1,12 +1,1 @@
-  <svg
-	id="Layer_1"
-	data-name="Layer 1"
-	xmlns="http://www.w3.org/2000/svg"
-	viewBox="0 0 160 160"
-	fill="currentColor"
-  >
-	<title>logo</title>
-	<rect x="48" y="64" width="112" height="32" />
-	<rect x="48" width="112" height="32" />
-	<polygon points="32 128 32 0 0 0 0 160 160 160 160 128 32 128" />
-  </svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect x="12" y="16" width="28" height="8"/><rect x="12" width="28" height="8"/><polygon points="8 32 8 0 0 0 0 40 40 40 40 32 8 32"/></svg>

@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
 
-  background: ${({ theme }) => theme.color.background};
+  pointer-events: none;
 `;
 
 const HeaderWrapper = styled.div`
@@ -85,20 +85,26 @@ const HeaderWrapper = styled.div`
 const TabWrapper = styled.div`
   display: flex;
   column-gap: 20px;
+  pointer-events: auto;
 `;
 
 const TabText = styled(Paragraph)`
+  padding: 0px 4px;
+
   color: ${({ theme }) => `${theme.color.text}`};
   transition: ${({ theme }) => theme.speed.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.color.textPassive1};
+    color: ${({ theme }) => theme.color.textHovered};
   }
 
   cursor: pointer;
+  background: ${({ theme }) => theme.color.background};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;
 
 const HeaderLogoWrapper = styled.div`
   display: flex;
   margin-right: 20px;
+  pointer-events: auto;
 `;

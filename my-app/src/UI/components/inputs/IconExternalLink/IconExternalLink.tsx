@@ -32,9 +32,9 @@ const Icon = styled(IIconSVG)`
   width: inherit;
   height: inherit;
 
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
   &:hover {
-    color: ${({ theme }) => theme.color.textPassive1};
+    color: ${({ theme }) => theme.color.textHovered};
   }
 
   transition: ${({ theme }) => theme.speed.normal};

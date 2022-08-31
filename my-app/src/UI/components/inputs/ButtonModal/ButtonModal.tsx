@@ -14,10 +14,10 @@ export const ButtonModal: React.FC<ButtonModalProps> = ({
   return (
     <ButtonReverse
       size="small"
-      border={Theme.color.textPassive3}
+      border={Theme.color.outline}
       borderReversed={Theme.color.text}
       primary={'transparent'}
-      secondary={Theme.color.textPassive3}
+      secondary={Theme.color.outline}
       primaryReversed={Theme.color.background}
       secondaryReversed={Theme.color.text}
       onClick={onClick}

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { distributeIntoChunks } from '../../../utility/scripts/Array';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
-import { GridBreakpoint } from '../GridSquare';
+import { Grid, GridBreakpoint, GridProps } from '../Grid';
 
-export interface GridDynamicProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GridDynamicProps extends GridProps {
   children?:
     | React.ReactElement<ImageThumbnailProps>[]
     | React.ReactElement<ImageThumbnailProps>;
@@ -20,11 +20,11 @@ const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
     columnCount: 1,
   },
   {
-    minWidth: 600,
+    minWidth: 800,
     columnCount: 2,
   },
   {
-    minWidth: 800,
+    minWidth: 1000,
     columnCount: 3,
   },
 ];
@@ -40,6 +40,7 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
     setTimeout(() => setVisible(true), 100);
   }, []);
 
+  !Array.isArray(children) && (children = [children]);
   let COLUMN_COUNT = 3;
 
   for (let i = 0; i < breakpoints.length; i++) {
@@ -48,15 +49,12 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       COLUMN_COUNT = breakpoint.columnCount;
   }
 
-  const createColumns = () => {
-    !Array.isArray(children) && (children = [children]);
-
+  const createColumns = (children: ReactElement[]) => {
     const childPartitions: React.ReactElement[][] = distributeIntoChunks(
       children,
       COLUMN_COUNT
     );
 
-    let imageIndex = 0;
     const elements: any[] = [];
 
     for (let i = 0; i < COLUMN_COUNT; i++) {
@@ -65,38 +63,23 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       // eslint-disable-next-line no-loop-func
       childPartitions[i].forEach((e, j) => {
         imageElements.push(
-          <ItemWrapper key={j} $visible={visible} $index={imageIndex}>
+          <ItemWrapper key={j} $visible={visible} $index={children.indexOf(e)}>
             {e}
           </ItemWrapper>
         );
-
-        imageIndex += 1;
       });
 
-      elements.push(
-        <ColumnWrapper key={i} $COLUMN_COUNT={COLUMN_COUNT}>
-          {imageElements}
-        </ColumnWrapper>
-      );
+      elements.push(<ColumnWrapper key={i}>{imageElements}</ColumnWrapper>);
     }
 
     return elements;
   };
 
-  return <Wrapper {...props}>{createColumns()}</Wrapper>;
+  return <Grid breakpoints={breakpoints}>{createColumns(children)}</Grid>;
 };
 
-const Wrapper = styled.div`
-  box-sizing: border-box;
-  padding: 20px;
+const ColumnWrapper = styled.div`
   width: 100%;
-
-  display: flex;
-  gap: 20px;
-`;
-
-const ColumnWrapper = styled.div<{ $COLUMN_COUNT: number }>`
-  width: ${({ $COLUMN_COUNT }) => 100 / $COLUMN_COUNT}%;
 
   display: flex;
   flex-direction: column;
@@ -106,13 +89,12 @@ const ColumnWrapper = styled.div<{ $COLUMN_COUNT: number }>`
 const ItemWrapper = styled.div<{ $visible: boolean; $index: number }>`
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
-  transition: opacity ${({ theme }) => theme.speed.slow} ease-out
-    ${({ $index }) => $index * 60}ms;
+
+  transition-duration: ${({ theme }) => theme.speed.slow};
+  transition-timing-function: ease-out;
+  transition-property: opacity;
+  transition-delay: ${({ $index }) => $index * 60}ms;
 
   width: 100%;
-
-  > * {
-    width: 100% !important;
-    height: 100% !important;
-  }
+  height: auto;
 `;

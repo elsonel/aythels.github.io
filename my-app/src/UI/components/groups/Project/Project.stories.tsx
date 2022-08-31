@@ -5,7 +5,7 @@ import { ProjectLanding } from '../../atoms/ProjectLanding';
 import { ProjectSectionFact } from '../../atoms/ProjectSectionFact';
 import { ProjectSectionImage } from '../../atoms/ProjectSectionImage';
 import { ProjectSectionText } from '../../atoms/ProjectSectionText';
-import { GridSquare } from '../../layout/GridSquare';
+import { Grid } from '../../layout/Grid';
 import { ProjectSection } from '../ProjectSection';
 import { Project, ProjectProps } from './Project';
 
@@ -15,7 +15,7 @@ const Gap = styled.div`
   background: blue;
 `;
 
-const StyledGridSquare = styled(GridSquare)`
+const StyledGridSquare = styled(Grid)`
   padding: 0px;
 `;
 

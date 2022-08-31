@@ -12,6 +12,7 @@ export interface GalleryEntry extends GallerySortable {
 
 export interface GalleryVisualArtsEntry extends GalleryEntry {
   caption: string;
+  aspect: number;
 }
 
 export interface GalleryProjectEntry extends GalleryEntry {
@@ -25,6 +26,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'NIGHT SKIRMISHES',
     src: '/images/visualarts/Night_Skirmishes.png',
     caption: 'Digital painting',
+    aspect: 2040 / 2600,
   },
   {
     date: new Date(2020, 5),
@@ -32,6 +34,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'CORRUPTION',
     src: '/images/visualarts/Corruption.png',
     caption: 'Photo manipulation',
+    aspect: 2448 / 3264,
   },
   {
     date: new Date(2019, 1),
@@ -39,6 +42,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'MEMORY',
     src: '/images/visualarts/Memory.png',
     caption: 'Watercolor',
+    aspect: 1900 / 2520,
   },
   {
     date: new Date(2018, 9),
@@ -46,6 +50,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'FOCUS',
     src: '/images/visualarts/Focus.png',
     caption: 'Watercolor',
+    aspect: 2170 / 3058,
   },
   {
     date: new Date(2018, 8),
@@ -53,6 +58,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'STORM',
     src: '/images/visualarts/Storm.png',
     caption: 'Acrylic on canvas',
+    aspect: 2000 / 2870,
   },
   {
     date: new Date(2018, 3),
@@ -60,6 +66,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'REACH',
     src: '/images/visualarts/Reach.png',
     caption: 'Photography',
+    aspect: 2339 / 2930,
   },
   {
     date: new Date(2018, 2),
@@ -67,6 +74,7 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
     title: 'AMETHYST CITY',
     src: '/images/visualarts/Amethyst_City.png',
     caption: 'Acrylic on canvas',
+    aspect: 2900 / 2360,
   },
 ];
 

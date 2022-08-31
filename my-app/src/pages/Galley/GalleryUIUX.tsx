@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { GalleryProjectEntry } from '../../data/data';
 import { ImageThumbnail } from '../../UI/components/atoms/ImageThumbnail';
-import {
-  GridBreakpoint,
-  GridSquare,
-} from '../../UI/components/layout/GridSquare';
+import { GridBreakpoint, Grid } from '../../UI/components/layout/Grid';
 
 const BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -41,12 +38,14 @@ export const GalleryUIUX: React.FC<GalleryUIUXProps> = ({
           title={e.title}
           src={e.src}
           isTitleVisible={true}
+          imageWidth={1}
+          imageHeight={1}
         />
       ))}
     </StyledGridSquare>
   );
 };
 
-const StyledGridSquare = styled(GridSquare)`
+const StyledGridSquare = styled(Grid)`
   justify-content: center;
 `;

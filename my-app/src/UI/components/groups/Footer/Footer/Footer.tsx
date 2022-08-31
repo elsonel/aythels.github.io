@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   width: 100%;
 
   padding: 40px 20px;
-  border-top: 1px solid ${({ theme }) => theme.color.textPassive4};
+  border-top: 1px solid ${({ theme }) => theme.color.backgroundHighlight};
 
   display: flex;
   flex-direction: column;

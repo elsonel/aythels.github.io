@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { GridBreakpoint } from '../../layout/GridSquare';
+import { GridBreakpoint } from '../../layout/Grid';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { HorizontalBulletMenu } from '../../atoms/HorizontalBulletMenu';
-import { GridSquareLong } from '../../layout/GridSquareLong';
+import { GridRow } from '../../layout/GridRow';
 
 const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -121,7 +121,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   padding: 20px;
 
-  border: 1px solid ${({ theme }) => theme.color.textPassive1};
+  border: 1px solid ${({ theme }) => theme.color.textHovered};
 `;
 
 const Header = styled.div`
@@ -140,7 +140,7 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const Grid = styled(GridSquareLong)<{ $center: boolean }>`
+const Grid = styled(GridRow)<{ $center: boolean }>`
   justify-content: ${({ $center }) => ($center ? 'center' : 'space-between')};
 `;
 

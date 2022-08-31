@@ -58,5 +58,5 @@ const BackLine = styled.div`
   left: 0px;
   bottom: 0px;
 
-  background: ${({ theme }) => theme.color.textPassive3};
+  background: ${({ theme }) => theme.color.outline};
 `;

@@ -207,5 +207,5 @@ const Row = styled(RowCenter)`
   box-sizing: border-box;
   height: 50px;
 
-  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.textPassive3}`} inset;
+  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.outline}`} inset;
 `;

@@ -34,7 +34,7 @@ const Gap = styled.div`
   box-sizing: border-box;
   width: 20px;
 
-  border-bottom: 1px solid ${({ theme }) => theme.color.textPassive3};
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 `;
 
 const DropdownStyled = styled(Dropdown)`
@@ -44,7 +44,9 @@ const DropdownStyled = styled(Dropdown)`
   width: 200px;
 
   > * {
-    border-bottom: 1px solid ${({ theme }) => theme.color.textPassive3};
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   }
 `;
 

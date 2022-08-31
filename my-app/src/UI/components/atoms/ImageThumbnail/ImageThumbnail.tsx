@@ -1,9 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Image } from '../Image/Image';
-import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { Theme } from '../../../utility/themes/Theme';
 import { useState } from 'react';
+import { Theme } from '../../../utility/themes/Theme';
+import { ImageTitle } from '../ImageTitle';
+
+export enum ASPECTS {
+  SQUARE = 1 / 1,
+  WIDE1 = 3 / 2,
+  WIDE2 = 3.5 / 2.5,
+  WIDE3 = 4 / 3,
+  WIDE4 = 5 / 4,
+  SCREEN = 16 / 9,
+}
 
 export interface ImageThumbnailProps {
   /**
@@ -23,6 +32,18 @@ export interface ImageThumbnailProps {
    */
   isTitleVisible?: boolean;
   /**
+   * Image width
+   */
+  imageWidth?: number;
+  /**
+   * Image height
+   */
+  imageHeight?: number;
+  /**
+   * Maximum container size
+   */
+  containerSize?: number | string;
+  /**
    * Action onclick
    */
   onClick?: () => void;
@@ -33,35 +54,62 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
   title,
   subtitle,
   isTitleVisible = false,
+  imageWidth,
+  imageHeight,
+  containerSize = '100%',
   onClick,
   ...props
 }): React.ReactElement => {
-  const [hovered, setHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <WrapperPadding {...props}>
-      <Wrapper
+    <Wrapper
+      $imageWidth={imageWidth}
+      $imageHeight={imageHeight}
+      $containerSize={containerSize}
+      {...props}
+    >
+      <Content
         onClick={onClick}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <ImageExtended $hovered={hovered} src={src} />
-        <TextContainer $hovered={isTitleVisible ? true : hovered}>
-          {subtitle && <TextSubtitle>{subtitle}</TextSubtitle>}
-          {title && <TextTitle>{title}</TextTitle>}
-        </TextContainer>
+        <ImageStyled
+          onLoad={() => setIsLoaded(true)}
+          $isHovered={isHovered}
+          $isLoaded={isLoaded}
+          src={src}
+        />
+        <ImageTitleStyled
+          $isHovered={isTitleVisible ? true : isHovered}
+          $isLoaded={isLoaded}
+          title={title}
+          subtitle={subtitle}
+          color={Theme.color.background}
+        />
         <Border />
-      </Wrapper>
-    </WrapperPadding>
+      </Content>
+    </Wrapper>
   );
 };
 
-const WrapperPadding = styled.div`
-  width: 300px;
-  height: 300px;
+const Wrapper = styled.div<{
+  $imageWidth?: number;
+  $imageHeight?: number;
+  $containerSize: number | string;
+}>`
+  width: ${({ $containerSize }) =>
+    typeof $containerSize === 'number'
+      ? `${$containerSize}px`
+      : $containerSize};
+  height: auto;
+
+  aspect-ratio: ${({ $imageWidth, $imageHeight }) =>
+    $imageWidth && $imageHeight ? $imageWidth / $imageHeight : `auto`};
 `;
 
-const Wrapper = styled.div`
+const Content = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -70,28 +118,23 @@ const Wrapper = styled.div`
   cursor: pointer;
 `;
 
-const Border = styled.div`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.color.textPassive2}`};
-`;
-
-const ImageExtended = styled(Image)<{ $hovered: boolean }>`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
+const ImageStyled = styled(Image)<{
+  $isHovered: boolean;
+  $isLoaded: boolean;
+}>`
   display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
   user-select: none;
   pointer-events: none;
-
   transition: ${({ theme }) => `${theme.speed.slow}`};
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
 
-  ${({ $hovered }) =>
-    $hovered &&
+  ${({ $isHovered }) =>
+    $isHovered &&
     `
       -webkit-filter: brightness(80%) contrast(125%) saturate(0%);
       -moz-filter: brightness(80%) contrast(125%) saturate(0%);
@@ -100,45 +143,41 @@ const ImageExtended = styled(Image)<{ $hovered: boolean }>`
     `};
 `;
 
-const TextContainer = styled.div<{ $hovered: boolean }>`
+const ImageTitleStyled = styled(ImageTitle)<{
+  $isHovered: boolean;
+  $isLoaded: boolean;
+}>`
   position: absolute;
   bottom: 0px;
   left: 0px;
-  padding: 16px;
+
   width: 100%;
-  height: 20%;
 
-  user-select: none;
-  pointer-events: none;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  ${({ $hovered, theme }) => `
+  ${({ $isHovered, theme }) => `
     transition: ${theme.speed.slow};
-    transition-delay: ${$hovered ? 0 : 400}ms;
-    opacity: ${$hovered ? 1 : 0};
+    transition-delay: ${$isHovered ? 0 : 400}ms;
+    opacity: ${$isHovered ? 1 : 0};
   `};
+
+  ${({ $isLoaded }) => !$isLoaded && 'opacity: 0;'}
 
   background: rgb(0, 0, 0);
   background: linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.49653364763874297) 0%,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.03) 80%,
+    rgba(0, 0, 0, 0.01) 98%,
     rgba(0, 0, 0, 0) 100%
   );
 `;
 
-const TextSubtitle = styled(Paragraph)`
-  white-space: nowrap;
-  color: ${({ theme }) => theme.color.background};
-  font-size: ${({ theme }) => theme.font.size.default};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-`;
+const Border = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 
-const TextTitle = styled(Paragraph)`
-  white-space: nowrap;
-  color: ${({ theme }) => theme.color.background};
-  font-size: ${({ theme }) => theme.font.size.h6};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.color.outline}`};
 `;

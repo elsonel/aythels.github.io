@@ -1,10 +1,18 @@
-// Slice <array> elements into <parts> arrays
-// sliceIntoChunks([0, 1, 2 ,3], 3);
-// [[0, 1], [2], [3]]
-// sliceIntoChunks([0, 1, 2 ,3], 5);
-// [[0], [1], [2], [3], []]
-// sliceIntoChunks([0, 1, 2 ,3], 0);
-// []
+/*
+ * =============================================================================
+ * Slice <array> elements into <parts> arrays
+ * =============================================================================
+ *
+ * sliceIntoChunks([0, 1, 2 ,3], 3);
+ * [[0, 1], [2], [3]]
+ *
+ * sliceIntoChunks([0, 1, 2 ,3], 5);
+ * [[0], [1], [2], [3], []]
+ *
+ * sliceIntoChunks([0, 1, 2 ,3], 0);
+ * [];
+ *
+ */
 
 export function sliceIntoChunks(array: any[], parts: number) {
   array = [...array];
@@ -15,13 +23,21 @@ export function sliceIntoChunks(array: any[], parts: number) {
   return result;
 }
 
-// Distribute <array> elements into <parts> arrays
-// distributeIntoChunks([0, 1, 2 ,3], 3);
-// [[0, 3], [1], [2]]
-// distributeIntoChunks([0, 1, 2 ,3], 5);
-// [[0], [1], [2], [3], []]
-// distributeIntoChunks([0, 1, 2 ,3], 0);
-// []
+/*
+ * =============================================================================
+ * Distribute <array> elements into <parts> arrays
+ * =============================================================================
+ *
+ * distributeIntoChunks([0, 1, 2 ,3], 3);
+ * [[0, 3], [1], [2]]
+ *
+ * distributeIntoChunks([0, 1, 2 ,3], 5);
+ * [[0], [1], [2], [3], []]
+ *
+ * distributeIntoChunks([0, 1, 2 ,3], 0);
+ * []
+ *
+ */
 
 export function distributeIntoChunks(array: any[], parts: number) {
   const result: any[] = [];
@@ -38,10 +54,18 @@ export function distributeIntoChunks(array: any[], parts: number) {
   return result;
 }
 
-// fillChunks([0, 1, 2 ,3], 3);
-// [[0, 1, 2] [3]]
-// fillChunks([], 3);
-// []
+/*
+ * =============================================================================
+ *  Put <array> elements into child arrays containing max <max> elements
+ * =============================================================================
+ *
+ * fillChunks([0, 1, 2 ,3], 3);
+ * [[0, 1, 2] [3]]
+ *
+ * fillChunks([], 3);
+ * []
+ *
+ */
 
 export function fillChunks(array: any[], max: number) {
   const result = [];
@@ -60,7 +84,12 @@ export function fillChunks(array: any[], max: number) {
   return result;
 }
 
-/* getElementAt([0, 1, 2, 3, 4], 1);
+/*
+ * =============================================================================
+ * get the element at the specified array index, looping around if necessary
+ * =============================================================================
+ *
+ * getElementAt([0, 1, 2, 3, 4], 1);
  * 1
  *
  * getElementAt([0, 1, 2, 3, 4], 5);
@@ -71,9 +100,37 @@ export function fillChunks(array: any[], max: number) {
  *
  * getElementAt([0, 1, 2, 3, 4], -5);
  * 0
+ *
  */
 
 export function getElementAt(array: any[], index: number) {
   let i = index % array.length;
   return array.at(i);
+}
+
+const array = [2, 42, 82, 122, 162, 202, 242, 282, 322, 362];
+const number = 112;
+const num = findClosestNumber(array, number);
+
+/*
+ * =============================================================================
+ * Get the closest number to <number> in an array <array> of numbers
+ * =============================================================================
+ *
+ * const array = [2, 42, 82, 122, 162, 202, 242, 282, 322, 362];
+ * const number = 112;
+ * findClosestNumber(array, number);
+ * 122
+ *
+ */
+
+export function findClosestNumber(array: number[], number: number) {
+  let curr = array[0];
+
+  for (let i = 0; i < array.length; i++) {
+    const val = array[i];
+    if (Math.abs(number - val) < Math.abs(number - curr)) curr = val;
+  }
+
+  return curr;
 }

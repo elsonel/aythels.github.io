@@ -60,4 +60,6 @@ const Header = styled(HeaderMain)`
   z-index: ${({ theme }) => theme.layer.header};
   position: sticky;
   top: 0;
+
+  pointer-events: none;
 `;

@@ -96,5 +96,5 @@ const GridEntry = styled.div`
 `;
 
 const TextLight = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
 `;

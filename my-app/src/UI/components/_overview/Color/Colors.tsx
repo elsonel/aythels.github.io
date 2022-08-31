@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme, ThemeInterface } from '../../../utility/themes/Theme';
-import {
-  ColorInterface,
-  ThemeColor,
-  ThemeColorInterface,
-} from '../../../utility/themes/ThemeColor';
+import { Theme } from '../../../utility/themes/Theme';
+import { ColorInterface } from '../../../utility/themes/ThemeColor';
 import { Paragraph } from '../../text/Paragraph';
 import { TextTitle } from '../../text/TextTitle';
 

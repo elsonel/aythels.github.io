@@ -42,7 +42,7 @@ const TextSelected = css`
 
 const TextNeutral = css`
   font-weight: ${({ theme }) => theme.font.weight.regular};
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
 `;
 
 const Text = styled(TextButton)<{ $isHovered: boolean; $isSelected: boolean }>`

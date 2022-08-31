@@ -8,11 +8,11 @@ export const ScrollStyle = css`
   }
 
   ::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.color['textPassive4']};
+    background: ${({ theme }) => theme.color['backgroundHighlight']};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.color['textPassive2']};
+    background: ${({ theme }) => theme.color['textNeutral']};
   }
 `;
 

@@ -5,7 +5,7 @@ export default {
   title: 'Text/TextFooter',
   component: TextFooter,
   args: {
-    children: 'This is an image caption.',
+    children: 'Footer Text',
     size: 'medium',
   },
 } as Meta;

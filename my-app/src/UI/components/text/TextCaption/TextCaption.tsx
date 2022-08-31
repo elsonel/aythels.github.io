@@ -13,17 +13,13 @@ export const TextCaption: React.FC<TextCaptionProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  return (
-    <Text {...props} size="small">
-      {children}
-    </Text>
-  );
+  return <Text {...props} size="small" />;
 };
 
 const Text = styled(Paragraph)`
   ${({ theme }) => `
     text-align:	center;
-    color: ${theme.color.textPassive2};
+    color: ${theme.color.textNeutral};
     font-size: ${theme.font.size.small};
   `};
 `;

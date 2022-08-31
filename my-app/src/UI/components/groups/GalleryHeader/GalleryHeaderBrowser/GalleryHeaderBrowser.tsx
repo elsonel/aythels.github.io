@@ -35,7 +35,7 @@ const Gap = styled.div`
   box-sizing: border-box;
   width: 20px;
 
-  border-bottom: 1px solid ${({ theme }) => theme.color.textPassive3};
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 `;
 
 const SortSelector = styled(Dropdown)`
@@ -45,6 +45,6 @@ const SortSelector = styled(Dropdown)`
   width: 220px;
 
   > * {
-    border-bottom: 1px solid ${({ theme }) => theme.color.textPassive3};
+    border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   }
 `;

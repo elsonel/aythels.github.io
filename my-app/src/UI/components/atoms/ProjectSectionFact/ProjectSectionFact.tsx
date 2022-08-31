@@ -46,7 +46,7 @@ const Content = styled.div`
 `;
 
 const Label = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
   font-size: ${({ theme }) => theme.font.size.tiny};
   letter-spacing: ${({ theme }) => theme.font.spacing.button};
   font-weight: ${({ theme }) => theme.font.weight.medium};

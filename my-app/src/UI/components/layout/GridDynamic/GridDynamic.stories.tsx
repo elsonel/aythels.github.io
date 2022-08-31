@@ -16,7 +16,7 @@ Few.args = {
   children: [
     <ImageThumbnail
       key={0}
-      src="/thumbnails/thumb.jpg"
+      src="/example/square.jpg"
       title="SOARING SKIES"
       subtitle="2020"
     />,
@@ -88,6 +88,83 @@ Many.args = {
       src="/example/landscape.jpg"
       title="SOARING SKIES"
       subtitle="8"
+      isTitleVisible={true}
+    />,
+  ],
+};
+
+export const RenderOrderTest = Template.bind({});
+RenderOrderTest.args = {
+  ...RenderOrderTest.args,
+  children: [
+    <ImageThumbnail
+      key={0}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="0"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={1}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="1"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={2}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="2"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={3}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="3"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={4}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="4"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={5}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="5"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={6}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="6"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={7}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="7"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={8}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="8"
+      isTitleVisible={true}
+    />,
+    <ImageThumbnail
+      key={9}
+      src="/example/landscape.jpg"
+      title="SOARING SKIES"
+      subtitle="9"
       isTitleVisible={true}
     />,
   ],

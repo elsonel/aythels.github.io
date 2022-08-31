@@ -4,7 +4,7 @@ import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { ProjectSectionFact } from '../../atoms/ProjectSectionFact';
 import { ProjectSectionImage } from '../../atoms/ProjectSectionImage';
 import { ProjectSectionText } from '../../atoms/ProjectSectionText';
-import { GridSquare } from '../../layout/GridSquare';
+import { Grid } from '../../layout/Grid';
 import { ProjectSection, ProjectSectionProps } from './ProjectSection';
 
 export default {
@@ -46,7 +46,7 @@ const Template: Story<ProjectSectionProps> = (args) => (
 
 export const ExampleOverview = Template.bind({});
 
-const StyledGridSquare = styled(GridSquare)`
+const StyledGridSquare = styled(Grid)`
   padding: 0px;
 `;
 

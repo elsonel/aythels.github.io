@@ -9,6 +9,9 @@ export default {
     title: 'SOARING SKIES',
     subtitle: '2020',
     isTitleVisible: false,
+    containerSize: 300,
+    imageWidth: 100,
+    imageHeight: 100,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -22,16 +25,26 @@ export const Basic = Template.bind({});
 export const VisibleTitle = Template.bind({});
 VisibleTitle.args = {
   ...VisibleTitle.args,
-  src: '/example/square.jpg',
-  title: 'SOARING SKIES',
-  subtitle: '2020',
   isTitleVisible: true,
 };
 
 export const LongText = Template.bind({});
 LongText.args = {
   ...LongText.args,
-  src: '/example/square.jpg',
-  title: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-  subtitle: '222222222222222222222222222222222222222222222222',
+  isTitleVisible: true,
+  title: 'SOARING SKIESSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
+  subtitle: '202000000000000000000000000000000000000',
+};
+
+export const DifferentContainerSize = Template.bind({});
+DifferentContainerSize.args = {
+  ...DifferentContainerSize.args,
+  containerSize: 400,
+};
+
+export const DifferentAspect = Template.bind({});
+DifferentAspect.args = {
+  ...DifferentAspect.args,
+  imageWidth: 100,
+  imageHeight: 200,
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
+import { TextButton } from '../../text/TextButton';
 
 export interface DropdownItemProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,10 +42,10 @@ const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
   user-select: none;
   transition: ${({ theme }) => `${theme.speed.normal}`};
   background: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.color.textPassive4 : theme.color.background};
+    $isSelected ? theme.color.backgroundHighlight : theme.color.background};
 
   &:hover {
-    background: ${({ theme }) => theme.color.textPassive4};
+    background: ${({ theme }) => theme.color.backgroundHighlight};
 
     > * {
       font-weight: ${({ theme, $size }) =>
@@ -59,13 +60,13 @@ const Text = styled(Paragraph)`
   text-overflow: ellipsis;
 `;
 
-const TextSmall = styled(Text)<{ $isSelected: boolean }>`
+const TextSmall = styled(TextButton)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.tiny};
   font-weight: ${({ theme, $isSelected }) =>
     $isSelected ? theme.font.weight.bold1 : theme.font.weight.regular};
 `;
 
-const TextMedium = styled(Text)<{ $isSelected: boolean }>`
+const TextMedium = styled(TextButton)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.small};
   font-weight: ${({ theme, $isSelected }) =>
     $isSelected ? theme.font.weight.bold2 : theme.font.weight.regular};

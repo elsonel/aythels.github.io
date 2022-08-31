@@ -61,7 +61,7 @@ const TextPrefix = styled(Text)`
   flex-shrink: 1;
   flex-grow: 0;
 
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
 `;
 
 const TextSelected = styled(Text)`
@@ -79,5 +79,5 @@ const Icon = styled(IIconSVG)<{ $size: 'medium' | 'small' }>`
   width: ${({ $size }) => ($size === 'medium' ? `16px` : `12px`)};
   height: ${({ $size }) => ($size === 'medium' ? `16px` : `12px`)};
 
-  color: ${({ theme }) => theme.color.textPassive2};
+  color: ${({ theme }) => theme.color.textNeutral};
 `;
