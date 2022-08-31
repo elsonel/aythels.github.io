@@ -5,16 +5,8 @@ import { useState } from 'react';
 import { Theme } from '../../../utility/themes/Theme';
 import { ImageTitle } from '../ImageTitle';
 
-export enum ASPECTS {
-  SQUARE = 1 / 1,
-  WIDE1 = 3 / 2,
-  WIDE2 = 3.5 / 2.5,
-  WIDE3 = 4 / 3,
-  WIDE4 = 5 / 4,
-  SCREEN = 16 / 9,
-}
-
-export interface ImageThumbnailProps {
+export interface ImageThumbnailProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The image source
    */
@@ -103,7 +95,6 @@ const Wrapper = styled.div<{
     typeof $containerSize === 'number'
       ? `${$containerSize}px`
       : $containerSize};
-  height: auto;
 
   aspect-ratio: ${({ $imageWidth, $imageHeight }) =>
     $imageWidth && $imageHeight ? $imageWidth / $imageHeight : `auto`};
@@ -125,7 +116,7 @@ const ImageStyled = styled(Image)<{
   display: block;
 
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   object-fit: cover;
   user-select: none;

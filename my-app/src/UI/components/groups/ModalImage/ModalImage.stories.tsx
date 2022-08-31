@@ -7,22 +7,22 @@ export default {
   args: {
     srcArray: [
       {
-        src: '/images/sky.jpg',
+        src: '/example/landscape.jpg',
         title: 'SKY',
         caption: 'This is the image caption 1.',
       },
       {
-        src: '/thumbnails/thumb.jpg',
-        title: 'THUMB',
+        src: '/example/square.jpg',
+        title: 'SQUARE',
         caption: 'This is the image caption 2.',
       },
       {
-        src: '/icons/logo.svg',
+        src: '/example/logo.svg',
         title: 'LOGO',
         caption: 'This is the image caption 3.',
       },
       {
-        src: '/favicon.ico',
+        src: '/example/portrait.jpg',
         title: 'ICON',
         caption: 'This is the image caption 4.',
       },
@@ -48,17 +48,17 @@ ThreeImage.args = {
   ...ThreeImage.args,
   srcArray: [
     {
-      src: '/images/sky.jpg',
+      src: '/example/landscape.jpg',
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
     {
-      src: '/thumbnails/thumb.jpg',
-      title: 'THUMB',
+      src: '/example/square.jpg',
+      title: 'SQUARE',
       caption: 'This is the image caption 2.',
     },
     {
-      src: '/icons/logo.svg',
+      src: '/example/logo.svg',
       title: 'LOGO',
       caption: 'This is the image caption 3.',
     },
@@ -70,13 +70,13 @@ TwoImage.args = {
   ...TwoImage.args,
   srcArray: [
     {
-      src: '/images/sky.jpg',
+      src: '/example/landscape.jpg',
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
     {
-      src: '/thumbnails/thumb.jpg',
-      title: 'THUMB',
+      src: '/example/square.jpg',
+      title: 'SQUARE',
       caption: 'This is the image caption 2.',
     },
   ],
@@ -87,7 +87,7 @@ OneImage.args = {
   ...OneImage.args,
   srcArray: [
     {
-      src: '/images/sky.jpg',
+      src: '/example/landscape.jpg',
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
@@ -111,14 +111,14 @@ LongCaption.args = {
   ...LongCaption.args,
   srcArray: [
     {
-      src: '/images/sky.jpg',
+      src: '/example/landscape.jpg',
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
       caption:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
     {
-      src: '/thumbnails/thumb.jpg',
+      src: '/example/square.jpg',
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
       caption:

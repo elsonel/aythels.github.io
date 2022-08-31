@@ -52,8 +52,8 @@ const ContentWrapper = styled.div`
 `;
 
 const ImageStyled = styled(Image)<{ $isContained: boolean }>`
-  height: 100%;
   width: 100%;
+  min-height: 100%;
   object-fit: ${({ $isContained }) => ($isContained ? 'contain' : 'cover')};
 `;
 

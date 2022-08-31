@@ -5,7 +5,7 @@ import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 export default {
   title: 'Layout/GridDynamic',
   component: GridDynamic,
-  args: { children: <ImageThumbnail src="/thumbnails/thumb.jpg" /> },
+  args: { children: <ImageThumbnail src="/example/square.jpg" /> },
 } as Meta;
 
 const Template: Story<GridDynamicProps> = (args) => <GridDynamic {...args} />;

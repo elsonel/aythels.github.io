@@ -38,9 +38,7 @@ export interface GridBreakpoint {
 }
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?:
-    | React.ReactElement<ImageThumbnailProps>[]
-    | React.ReactElement<ImageThumbnailProps>;
+  children?: React.ReactNode[];
   breakpoints?: GridBreakpoint[];
 }
 

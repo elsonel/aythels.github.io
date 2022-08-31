@@ -1,5 +1,5 @@
 import { GalleryVisualArtsEntry } from '../../data/data';
-import { ImageThumbnail } from '../../UI/components/atoms/ImageThumbnail';
+import { ImageThumbnailFixed } from '../../UI/components/atoms/ImageThumbnailFixed';
 import { GridDynamic } from '../../UI/components/layout/GridDynamic';
 
 export interface GalleryVisualArtsProps
@@ -16,12 +16,14 @@ export const GalleryVisualArts: React.FC<GalleryVisualArtsProps> = ({
   return (
     <GridDynamic {...props}>
       {data.map((e, i) => (
-        <ImageThumbnail
+        <ImageThumbnailFixed
           key={e.src}
           onClick={() => onThumbnailClick(i)}
           subtitle={e.subtitle}
           title={e.title}
           src={e.src}
+          imageWidth={e.width}
+          imageHeight={e.height}
         />
       ))}
     </GridDynamic>

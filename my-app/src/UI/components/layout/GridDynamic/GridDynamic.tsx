@@ -4,13 +4,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { distributeIntoChunks } from '../../../utility/scripts/Array';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
-import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
 
 export interface GridDynamicProps extends GridProps {
-  children?:
-    | React.ReactElement<ImageThumbnailProps>[]
-    | React.ReactElement<ImageThumbnailProps>;
+  children?: React.ReactNode[];
   breakpoints?: GridBreakpoint[];
 }
 
@@ -49,8 +46,8 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       COLUMN_COUNT = breakpoint.columnCount;
   }
 
-  const createColumns = (children: ReactElement[]) => {
-    const childPartitions: React.ReactElement[][] = distributeIntoChunks(
+  const createColumns = (children: React.ReactNode[]) => {
+    const childPartitions: React.ReactNode[][] = distributeIntoChunks(
       children,
       COLUMN_COUNT
     );
@@ -58,7 +55,7 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
     const elements: any[] = [];
 
     for (let i = 0; i < COLUMN_COUNT; i++) {
-      const imageElements: React.ReactElement<{ $COLUMN_COUNT: number }>[] = [];
+      const imageElements: React.ReactElement[] = [];
 
       // eslint-disable-next-line no-loop-func
       childPartitions[i].forEach((e, j) => {
