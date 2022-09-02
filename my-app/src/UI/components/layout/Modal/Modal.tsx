@@ -27,7 +27,6 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   height: 100vh;
 
   background: lightblue;
-  user-select: none;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => `${theme.speed.normal}`};

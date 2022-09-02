@@ -1,23 +1,27 @@
 import { Meta, Story } from '@storybook/react';
-import { ButtonReverse, ButtonReverseProps } from './ButtonReverse';
+import { Sword } from 'styled-icons/remix-fill';
+import { ButtonReverseText, ButtonReverseTextProps } from './ButtonReverseText';
 
 export default {
-  title: 'Inputs/ButtonReverse',
-  component: ButtonReverse,
+  title: 'Inputs/ButtonReverseText',
+  component: ButtonReverseText,
   args: {
     children: 'ESCAPE',
+    icon: Sword,
     border: '#F37676',
     borderHovered: '#F37676',
     color: '#F37676',
     colorHovered: 'white',
+    colorText: 'white',
+    colorTextHovered: '#F37676',
     isActive: false,
     isDisabled: false,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<ButtonReverseProps> = (args) => (
-  <ButtonReverse {...args} />
+const Template: Story<ButtonReverseTextProps> = (args) => (
+  <ButtonReverseText {...args} />
 );
 
 export const Basic = Template.bind({});
@@ -44,6 +48,8 @@ Opposite.args = {
   borderHovered: 'grey',
   color: 'white',
   colorHovered: 'grey',
+  colorText: 'grey',
+  colorTextHovered: 'white',
 };
 
 export const Active = Template.bind({});
@@ -53,4 +59,6 @@ Active.args = {
   borderHovered: 'grey',
   color: 'white',
   colorHovered: 'white',
+  colorText: 'grey',
+  colorTextHovered: 'grey',
 };

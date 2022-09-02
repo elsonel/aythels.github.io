@@ -3,25 +3,22 @@ import styled from 'styled-components';
 import { Theme } from '../../../utility/themes/Theme';
 import { ButtonReverse, ButtonReverseProps } from '../ButtonReverse';
 
-export interface ButtonModalProps extends ButtonReverseProps {
-  onClick?: () => void;
-}
+export interface ButtonModalProps extends ButtonReverseProps {}
 
 export const ButtonModal: React.FC<ButtonModalProps> = ({
-  onClick,
   ...props
 }): React.ReactElement => {
   return (
-    <ButtonReverse
-      size="small"
+    <Button
       border={Theme.color.outline}
-      borderReversed={Theme.color.text}
-      primary={'transparent'}
-      secondary={Theme.color.outline}
-      primaryReversed={Theme.color.background}
-      secondaryReversed={Theme.color.text}
-      onClick={onClick}
+      borderHovered={Theme.color.text}
+      color={Theme.color.background}
+      colorHovered={Theme.color.text}
       {...props}
     />
   );
 };
+
+const Button = styled(ButtonReverse)`
+  //border-width: 2px;
+`;

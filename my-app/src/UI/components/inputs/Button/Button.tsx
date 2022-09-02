@@ -1,65 +1,47 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { StyledIcon, StyledIconProps } from '@styled-icons/styled-icon';
-import { TextButton } from '../../text/TextButton';
-import { IIconProps } from '../../atoms/IIcon';
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  children?: string;
-  icon?: React.ReactElement<IIconProps>;
+  children?: React.ReactNode;
   isDisabled?: boolean;
   border?: string;
-  primary?: string;
-  secondary?: string;
-  size?: 'medium' | 'small';
+  borderHovered?: string;
+  color?: string;
+  colorHovered?: string;
   onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  icon,
   isDisabled = false,
   border,
-  primary = '#F37676',
-  secondary = 'white',
-  size = 'medium',
+  borderHovered,
+  color = '#F37676',
+  colorHovered,
   onClick,
   ...props
 }): React.ReactElement => {
-  const iconProps: IIconProps = { size: size === 'medium' ? 18 : 16 };
-  const [hoverState, setHoverState] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <ButtonStyled
-      $size={size}
-      $hoverState={hoverState}
-      onMouseEnter={() => setHoverState(true)}
-      onMouseLeave={() => setHoverState(false)}
-      onMouseDown={() => setHoverState(false)}
-      onMouseUp={() => setHoverState(true)}
-      $border={border || primary}
-      $primary={primary}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsHovered(false)}
+      onMouseUp={() => setIsHovered(true)}
+      $isHovered={isHovered}
+      $border={border || color}
+      $borderHovered={borderHovered || border || color}
+      $color={color}
+      $colorHovered={colorHovered || color}
       $isDisabled={isDisabled}
       onClick={onClick}
       {...props}
     >
-      <ButtonContent $size={size} $secondary={secondary}>
-        {React.isValidElement(icon) && React.cloneElement(icon, iconProps)}
-        {children && <TextButton size={size}>{children}</TextButton>}
-      </ButtonContent>
+      {children}
     </ButtonStyled>
   );
 };
-
-const ButtonMedium = css`
-  padding: 0px 16px;
-  height: 36px;
-`;
-
-const ButtonSmall = css`
-  padding: 0px 12px;
-  height: 32px;
-`;
 
 const ButtonDisabled = css`
   opacity: 0.4;
@@ -67,41 +49,38 @@ const ButtonDisabled = css`
   pointer-events: none;
 `;
 
-const ButtonEnabled = css<{ $hoverState: boolean }>`
-  opacity: ${({ $hoverState }) => ($hoverState ? 0.9 : 1.0)};
+const ButtonEnabled = css<{ $isHovered: boolean }>`
+  opacity: ${({ $isHovered }) => ($isHovered ? 0.9 : 1.0)};
   cursor: pointer;
 `;
 
 const ButtonStyled = styled.button<{
-  $size: 'medium' | 'small';
   $isDisabled: boolean;
   $border: string;
-  $primary: string;
-  $hoverState: boolean;
+  $borderHovered: string;
+  $color: string;
+  $colorHovered: string;
+  $isHovered: boolean;
 }>`
-  user-select: none;
+  flex-shrink: 0;
   box-sizing: border-box;
+  padding: 0px;
 
-  border: 1.5px solid ${({ $border }) => $border};
-  background-color: ${({ $primary }) => $primary};
-  transition: ${({ theme }) => theme.speed.normal};
-
-  ${({ $size }) => ($size === 'medium' ? ButtonMedium : ButtonSmall)}
-  ${({ $isDisabled }) => ($isDisabled ? ButtonDisabled : ButtonEnabled)}
-`;
-
-const ButtonContent = styled.div<{
-  $size: 'medium' | 'small';
-  $secondary: string;
-}>`
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100%;
-  column-gap: ${({ $size }) => ($size === 'medium' ? 4 : 3)}px;
+  align-items: center;
 
-  & * {
-    color: ${({ $secondary }) => $secondary};
+  border: 1.5px solid
+    ${({ $isHovered, $border, $borderHovered }) =>
+      $isHovered ? $borderHovered : $border};
+  background-color: ${({ $isHovered, $color, $colorHovered }) =>
+    $isHovered ? $colorHovered : $color};
+  transition: ${({ theme }) => theme.speed.normal};
+  user-select: none;
+
+  ${({ $isDisabled }) => ($isDisabled ? ButtonDisabled : ButtonEnabled)}
+
+  > * {
     transition: ${({ theme }) => theme.speed.normal};
   }
 `;

@@ -3,16 +3,12 @@ import styled from 'styled-components';
 import { Image } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
 import { LessThan } from '../../../utility/styles/ResponsiveCSS';
-import { RowCenter } from '../../layout/RowCenter/RowCenter';
 import { useState } from 'react';
-import { Close } from '@styled-icons/zondicons/Close';
-import { ArrowRight } from '@styled-icons/zondicons/ArrowRight';
-import { ArrowLeft } from '@styled-icons/zondicons/ArrowLeft';
 import { TextCaption } from '../../text/TextCaption';
-import { ButtonModal } from '../../inputs/ButtonModal';
 import { getElementAt } from '../../../utility/scripts/Array';
-import { IIconSVG } from '../../atoms/IIconSVG';
-import { GlobalScrollHidden } from '../../../utility/styles/GlobalStyles';
+import { ButtonModalClose } from '../../inputs/ButtonModalClose';
+import { ButtonModalNext } from '../../inputs/ButtonModalNext';
+import { Modal, ModalProps } from '../../layout/Modal';
 
 const createPane = (srcArray: any[], index: number) => {
   return [
@@ -40,17 +36,15 @@ export interface ImageProps {
   caption?: string;
 }
 
-export interface ModalImageProps {
+export interface ModalImageProps extends ModalProps {
   srcArray: ImageProps[];
   indexOffset?: number;
-  isVisible?: boolean;
   onClick?: () => void;
 }
 
 export const ModalImage = ({
   srcArray,
   indexOffset = 0,
-  isVisible = false,
   onClick,
   ...props
 }: ModalImageProps) => {
@@ -73,65 +67,106 @@ export const ModalImage = ({
   };
 
   return (
-    <Wrapper $isVisible={isVisible} {...props}>
-      {isVisible && <GlobalScrollHidden />}
-      <Row
-        justify="right"
-        center={<Title>{getElementAt(srcArray, index).title}</Title>}
-      >
-        <ButtonClose onClick={onClick} icon={<IIconSVG src={Close} />} />
-      </Row>
+    <Wrapper {...props}>
+      <RowTop>
+        <ButtonClosePlaceholder onClick={onClick} />
+        <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
+        <ButtonModalClose onClick={onClick} />
+      </RowTop>
       <WrapperMiddle>
-        <ImageContainer $isAnimated={isAnimated} $offset={index}>
+        <ImageContainer
+          onTransitionEnd={() => setIsAnimated(false)} // Stop transitions after image has settled to prevent resizing transitions
+          $isAnimated={isAnimated}
+          $offset={index}
+        >
           {currentPane}
         </ImageContainer>
       </WrapperMiddle>
-      <Row center={<Caption>{getElementAt(srcArray, index).caption}</Caption>}>
-        {displayNextButtons && [
+      <RowBottom>
+        {displayNextButtons && (
           <ButtonNext
-            key={'left'}
-            icon={<IIconSVG src={ArrowLeft} />}
+            direction={'LEFT'}
             onClick={() => changeImage(index - 1)}
-          />,
+          />
+        )}
+        <Caption isWrapped={false}>
+          {getElementAt(srcArray, index).caption}
+        </Caption>
+        {displayNextButtons && (
           <ButtonNext
-            key={'right'}
-            icon={<IIconSVG src={ArrowRight} />}
+            direction={'RIGHT'}
             onClick={() => changeImage(index + 1)}
-          />,
-        ]}
-      </Row>
+          />
+        )}
+      </RowBottom>
     </Wrapper>
   );
 };
 
-const IMAGE_DISTANCE = 200;
+const Wrapper = styled(Modal)`
+  background-color: ${({ theme }) => theme.color.background};
 
-const ButtonClose = styled(ButtonModal)`
-  width: 32px;
-  height: 32px;
-  padding: 0px;
-  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
 `;
 
-const ButtonNext = styled(ButtonModal)`
-  width: 100px;
+const Row = styled.div`
+  box-sizing: border-box;
+
+  height: 48px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.outline}`} inset;
+`;
+
+const RowTop = styled(Row)`
+  padding: 0px 8px;
+  gap: 20px;
+`;
+
+const Title = styled(Paragraph)`
+  font-size: ${({ theme }) => theme.font.size.h6};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
+`;
+
+const ButtonClosePlaceholder = styled(ButtonModalClose)`
+  opacity: 0;
+  pointer-events: none;
+`;
+
+const RowBottom = styled(Row)`
+  gap: 20px;
+
+  ${LessThan(
+    'mobileLarge',
+    `
+    gap: 0px;
+
+    > * {
+      &:first-child {
+        border-right: 0px;
+      }
+    }
+  `
+  )}
+`;
+
+const ButtonNext = styled(ButtonModalNext)`
   height: 100%;
 
   ${LessThan(
     'mobileLarge',
     `
     width: 50%;
-    border-width: 0.5px;
   `
   )}
 `;
 
 const Caption = styled(TextCaption)`
-  max-width: calc(100% - 240px);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
   ${LessThan(
     'mobileLarge',
     `
@@ -140,58 +175,22 @@ const Caption = styled(TextCaption)`
   )}
 `;
 
-const Title = styled(Paragraph)`
-  max-width: calc(100% - 100px);
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
-  font-size: ${({ theme }) => theme.font.size.h6};
-`;
-
-const Wrapper = styled.div<{ $isVisible: boolean }>`
-  z-index: ${({ theme }) => theme.layer.modal};
-  position: fixed;
-
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-  align-items: center;
-
-  transition: ${({ theme }) => `${theme.speed.slow}`};
-  transition-property: opacity;
-  background: ${({ theme }) => theme.color.background};
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-
-  overflow: hidden;
-`;
+const IMAGE_DISTANCE = 200;
 
 const WrapperMiddle = styled.div`
   flex-grow: 1;
-  width: 100%;
-
-  box-sizing: border-box;
   padding: 10px;
 `;
 
 const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`
+  position: relative;
   width: 100%;
   height: 100%;
 
   left: ${({ $offset }) => `${-$offset * IMAGE_DISTANCE}vw`};
+
   transition: ${({ theme, $isAnimated }) =>
     $isAnimated ? `${theme.speed.normal} ease` : 'none'};
-
-  position: relative;
 `;
 
 const ImageStyled = styled(Image)<{ $index: number }>`
@@ -199,13 +198,7 @@ const ImageStyled = styled(Image)<{ $index: number }>`
   width: 100%;
   height: 100%;
 
-  object-fit: contain;
   left: ${({ $index }) => `${$index * IMAGE_DISTANCE}vw`};
-`;
 
-const Row = styled(RowCenter)`
-  box-sizing: border-box;
-  height: 50px;
-
-  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.outline}`} inset;
+  object-fit: contain;
 `;

@@ -7,7 +7,7 @@ export default {
   title: 'Inputs/ButtonModal',
   component: ButtonModal,
   args: {
-    icon: <IIconSVG src={ArrowRight} />,
+    children: <IIconSVG size={64} src={ArrowRight} />,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;

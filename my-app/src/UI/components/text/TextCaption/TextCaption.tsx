@@ -13,7 +13,11 @@ export const TextCaption: React.FC<TextCaptionProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  return <Text {...props} size="small" />;
+  return (
+    <Text {...props} size="small">
+      {children}
+    </Text>
+  );
 };
 
 const Text = styled(Paragraph)`

@@ -3,73 +3,37 @@ import styled, { css } from 'styled-components';
 import { Button, ButtonProps } from '../Button';
 
 export interface ButtonReverseProps extends ButtonProps {
-  children?: string;
-  borderReversed?: string;
-  primaryReversed?: string;
-  secondaryReversed?: string;
-  isActive?: boolean;
   isDisabled?: boolean;
 }
 
 export const ButtonReverse: React.FC<ButtonReverseProps> = ({
-  children,
-  borderReversed,
-  primaryReversed = '#F37676',
-  secondaryReversed = 'white',
-  isActive = false,
   isDisabled = false,
-  onClick,
   ...props
 }): React.ReactElement => {
-  const [isHovered, setHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <ButtonStyled
-      onClick={onClick}
-      $isClicked={isClicked}
-      $isHovered={isActive ? true : isHovered}
-      isDisabled={isDisabled}
-      $borderReversed={borderReversed || primaryReversed}
-      $primaryReversed={primaryReversed}
-      $secondaryReversed={secondaryReversed}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        setIsClicked(false);
-        setHovered(false);
-      }}
+    <ButtonLayoutStyled
       onMouseDown={() => setIsClicked(true)}
       onMouseUp={() => setIsClicked(false)}
+      $isClicked={isClicked}
+      isDisabled={isDisabled}
       {...props}
-    >
-      {children}
-    </ButtonStyled>
+    />
   );
 };
 
-const ButtonHovered = css<{
-  $primaryReversed: string;
-  $secondaryReversed: string;
-  $borderReversed: string;
-}>`
-  border-color: ${({ $borderReversed }) => $borderReversed};
-  background-color: ${({ $secondaryReversed }) => $secondaryReversed};
-
-  & :first-child > * {
-    color: ${({ $primaryReversed }) => $primaryReversed};
-  }
+const ButtonDisabled = css`
+  opacity: 0.4;
 `;
 
-const ButtonStyled = styled(Button)<{
-  $isClicked: boolean;
-  $isHovered: boolean;
-  isDisabled: boolean;
-  $borderReversed: string;
-  $primaryReversed: string;
-  $secondaryReversed: string;
-}>`
-  ${({ $isHovered }) => $isHovered && ButtonHovered}
+const ButtonEnabled = css<{ $isClicked: boolean }>`
+  opacity: ${({ $isClicked }) => ($isClicked ? 0.9 : 1.0)};
+`;
 
-  opacity: ${({ isDisabled, $isClicked }) =>
-    !isDisabled && ($isClicked ? 0.9 : 1.0)};
+const ButtonLayoutStyled = styled(Button)<{
+  $isClicked: boolean;
+  isDisabled: boolean;
+}>`
+  ${({ isDisabled }) => (isDisabled ? ButtonDisabled : ButtonEnabled)}
 `;
