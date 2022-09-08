@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { finishLoad, startLoad } from '../../Loader';
 import { Footer } from '../../UI/components/groups/Footer/Footer';
-import { HeaderMain } from '../../UI/components/groups/Header/HeaderMain';
+import { Header } from '../../UI/components/groups/Header/Header';
+import { HeaderLogo } from '../../UI/components/groups/Header/HeaderLogo';
+import { HeaderTabs } from '../../UI/components/groups/Header/HeaderTabs';
 
 export interface HeaderFooteModalProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,28 +21,32 @@ export const HeaderFooteModal: React.FC<HeaderFooteModalProps> = ({
 
   return (
     <Wrapper {...props}>
-      <Header
-        tabs={[
-          {
-            label: 'GALLERY',
-            link: '/gallery',
-            onClick: () => startLoad(),
-            onNavigate: () => resetCallback(),
-          },
-          {
-            label: 'ABOUT',
-            link: '/about',
-            onClick: () => startLoad(),
-            onNavigate: () => resetCallback(),
-          },
-        ]}
-        tabLogo={{
-          label: 'HOME',
-          link: '/',
-          onClick: () => startLoad(),
-          onNavigate: () => resetCallback(),
-        }}
-      />
+      <HeaderStyled>
+        <HeaderLogo
+          link="/"
+          onClick={() => startLoad()}
+          onNavigate={() => {
+            window.scrollTo(0, 0);
+            resetCallback();
+          }}
+        />
+        <HeaderTabs
+          tabs={[
+            {
+              label: 'GALLERY',
+              link: '/gallery',
+              onClick: () => startLoad(),
+              onNavigate: () => resetCallback(),
+            },
+            {
+              label: 'ABOUT',
+              link: '/about',
+              onClick: () => startLoad(),
+              onNavigate: () => resetCallback(),
+            },
+          ]}
+        />
+      </HeaderStyled>
 
       {children}
       <Footer />
@@ -56,7 +62,7 @@ const Wrapper = styled.div`
   overflow-y: auto;
 `;
 
-const Header = styled(HeaderMain)`
+const HeaderStyled = styled(Header)`
   z-index: ${({ theme }) => theme.layer.header};
   position: sticky;
   top: 0;

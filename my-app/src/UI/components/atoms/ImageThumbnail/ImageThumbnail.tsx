@@ -73,13 +73,15 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
           $isLoaded={isLoaded}
           src={src}
         />
-        <ImageTitleStyled
-          $isHovered={isTitleVisible ? true : isHovered}
-          $isLoaded={isLoaded}
-          title={title}
-          subtitle={subtitle}
-          color={Theme.color.background}
-        />
+        {(title || subtitle) && (
+          <ImageTitleStyled
+            $isHovered={isTitleVisible ? true : isHovered}
+            $isLoaded={isLoaded}
+            title={title}
+            subtitle={subtitle}
+            color={Theme.color.background}
+          />
+        )}
         <Border />
       </Content>
     </Wrapper>
@@ -117,6 +119,7 @@ const ImageStyled = styled(Image)<{
 
   width: 100%;
   min-height: 100%;
+  max-height: 100%;
 
   object-fit: cover;
   user-select: none;
@@ -138,11 +141,13 @@ const ImageTitleStyled = styled(ImageTitle)<{
   $isHovered: boolean;
   $isLoaded: boolean;
 }>`
+  box-sizing: border-box;
   position: absolute;
+
   bottom: 0px;
   left: 0px;
-
   width: 100%;
+  padding: 20px;
 
   ${({ $isHovered, theme }) => `
     transition: ${theme.speed.slow};
@@ -161,6 +166,9 @@ const ImageTitleStyled = styled(ImageTitle)<{
     rgba(0, 0, 0, 0.01) 98%,
     rgba(0, 0, 0, 0) 100%
   );
+
+  user-select: none;
+  pointer-events: none;
 `;
 
 const Border = styled.div`

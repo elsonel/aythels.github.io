@@ -9,6 +9,7 @@ export default {
     title: 'SPOTLIGHT',
     subtitle: 'Media Streaming Platform',
     color: Theme.color.text,
+    size: 'small',
   },
   argTypes: {},
 } as Meta;
@@ -21,4 +22,10 @@ export const NoSubtitle = Template.bind({});
 NoSubtitle.args = {
   ...NoSubtitle.args,
   subtitle: undefined,
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  ...Medium.args,
+  size: 'medium',
 };

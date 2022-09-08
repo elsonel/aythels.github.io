@@ -10,7 +10,8 @@ export default {
   component: ProjectSectionFact,
   args: {
     label: 'COLLABORATORS',
-    children: 'Elson Liang, Xavier Woo, Perry Wang',
+    value: 'Elson Liang, Xavier Woo, Perry Wang',
+    isAlwaysWrapped: false,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -26,7 +27,7 @@ LongText.args = {
   ...LongText.args,
   label:
     'A VERY VERY VERY VERY VERY VERY LONG TITLE FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
-  children:
+  value:
     'There are lots and lots and lots and lots and lots and lots of text here. FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
 };
 
@@ -34,9 +35,15 @@ export const Link = Template.bind({});
 Link.args = {
   ...Link.args,
   label: 'GITHUB',
-  children: (
+  value: (
     <LinkExternalFactText link="/">
       Click here to go to website! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     </LinkExternalFactText>
   ),
+};
+
+export const AlwaysWrapped = Template.bind({});
+AlwaysWrapped.args = {
+  ...AlwaysWrapped.args,
+  isAlwaysWrapped: true,
 };

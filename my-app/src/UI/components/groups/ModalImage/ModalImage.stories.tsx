@@ -99,7 +99,7 @@ NoCaption.args = {
   ...NoCaption.args,
   srcArray: [
     {
-      src: '/images/sky.jpg',
+      src: '/example/landscape.jpg',
       title: undefined,
       caption: undefined,
     },

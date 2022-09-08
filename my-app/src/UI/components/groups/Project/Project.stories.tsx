@@ -48,12 +48,13 @@ export default {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non provident.
         </ProjectSectionText>
-        <ProjectSectionFact label="TYPE">Mobile Application</ProjectSectionFact>
-        <ProjectSectionFact label="COMPLETION">June 2022</ProjectSectionFact>
-        <ProjectSectionFact label="COLLABORATORS">
-          Elson Liang, Xavier Woo, Perry Wang
-        </ProjectSectionFact>
-        <ProjectSectionFact label="GITHUB">Link</ProjectSectionFact>
+        <ProjectSectionFact label="TYPE" value=" Mobile Application" />
+        <ProjectSectionFact label="COMPLETION" value="June 2022" />
+        <ProjectSectionFact
+          label="COLLABORATORS"
+          value="Elson Liang, Xavier Woo, Perry Wang"
+        />
+        <ProjectSectionFact label="GITHUB" value="Link" />
       </ProjectSection>,
       <ProjectSection title="GALLERY" key={1}>
         <StyledGridSquare

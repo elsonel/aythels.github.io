@@ -12,6 +12,7 @@ export default {
   component: Modal,
   args: {
     isVisible: true,
+    children: 'Hello World',
   },
 } as Meta;
 

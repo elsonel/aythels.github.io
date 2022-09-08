@@ -1,48 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
-import { LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { TwoColumn, TwoColumnProps } from '../../layout/TwoColumn';
 
-export interface ProjectSectionFactProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ProjectSectionFactProps extends TwoColumnProps {
   label: string;
-  children: React.ReactNode;
+  value: React.ReactNode;
+  isAlwaysWrapped?: boolean;
 }
 
 export const ProjectSectionFact: React.FC<ProjectSectionFactProps> = ({
   label,
-  children,
+  value,
+  isAlwaysWrapped,
   ...props
 }): React.ReactElement => {
   return (
-    <Wrapper {...props}>
-      <Content>
-        <Label isWrapped={false}>{label}</Label>
-      </Content>
-      <Content>
-        {typeof children === 'string' ? <Text>{children}</Text> : children}
-      </Content>
+    <Wrapper
+      $isAlwaysWrapped={isAlwaysWrapped}
+      breakIfLessThan={600}
+      {...props}
+    >
+      <Label isWrapped={false}>{label}</Label>
+      {typeof value === 'string' ? <Text>{value}</Text> : value}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(TwoColumn)<{ $isAlwaysWrapped?: boolean }>`
   width: 100%;
+  column-gap: 20px;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Content = styled.div`
-  width: calc(50% - 10px);
-  ${LessThan(
-    600,
-    `
-    width: 100%;
-  `
-  )}
+  ${({ $isAlwaysWrapped }) => $isAlwaysWrapped && `flex-wrap: wrap;`}
 `;
 
 const Label = styled(Paragraph)`

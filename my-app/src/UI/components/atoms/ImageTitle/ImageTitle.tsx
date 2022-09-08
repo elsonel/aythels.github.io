@@ -16,45 +16,52 @@ export interface ImageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
    * Text color
    */
   color?: string;
+  /**
+   * Text size
+   */
+  size?: 'medium' | 'small';
 }
 
 export const ImageTitle: React.FC<ImageTitleProps> = ({
   title,
   subtitle,
   color = Theme.color.text,
+  size = 'small',
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <TextTitle isWrapped={false} color={color}>
-        {title}
-      </TextTitle>
-      <TextSubtitle isWrapped={false} color={color}>
-        {subtitle}
-      </TextSubtitle>
+      <Content $size={size}>
+        <TextTitle $size={size} isWrapped={false} color={color}>
+          {title}
+        </TextTitle>
+        <TextSubtitle $size={size} isWrapped={false} color={color}>
+          {subtitle}
+        </TextSubtitle>
+      </Content>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  box-sizing: border-box;
-  height: 90px;
-  padding: 20px;
+const Wrapper = styled.div``;
+
+const Content = styled.div<{ $size: 'medium' | 'small' }>`
+  width: 100%;
+  height: ${({ $size }) => ($size === 'medium' ? 54 : 40)}px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  user-select: none;
-  pointer-events: none;
 `;
 
-const TextSubtitle = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.default};
+const TextSubtitle = styled(Paragraph)<{ $size: 'medium' | 'small' }>`
+  font-size: ${({ $size, theme }) =>
+    $size === 'medium' ? theme.font.size.large : theme.font.size.small};
   font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
-const TextTitle = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.h6};
+const TextTitle = styled(Paragraph)<{ $size: 'medium' | 'small' }>`
+  font-size: ${({ $size, theme }) =>
+    $size === 'medium' ? theme.font.size.h4 : theme.font.size.large};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

@@ -20,9 +20,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   width: 100%;
-
-  padding: 40px 20px;
-  border-top: 1px solid ${({ theme }) => theme.color.backgroundHighlight};
+  padding: 20px;
 
   display: flex;
   flex-direction: column;

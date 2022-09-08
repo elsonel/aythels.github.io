@@ -4,10 +4,11 @@ import { GlobalScrollHidden } from '../../../utility/styles/GlobalStyles';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isVisible?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({
-  isVisible = false,
+  isVisible = true,
   children,
   ...props
 }): React.ReactElement => (
@@ -26,9 +27,11 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   width: 100vw;
   height: 100vh;
 
+  transform: ${({ $isVisible }) => ($isVisible ? 'scale(1)' : 'scale(1.05)')};
   background: lightblue;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => `${theme.speed.normal}`};
-  transition-property: opacity;
+  transition-property: opacity, transform;
+  overflow: hidden;
 `;

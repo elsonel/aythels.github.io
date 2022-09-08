@@ -11,9 +11,14 @@ export interface SpeedInterface {
   test: string;
 }
 
+export interface SizeInterface {
+  header: number;
+}
+
 export interface ThemeMiscInterface {
   layer: LayerInterface;
   speed: SpeedInterface;
+  size: SizeInterface;
 }
 
 export const ThemeMisc: ThemeMiscInterface = {
@@ -27,5 +32,8 @@ export const ThemeMisc: ThemeMiscInterface = {
     slow: '0.4s',
     loading: '1s',
     test: '3s',
+  },
+  size: {
+    header: 64,
   },
 };

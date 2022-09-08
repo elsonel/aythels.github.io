@@ -7,13 +7,9 @@ import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { HorizontalBulletMenu } from '../../atoms/HorizontalBulletMenu';
 import { GridRow } from '../../layout/GridRow';
 
-const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
+const BREAKPOINTS: GridBreakpoint[] = [
   {
     minWidth: 0,
-    columnCount: 1,
-  },
-  {
-    minWidth: 600,
     columnCount: 2,
   },
   {
@@ -43,8 +39,7 @@ export const Explore: React.FC<ExploreProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
   let count = 1;
-  if (GreaterThanHook(0)) count = 1;
-  if (GreaterThanHook(600)) count = 2;
+  if (GreaterThanHook(0)) count = 2;
   if (GreaterThanHook(800)) count = 3;
   if (GreaterThanHook(1200)) count = 4;
 
@@ -61,10 +56,13 @@ export const Explore: React.FC<ExploreProps> = ({
       if (direction === 'START') left = 0;
       else if (direction === 'END') left = element.scrollWidth;
 
+      /*
       element.scroll({
         left: left,
         behavior: 'smooth',
-      });
+      });*/
+
+      element.scrollTop = 100;
     }
   };
 
@@ -103,7 +101,11 @@ export const Explore: React.FC<ExploreProps> = ({
         </Header>
       </HeaderWrapper>
       <Content ref={contentRef}>
-        <Grid $center={children.length < count} onScroll={onScroll}>
+        <Grid
+          breakpoints={BREAKPOINTS}
+          $center={children.length < count}
+          onScroll={onScroll}
+        >
           {children}
         </Grid>
       </Content>
@@ -122,6 +124,8 @@ const HeaderWrapper = styled.div`
   padding: 20px;
 
   border: 1px solid ${({ theme }) => theme.color.textHovered};
+  border-left: 0px;
+  border-right: 0px;
 `;
 
 const Header = styled.div`

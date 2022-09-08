@@ -129,8 +129,11 @@ const RowTop = styled(Row)`
 `;
 
 const Title = styled(Paragraph)`
+  flex-grow: 1;
+
   font-size: ${({ theme }) => theme.font.size.h6};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
+  text-align: center;
 `;
 
 const ButtonClosePlaceholder = styled(ButtonModalClose)`
@@ -167,6 +170,8 @@ const ButtonNext = styled(ButtonModalNext)`
 `;
 
 const Caption = styled(TextCaption)`
+  flex-grow: 1;
+
   ${LessThan(
     'mobileLarge',
     `

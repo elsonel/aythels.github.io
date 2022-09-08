@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TabLine } from '../../atoms/TabLine';
+import { ProgressLine } from '../../atoms/ProgressLine';
 import { Tab, TabProps } from '../../inputs/Tab';
 
 export interface TabData {
@@ -46,7 +46,7 @@ export const Tabs: React.FC<TabsProps> = ({
           </div>
         ))}
       </TabRow>
-      <TabLineStyled lineStart={lineStart} lineWidth={lineWidth} />
+      <ProgressLineStyled lineStart={lineStart} lineWidth={lineWidth} />
     </Wrapper>
   );
 };
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
   display: inline-block;
 `;
 
-const TabLineStyled = styled(TabLine)`
+const ProgressLineStyled = styled(ProgressLine)`
   position: absolute;
 
   width: 100%;

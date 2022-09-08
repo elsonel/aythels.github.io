@@ -10,8 +10,10 @@ import {
   _GalleryUIUXData,
   _GalleryVisualArtsData,
 } from '../../data/data';
+import { PageTitle } from '../../UI/components/atoms/PageTitle';
 import { GalleryHeaderMain } from '../../UI/components/groups/GalleryHeader/GalleryHeaderMain';
 import { ModalImage } from '../../UI/components/groups/ModalImage';
+import { TextTitle } from '../../UI/components/text/TextTitle';
 import { HeaderFooter, HeaderFooterProps } from '../templates/HeaderFooter';
 import { GalleryArchitecture } from './GalleryArchitecture';
 import { GalleryUIUX } from './GalleryUIUX';
@@ -104,6 +106,7 @@ export const Gallery: React.FC<GalleryProps> = ({
   return (
     <div {...props}>
       <HeaderFooter reset={reset}>
+        <PageTitle>GALLERY</PageTitle>
         <GalleryHeaderMain
           pageTabs={Object.keys(PAGES).map((key) => {
             const entry = PAGES[key as keyof typeof PAGES];

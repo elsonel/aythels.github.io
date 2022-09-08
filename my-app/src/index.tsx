@@ -6,12 +6,7 @@ import './index.css';
 import { createGlobalStyle } from 'styled-components';
 import { App } from './App';
 import { Loader } from './Loader';
-
-const GlobalStyle = createGlobalStyle<{ theme: ThemeInterface }>`
-  body {
-    background-color: ${({ theme }) => theme.color.background};
-  }
-`;
+import { GlobalBackground } from './UI/utility/styles/GlobalStyles';
 
 // This has to be first to render first
 const rootLoader = createRoot(document.getElementById('root-loader')!);
@@ -27,7 +22,7 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
   <StrictMode>
     <ThemeProvider theme={Theme}>
-      <GlobalStyle />
+      <GlobalBackground />
       <App />
     </ThemeProvider>
   </StrictMode>

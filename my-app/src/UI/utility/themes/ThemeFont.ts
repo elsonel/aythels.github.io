@@ -45,7 +45,7 @@ export const ThemeFont: ThemeFontInterface = {
       bold2: 700,
     },
     size: {
-      tiny: '0.70rem',
+      tiny: '0.65rem',
       small: '0.80rem',
       default: '0.96rem',
       large: '1.1rem',

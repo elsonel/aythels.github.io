@@ -113,7 +113,7 @@ export const _GalleryArchitectureData: GalleryProjectEntry[] = [
   },
   {
     date: new Date(2020, 11),
-    subtitle: '2020',
+    subtitle: 'Drifting Landscapes',
     title: 'KINETIC BOARDWALK',
     src: '/images/architecture/Kinetic_Boardwalk.png',
     to: '/kineticboardwalk',

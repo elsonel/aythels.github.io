@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { finishLoad, startLoad } from '../Loader';
-import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
-import { Grid } from '../UI/components/layout/Grid';
 import { HeaderFooter } from './templates/HeaderFooter';
+import { About as AboutPage } from '../UI/components/groups/About';
+import { PageTitle } from '../UI/components/atoms/PageTitle';
 
 export interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {
   resetCallback: () => void;
@@ -15,13 +14,8 @@ export const About: React.FC<AboutProps> = ({
   return (
     <div {...props}>
       <HeaderFooter reset={resetCallback}>
-        <div>This is the about page</div>
-        <Grid>
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-        </Grid>
+        <PageTitle>ABOUT</PageTitle>
+        <AboutPage />
       </HeaderFooter>
     </div>
   );

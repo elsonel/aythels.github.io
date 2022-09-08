@@ -19,7 +19,7 @@ export const TextTitle: React.FC<TextTitleProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Text $size={size} {...props}>
+    <Text $size={size} weight="bold2" {...props}>
       {children}
     </Text>
   );
@@ -36,17 +36,4 @@ const Text = styled(Paragraph)<{ $size: 'small' | 'medium' | 'large' }>`
         return '4.0rem';
     }
   }};
-
-  line-height: ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return '1.8rem';
-      case 'medium':
-        return '3.4rem';
-      case 'large':
-        return '4.2rem';
-    }
-  }};
-
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

@@ -6,7 +6,7 @@ export interface TextCaptionProps extends ParagraphProps {
   /**
    * Text to be used as caption
    */
-  children?: React.ReactNode; // text
+  children?: React.ReactNode;
 }
 
 export const TextCaption: React.FC<TextCaptionProps> = ({

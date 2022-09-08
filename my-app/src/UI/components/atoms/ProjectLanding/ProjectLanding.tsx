@@ -4,6 +4,7 @@ import { Theme } from '../../../utility/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 import { IconScroll } from '../IconScroll';
 import { Image } from '../Image/Image';
+import { ImageTitle } from '../ImageTitle';
 
 export interface ProjectLandingProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,10 +28,7 @@ export const ProjectLanding: React.FC<ProjectLandingProps> = ({
       <ContentWrapper>
         <ImageStyled $isContained={isContained} src={src} />
         <BottomWrapper>
-          <TextWrapper>
-            <TextSubtitle $color={textColor}>{subtitle}</TextSubtitle>
-            <TextTitle $color={textColor}>{title}</TextTitle>
-          </TextWrapper>
+          <ImageTitle color={textColor} title={title} subtitle={subtitle} />
           <Icon color={textColor} />
         </BottomWrapper>
       </ContentWrapper>
@@ -54,6 +52,7 @@ const ContentWrapper = styled.div`
 const ImageStyled = styled(Image)<{ $isContained: boolean }>`
   width: 100%;
   min-height: 100%;
+  max-height: 100%;
   object-fit: ${({ $isContained }) => ($isContained ? 'contain' : 'cover')};
 `;
 
@@ -72,26 +71,4 @@ const BottomWrapper = styled.div`
 
 const Icon = styled(IconScroll)`
   flex-shrink: 0;
-`;
-
-const TextWrapper = styled.div`
-  overflow: hidden;
-`;
-
-const Text = styled(Paragraph)<{ $color: string }>`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  color: ${({ $color }) => $color};
-`;
-
-const TextSubtitle = styled(Text)`
-  font-size: ${({ theme }) => theme.font.size.default};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-`;
-
-const TextTitle = styled(Text)`
-  font-size: ${({ theme }) => theme.font.size.h5};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;
