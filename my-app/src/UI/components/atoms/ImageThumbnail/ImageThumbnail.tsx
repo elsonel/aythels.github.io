@@ -148,6 +148,7 @@ const ImageTitleStyled = styled(ImageTitle)<{
   left: 0px;
   width: 100%;
   padding: 20px;
+  padding-top: 60px;
 
   ${({ $isHovered, theme }) => `
     transition: ${theme.speed.slow};
@@ -157,15 +158,8 @@ const ImageTitleStyled = styled(ImageTitle)<{
 
   ${({ $isLoaded }) => !$isLoaded && 'opacity: 0;'}
 
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.03) 80%,
-    rgba(0, 0, 0, 0.01) 98%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: none;
+  background: ${({ theme }) => `${theme.color.greyBackdropUp}`};
 
   user-select: none;
   pointer-events: none;

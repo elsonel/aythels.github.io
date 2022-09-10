@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Theme } from '../../../utility/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 import { IconScroll } from '../IconScroll';
@@ -23,30 +24,38 @@ export const ProjectLanding: React.FC<ProjectLandingProps> = ({
   textColor = Theme.color.background,
   ...props
 }): React.ReactElement => {
+  const isMobile = LessThanHook(600);
+
   return (
     <Wrapper {...props}>
-      <ContentWrapper>
+      <Content>
         <ImageStyled $isContained={isContained} src={src} />
         <BottomWrapper>
-          <ImageTitle color={textColor} title={title} subtitle={subtitle} />
+          <ImageTitle
+            size={isMobile ? 'small' : 'medium'}
+            color={textColor}
+            title={title}
+            subtitle={subtitle}
+          />
           <Icon color={textColor} />
         </BottomWrapper>
-      </ContentWrapper>
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 `;
 
-const ContentWrapper = styled.div`
+const Content = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
 
   user-select: none;
+  cursor: pointer;
 `;
 
 const ImageStyled = styled(Image)<{ $isContained: boolean }>`

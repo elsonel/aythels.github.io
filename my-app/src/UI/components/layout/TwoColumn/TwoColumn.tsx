@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 
 export interface TwoColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: [React.ReactNode, React.ReactNode];
@@ -13,38 +13,41 @@ export const TwoColumn: React.FC<TwoColumnProps> = ({
   children = [],
   leftRatio = 0.5,
   rightRatio = 0.5,
-  breakIfLessThan = 800,
+  breakIfLessThan,
   ...props
 }): React.ReactElement => {
   leftRatio = Math.max(0, leftRatio);
   rightRatio = Math.max(0, rightRatio);
 
+  const shouldBreak =
+    breakIfLessThan === undefined ? true : LessThanHook(breakIfLessThan);
+
   return (
-    <Wrapper $lessThan={breakIfLessThan} {...props}>
-      <Left $ratio={rightRatio / (leftRatio + rightRatio)}>
+    <Wrapper {...props}>
+      <Content
+        $ratio={leftRatio / (leftRatio + rightRatio)}
+        $shouldBreak={shouldBreak}
+      >
         {children[0] && children[0]}
-      </Left>
-      <Right $ratio={leftRatio / (leftRatio + rightRatio)}>
+      </Content>
+      <Content
+        $ratio={rightRatio / (leftRatio + rightRatio)}
+        $shouldBreak={shouldBreak}
+      >
         {children[1] && children[1]}
-      </Right>
+      </Content>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div<{ $lessThan: number }>`
+const Wrapper = styled.div`
   width: 100%;
 
   display: flex;
-
-  ${({ $lessThan }) => LessThan($lessThan, 'flex-wrap: wrap;')};
+  flex-wrap: wrap;
 `;
 
-const Left = styled.div<{ $ratio: number }>`
-  flex-shrink: ${({ $ratio }) => $ratio};
-  width: 100%;
-`;
-
-const Right = styled.div<{ $ratio: number }>`
-  flex-shrink: ${({ $ratio }) => $ratio};
-  width: 100%;
+const Content = styled.div<{ $ratio: number; $shouldBreak: boolean }>`
+  width: ${({ $shouldBreak }) => ($shouldBreak ? `100%` : `0px`)};
+  flex-grow: ${({ $ratio }) => $ratio};
 `;

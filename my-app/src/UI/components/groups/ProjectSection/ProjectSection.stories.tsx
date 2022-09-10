@@ -1,11 +1,12 @@
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
-import { ProjectSectionFact } from '../../atoms/ProjectSectionFact';
+import { Fact } from '../../atoms/Fact';
 import { ProjectSectionImage } from '../../atoms/ProjectSectionImage';
 import { ProjectSectionText } from '../../atoms/ProjectSectionText';
 import { Grid } from '../../layout/Grid';
 import { ProjectSection, ProjectSectionProps } from './ProjectSection';
+import { ProjectSectionFactList } from '../../atoms/ProjectSectionFactList';
 
 export default {
   title: 'Groups/ProjectSection',
@@ -22,20 +23,22 @@ export default {
         occaecat cupidatat non provident.
       </ProjectSectionText>,
       <ProjectSectionText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do' eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non provident.
+        occaecat cupidatat non.
       </ProjectSectionText>,
-      <ProjectSectionFact label="TYPE" value=" Mobile Application" />,
-      <ProjectSectionFact label="COMPLETION" value="June 2022" />,
-      <ProjectSectionFact
-        label="COLLABORATORS"
-        value="Elson Liang, Xavier Woo, Perry Wang"
-      />,
-      <ProjectSectionFact label="GITHUB" value="Link" />,
+      <ProjectSectionFactList>
+        <Fact label="TYPE" value=" Mobile Application" />
+        <Fact label="COMPLETION" value="June 2022" />
+        <Fact
+          label="COLLABORATORS"
+          value="Elson Liang, Xavier Woo, Perry Wang"
+        />
+        <Fact label="GITHUB" value="Link" />
+      </ProjectSectionFactList>,
     ],
   },
   argTypes: { onClick: { action: 'clicked' } },
@@ -71,12 +74,24 @@ ExampleProcess.args = {
   title: 'PROCESS',
   children: [
     <ProjectSectionText title="Concept">
+      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur. Excepteur sint occaecat cupidatat non provident.`}
+      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+        do' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur. Excepteur sint occaecat cupidatat non.`}
+    </ProjectSectionText>,
+    <ProjectSectionText title="Development">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non provident.
+      commodo consequat.
     </ProjectSectionText>,
     <ProjectSectionImage src="/example/landscape.jpg">
       This is an image

@@ -48,4 +48,6 @@ export const GalleryUIUX: React.FC<GalleryUIUXProps> = ({
 
 const StyledGridSquare = styled(Grid)`
   justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
 `;

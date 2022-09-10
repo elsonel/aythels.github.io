@@ -14,14 +14,13 @@ export const TextButton: React.FC<TextButtonProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Text isWrapped={false} {...props}>
+    <Text isWrapped={false} weight="regular" {...props}>
       {children}
     </Text>
   );
 };
 
 const Text = styled(Paragraph)`
-  font-weight: ${({ theme }) => theme.font.weight.regular};
   letter-spacing: ${({ theme }) => theme.font.spacing.button};
   padding-left: ${({ theme }) => theme.font.spacing.button};
 `;

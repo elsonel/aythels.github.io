@@ -16,16 +16,16 @@ export default {
 
 const Template: Story<ImageTitleProps> = (args) => <ImageTitle {...args} />;
 
-export const Basic = Template.bind({});
-
-export const NoSubtitle = Template.bind({});
-NoSubtitle.args = {
-  ...NoSubtitle.args,
-  subtitle: undefined,
-};
+export const Small = Template.bind({});
 
 export const Medium = Template.bind({});
 Medium.args = {
   ...Medium.args,
   size: 'medium',
+};
+
+export const NoSubtitle = Template.bind({});
+NoSubtitle.args = {
+  ...NoSubtitle.args,
+  subtitle: undefined,
 };

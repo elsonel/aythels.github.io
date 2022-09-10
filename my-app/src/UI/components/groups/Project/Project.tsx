@@ -1,31 +1,96 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ProjectSectionProps } from '../ProjectSection';
-import { ScrollHandler } from '../../inputs/ScrollHandler';
 import { ProjectLandingProps } from '../../atoms/ProjectLanding';
-import { ProjectMenu } from '../../atoms/ProjectMenu';
-import { LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { ProjectMenuHorizontal } from '../../atoms/ProjectMenuHorizontal';
 import useOnScreen from '../../../utility/hooks/useOnScreen';
+import { Theme } from '../../../utility/themes/Theme';
+import useOnWindowScrollTop from '../../../utility/hooks/useOnWindowScrollTop';
+import { LessThan } from '../../../utility/styles/ResponsiveCSS';
 
-const TOP_OFFSET = 64;
-const MENU_WIDTH = 220;
-let timeout: any = null;
-let isScrollLocked: boolean = true;
+const TIMELINE_HEIGHT = 40;
+const TOLERANCE = 4;
+const TOP_OFFSET = Theme.size.header - TOLERANCE + TIMELINE_HEIGHT;
 
-let lockCount = 0;
-
-export interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
-  landingComponent: React.ReactElement<ProjectLandingProps>;
-  children?: React.ReactElement<ProjectSectionProps>[];
+function renderMenu(
+  sections: React.ReactElement<ProjectSectionProps>[],
+  allRefs: React.RefObject<HTMLDivElement>[],
+  allIsOnScreen: boolean[],
+  scrollProgress: number
+) {
+  return (
+    <ProjectMenuHorizontal
+      progress={scrollProgress}
+      tabs={sections.map((e, i) => {
+        return {
+          label: e.props.title ? e.props.title : '',
+          isActive: allIsOnScreen[i] && !allIsOnScreen[i - 1],
+          onClick: () => scrollToRef(allRefs[i]),
+        };
+      })}
+    />
+  );
 }
 
+function getProgress(
+  allRefs: React.RefObject<HTMLDivElement>[],
+  allIsOnScreen: boolean[]
+) {
+  let index = allIsOnScreen.findIndex(
+    (e, i) => allIsOnScreen[i] && !allIsOnScreen[i - 1]
+  );
+
+  const ref = allRefs[index];
+  if (!ref || !ref.current) return 0;
+
+  const coords = ref.current.getBoundingClientRect();
+  const NUMERATOR = coords.top - TOP_OFFSET;
+  const TOTAL = coords.height;
+  const PERCENT = Math.max(0, Math.min(Math.abs(NUMERATOR / TOTAL), 1));
+
+  // This is the length of each segment
+  const fraction = 1 / (allRefs.length + 1);
+
+  // This is the section scroll percentage remapped to the entire progress bar length
+  const truePercent = fraction * PERCENT;
+
+  // This is adding the previous sections that come before the current section to the progress b ar
+  const withAddition = truePercent + (index + 1) * fraction;
+
+  return withAddition;
+}
+
+const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+  if (!ref || !ref.current) return;
+
+  const top = ref.current.getBoundingClientRect().top;
+  const offset = top + window.pageYOffset + -TOP_OFFSET;
+
+  window.scrollTo({
+    top: offset,
+    behavior: 'smooth',
+  });
+};
+
+export interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: [
+    React.ReactElement<ProjectLandingProps>,
+    ...React.ReactElement<ProjectSectionProps>[]
+  ];
+  isLandingVisible?: boolean;
+}
+
+console.warn('This probably needs to be optimized!');
+
 export const Project: React.FC<ProjectProps> = ({
-  landingComponent,
-  children = [],
+  children,
+  isLandingVisible = true,
   ...props
 }): React.ReactElement => {
-  const [isLandingVisible, setIsLandingVisible] = useState(true);
-  const allRefs = children.map(() => useRef<HTMLDivElement>(null));
+  const [landing, ...sections] = children;
+  const [lastScrollProgress, setLastScrollProgress] = useState(-1);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const allRefs = sections.map(() => useRef<HTMLDivElement>(null));
   const allIsOnScreen = allRefs.map((ref) =>
     useOnScreen(ref, [], {
       root: document,
@@ -33,171 +98,128 @@ export const Project: React.FC<ProjectProps> = ({
     })
   );
 
+  const scrollTop = useOnWindowScrollTop();
   useEffect(() => {
-    clearTimeout(timeout);
+    const STEPS = 0.05;
+    const FRACTION = 1 / (sections.length + 1);
 
-    if (isLandingVisible) isScrollLocked = true;
-    else if (!isLandingVisible)
-      timeout = setTimeout(() => (isScrollLocked = false), 400);
-  }, [isLandingVisible]);
+    // First step:
+    if (lastScrollProgress === -1) {
+      setLastScrollProgress(scrollProgress);
+      setScrollProgress(FRACTION);
 
-  const onDown = () => {
-    setIsLandingVisible(false);
-  };
+      return;
+    }
 
-  const onUp = () => {
-    if (window.pageYOffset === 0) setIsLandingVisible(true);
-  };
+    // Usual steps to take
+    let currentProgress = getProgress(allRefs, allIsOnScreen);
 
-  const onScroll = () => {
-    onDown();
-    if (isScrollLocked) document.documentElement.scrollTop = 0;
-  };
+    if (Math.abs(currentProgress - lastScrollProgress) > STEPS) {
+      const remainder = currentProgress % FRACTION;
 
-  const scrollToRef = (index: number) => {
-    const top = allRefs[index].current!.getBoundingClientRect().top;
-    const offset = top + window.pageYOffset + -TOP_OFFSET;
+      if (remainder < STEPS * 2) {
+        currentProgress -= remainder;
+      } else if (remainder + STEPS * 2 > FRACTION) {
+        currentProgress += FRACTION - remainder;
+      }
 
-    window.scrollTo({
-      top: offset,
-      behavior: 'smooth',
-    });
-  };
+      setLastScrollProgress(scrollProgress);
+      setScrollProgress(currentProgress);
+    }
+  }, [scrollTop]);
 
   return (
-    <Wrapper {...props}>
-      <ScrollHandler onDown={onDown} onUp={onUp} onScrollWindow={onScroll}>
-        <WrapperPosition>
-          <Internal>
-            <Menu>
-              <ProjectMenu
-                tabs={children.map((e, i) => {
-                  return {
-                    label: e.props.title ? e.props.title : '',
-                    isSelected: allIsOnScreen[i] && !allIsOnScreen[i - 1],
-                    onClick: () => scrollToRef(i),
-                  };
-                })}
-                isVisible={!isLandingVisible}
-                subtitle={landingComponent.props.subtitle}
-                title={landingComponent.props.title}
-              />
-            </Menu>
-            <Content $isLandingVisible={isLandingVisible}>
-              <ContentGap $isLandingVisible={isLandingVisible} />
-              {children.map((e, i) => (
-                <div ref={allRefs[i]} key={i}>
-                  {e}
-                </div>
-              ))}
-            </Content>
-            <MenuPlaceholder />
-          </Internal>
-        </WrapperPosition>
-      </ScrollHandler>
-      <Landing onClick={onDown} $isLandingVisible={isLandingVisible}>
-        {landingComponent}
-      </Landing>
-    </Wrapper>
+    <div {...props}>
+      <Content>
+        <Header $isLandingVisible={isLandingVisible}>
+          <HeaderTopGap />
+          {renderMenu(sections, allRefs, allIsOnScreen, scrollProgress)}
+        </Header>
+        <SectionWrapper $isLandingVisible={isLandingVisible}>
+          {sections.map((e, i) => (
+            <div ref={allRefs[i]} key={i}>
+              {e}
+            </div>
+          ))}
+        </SectionWrapper>
+      </Content>
+      <LandingWrapper $isLandingVisible={isLandingVisible}>
+        {landing}
+      </LandingWrapper>
+    </div>
   );
 };
 
-const Wrapper = styled.div`
-  margin-top: ${TOP_OFFSET}px;
-  width: 100%;
-  //background: green;
-`;
-
-const WrapperPosition = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const Internal = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Menu = styled.div`
-  align-self: flex-start;
-
-  position: sticky;
-  top: ${TOP_OFFSET}px;
-  width: ${MENU_WIDTH}px;
-
-  //background: pink;
-
-  > * {
-    width: 100%;
-  }
-
-  ${LessThan(
-    1000,
-    `
-    display: none;
-  `
-  )}
-`;
-
-const Content = styled.div<{ $isLandingVisible: boolean }>`
-  width: min(700px, calc(100% - ${MENU_WIDTH * 2}px));
-  //background: yellow;
-
-  opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 0 : 1)};
-  transition: ${({ theme }) => theme.speed.slow};
-  transition-property: opacity;
-
-  ${LessThan(
-    1000,
-    `
-    width: 100%;
-  `
-  )}
-
-  > * {
-    width: 100%;
-  }
-`;
-
-const ContentGap = styled.div<{ $isLandingVisible: boolean }>`
-  height: ${({ $isLandingVisible }) =>
-    $isLandingVisible ? `calc(100vh - ${TOP_OFFSET}px)` : `0px`};
-  transition: ${({ theme }) => theme.speed.slow};
-  //background: teal;
-`;
-
-const MenuPlaceholder = styled.div`
-  width: ${MENU_WIDTH}px;
-  //background: orange;
-
-  ${LessThan(
-    1000,
-    `
-    display: none;
-  `
-  )}
-`;
-
-const Landing = styled.div<{ $isLandingVisible: boolean }>`
+const LandingWrapper = styled.div<{ $isLandingVisible: boolean }>`
+  z-index: 2;
   position: fixed;
-  top: ${TOP_OFFSET}px;
+  width: 100%;
+  top: 0px;
   left: 0px;
 
-  width: 100%;
-  height: calc(100vh - ${TOP_OFFSET}px);
-
-  //background: black;
-
-  cursor: pointer;
   opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 1 : 0)};
   pointer-events: ${({ $isLandingVisible }) =>
     $isLandingVisible ? 'auto' : 'none'};
-  transition: ${({ theme }) => theme.speed.normal};
-  transition-property: opacity;
 
-  > * {
-    width: 100%;
-    height: 100%;
-  }
+  transition-duration: ${({ theme }) => theme.speed.normal};
+  transition-property: opacity, transform;
+`;
+
+const Content = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeaderTopGap = styled.div`
+  width: 100%;
+  height: ${({ theme }) => theme.size.header - TOLERANCE}px;
+
+  background: ${({ theme }) => theme.color.background};
+`;
+
+const Header = styled.div<{ $isLandingVisible: boolean }>`
+  z-index: 1;
+  position: sticky;
+  width: 100%;
+  top: 0px;
+
+  transform: ${({ $isLandingVisible }) =>
+    $isLandingVisible ? 'translateY(-120px)' : 'translateY(0px)'};
+  opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 0 : 1)};
+
+  transition-duration: ${({ theme }) => theme.speed.fast};
+  transition-delay: ${({ $isLandingVisible, theme }) =>
+    $isLandingVisible ? 0 : theme.speed.fast};
+  transition-property: opacity, transform;
+
+  ${LessThan(
+    800,
+    ` 
+      position: static; 
+      > * {
+        &:last-child {
+          display: none;
+        }
+      } 
+    
+    `
+  )}
+`;
+
+const SectionWrapper = styled.div<{ $isLandingVisible: boolean }>`
+  z-index: 0;
+  position: relative;
+
+  transform: ${({ $isLandingVisible }) =>
+    $isLandingVisible ? 'translateY(25vh)' : 'translateY(0px)'};
+  width: min(100%, 800px);
+  opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 0 : 1)};
+
+  transition-duration: ${({ theme }) => theme.speed.normal};
+  transition-delay: ${({ $isLandingVisible, theme }) =>
+    $isLandingVisible ? 0 : theme.speed.normal};
+  transition-property: opacity, transform;
 `;

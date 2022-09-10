@@ -13,41 +13,63 @@ export interface ProjectMenuHorizontalTab {
 export interface ProjectMenuHorizontalProps
   extends React.HTMLAttributes<HTMLDivElement> {
   tabs: ProjectMenuHorizontalTab[];
+  progress?: number;
 }
 
 export const ProjectMenuHorizontal: React.FC<ProjectMenuHorizontalProps> = ({
   tabs,
+  progress = 0,
   ...props
 }): React.ReactElement => {
   const lastActiveTab = [...tabs].reverse().find((e) => e.isActive);
   const lastActiveIndex = tabs.findIndex((e) => e === lastActiveTab);
+  const progressStr = `${Math.max(0, Math.min(progress, 1)) * 100}%`;
 
   return (
     <Wrapper {...props}>
-      <LineWrapper>
-        <ProgressLine lineStart={0} lineWidth={'50%'} />
-      </LineWrapper>
-      <DiamondRow>
-        {tabs.map((e, i) => (
-          <DiamondLabel
-            key={i}
-            label={e.label}
-            state={
-              i <= lastActiveIndex
-                ? i === lastActiveIndex
-                  ? State.ACTIVE
-                  : State.SEMIACTIVE
-                : State.NEUTRAL
-            }
-            onClick={e.onClick}
+      <Content>
+        <LineWrapper>
+          <ProgressLine
+            lineStart={0}
+            lineWidth={progressStr}
+            backLineColor={Theme.color.textNeutral}
           />
-        ))}
-      </DiamondRow>
+        </LineWrapper>
+        <DiamondRow>
+          {tabs.map((e, i) => (
+            <DiamondLabel
+              key={i}
+              label={e.label}
+              state={
+                i <= lastActiveIndex
+                  ? i === lastActiveIndex
+                    ? State.ACTIVE
+                    : State.SEMIACTIVE
+                  : State.NEUTRAL
+              }
+              onClick={e.onClick}
+            />
+          ))}
+        </DiamondRow>
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding-bottom: 30px;
+
+  pointer-events: none;
+  user-select: none;
+
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
+  background: ${({ theme }) => theme.color.background};
+`;
+
+const Content = styled.div`
   overflow-x: clip;
   overflow-y: visible;
   position: relative;
@@ -71,11 +93,7 @@ const LineWrapper = styled.div`
 `;
 
 const DiamondRow = styled.div`
-  //position: relative;
-  //left: -4px;
-  //width: calc(100% + 8px);
-
   display: flex;
-  //justify-content: space-between;
   justify-content: space-evenly;
+  pointer-events: auto;
 `;

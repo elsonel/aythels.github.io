@@ -1,15 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Paragraph } from '../../text/Paragraph';
+import { Fact } from '../Fact';
 import { ImageTitle } from '../ImageTitle';
-import { ProjectSectionFactProps } from '../ProjectSectionFact';
+import { ProjectSectionFactList } from '../ProjectSectionFactList';
+import { ProjectSectionText } from '../ProjectSectionText';
+
+export interface Fact {
+  label: string;
+  value: React.ReactNode;
+}
 
 export interface GalleryProjectPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   subtitle: string;
   body: string[];
-  facts: React.ReactElement<ProjectSectionFactProps>[];
+  facts: Fact[];
 }
 
 export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
@@ -23,9 +29,18 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
     <Wrapper {...props}>
       <ImageTitle size="medium" title={title} subtitle={subtitle} />
       {body.map((e, i) => (
-        <Paragraph key={i}>{e}</Paragraph>
+        <ProjectSectionText key={i}>{e}</ProjectSectionText>
       ))}
-      <FactsWrapper>{facts}</FactsWrapper>
+      <ProjectSectionFactList>
+        {facts.map((e, i) => (
+          <Fact
+            key={i}
+            label={e.label}
+            isAlwaysWrapped={true}
+            value={e.value}
+          />
+        ))}
+      </ProjectSectionFactList>
     </Wrapper>
   );
 };
@@ -36,25 +51,10 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
 
-  border: 1px solid ${({ theme }) => theme.color.outline};
+  //border: 1px solid ${({ theme }) => theme.color.outline};
   transition: ${({ theme }) => `${theme.speed.normal}`};
 
-  > * {
-    padding-bottom: 14px;
-
-    &:nth-last-child(2) {
-      padding-bottom: 24px;
-    }
-
-    &:nth-last-child(1) {
-      padding-bottom: 0px;
-    }
-  }
-`;
-
-const FactsWrapper = styled.div`
-  > * {
-    flex-wrap: wrap;
-    padding-bottom: 14px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;

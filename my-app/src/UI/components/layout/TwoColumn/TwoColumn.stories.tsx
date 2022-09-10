@@ -24,3 +24,9 @@ export default {
 const Template: Story<TwoColumnProps> = (args) => <TwoColumn {...args} />;
 
 export const Basic = Template.bind({});
+
+export const AlwaysBroken = Template.bind({});
+AlwaysBroken.args = {
+  ...AlwaysBroken.args,
+  breakIfLessThan: undefined,
+};

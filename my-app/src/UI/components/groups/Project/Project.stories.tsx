@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { ProjectLanding } from '../../atoms/ProjectLanding';
-import { ProjectSectionFact } from '../../atoms/ProjectSectionFact';
+import { Fact } from '../../atoms/Fact';
 import { ProjectSectionImage } from '../../atoms/ProjectSectionImage';
 import { ProjectSectionText } from '../../atoms/ProjectSectionText';
 import { Grid } from '../../layout/Grid';
@@ -11,26 +11,21 @@ import { Project, ProjectProps } from './Project';
 
 const Gap = styled.div`
   width: 100%;
-  height: 100px;
+  height: 1000px;
   background: blue;
-`;
-
-const StyledGridSquare = styled(Grid)`
-  padding: 0px;
 `;
 
 export default {
   title: 'Groups/Project',
   component: Project,
   args: {
-    landingComponent: (
-      <ProjectLanding
-        subtitle={'UI / UX'}
-        title={'SPOTLIGHT'}
-        src="/example/square.jpg"
-      />
-    ),
+    isLandingVisible: false,
     children: [
+      <ProjectLanding
+        title={'SPOTLIGHT'}
+        subtitle={'UI / UX'}
+        src="/example/square.jpg"
+      />,
       <ProjectSection title="OVERVIEW" key={0}>
         <ProjectSectionText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -48,16 +43,16 @@ export default {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non provident.
         </ProjectSectionText>
-        <ProjectSectionFact label="TYPE" value=" Mobile Application" />
-        <ProjectSectionFact label="COMPLETION" value="June 2022" />
-        <ProjectSectionFact
+        <Fact label="TYPE" value=" Mobile Application" />
+        <Fact label="COMPLETION" value="June 2022" />
+        <Fact
           label="COLLABORATORS"
           value="Elson Liang, Xavier Woo, Perry Wang"
         />
-        <ProjectSectionFact label="GITHUB" value="Link" />
+        <Fact label="GITHUB" value="Link" />
       </ProjectSection>,
       <ProjectSection title="GALLERY" key={1}>
-        <StyledGridSquare
+        <Grid
           breakpoints={[
             {
               minWidth: 0,
@@ -77,7 +72,7 @@ export default {
           <ImageThumbnail src="/example/square.jpg" />
           <ImageThumbnail src="/example/square.jpg" />
           <ImageThumbnail src="/example/square.jpg" />
-        </StyledGridSquare>
+        </Grid>
       </ProjectSection>,
       <ProjectSection title="PROCESS" key={2}>
         <ProjectSectionText title="Concept">
@@ -109,24 +104,7 @@ const Template: Story<ProjectProps> = (args) => (
   <div>
     <Project {...args} />
     <Gap />
-    <Gap />
-    <Gap />
-    <Gap />
-    <Gap />
-    <Gap />
-    <Gap />
-    <Gap />
   </div>
 );
 
 export const Basic = Template.bind({});
-
-export const ExampleSections = Template.bind({});
-ExampleSections.args = {
-  ...ExampleSections.args,
-  children: [
-    <ProjectSection title="GALLERY 1" key={1} />,
-    <ProjectSection title="GALLERY 2" key={2} />,
-    <ProjectSection title="GALLERY 3" key={3} />,
-  ],
-};

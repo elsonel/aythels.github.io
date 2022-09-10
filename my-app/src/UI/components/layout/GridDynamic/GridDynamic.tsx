@@ -72,7 +72,11 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
     return elements;
   };
 
-  return <Grid breakpoints={breakpoints}>{createColumns(children)}</Grid>;
+  return (
+    <Grid breakpoints={breakpoints} {...props}>
+      {createColumns(children)}
+    </Grid>
+  );
 };
 
 const ColumnWrapper = styled.div`

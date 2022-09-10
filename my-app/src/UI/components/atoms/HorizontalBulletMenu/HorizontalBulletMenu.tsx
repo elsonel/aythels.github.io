@@ -53,12 +53,11 @@ const Bullet = styled.div<{ $isSelected: boolean }>`
 
   transition: ${({ theme }) => `${theme.speed.normal}`};
   background: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.color.background : `transparent`};
-  border: 1px solid ${({ theme }) => theme.color.textNeutral};
+    $isSelected ? theme.color.backgroundHighlight : `transparent`};
+  border: 1px solid ${({ theme }) => theme.color.backgroundHighlight};
 
   &:hover {
-    background: ${({ theme }) => theme.color.background};
-    border: 1px solid ${({ theme }) => theme.color.background};
+    background: ${({ theme }) => theme.color.backgroundHighlight};
   }
 
   transition: ${({ theme }) => `${theme.speed.normal}`};

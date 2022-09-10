@@ -1,13 +1,10 @@
 import { Meta, Story } from '@storybook/react';
 import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
-import {
-  ProjectSectionFact,
-  ProjectSectionFactProps,
-} from './ProjectSectionFact';
+import { Fact, FactProps } from './Fact';
 
 export default {
-  title: 'Atoms/ProjectSectionFact',
-  component: ProjectSectionFact,
+  title: 'Atoms/Fact',
+  component: Fact,
   args: {
     label: 'COLLABORATORS',
     value: 'Elson Liang, Xavier Woo, Perry Wang',
@@ -16,9 +13,7 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<ProjectSectionFactProps> = (args) => (
-  <ProjectSectionFact {...args} />
-);
+const Template: Story<FactProps> = (args) => <Fact {...args} />;
 
 export const Basic = Template.bind({});
 

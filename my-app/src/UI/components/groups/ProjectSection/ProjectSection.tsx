@@ -25,9 +25,13 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
+  padding-bottom: 60px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   > * {
     width: 100%;
-    margin-bottom: 20px;
   }
 `;

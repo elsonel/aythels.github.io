@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { GalleryVisualArtsEntry } from '../../data/data';
 import { ImageThumbnailFixed } from '../../UI/components/atoms/ImageThumbnailFixed';
 import { GridDynamic } from '../../UI/components/layout/GridDynamic';
@@ -14,7 +15,7 @@ export const GalleryVisualArts: React.FC<GalleryVisualArtsProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <GridDynamic {...props}>
+    <GridStyled {...props}>
       {data.map((e, i) => (
         <ImageThumbnailFixed
           key={e.src}
@@ -26,6 +27,11 @@ export const GalleryVisualArts: React.FC<GalleryVisualArtsProps> = ({
           imageHeight={e.height}
         />
       ))}
-    </GridDynamic>
+    </GridStyled>
   );
 };
+
+const GridStyled = styled(GridDynamic)`
+  box-sizing: border-box;
+  padding: 20px;
+`;

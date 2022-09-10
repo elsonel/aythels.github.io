@@ -41,6 +41,7 @@ export default {
         onClick: () => {},
       },
     ],
+    progress: 0.25,
   },
   argTypes: {},
 } as Meta;
@@ -52,4 +53,10 @@ const Template: Story<ProjectMenuHorizontalProps> = (args) => (
 export const Basic = Template.bind({});
 Basic.args = {
   ...Basic.args,
+};
+
+export const NoTabs = Template.bind({});
+NoTabs.args = {
+  ...NoTabs.args,
+  tabs: [],
 };

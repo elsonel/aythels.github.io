@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { ProjectSectionFact } from '../ProjectSectionFact';
+import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
 import {
   GalleryProjectPanel,
   GalleryProjectPanelProps,
@@ -16,14 +16,22 @@ export default {
       'In in urna sed elit sollicitudin ultrices. Aenean quis eros et augue congue tempor. Maecenas vel ornare magna, sit amet luctus lorem. Curabitur nisi felis, maximus at erat quis, rutrum interdum lectus. Aliquam vel enim sit amet lectus ullamcorper dignissim',
     ],
     facts: [
-      <ProjectSectionFact key={1} label="TYPE" value=" Mobile Application" />,
-      <ProjectSectionFact key={2} label="COMPLETION" value="June 2022" />,
-      <ProjectSectionFact
-        key={3}
-        label="COLLABORATORS"
-        value="Elson Liang, Xavier Woo, Perry Wang"
-      />,
-      <ProjectSectionFact key={4} label="GITHUB" value="Link" />,
+      {
+        label: 'TYPE',
+        value: 'Mobile Application',
+      },
+      {
+        label: 'COMPLETION',
+        value: 'June 2022',
+      },
+      {
+        label: 'COLLABORATORS',
+        value: 'Elson Liang, Xavier Woo, Perry Wang',
+      },
+      {
+        label: 'GITHUB',
+        value: <LinkExternalFactText children="Link" link={'/'} />,
+      },
     ],
   },
   argTypes: { onClick: { action: 'clicked' } },

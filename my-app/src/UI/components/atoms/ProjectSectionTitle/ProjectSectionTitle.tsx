@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { TextButton } from '../../text/TextButton';
 import { TextTitle } from '../../text/TextTitle';
 
 export interface ProjectSectionTitleProps
@@ -14,33 +15,50 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
   return (
     <Wrapper {...props}>
       <Row>
-        {children && (
-          <TextTitle isWrapped={false} size="small" children={children} />
-        )}
-        <Divider />
+        <DividerLeft />
+        <TextButton
+          isWrapped={false}
+          size="h5"
+          weight="bold1"
+          children={children}
+        />
+        <DividerRight />
       </Row>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 32px;
   overflow: hidden;
+
+  width: 100%;
+  height: 64px;
 `;
 
 const Row = styled.div`
-  width: calc(100% + 20px);
+  width: 100%;
   height: 100%;
 
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 20px;
 `;
 
-const Divider = styled.div`
+const Divider = css`
   flex-grow 1;
+  width: 0px;
   height: 0.8px;
-  background: ${({ theme }) => theme.color.text};
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  background: ${({ theme }) => theme.color.textNeutral};
+
+`;
+
+const DividerRight = styled.div`
+  ${Divider}
+  background: ${({ theme }) => theme.color.greyBackdropRight};
+`;
+
+const DividerLeft = styled.div`
+  ${Divider}
+  background: ${({ theme }) => theme.color.greyBackdropLeft};
 `;

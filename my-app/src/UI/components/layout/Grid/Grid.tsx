@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
-import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
 
 const calculateWidth = (gapPixels: number, columnCount: number) => {
   return `
@@ -72,10 +71,7 @@ export const Grid: React.FC<GridProps> = ({
 };
 
 const Wrapper = styled.div`
-  box-sizing: border-box;
-
   width: 100%;
-  padding: 20px;
 
   display: flex;
   flex-wrap: wrap;

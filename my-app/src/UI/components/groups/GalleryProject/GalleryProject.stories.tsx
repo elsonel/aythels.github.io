@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { GalleryProject, GalleryProjectProps } from '.';
 import { GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
-import { ProjectSectionFact } from '../../atoms/ProjectSectionFact';
+import { Fact } from '../../atoms/Fact';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
+import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
 
 const BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -36,6 +37,7 @@ export default {
   args: {
     children: [
       <GalleryProjectPanel
+        key={1}
         title={'SPOTLIGHT'}
         subtitle={'Media Streaming Platform'}
         body={[
@@ -43,21 +45,25 @@ export default {
           'In in urna sed elit sollicitudin ultrices. Aenean quis eros et augue congue tempor. Maecenas vel ornare magna, sit amet luctus lorem. Curabitur nisi felis, maximus at erat quis, rutrum interdum lectus. Aliquam vel enim sit amet lectus ullamcorper dignissim',
         ]}
         facts={[
-          <ProjectSectionFact
-            key={1}
-            label="TYPE"
-            value=" Mobile Application"
-          />,
-          <ProjectSectionFact key={2} label="COMPLETION" value="June 2022" />,
-          <ProjectSectionFact
-            key={3}
-            label="COLLABORATORS"
-            value="Elson Liang, Xavier Woo, Perry Wang"
-          />,
-          <ProjectSectionFact key={4} label="GITHUB" value="Link" />,
+          {
+            label: 'TYPE',
+            value: 'Mobile Application',
+          },
+          {
+            label: 'COMPLETION',
+            value: 'June 2022',
+          },
+          {
+            label: 'COLLABORATORS',
+            value: 'Elson Liang, Xavier Woo, Perry Wang',
+          },
+          {
+            label: 'GITHUB',
+            value: <LinkExternalFactText children="Link" link={'/'} />,
+          },
         ]}
       />,
-      <GridStyled breakpoints={BREAKPOINTS} key={1}>
+      <GridStyled breakpoints={BREAKPOINTS} key={2}>
         <ImageThumbnail src="/example/square.jpg" />
         <ImageThumbnail src="/example/square.jpg" />
         <ImageThumbnail src="/example/square.jpg" />

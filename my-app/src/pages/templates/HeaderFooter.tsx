@@ -10,17 +10,24 @@ export interface HeaderFooterProps
   extends React.HTMLAttributes<HTMLDivElement> {
   reset: () => void;
   children?: React.ReactNode;
+  isPlaceholderShown?: boolean;
 }
 
 export const HeaderFooter: React.FC<HeaderFooterProps> = ({
   reset: resetCallback,
   children,
+  isPlaceholderShown = true,
   ...props
 }): React.ReactElement => {
   useEffect(() => finishLoad());
 
   return (
     <div {...props}>
+      {!isPlaceholderShown && (
+        <HeaderPlaceholder
+          children={[<HeaderLogo link="/" />, <HeaderTabs />]}
+        />
+      )}
       <HeaderStyled>
         <HeaderLogo
           link="/"
@@ -61,8 +68,14 @@ export const HeaderFooter: React.FC<HeaderFooterProps> = ({
 
 const HeaderStyled = styled(Header)`
   z-index: ${({ theme }) => theme.layer.header};
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 
+  pointer-events: none;
+`;
+
+const HeaderPlaceholder = styled(Header)`
+  opacity: 0;
   pointer-events: none;
 `;

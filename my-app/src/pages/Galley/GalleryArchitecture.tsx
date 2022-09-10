@@ -30,7 +30,7 @@ export const GalleryArchitecture: React.FC<GalleryArchitectureProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Grid breakpoints={BREAKPOINTS} {...props}>
+    <GridStyled breakpoints={BREAKPOINTS} {...props}>
       {data.map((e, i) => (
         <ImageThumbnail
           key={e.src}
@@ -43,6 +43,11 @@ export const GalleryArchitecture: React.FC<GalleryArchitectureProps> = ({
           imageHeight={1}
         />
       ))}
-    </Grid>
+    </GridStyled>
   );
 };
+
+const GridStyled = styled(Grid)`
+  box-sizing: border-box;
+  padding: 20px;
+`;

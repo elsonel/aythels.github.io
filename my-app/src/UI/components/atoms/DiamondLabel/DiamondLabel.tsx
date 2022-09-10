@@ -41,7 +41,7 @@ export const DiamondLabel: React.FC<DiamondLabelProps> = ({
 };
 
 const DiamondStateNeutral = css`
-  box-shadow: inset 0 0 0 1.4px ${({ theme }) => theme.color.outline};
+  box-shadow: inset 0 0 0 1.4px ${({ theme }) => theme.color.textNeutral};
   background-color: ${({ theme }) => theme.color.background};
 `;
 

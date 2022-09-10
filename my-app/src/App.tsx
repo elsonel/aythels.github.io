@@ -12,6 +12,7 @@ import { Gallery, PAGES } from './pages/Galley/Gallery';
 import { v4 as uuidv4 } from 'uuid';
 import React from 'react';
 import { Kineticboardwalk } from './pages/Galley/architecture/kineticboardwalk/Kineticboardwalk';
+import { Index } from './pages/Galley/uiux/spotlight/Index';
 
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
 // https://github.com/rafgraph/spa-github-pages
@@ -26,6 +27,7 @@ export const App: React.FC = ({}): React.ReactElement => {
           path="/gallery/architecture/kineticboardwalk"
           element={<Kineticboardwalk />}
         />
+        <Route path="/gallery/uiux/spotlight" element={<Index />} />
         <Route path="/" element={<Navigate to="/gallery" replace />} />
         <Route
           path="/gallery"

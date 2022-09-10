@@ -5,7 +5,7 @@ import { Paragraph } from '../../text/Paragraph';
 export interface ProjectSectionTextProps
   extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  children: string;
+  children: string[] | string;
 }
 
 export const ProjectSectionText: React.FC<ProjectSectionTextProps> = ({
@@ -13,21 +13,27 @@ export const ProjectSectionText: React.FC<ProjectSectionTextProps> = ({
   children,
   ...props
 }): React.ReactElement => {
+  !Array.isArray(children) && (children = [children]);
+
   return (
     <Wrapper {...props}>
       {title && <Title>{title}</Title>}
-      <Paragraph>{children}</Paragraph>
+      {children.map((e, i) => (
+        <Paragraph key={i}>{e}</Paragraph>
+      ))}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const Title = styled(Paragraph)`
-  margin-bottom: 6px;
-
-  font-size: ${({ theme }) => theme.font.size.h6};
+  font-size: ${({ theme }) => theme.font.size.large};
   font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

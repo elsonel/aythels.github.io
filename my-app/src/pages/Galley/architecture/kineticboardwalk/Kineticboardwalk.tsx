@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { _GalleryArchitectureData } from '../../../../data/data';
 import { GalleryProjectPanel } from '../../../../UI/components/atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../../../../UI/components/atoms/ImageThumbnail';
-import { ProjectSectionFact } from '../../../../UI/components/atoms/ProjectSectionFact';
+import { Fact } from '../../../../UI/components/atoms/Fact';
 import { Explore } from '../../../../UI/components/groups/Explore';
 import { GalleryProject } from '../../../../UI/components/groups/GalleryProject';
 import { ModalImage } from '../../../../UI/components/groups/ModalImage';
@@ -35,7 +35,7 @@ export const Kineticboardwalk: React.FC<IkineticboardwalkProps> = ({
 
   return (
     <div {...props}>
-      <HeaderFooter reset={() => {}}>
+      <HeaderFooter isPlaceholderShown={false} reset={() => {}}>
         <GalleryProjectStyled>
           <GalleryProjectPanel
             title={toTitleCase(INDEX_DATA!.title)}
@@ -45,20 +45,26 @@ export const Kineticboardwalk: React.FC<IkineticboardwalkProps> = ({
               'The boardwalk is a layered system consisting of a motorized air pump which powers a deployable inflatable. The inflation pushes onto a modernized grid of “brick” which act as the surface platform. A closer look at the individual bricks reveals a pair of rotating pins which mechanize the surface “breakage” or extrusion. This gives the illusion of a flexible boardwalk with the benefits of a solid material. Rubber flaps are used to create seals where the surface would be broken, providing a water tight system.',
             ]}
             facts={[
-              <ProjectSectionFact
-                label="TYPE"
-                value="Public Mega-Infastructure"
-              />,
-              <ProjectSectionFact label="REGION" value="Venice, Los Angeles" />,
-              <ProjectSectionFact
-                label="SUPERVISOR"
-                value="Nathan Bishop (ARC380)"
-              />,
-              <ProjectSectionFact
-                label="COLLABORATORS"
-                value="Elson Liang, Omar Abdellatif"
-              />,
-              <ProjectSectionFact label="COMPLETED" value="December 2020" />,
+              {
+                label: 'TYPE',
+                value: 'Public Mega-Infastructure',
+              },
+              {
+                label: 'REGION',
+                value: 'Venice, Los Angeles',
+              },
+              {
+                label: 'SUPERVISOR',
+                value: 'Nathan Bishop (ARC380)',
+              },
+              {
+                label: 'COLLABORATORS',
+                value: 'Elson Liang, Omar Abdellatif',
+              },
+              {
+                label: 'COMPLETED',
+                value: 'December 2020',
+              },
             ]}
           />
           <GridStyled breakpoints={BREAKPOINTS_1}>
@@ -109,6 +115,7 @@ export const Kineticboardwalk: React.FC<IkineticboardwalkProps> = ({
                 subtitle={e.subtitle}
                 imageWidth={1}
                 imageHeight={1}
+                isTitleVisible={true}
               />
             ))}
         </Explore>

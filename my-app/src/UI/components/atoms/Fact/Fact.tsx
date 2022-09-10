@@ -1,37 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
-import { TwoColumn, TwoColumnProps } from '../../layout/TwoColumn';
+import { TwoColumn } from '../../layout/TwoColumn';
 
-export interface ProjectSectionFactProps extends TwoColumnProps {
+export interface FactProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string;
   value: React.ReactNode;
   isAlwaysWrapped?: boolean;
 }
 
-export const ProjectSectionFact: React.FC<ProjectSectionFactProps> = ({
+export const Fact: React.FC<FactProps> = ({
   label,
   value,
   isAlwaysWrapped,
   ...props
 }): React.ReactElement => {
   return (
-    <Wrapper
-      $isAlwaysWrapped={isAlwaysWrapped}
-      breakIfLessThan={600}
-      {...props}
-    >
+    <Wrapper breakIfLessThan={isAlwaysWrapped ? undefined : 600} {...props}>
       <Label isWrapped={false}>{label}</Label>
       {typeof value === 'string' ? <Text>{value}</Text> : value}
     </Wrapper>
   );
 };
 
-const Wrapper = styled(TwoColumn)<{ $isAlwaysWrapped?: boolean }>`
+const Wrapper = styled(TwoColumn)`
   width: 100%;
   column-gap: 20px;
-
-  ${({ $isAlwaysWrapped }) => $isAlwaysWrapped && `flex-wrap: wrap;`}
 `;
 
 const Label = styled(Paragraph)`
