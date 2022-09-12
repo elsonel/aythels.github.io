@@ -7,7 +7,7 @@ import { ProjectSectionFactList } from '../../../../UI/components/atoms/ProjectS
 import { ProjectSectionImage } from '../../../../UI/components/atoms/ProjectSectionImage';
 import { ProjectSectionText } from '../../../../UI/components/atoms/ProjectSectionText';
 import { Explore } from '../../../../UI/components/groups/Explore';
-import { Project } from '../../../../UI/components/groups/Project';
+import { ProjectLayout } from '../../../../UI/components/atoms/ProjectLayout';
 import { ProjectSection } from '../../../../UI/components/groups/ProjectSection';
 import { Grid } from '../../../../UI/components/layout/Grid';
 import { HeaderFooter } from '../../../templates/HeaderFooter';
@@ -20,7 +20,7 @@ export const Index: React.FC<IndexProps> = ({
   return (
     <div {...props}>
       <HeaderFooter reset={() => {}}>
-        <Project>
+        <ProjectLayout>
           <ProjectLanding
             subtitle={'Media Streaming Platform'}
             title={'Spotlight'}
@@ -125,7 +125,7 @@ export const Index: React.FC<IndexProps> = ({
               nulla pariatur. Excepteur sint occaecat cupidatat non provident.
             </ProjectSectionText>
           </ProjectSection>
-        </Project>
+        </ProjectLayout>
         <Explore title="EXPLORE">
           <ImageThumbnail
             src={'/images/uiux/Portfolio.png'}

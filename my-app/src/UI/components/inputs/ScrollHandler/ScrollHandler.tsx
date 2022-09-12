@@ -33,7 +33,7 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, onScrollWindowDependents);
+  }, [...onScrollWindowDependents]);
 
   // When mouse wheel is triggered
   const handleWheel = (e: React.WheelEvent) => {

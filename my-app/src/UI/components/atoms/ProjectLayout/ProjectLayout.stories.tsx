@@ -1,13 +1,13 @@
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
-import { ImageThumbnail } from '../../atoms/ImageThumbnail';
-import { ProjectLanding } from '../../atoms/ProjectLanding';
-import { Fact } from '../../atoms/Fact';
-import { ProjectSectionImage } from '../../atoms/ProjectSectionImage';
-import { ProjectSectionText } from '../../atoms/ProjectSectionText';
+import { ImageThumbnail } from '../ImageThumbnail';
+import { ProjectLanding } from '../ProjectLanding';
+import { Fact } from '../Fact';
+import { ProjectSectionImage } from '../ProjectSectionImage';
+import { ProjectSectionText } from '../ProjectSectionText';
 import { Grid } from '../../layout/Grid';
-import { ProjectSection } from '../ProjectSection';
-import { Project, ProjectProps } from './Project';
+import { ProjectSection } from '../../groups/ProjectSection';
+import { ProjectLayout, ProjectLayoutProps } from './ProjectLayout';
 
 const Gap = styled.div`
   width: 100%;
@@ -16,10 +16,12 @@ const Gap = styled.div`
 `;
 
 export default {
-  title: 'Groups/Project',
-  component: Project,
+  title: 'Atoms/ProjectLayout',
+  component: ProjectLayout,
   args: {
     isLandingVisible: false,
+    onLandingClose: () => console.log('Landing Closed'),
+    onLandingClick: () => console.log('Landing Clicked'),
     children: [
       <ProjectLanding
         key={-1}
@@ -101,9 +103,9 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<ProjectProps> = (args) => (
+const Template: Story<ProjectLayoutProps> = (args) => (
   <div>
-    <Project {...args} />
+    <ProjectLayout {...args} />
     <Gap />
   </div>
 );

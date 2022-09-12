@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { ProjectSectionProps } from '../ProjectSection';
-import { ProjectLandingProps } from '../../atoms/ProjectLanding';
-import { ProjectMenuHorizontal } from '../../atoms/ProjectMenuHorizontal';
+import { ProjectSectionProps } from '../../groups/ProjectSection';
+import { ProjectLandingProps } from '../ProjectLanding';
+import { ProjectMenuHorizontal } from '../ProjectMenuHorizontal';
 import useOnScreen from '../../../utility/hooks/useOnScreen';
 import { Theme } from '../../../utility/themes/Theme';
-import useOnWindowScrollTop from '../../../utility/hooks/useOnWindowScrollTop';
 import { LessThan } from '../../../utility/styles/ResponsiveCSS';
 import { clamp } from '../../../utility/scripts/Math';
+import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
 
 const HEADER_HEIGHT = Theme.size.header;
 const TIMELINE_HEIGHT = 40;
@@ -91,17 +91,22 @@ const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
   });
 };
 
-export interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ProjectLayoutProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: [
     React.ReactElement<ProjectLandingProps>,
     ...React.ReactElement<ProjectSectionProps>[]
   ];
   isLandingVisible?: boolean;
+  onLandingClick?: () => void;
+  onLandingClose?: () => void;
 }
 
-export const Project: React.FC<ProjectProps> = ({
+export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
   children,
   isLandingVisible = false,
+  onLandingClick,
+  onLandingClose,
   ...props
 }): React.ReactElement => {
   const [landing, ...sections] = children;
@@ -109,7 +114,7 @@ export const Project: React.FC<ProjectProps> = ({
   const [scrollProgress, setScrollProgress] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const scrollTop = useOnWindowScrollTop();
+  const scrollTop = useOnWindowScroll();
   const allRefs = sections.map(() => useRef<HTMLDivElement>(null));
   const allIsOnScreen = allRefs.map((ref) =>
     useOnScreen(ref, [], {
@@ -159,7 +164,11 @@ export const Project: React.FC<ProjectProps> = ({
           ))}
         </SectionWrapper>
       </Content>
-      <LandingWrapper $isLandingVisible={isLandingVisible}>
+      <LandingWrapper
+        $isLandingVisible={isLandingVisible}
+        onClick={onLandingClick}
+        onTransitionEnd={!isLandingVisible ? onLandingClose : undefined}
+      >
         {landing}
       </LandingWrapper>
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useOnWindowScrollDelta(callback?: (n: number) => void) {
+export default function useOnWindowScroll(callback?: (n: number) => void) {
   const [pageOffset, setPageOffset] = useState(window.pageYOffset);
 
   useEffect(() => {
