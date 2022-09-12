@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
-export default function useOnWindowScrollDelta(callback?: (n: number) => void) {
+export default function useOnWindowScrollDelta(
+  callback?: (n: number) => void,
+  triggers: any[] = []
+) {
   const [oldValue, setOldValue] = useState(window.pageYOffset);
   const [delta, setDelta] = useState(0);
 
@@ -19,7 +22,7 @@ export default function useOnWindowScrollDelta(callback?: (n: number) => void) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [oldValue]);
+  }, [oldValue, ...triggers]);
 
   return delta;
 }

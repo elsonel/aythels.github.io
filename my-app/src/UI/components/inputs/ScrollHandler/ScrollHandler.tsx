@@ -1,39 +1,36 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
+import useOnWindowScrollDelta from '../../../utility/hooks/useOnWindowScrollDelta';
 
-let oldValue = window.pageYOffset;
+const upKeys: { [key: string]: boolean } = {
+  ArrowUp: true,
+  PageUp: true,
+  Home: true,
+};
+
+const downKeys: { [key: string]: boolean } = {
+  ArrowDown: true,
+  PageDown: true,
+  End: true,
+  ' ': true,
+};
 
 export interface ScrollHandlerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   onUp?: (e: SyntheticEvent) => void;
   onDown?: (e: SyntheticEvent) => void;
   onScrollWindow?: (e: number) => void;
-  onScrollWindowDependents?: any[];
+  scrollTriggers?: any[];
 }
 
 export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
   onUp,
   onDown,
   onScrollWindow,
-  onScrollWindowDependents = [],
+  scrollTriggers = [],
   children,
   ...props
 }): React.ReactElement => {
-  useEffect(() => {
-    const handleScroll = (e: Event) => {
-      const newValue = window.pageYOffset;
-
-      onScrollWindow && onScrollWindow(oldValue - newValue);
-
-      //if (oldValue - newValue < 0) direction = 'DOWN';
-      // else if (oldValue - newValue > 0) direction = 'UP';
-
-      oldValue = newValue;
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [...onScrollWindowDependents]);
+  useOnWindowScrollDelta(onScrollWindow, scrollTriggers);
 
   // When mouse wheel is triggered
   const handleWheel = (e: React.WheelEvent) => {
@@ -55,20 +52,7 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
     else if (startY < endY - TOLERANCE) onUp && onUp(e);
   };
 
-  //onkeypress
-  const upKeys: { [key: string]: boolean } = {
-    ArrowUp: true,
-    PageUp: false,
-    Home: false,
-  };
-
-  const downKeys: { [key: string]: boolean } = {
-    ArrowDown: true,
-    PageDown: false,
-    End: false,
-    ' ': false,
-  };
-
+  // onkeypress
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (downKeys[e.key] || downKeys[e.code]) onDown && onDown(e);
     else if (upKeys[e.key] || upKeys[e.code]) onUp && onUp(e);
@@ -76,7 +60,6 @@ export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
 
   return (
     <div
-      tabIndex={0}
       onWheel={handleWheel}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}

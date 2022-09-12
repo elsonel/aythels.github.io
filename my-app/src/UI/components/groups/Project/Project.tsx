@@ -46,7 +46,7 @@ export const Project: React.FC<ProjectProps> = ({
       onDown={onDown}
       onUp={onUp}
       onScrollWindow={onScroll}
-      onScrollWindowDependents={[isScrollLocked]}
+      scrollTriggers={[isScrollLocked]}
       {...props}
     >
       <ProjectLayout
