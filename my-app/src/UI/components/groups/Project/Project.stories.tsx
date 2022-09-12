@@ -22,6 +22,7 @@ export default {
     isLandingVisible: false,
     children: [
       <ProjectLanding
+        key={-1}
         title={'SPOTLIGHT'}
         subtitle={'UI / UX'}
         src="/example/square.jpg"

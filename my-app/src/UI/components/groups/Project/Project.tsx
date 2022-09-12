@@ -7,24 +7,26 @@ import useOnScreen from '../../../utility/hooks/useOnScreen';
 import { Theme } from '../../../utility/themes/Theme';
 import useOnWindowScrollTop from '../../../utility/hooks/useOnWindowScrollTop';
 import { LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { clamp } from '../../../utility/scripts/Math';
 
+const HEADER_HEIGHT = Theme.size.header;
 const TIMELINE_HEIGHT = 40;
-const TOLERANCE = 4;
-const TOP_OFFSET = Theme.size.header - TOLERANCE + TIMELINE_HEIGHT;
+const TOP_TOLERANCE = 4;
+const TOP_OFFSET = HEADER_HEIGHT + TIMELINE_HEIGHT - TOP_TOLERANCE;
 
 function renderMenu(
-  sections: React.ReactElement<ProjectSectionProps>[],
+  allSections: React.ReactElement<ProjectSectionProps>[],
   allRefs: React.RefObject<HTMLDivElement>[],
-  allIsOnScreen: boolean[],
+  selectedIndex: number,
   scrollProgress: number
 ) {
   return (
     <ProjectMenuHorizontal
-      progress={scrollProgress}
-      tabs={sections.map((e, i) => {
+      progress={snapProgress(scrollProgress, 1 / (allSections.length + 1))}
+      tabs={allSections.map((e, i) => {
         return {
           label: e.props.title ? e.props.title : '',
-          isActive: allIsOnScreen[i] && !allIsOnScreen[i - 1],
+          isActive: i === selectedIndex,
           onClick: () => scrollToRef(allRefs[i]),
         };
       })}
@@ -32,42 +34,59 @@ function renderMenu(
   );
 }
 
-function getProgress(
+function snapProgress(progress: number, factor: number): number {
+  // snap the progress to its nearest factor
+
+  const TOLERANCE = 0.02;
+
+  // 0.26 % 0.25 = 0.01 < 0.05
+  const remainder = progress % factor;
+
+  if (remainder < TOLERANCE) {
+    return progress - remainder;
+  } else if (remainder + TOLERANCE > factor) {
+    // 0.72 % 0.25 = 0.22 + 0.05 > 0.25
+    return snapProgress(progress + TOLERANCE, factor);
+  }
+
+  return progress;
+}
+
+function remapLocalProgress(
   allRefs: React.RefObject<HTMLDivElement>[],
-  allIsOnScreen: boolean[]
+  selectedIndex: number,
+  localProgress: number
 ) {
-  let index = allIsOnScreen.findIndex(
-    (e, i) => allIsOnScreen[i] && !allIsOnScreen[i - 1]
-  );
+  if (!allRefs[selectedIndex] || !allRefs[selectedIndex].current) return 0;
 
-  const ref = allRefs[index];
-  if (!ref || !ref.current) return 0;
+  const segmentLength = 1 / (allRefs.length + 1);
+  const backSegmentLength = segmentLength * (selectedIndex + 1);
+  const remappedProgress = localProgress * segmentLength;
 
-  const coords = ref.current.getBoundingClientRect();
-  const NUMERATOR = coords.top - TOP_OFFSET;
-  const TOTAL = coords.height;
-  const PERCENT = Math.max(0, Math.min(Math.abs(NUMERATOR / TOTAL), 1));
+  return backSegmentLength + remappedProgress;
+}
 
-  // This is the length of each segment
-  const fraction = 1 / (allRefs.length + 1);
+function getLocalProgress(selectedRef?: React.RefObject<HTMLDivElement>) {
+  if (!selectedRef || !selectedRef.current) return 0;
 
-  // This is the section scroll percentage remapped to the entire progress bar length
-  const truePercent = fraction * PERCENT;
+  const refCoords = selectedRef.current.getBoundingClientRect();
+  const refProgress = refCoords.top - TOP_OFFSET;
+  const refHeight = refCoords.height;
 
-  // This is adding the previous sections that come before the current section to the progress b ar
-  const withAddition = truePercent + (index + 1) * fraction;
-
-  return withAddition;
+  const progressToNextRef = clamp(-refProgress / refHeight, 0, 1);
+  return progressToNextRef;
 }
 
 const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
 
-  const top = ref.current.getBoundingClientRect().top;
-  const offset = top + window.pageYOffset + -TOP_OFFSET;
+  const refTop = ref.current.getBoundingClientRect().top;
+  const currentScroll = window.pageYOffset;
+
+  const scrollY = refTop + currentScroll - TOP_OFFSET;
 
   window.scrollTo({
-    top: offset,
+    top: scrollY,
     behavior: 'smooth',
   });
 };
@@ -80,16 +99,17 @@ export interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
   isLandingVisible?: boolean;
 }
 
-console.warn('This probably needs to be optimized!');
-
 export const Project: React.FC<ProjectProps> = ({
   children,
-  isLandingVisible = true,
+  isLandingVisible = false,
   ...props
 }): React.ReactElement => {
   const [landing, ...sections] = children;
-  const [lastScrollProgress, setLastScrollProgress] = useState(-1);
-  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const [scrollProgress, setScrollProgress] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const scrollTop = useOnWindowScrollTop();
   const allRefs = sections.map(() => useRef<HTMLDivElement>(null));
   const allIsOnScreen = allRefs.map((ref) =>
     useOnScreen(ref, [], {
@@ -98,42 +118,38 @@ export const Project: React.FC<ProjectProps> = ({
     })
   );
 
-  const scrollTop = useOnWindowScrollTop();
   useEffect(() => {
-    const STEPS = 0.05;
-    const FRACTION = 1 / (sections.length + 1);
-
-    // First step:
-    if (lastScrollProgress === -1) {
-      setLastScrollProgress(scrollProgress);
-      setScrollProgress(FRACTION);
-
+    // When the page loads for the first time, set the initial progress to the first step
+    if (scrollProgress === -1) {
+      setScrollProgress(1 / (sections.length + 1));
       return;
     }
 
-    // Usual steps to take
-    let currentProgress = getProgress(allRefs, allIsOnScreen);
-
-    if (Math.abs(currentProgress - lastScrollProgress) > STEPS) {
-      const remainder = currentProgress % FRACTION;
-
-      if (remainder < STEPS * 2) {
-        currentProgress -= remainder;
-      } else if (remainder + STEPS * 2 > FRACTION) {
-        currentProgress += FRACTION - remainder;
-      }
-
-      setLastScrollProgress(scrollProgress);
-      setScrollProgress(currentProgress);
-    }
+    const TOLERANCE = 0.02;
+    const localProgress = getLocalProgress(allRefs[selectedIndex]);
+    const remappedProgress = remapLocalProgress(
+      allRefs,
+      selectedIndex,
+      localProgress
+    );
+    if (Math.abs(remappedProgress - scrollProgress) > TOLERANCE)
+      setScrollProgress(remappedProgress);
   }, [scrollTop]);
+
+  useEffect(() => {
+    setSelectedIndex(
+      allIsOnScreen.findIndex(
+        (e, i) => allIsOnScreen[i] && !allIsOnScreen[i - 1]
+      )
+    );
+  }, [...allIsOnScreen]);
 
   return (
     <div {...props}>
       <Content>
         <Header $isLandingVisible={isLandingVisible}>
           <HeaderTopGap />
-          {renderMenu(sections, allRefs, allIsOnScreen, scrollProgress)}
+          {renderMenu(sections, allRefs, selectedIndex, scrollProgress)}
         </Header>
         <SectionWrapper $isLandingVisible={isLandingVisible}>
           {sections.map((e, i) => (
@@ -175,7 +191,7 @@ const Content = styled.div`
 
 const HeaderTopGap = styled.div`
   width: 100%;
-  height: ${({ theme }) => theme.size.header - TOLERANCE}px;
+  height: ${({ theme }) => theme.size.header - TOP_TOLERANCE}px;
 
   background: ${({ theme }) => theme.color.background};
 `;

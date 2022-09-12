@@ -108,10 +108,6 @@ export function getElementAt(array: any[], index: number) {
   return array.at(i);
 }
 
-const array = [2, 42, 82, 122, 162, 202, 242, 282, 322, 362];
-const number = 112;
-const num = findClosestNumber(array, number);
-
 /*
  * =============================================================================
  * Get the closest number to <number> in an array <array> of numbers
