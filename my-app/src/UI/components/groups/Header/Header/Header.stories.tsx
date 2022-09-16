@@ -9,32 +9,24 @@ export default {
   component: Header,
   args: {
     children: [
-      <HeaderLogo link="/" onClick={() => {}} onNavigate={() => {}} />,
+      <HeaderLogo href="/" />,
       <HeaderTabs
         tabs={[
           {
             label: 'PROJECTS',
-            link: '/projects',
-            onClick: () => {},
-            onNavigate: () => {},
+            href: '/projects',
           },
           {
             label: 'GALLERY',
-            link: '/gallery',
-            onClick: () => {},
-            onNavigate: () => {},
+            href: '/gallery',
           },
           {
             label: 'ABOUT',
-            link: '/about',
-            onClick: () => {},
-            onNavigate: () => {},
+            href: '/about',
           },
           {
             label: 'BLOG',
-            link: '/blog',
-            onClick: () => {},
-            onNavigate: () => {},
+            href: '/blog',
           },
         ]}
       />,
@@ -49,7 +41,7 @@ export const Basic = Template.bind({});
 export const NoTabs = Template.bind({});
 NoTabs.args = {
   ...NoTabs.args,
-  children: [<HeaderLogo link="/" />, <HeaderTabs tabs={[]} />],
+  children: [<HeaderLogo href="/" />, <HeaderTabs tabs={[]} />],
 };
 
 export const Tablet = Template.bind({});

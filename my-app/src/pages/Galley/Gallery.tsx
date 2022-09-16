@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Layout } from '../../components/Layout';
+import { Page } from '../../components/Page';
 import {
   GalleryProjectEntry,
   GallerySortable,
@@ -13,8 +15,6 @@ import {
 import { PageTitle } from '../../UI/components/atoms/PageTitle';
 import { GalleryHeaderMain } from '../../UI/components/groups/GalleryHeader/GalleryHeaderMain';
 import { ModalImage } from '../../UI/components/groups/ModalImage';
-import { TextTitle } from '../../UI/components/text/TextTitle';
-import { HeaderFooter, HeaderFooterProps } from '../templates/HeaderFooter';
 import { GalleryArchitecture } from './GalleryArchitecture';
 import { GalleryUIUX } from './GalleryUIUX';
 import { GalleryVisualArts } from './GalleryVisualArts';
@@ -45,12 +45,11 @@ const sortPage = (data: GallerySortable[], sort: SORT) => {
   }
 };
 
-export interface GalleryProps extends HeaderFooterProps {
+export interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   page?: PAGES;
 }
 
 export const Gallery: React.FC<GalleryProps> = ({
-  reset,
   page = PAGES.VISUALARTS,
   ...props
 }): React.ReactElement => {
@@ -104,8 +103,8 @@ export const Gallery: React.FC<GalleryProps> = ({
   };
 
   return (
-    <div {...props}>
-      <HeaderFooter reset={reset}>
+    <Page {...props}>
+      <Layout>
         <PageTitle>GALLERY</PageTitle>
         <GalleryHeaderMain
           pageTabs={Object.keys(PAGES).map((key) => {
@@ -145,7 +144,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             return { src: e.src, title: e.title, caption: e.caption };
           })}
         />
-      </HeaderFooter>
-    </div>
+      </Layout>
+    </Page>
   );
 };

@@ -1,21 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LinkFake } from '../../../inputs/LinkFake';
 import { Modal, ModalProps } from '../../../layout/Modal';
-import { LinkInternal } from '../../../other/LinkInternal';
 import { Paragraph } from '../../../text/Paragraph';
+import { HeaderTab } from '../HeaderTabs';
 
-export interface HeaderTabsModalEntry {
-  label: string;
-  link: string;
-  onNavigate?: () => void;
-  onClick?: () => void;
+export interface HeaderTabsMobileProps extends ModalProps {
+  tabs?: HeaderTab[];
 }
 
-export interface HeaderTabsModalProps extends ModalProps {
-  tabs?: HeaderTabsModalEntry[];
-}
-
-export const HeaderTabsModal: React.FC<HeaderTabsModalProps> = ({
+export const HeaderTabsMobile: React.FC<HeaderTabsMobileProps> = ({
   tabs = [],
   ...props
 }): React.ReactElement => {
@@ -23,11 +17,10 @@ export const HeaderTabsModal: React.FC<HeaderTabsModalProps> = ({
     <Wrapper {...props}>
       <Content>
         {tabs.map((e, i) => (
-          <LinkInternal
+          <LinkFake
             key={i}
             onClick={e.onClick}
-            onNavigate={e.onNavigate}
-            link={e.link}
+            href={e.href}
             children={<Tab isWrapped={false}>{e.label}</Tab>}
           />
         ))}

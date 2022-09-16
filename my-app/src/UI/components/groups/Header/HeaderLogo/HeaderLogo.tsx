@@ -1,27 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
 import { IIconSVG } from '../../../atoms/IIconSVG';
-import { LinkInternal } from '../../../other/LinkInternal';
+import { LinkFake } from '../../../inputs/LinkFake';
 
-export interface HeaderLogoProps extends React.HTMLAttributes<HTMLDivElement> {
-  link: string;
-  onNavigate?: () => void;
+export interface HeaderLogoProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   onClick?: () => void;
 }
 
 export const HeaderLogo: React.FC<HeaderLogoProps> = ({
-  link,
-  onNavigate,
   onClick,
   ...props
 }): React.ReactElement => {
   return (
-    <Wrapper {...props}>
-      <LinkInternal onClick={onClick} onNavigate={onNavigate} link={link}>
-        <IIconSVG src="/icons/logo.svg" size={24} />
-      </LinkInternal>
-    </Wrapper>
+    <LinkFake onClick={onClick} {...props}>
+      <IIconSVG src="/icons/logo.svg" size={24} />
+    </LinkFake>
   );
 };
-
-const Wrapper = styled.div``;

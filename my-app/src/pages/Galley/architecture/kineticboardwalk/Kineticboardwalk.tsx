@@ -1,23 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { Layout } from '../../../../components/Layout';
+import { Page } from '../../../../components/Page';
 import { _GalleryArchitectureData } from '../../../../data/data';
 import { GalleryProjectPanel } from '../../../../UI/components/atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../../../../UI/components/atoms/ImageThumbnail';
-import { Fact } from '../../../../UI/components/atoms/Fact';
 import { Explore } from '../../../../UI/components/groups/Explore';
 import { GalleryProject } from '../../../../UI/components/groups/GalleryProject';
 import { ModalImage } from '../../../../UI/components/groups/ModalImage';
 import { Grid } from '../../../../UI/components/layout/Grid';
-import { toTitleCase } from '../../../../UI/utility/scripts/Text';
-import { HeaderFooter } from '../../../templates/HeaderFooter';
-import {
-  BREAKPOINTS_1,
-  BREAKPOINTS_2,
-  BREAKPOINTS_3,
-  IMAGES_1,
-  IMAGES_2,
-  IMAGES_3,
-} from './data';
+import { GridData, PanelData } from './data';
 
 const INDEX_DATA = _GalleryArchitectureData.find(
   (e) => e.title === 'KINETIC BOARDWALK'
@@ -34,75 +26,35 @@ export const Kineticboardwalk: React.FC<IkineticboardwalkProps> = ({
   const [modalOffset, setModalOffset] = useState(0);
 
   return (
-    <div {...props}>
-      <HeaderFooter isPlaceholderShown={false} reset={() => {}}>
+    <Page {...props}>
+      <Layout>
         <GalleryProjectStyled>
           <GalleryProjectPanel
-            title={toTitleCase(INDEX_DATA!.title)}
-            subtitle={toTitleCase(INDEX_DATA!.subtitle)}
-            body={[
-              'The Kinetic Boardwalk is a programmable system of inflating tiles spanning the coast of Venice Beach. This project addresses the California flood crisis in both an infrastructural and public-friendly manner; a series of embedded inflatables create a variety of built environments including a  deployable floodwall in case of high tides. Each form the boardwalk takes provides a different function and user experience. The Kinetic Boardwalk is a reactive system that responds to an environmental concern in a more adaptable way.',
-              'The boardwalk is a layered system consisting of a motorized air pump which powers a deployable inflatable. The inflation pushes onto a modernized grid of “brick” which act as the surface platform. A closer look at the individual bricks reveals a pair of rotating pins which mechanize the surface “breakage” or extrusion. This gives the illusion of a flexible boardwalk with the benefits of a solid material. Rubber flaps are used to create seals where the surface would be broken, providing a water tight system.',
-            ]}
-            facts={[
-              {
-                label: 'TYPE',
-                value: 'Public Mega-Infastructure',
-              },
-              {
-                label: 'REGION',
-                value: 'Venice, Los Angeles',
-              },
-              {
-                label: 'SUPERVISOR',
-                value: 'Nathan Bishop (ARC380)',
-              },
-              {
-                label: 'COLLABORATORS',
-                value: 'Elson Liang, Omar Abdellatif',
-              },
-              {
-                label: 'COMPLETED',
-                value: 'December 2020',
-              },
-            ]}
+            title={PanelData.title}
+            subtitle={PanelData.subtitle}
+            body={PanelData.body}
+            facts={PanelData.facts}
           />
-          <GridStyled breakpoints={BREAKPOINTS_1}>
-            {IMAGES_1.map((e, i) => (
-              <ImageThumbnail
-                key={i}
-                src={e.src}
-                onClick={() => {
-                  setIsModalOpen(true);
-                  setModalOffset(i);
-                }}
-              />
-            ))}
-          </GridStyled>
-          <GridStyled breakpoints={BREAKPOINTS_2}>
-            {IMAGES_2.map((e, i) => (
-              <ImageThumbnail
-                key={i}
-                src={e.src}
-                onClick={() => {
-                  setIsModalOpen(true);
-                  setModalOffset(i + IMAGES_1.length);
-                }}
-              />
-            ))}
-          </GridStyled>
-          <GridStyled breakpoints={BREAKPOINTS_3}>
-            {IMAGES_3.map((e, i) => (
-              <ImageThumbnail
-                key={i}
-                src={e.src}
-                onClick={() => {
-                  setIsModalOpen(true);
-                  setModalOffset(i + IMAGES_1.length + IMAGES_2.length);
-                }}
-              />
-            ))}
-          </GridStyled>
+          {GridData.map((grid, gridIndex) => (
+            <Grid breakpoints={grid.breakpoints} key={gridIndex}>
+              {grid.images.map((image, imageIndex) => (
+                <ImageThumbnail
+                  key={imageIndex}
+                  src={image.src}
+                  onClick={() => {
+                    let toAdd = 0;
+                    for (let i = 0; i < GridData.length; i++) {
+                      if (i === gridIndex) break;
+                      GridData[i].images.forEach(() => toAdd++);
+                    }
+
+                    setIsModalOpen(true);
+                    setModalOffset(imageIndex + toAdd);
+                  }}
+                />
+              ))}
+            </Grid>
+          ))}
         </GalleryProjectStyled>
         <Explore title="EXPLORE">
           {_GalleryArchitectureData
@@ -119,23 +71,17 @@ export const Kineticboardwalk: React.FC<IkineticboardwalkProps> = ({
               />
             ))}
         </Explore>
-      </HeaderFooter>
+      </Layout>
       <ModalImage
         onClick={() => setIsModalOpen(false)}
         indexOffset={modalOffset}
         isVisible={isModalOpen}
-        srcArray={[...IMAGES_1, ...IMAGES_2, ...IMAGES_3].map((e) => {
-          return { src: e.src, caption: e.caption };
-        })}
+        srcArray={GridData.map((grid) => grid.images).flat()}
       />
-    </div>
+    </Page>
   );
 };
 
 const GalleryProjectStyled = styled(GalleryProject)`
   padding-top: 0px;
-`;
-
-const GridStyled = styled(Grid)`
-  padding: 0px;
 `;

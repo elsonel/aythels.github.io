@@ -6,9 +6,7 @@ export default {
   title: 'Groups/Header/HeaderLogo',
   component: HeaderLogo,
   args: {
-    link: '/projects',
-    onClick: () => {},
-    onNavigate: () => {},
+    href: '/projects',
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;

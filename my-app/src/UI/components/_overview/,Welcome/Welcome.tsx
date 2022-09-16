@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FooterIconRow } from '../../groups/Footer/FooterIconRow';
-import { LinkInternal } from '../../other/LinkInternal';
 import { Paragraph } from '../../text/Paragraph';
 import { TextLink } from '../../text/TextLink';
 import { TextTitle } from '../../text/TextTitle';
@@ -30,9 +29,9 @@ export const Welcome: React.FC<WelcomeProps> = ({
       <br />
       <Paragraph>Feel free to browse around.</Paragraph>
       <br />
-      <LinkInternal link={'/'}>
+      <a href={'/'}>
         <TextLink>Return to main site.</TextLink>
-      </LinkInternal>
+      </a>
       <br />
       <FooterIconRow />
     </Wrapper>

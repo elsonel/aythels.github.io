@@ -16,8 +16,8 @@ export const Colors: React.FC<ColorsProps> = ({
         <TextTitle size="small">Colors</TextTitle>
         <br />
         <Grid>
-          {Object.keys(Theme.color).map((key) => (
-            <GridEntry>
+          {Object.keys(Theme.color).map((key, i) => (
+            <GridEntry key={i}>
               <GridEntryColor
                 $color={Theme.color[key as keyof ColorInterface]}
               />

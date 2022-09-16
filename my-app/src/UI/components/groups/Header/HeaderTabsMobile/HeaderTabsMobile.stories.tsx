@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { HeaderTabs, HeaderTabsProps } from './HeaderTabs';
+import { HeaderTabsMobile, HeaderTabsMobileProps } from './HeaderTabsMobile';
 
 export default {
-  title: 'Groups/Header/HeaderTabs',
-  component: HeaderTabs,
+  title: 'Groups/Header/HeaderTabsMobile',
+  component: HeaderTabsMobile,
   args: {
     tabs: [
       {
@@ -23,11 +23,18 @@ export default {
         label: 'BLOG',
         href: '/blog',
       },
+      {
+        label: 'LONGGGGGGGGGGGGGGGGGGGG TEXT',
+        href: '/blog',
+      },
     ],
+    isVisible: true,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<HeaderTabsProps> = (args) => <HeaderTabs {...args} />;
+const Template: Story<HeaderTabsMobileProps> = (args) => (
+  <HeaderTabsMobile {...args} />
+);
 
 export const Basic = Template.bind({});

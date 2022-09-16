@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   width: 100%;
-  padding: 20px 21px;
+  padding: 20px 20px;
 
   user-select: none;
   pointer-events: none;

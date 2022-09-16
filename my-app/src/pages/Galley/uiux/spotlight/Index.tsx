@@ -10,7 +10,8 @@ import { Explore } from '../../../../UI/components/groups/Explore';
 import { ProjectLayout } from '../../../../UI/components/atoms/ProjectLayout';
 import { ProjectSection } from '../../../../UI/components/groups/ProjectSection';
 import { Grid } from '../../../../UI/components/layout/Grid';
-import { HeaderFooter } from '../../../templates/HeaderFooter';
+import { Page } from '../../../../components/Page';
+import { Layout } from '../../../../components/Layout';
 
 export interface IndexProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -18,8 +19,8 @@ export const Index: React.FC<IndexProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <div {...props}>
-      <HeaderFooter reset={() => {}}>
+    <Page {...props}>
+      <Layout>
         <ProjectLayout>
           <ProjectLanding
             subtitle={'Media Streaming Platform'}
@@ -136,7 +137,7 @@ export const Index: React.FC<IndexProps> = ({
             isTitleVisible={true}
           />
         </Explore>
-      </HeaderFooter>
-    </div>
+      </Layout>
+    </Page>
   );
 };

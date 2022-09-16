@@ -21,9 +21,5 @@ export const Loader = (): React.ReactElement => {
     };
   }, []);
 
-  return (
-    <div>
-      <Loading isVisible={isLoadingVisible} />
-    </div>
-  );
+  return <Loading isVisible={isLoadingVisible} />;
 };

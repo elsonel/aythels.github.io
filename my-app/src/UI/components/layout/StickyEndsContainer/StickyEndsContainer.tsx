@@ -19,10 +19,10 @@ export const StickyEndsContainer: React.FC<StickyEndsContainerProps> = ({
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(topMargin);
-  const delta = useOnWindowScrollDelta();
-  const [deltaX, deltaY] = useOnWindowResizeDelta();
+  const scrollDelta = useOnWindowScrollDelta();
+  const [sizeDeltaX, sizeDeltaY] = useOnWindowResizeDelta();
 
-  const handleRef = (delta: number) => {
+  const handleRef = (scrollDelta: number) => {
     if (!ref || !ref.current) return;
 
     const coords = ref.current.getBoundingClientRect();
@@ -33,24 +33,24 @@ export const StickyEndsContainer: React.FC<StickyEndsContainerProps> = ({
     // How much of the element is beyond the viewing window
     const excess = coords.height > viewport ? coords.height - viewport : 0;
 
-    if (delta <= 0) {
+    if (scrollDelta <= 0) {
       // Scrolling down
-      setOffset(Math.max(topMargin - excess, offset + delta));
-    } else if (delta > 0) {
+      setOffset(Math.max(topMargin - excess, offset + scrollDelta));
+    } else if (scrollDelta > 0) {
       // Scrolling up
-      setOffset(Math.min(topMargin, offset + delta));
+      setOffset(Math.min(topMargin, offset + scrollDelta));
     }
   };
 
   useEffect(() => {
     // On scroll
-    handleRef(delta);
-  }, [delta]);
+    handleRef(scrollDelta);
+  }, [scrollDelta]);
 
   useEffect(() => {
     // On window resize
-    handleRef(-deltaY);
-  }, [deltaY]);
+    handleRef(-sizeDeltaY);
+  }, [sizeDeltaY]);
 
   return (
     <Sticky $offset={offset} ref={ref} {...props}>

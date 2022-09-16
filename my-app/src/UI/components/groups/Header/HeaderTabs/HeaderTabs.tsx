@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
 import { HeaderTab } from '../../../inputs/HeaderTab';
+import { LinkFake } from '../../../inputs/LinkFake';
 import { Modal } from '../../../layout/Modal';
-import { LinkInternal } from '../../../other/LinkInternal';
-import { HeaderTabsModal } from '../HeaderTabsModal';
+import { HeaderTabsMobile } from '../HeaderTabsMobile';
 
-export interface HeaderTabsEntry {
+export interface HeaderTab {
   label: string;
-  link: string;
-  onNavigate?: () => void;
+  href: string;
   onClick?: () => void;
 }
 
 export interface HeaderTabsProps extends React.HTMLAttributes<HTMLDivElement> {
-  tabs?: HeaderTabsEntry[];
+  tabs?: HeaderTab[];
 }
 
 export const HeaderTabs: React.FC<HeaderTabsProps> = ({
@@ -30,11 +29,10 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({
 
   const renderDesktop = () => {
     return tabs.map((e, i) => (
-      <LinkInternal
+      <LinkFake
         key={i}
         onClick={e.onClick}
-        onNavigate={e.onNavigate}
-        link={e.link}
+        href={e.href}
         children={<HeaderTab>{e.label}</HeaderTab>}
       />
     ));
@@ -76,7 +74,7 @@ const Content = styled.div`
   gap: 20px;
 `;
 
-const ModalMobile = styled(HeaderTabsModal)`
+const ModalMobile = styled(HeaderTabsMobile)`
   z-index: 0;
   box-sizing: border-box;
 
