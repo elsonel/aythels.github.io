@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { About as AboutPage } from '../../UI/components/groups/About';
+import { About } from '../../UI/components/groups/About';
 import { PageTitle } from '../../UI/components/atoms/PageTitle';
 import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';
@@ -13,7 +13,7 @@ export const PageAbout: React.FC<PageAboutProps> = ({
     <Page title="About" {...props}>
       <Layout>
         <PageTitle>ABOUT</PageTitle>
-        <AboutPage />
+        <About />
       </Layout>
     </Page>
   );

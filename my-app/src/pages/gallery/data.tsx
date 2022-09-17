@@ -7,12 +7,25 @@ import {
 import { GridBreakpoint } from '../../UI/components/layout/Grid';
 import { sortByDate, sortByName } from '../../utility/sort';
 
+import Amethyst_City from '../../assets/gallery/visualarts/Amethyst_City.png';
+import Corruption from '../../assets/gallery/visualarts/Corruption.png';
+import Focus from '../../assets/gallery/visualarts/Focus.png';
+import Memory from '../../assets/gallery/visualarts/Memory.png';
+import Night_Skirmishes from '../../assets/gallery/visualarts/Night_Skirmishes.png';
+import Reach from '../../assets/gallery/visualarts/Reach.png';
+import Storm from '../../assets/gallery/visualarts/Storm.png';
+import Portfolio from '../../assets/gallery/uiux/Portfolio.png';
+import Spotlight from '../../assets/gallery/uiux/Spotlight.png';
+import Basilisk_Tower from '../../assets/gallery/architecture/Basilisk_Tower.png';
+import Fold_Pavilion from '../../assets/gallery/architecture/Fold_Pavilion.png';
+import Kinetic_Boardwalk from '../../assets/gallery/architecture/Kinetic_Boardwalk.png';
+
 export const VisualArtsData: IGalleryEntryArt[] = [
   {
     date: new Date(2022, 4),
     subtitle: '2022',
     title: 'NIGHT SKIRMISHES',
-    src: '/images/visualarts/Night_Skirmishes.png',
+    src: Night_Skirmishes,
     caption: 'Digital painting',
     width: 2040,
     height: 2600,
@@ -21,7 +34,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2020, 5),
     subtitle: '2020',
     title: 'CORRUPTION',
-    src: '/images/visualarts/Corruption.png',
+    src: Corruption,
     caption: 'Photo manipulation',
     width: 2448,
     height: 3264,
@@ -30,7 +43,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2019, 1),
     subtitle: '2019',
     title: 'MEMORY',
-    src: '/images/visualarts/Memory.png',
+    src: Memory,
     caption: 'Watercolor',
     width: 1900,
     height: 2520,
@@ -39,7 +52,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2018, 9),
     subtitle: '2018',
     title: 'FOCUS',
-    src: '/images/visualarts/Focus.png',
+    src: Focus,
     caption: 'Watercolor',
     width: 2170,
     height: 3058,
@@ -48,7 +61,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2018, 8),
     subtitle: '2018',
     title: 'STORM',
-    src: '/images/visualarts/Storm.png',
+    src: Storm,
     caption: 'Acrylic on canvas',
     width: 2000,
     height: 2870,
@@ -57,7 +70,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2018, 3),
     subtitle: '2017',
     title: 'REACH',
-    src: '/images/visualarts/Reach.png',
+    src: Reach,
     caption: 'Photography',
     width: 2339,
     height: 2930,
@@ -66,7 +79,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     date: new Date(2018, 2),
     subtitle: '2018',
     title: 'AMETHYST CITY',
-    src: '/images/visualarts/Amethyst_City.png',
+    src: Amethyst_City,
     caption: 'Acrylic on canvas',
     width: 2900,
     height: 2360,
@@ -93,14 +106,14 @@ export const UIUXData: IGalleryEntry[] = [
     date: new Date(2020, 8),
     subtitle: '2020',
     title: 'PORTFOL.IO',
-    src: '/images/uiux/Portfolio.png',
+    src: Portfolio,
     to: '/gallery/portfolio',
   },
   {
     date: new Date(2020, 6),
     subtitle: '2020',
     title: 'SPOTLIGHT',
-    src: '/images/uiux/Spotlight.png',
+    src: Spotlight,
     to: '/gallery/spotlight',
   },
 ];
@@ -125,21 +138,21 @@ export const ArchitectureData: IGalleryEntry[] = [
     date: new Date(2022, 5),
     subtitle: '2022',
     title: 'FOLD PAVILION',
-    src: '/images/architecture/Fold_Pavilion.png',
+    src: Fold_Pavilion,
     to: '/gallery/foldpavilion',
   },
   {
     date: new Date(2020, 11),
     subtitle: 'Drifting Landscapes',
     title: 'KINETIC BOARDWALK',
-    src: '/images/architecture/Kinetic_Boardwalk.png',
+    src: Kinetic_Boardwalk,
     to: '/gallery/kineticboardwalk',
   },
   {
     date: new Date(2019, 4),
     subtitle: '2019',
     title: 'BASILISK TOWER',
-    src: '/images/architecture/Basilisk_Tower.png',
+    src: Basilisk_Tower,
     to: '/gallery/basilisktower',
   },
 ];

@@ -31,7 +31,7 @@ export interface ThemeAssetInterface {
 
 export const ThemeAsset: ThemeAssetInterface = {
   icon: {
-    logo: '/example/logo.svg',
+    logo: '/images/logo.svg',
     Linkedin: Linkedin,
     Github: Github,
     Email: Email,
@@ -41,6 +41,6 @@ export const ThemeAsset: ThemeAssetInterface = {
     modalLeft: ArrowLeft,
   },
   image: {
-    profile: '/images/misc/profile.png',
+    profile: '/images/profile.png',
   },
 };

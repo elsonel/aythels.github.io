@@ -1,7 +1,7 @@
 import React from 'react';
+import { Theme } from '../../../../utility/themes/Theme';
 import { IIconSVG } from '../../../atoms/IIconSVG';
 import { LinkFake } from '../../../inputs/LinkFake';
-import LogoSVG from './logo.svg';
 
 export interface HeaderLogoProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -14,7 +14,7 @@ export const HeaderLogo: React.FC<HeaderLogoProps> = ({
 }): React.ReactElement => {
   return (
     <LinkFake onClick={onClick} {...props}>
-      <IIconSVG src={LogoSVG} size={24} />
+      <IIconSVG src={Theme.icon.logo} size={24} />
     </LinkFake>
   );
 };
