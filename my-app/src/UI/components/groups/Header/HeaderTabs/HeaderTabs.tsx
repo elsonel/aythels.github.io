@@ -73,13 +73,11 @@ const Background = styled(Modal)`
 
 const Content = styled.div`
   z-index: 1;
-
   display: flex;
   gap: 20px;
 `;
 
 const ModalMobile = styled(HeaderTabsMobile)`
-  z-index: 0;
   box-sizing: border-box;
 
   top: ${({ theme }) => theme.size.headerHeight}px;
