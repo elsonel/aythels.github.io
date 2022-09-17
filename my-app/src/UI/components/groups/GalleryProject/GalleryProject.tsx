@@ -1,30 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Theme } from '../../../utility/themes/Theme';
-import { GalleryProjectPanelProps } from '../../atoms/GalleryProjectPanel';
+import { Fact, GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { StickyEndsContainer } from '../../layout/StickyEndsContainer';
 import { TwoColumn } from '../../layout/TwoColumn';
 
 export interface GalleryProjectProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  children: [
-    React.ReactElement<GalleryProjectPanelProps>,
-    ...React.ReactNode[]
-  ];
+  title: string;
+  subtitle: string;
+  body: string[];
+  facts: Fact[];
+  children?: React.ReactNode[];
 }
 
+const PADDING = 20;
+
 export const GalleryProject: React.FC<GalleryProjectProps> = ({
+  title,
+  subtitle,
+  body,
+  facts,
   children,
   ...props
 }): React.ReactElement => {
-  const [panel, ...other] = children;
+  let titleSize: 'small' | 'medium' | 'large' = 'large';
+
+  LessThanHook(1350) && (titleSize = 'medium');
+  LessThanHook(1100) && (titleSize = 'large');
+  LessThanHook(600) && (titleSize = 'medium');
+  LessThanHook(400) && (titleSize = 'small');
+
   return (
     <Wrapper {...props}>
-      <Content leftRatio={1} rightRatio={2} breakIfLessThan={900}>
-        <StickyEndsContainer topMargin={Theme.size.header} bottomMargin={20}>
-          {panel}
+      <Content leftRatio={1} rightRatio={2} breakIfLessThan={1100}>
+        <StickyEndsContainer
+          topMargin={Theme.size.header + PADDING}
+          bottomMargin={20}
+        >
+          <GalleryProjectPanel
+            titleSize={titleSize}
+            title={title}
+            subtitle={subtitle}
+            body={body}
+            facts={facts}
+          />
         </StickyEndsContainer>
-        <RightWrapper>{other}</RightWrapper>
+        <RightWrapper>{children}</RightWrapper>
       </Content>
     </Wrapper>
   );

@@ -5,7 +5,6 @@ import { Header } from '../UI/components/groups/Header/Header';
 import { HeaderLogo } from '../UI/components/groups/Header/HeaderLogo';
 import { HeaderTabs } from '../UI/components/groups/Header/HeaderTabs';
 import useGoTo from '../utility/useGoTo';
-import { Page } from './Page';
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
@@ -49,6 +48,5 @@ const HeaderStyled = styled(Header)`
 `;
 
 const Body = styled.div`
-  overflow: hidden;
   width: 100%;
 `;

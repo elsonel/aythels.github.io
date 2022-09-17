@@ -9,6 +9,7 @@ export default {
   title: 'Atoms/GalleryProjectPanel',
   component: GalleryProjectPanel,
   args: {
+    titleSize: 'large',
     title: 'SPOTLIGHT',
     subtitle: 'Media Streaming Platform',
     body: [

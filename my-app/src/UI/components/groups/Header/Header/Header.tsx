@@ -28,10 +28,13 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   width: 100%;
-  padding: 20px 20px;
+  padding: 10px 20px;
 
   user-select: none;
   pointer-events: none;
+
+  background-color: ${({ theme }) => theme.color.background};
+  border-bottom: 1px solid ${({ theme }) => theme.color.textHover};
 
   //mix-blend-mode: difference;
   //filter: invert();

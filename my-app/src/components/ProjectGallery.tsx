@@ -47,13 +47,12 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   return (
     <div {...props}>
-      <Gallery>
-        <GalleryProjectPanel
-          title={panelData.title}
-          subtitle={panelData.subtitle}
-          body={panelData.body}
-          facts={panelData.facts}
-        />
+      <GalleryProject
+        title={panelData.title}
+        subtitle={panelData.subtitle}
+        body={panelData.body}
+        facts={panelData.facts}
+      >
         {gridsData.map((grid, gridIndex) => (
           <Grid breakpoints={grid.breakpoints} key={gridIndex}>
             {grid.images.map((image, imageIndex) => (
@@ -74,7 +73,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             ))}
           </Grid>
         ))}
-      </Gallery>
+      </GalleryProject>
       <ModalImage
         onClick={() => setIsModalOpen(false)}
         indexOffset={modalOffset}
@@ -84,7 +83,3 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     </div>
   );
 };
-
-const Gallery = styled(GalleryProject)`
-  padding-top: 0px;
-`;

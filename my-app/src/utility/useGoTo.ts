@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { startLoad } from '../Loader';
 
-const REROUTE_TIMER = 500;
+const REROUTE_TIMER = 300;
 type Timeout = NodeJS.Timeout | undefined;
 
 export default function useGoTo() {

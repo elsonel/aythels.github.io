@@ -1,7 +1,25 @@
-import { GridBreakpoint } from '../../../../UI/components/layout/Grid';
-import { GridDataInterface, IPanelDataInterface, Image } from './types';
+import img_0 from './assets/0.png';
+import img_1a from './assets/1a.png';
+import img_1b from './assets/1b.png';
+import img_1c from './assets/1c.png';
+import img_1d from './assets/1d.png';
+import img_1e from './assets/1e.png';
+import img_1f from './assets/1f.png';
+import img_2a from './assets/2a.png';
+import img_2b from './assets/2b.png';
+import img_2c from './assets/2c.png';
+import img_2d from './assets/2d.png';
+import img_2e from './assets/2e.png';
+import img_2f from './assets/2f.png';
 
-export const PanelData: IPanelDataInterface = {
+import {
+  Image,
+  IGridsData,
+  IPanelData,
+} from '../../../../components/ProjectGallery';
+import { GridBreakpoint } from '../../../../UI/components/layout/Grid';
+
+export const PanelData: IPanelData = {
   title: 'Kinetic Boardwalk',
   subtitle: 'Drifting Landscapes',
   body: [
@@ -59,66 +77,66 @@ const BREAKPOINTS_3: GridBreakpoint[] = [
 
 const IMAGES_1: Image[] = [
   {
-    src: '/images/gallery/architecture/kineticboardwalk/0.png',
+    src: img_0,
     caption: undefined,
   },
 ];
 
 const IMAGES_2: Image[] = [
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1a.png',
+    src: img_1a,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1b.png',
+    src: img_1b,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1c.png',
+    src: img_1c,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1d.png',
+    src: img_1d,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1e.png',
+    src: img_1e,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/1f.png',
+    src: img_1f,
     caption: undefined,
   },
 ];
 
 const IMAGES_3: Image[] = [
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2a.png',
+    src: img_2a,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2b.png',
+    src: img_2b,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2c.png',
+    src: img_2c,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2d.png',
+    src: img_2d,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2e.png',
+    src: img_2e,
     caption: undefined,
   },
   {
-    src: '/images/gallery/architecture/kineticboardwalk/2f.png',
+    src: img_2f,
     caption: undefined,
   },
 ];
 
-export const GridData: GridDataInterface = [
+export const GridsData: IGridsData = [
   {
     breakpoints: BREAKPOINTS_1,
     images: IMAGES_1,

@@ -34,6 +34,6 @@ export const ThemeMisc: ThemeMiscInterface = {
     test: '3s',
   },
   size: {
-    header: 64,
+    header: 44,
   },
 };
