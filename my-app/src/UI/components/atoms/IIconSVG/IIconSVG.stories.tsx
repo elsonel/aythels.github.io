@@ -1,12 +1,13 @@
 import { Meta, Story } from '@storybook/react';
 import { ArrowDown } from 'styled-icons/bootstrap';
 import { Github } from 'styled-icons/fa-brands';
+import { Theme } from '../../../utility/themes/Theme';
 import { IIconSVG, IIconSVGProps } from './IIconSVG';
 
 export default {
   title: 'Atoms/IIconSVG',
   component: IIconSVG,
-  args: { size: 32, src: '/example/logo.svg' },
+  args: { size: 32, src: Theme.icon.exampleIconBasic },
   argTypes: {},
 } as Meta;
 
@@ -26,7 +27,7 @@ Large.args = {
 export const NarrowIcon = Template.bind({});
 NarrowIcon.args = {
   ...NarrowIcon.args,
-  src: '/example/arrow.svg',
+  src: Theme.icon.exampleIconThin,
 };
 
 export const Colored = Template.bind({});

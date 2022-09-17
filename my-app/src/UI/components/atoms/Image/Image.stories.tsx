@@ -1,11 +1,12 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import { Image, ImageProps } from './Image';
 
 export default {
   title: 'Atoms/Image',
   component: Image,
   args: {
-    src: '/example/landscape.jpg',
+    src: Theme.image.exampleLandscape,
   },
 } as Meta;
 

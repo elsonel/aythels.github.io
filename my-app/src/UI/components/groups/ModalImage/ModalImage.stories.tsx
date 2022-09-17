@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import { ModalImage, ModalImageProps } from './ModalImage';
 
 export default {
@@ -7,22 +8,22 @@ export default {
   args: {
     srcArray: [
       {
-        src: '/example/landscape.jpg',
+        src: Theme.image.exampleLandscape,
         title: 'SKY',
         caption: 'This is the image caption 1.',
       },
       {
-        src: '/example/square.jpg',
+        src: Theme.image.exampleSquare,
         title: 'SQUARE',
         caption: 'This is the image caption 2.',
       },
       {
-        src: '/example/logo.svg',
+        src: Theme.icon.exampleIconBasic,
         title: 'LOGO',
         caption: 'This is the image caption 3.',
       },
       {
-        src: '/example/portrait.jpg',
+        src: Theme.image.examplePortrait,
         title: 'ICON',
         caption: 'This is the image caption 4.',
       },
@@ -48,17 +49,17 @@ ThreeImage.args = {
   ...ThreeImage.args,
   srcArray: [
     {
-      src: '/example/landscape.jpg',
+      src: Theme.image.exampleLandscape,
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
     {
-      src: '/example/square.jpg',
+      src: Theme.image.exampleSquare,
       title: 'SQUARE',
       caption: 'This is the image caption 2.',
     },
     {
-      src: '/example/logo.svg',
+      src: Theme.icon.exampleIconBasic,
       title: 'LOGO',
       caption: 'This is the image caption 3.',
     },
@@ -70,12 +71,12 @@ TwoImage.args = {
   ...TwoImage.args,
   srcArray: [
     {
-      src: '/example/landscape.jpg',
+      src: Theme.image.exampleLandscape,
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
     {
-      src: '/example/square.jpg',
+      src: Theme.image.exampleSquare,
       title: 'SQUARE',
       caption: 'This is the image caption 2.',
     },
@@ -87,7 +88,7 @@ OneImage.args = {
   ...OneImage.args,
   srcArray: [
     {
-      src: '/example/landscape.jpg',
+      src: Theme.image.exampleLandscape,
       title: 'SKY',
       caption: 'This is the image caption 1.',
     },
@@ -99,7 +100,7 @@ NoCaption.args = {
   ...NoCaption.args,
   srcArray: [
     {
-      src: '/example/landscape.jpg',
+      src: Theme.image.exampleLandscape,
       title: undefined,
       caption: undefined,
     },
@@ -111,14 +112,14 @@ LongCaption.args = {
   ...LongCaption.args,
   srcArray: [
     {
-      src: '/example/landscape.jpg',
+      src: Theme.image.exampleLandscape,
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
       caption:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
     {
-      src: '/example/square.jpg',
+      src: Theme.image.exampleSquare,
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
       caption:

@@ -1,11 +1,12 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import { ImageThumbnail, ImageThumbnailProps } from './ImageThumbnail';
 
 export default {
   title: 'Atoms/ImageThumbnail',
   component: ImageThumbnail,
   args: {
-    src: '/example/square.jpg',
+    src: Theme.image.exampleSquare,
     title: 'SOARING SKIES',
     subtitle: '2020',
     isTitleVisible: false,

@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import {
   ImageThumbnailFixed,
   ImageThumbnailFixedProps,
@@ -8,7 +9,7 @@ export default {
   title: 'Atoms/ImageThumbnailFixed',
   component: ImageThumbnailFixed,
   args: {
-    src: '/example/landscape.jpg',
+    src: Theme.image.exampleLandscape,
     title: 'SOARING SKIES',
     subtitle: '2020',
     isTitleVisible: false,

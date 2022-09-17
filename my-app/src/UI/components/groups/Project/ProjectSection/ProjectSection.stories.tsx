@@ -7,6 +7,7 @@ import { ProjectSectionText } from '../../../atoms/ProjectSectionText';
 import { Grid } from '../../../layout/Grid';
 import { ProjectSection, ProjectSectionProps } from './ProjectSection';
 import { ProjectSectionFactList } from '../../../atoms/ProjectSectionFactList';
+import { Theme } from '../../../../utility/themes/Theme';
 
 export default {
   title: 'Groups/ProjectSection',
@@ -60,10 +61,10 @@ ExampleGallery.args = {
   title: 'GALLERY',
   children: [
     <StyledGridSquare>
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
     </StyledGridSquare>,
   ],
 };
@@ -93,7 +94,7 @@ ExampleProcess.args = {
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
     </ProjectSectionText>,
-    <ProjectSectionImage src="/example/landscape.jpg">
+    <ProjectSectionImage src={Theme.image.exampleLandscape}>
       This is an image
     </ProjectSectionImage>,
     <ProjectSectionText>

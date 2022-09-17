@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../../utility/themes/Theme';
 import { Fact } from '../../../atoms/Fact';
 import { ImageThumbnail } from '../../../atoms/ImageThumbnail';
 import { ProjectSectionImage } from '../../../atoms/ProjectSectionImage';
@@ -13,7 +14,7 @@ export default {
   args: {
     landingTitle: 'SPOTLIGHT',
     landingSubtitle: 'UI / UX',
-    landingSrc: '/example/square.jpg',
+    landingSrc: Theme.image.exampleSquare,
     children: [
       <ProjectSection title="OVERVIEW" key={0}>
         <ProjectSectionText>
@@ -57,10 +58,10 @@ export default {
             },
           ]}
         >
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
         </Grid>
       </ProjectSection>,
       <ProjectSection title="PROCESS" key={2}>
@@ -72,7 +73,7 @@ export default {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non provident.
         </ProjectSectionText>
-        <ProjectSectionImage src="/example/landscape.jpg">
+        <ProjectSectionImage src={Theme.image.exampleLandscape}>
           This is an image
         </ProjectSectionImage>
         <ProjectSectionText>

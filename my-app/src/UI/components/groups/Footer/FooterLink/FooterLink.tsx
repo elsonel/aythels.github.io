@@ -9,7 +9,7 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <a href="https://www.w3schools.com" target="_blank" rel="noreferrer">
+    <a href="/storybook/index.html" target="_blank" rel="noreferrer">
       <TextLink size={'tiny'} isWrapped={false} {...props}>
         Designed and built from scratch with React.
       </TextLink>

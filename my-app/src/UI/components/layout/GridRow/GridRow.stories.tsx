@@ -1,12 +1,13 @@
 import { Meta, Story } from '@storybook/react';
 import { GridRow, GridRowProps } from './GridRow';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
+import { Theme } from '../../../utility/themes/Theme';
 
 export default {
   title: 'Layout/GridRow',
   component: GridRow,
   args: {
-    children: [<ImageThumbnail key={1} src="/example/square.jpg" />],
+    children: [<ImageThumbnail key={1} src={Theme.image.exampleSquare} />],
     breakpoints: [
       {
         minWidth: 0,
@@ -36,7 +37,7 @@ Few.args = {
   children: [
     <ImageThumbnail
       key={1}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
@@ -49,31 +50,31 @@ Many.args = {
   children: [
     <ImageThumbnail
       key={1}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
     <ImageThumbnail
       key={2}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
     <ImageThumbnail
       key={3}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
     <ImageThumbnail
       key={4}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
     <ImageThumbnail
       key={5}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,

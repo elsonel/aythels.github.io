@@ -5,6 +5,7 @@ import { GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
 import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
+import { Theme } from '../../../utility/themes/Theme';
 
 const BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -64,14 +65,14 @@ export default {
     ],
     children: [
       <GridStyled breakpoints={BREAKPOINTS} key={2}>
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
-        <ImageThumbnail src="/example/square.jpg" />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail src={Theme.image.exampleSquare} />
       </GridStyled>,
     ],
   },
@@ -105,21 +106,21 @@ Short.args = {
   ],
   children: [
     <GridStyled breakpoints={BREAKPOINTS} key={2}>
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
-      <ImageThumbnail src="/example/square.jpg" />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail src={Theme.image.exampleSquare} />
     </GridStyled>,
   ],
 };

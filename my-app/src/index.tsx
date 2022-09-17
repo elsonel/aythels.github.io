@@ -1,9 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-import { Theme, ThemeInterface } from './UI/utility/themes/Theme';
+import { Theme } from './UI/utility/themes/Theme';
 import './index.css';
-import { createGlobalStyle } from 'styled-components';
 import { App } from './App';
 import { Loader } from './Loader';
 import { GlobalBackground } from './UI/utility/styles/GlobalStyles';

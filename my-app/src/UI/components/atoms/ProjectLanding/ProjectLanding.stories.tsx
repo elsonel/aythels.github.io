@@ -1,11 +1,12 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import { ProjectLanding, ProjectLandingProps } from './ProjectLanding';
 
 export default {
   title: 'Atoms/ProjectLanding',
   component: ProjectLanding,
   args: {
-    src: '/example/square.jpg',
+    src: Theme.image.exampleSquare,
     subtitle: 'UI / UX',
     title: 'SPOTLIGHT',
     isContained: false,

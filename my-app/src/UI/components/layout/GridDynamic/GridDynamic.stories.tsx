@@ -1,11 +1,12 @@
 import { Meta, Story } from '@storybook/react';
 import { GridDynamic, GridDynamicProps } from './GridDynamic';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
+import { Theme } from '../../../utility/themes/Theme';
 
 export default {
   title: 'Layout/GridDynamic',
   component: GridDynamic,
-  args: { children: <ImageThumbnail src="/example/square.jpg" /> },
+  args: { children: <ImageThumbnail src={Theme.image.exampleSquare} /> },
 } as Meta;
 
 const Template: Story<GridDynamicProps> = (args) => <GridDynamic {...args} />;
@@ -16,7 +17,7 @@ Few.args = {
   children: [
     <ImageThumbnail
       key={0}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
@@ -29,63 +30,63 @@ Many.args = {
   children: [
     <ImageThumbnail
       key={0}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="0"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={1}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="1"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={2}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="2"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={3}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="3"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={4}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="4"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={5}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="5"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={6}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="6"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={7}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="7"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={8}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="8"
       isTitleVisible={true}
@@ -99,70 +100,70 @@ RenderOrderTest.args = {
   children: [
     <ImageThumbnail
       key={0}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="0"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={1}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="1"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={2}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="2"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={3}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="3"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={4}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="4"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={5}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="5"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={6}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="6"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={7}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="7"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={8}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="8"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={9}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="9"
       isTitleVisible={true}

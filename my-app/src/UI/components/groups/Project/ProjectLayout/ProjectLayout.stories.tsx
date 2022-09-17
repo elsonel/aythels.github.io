@@ -8,6 +8,7 @@ import { ProjectSectionText } from '../../../atoms/ProjectSectionText';
 import { Grid } from '../../../layout/Grid';
 import { ProjectSection } from '../ProjectSection';
 import { ProjectLayout, ProjectLayoutProps } from './ProjectLayout';
+import { Theme } from '../../../../utility/themes/Theme';
 
 const Gap = styled.div`
   width: 100%;
@@ -27,7 +28,7 @@ export default {
         key={-1}
         title={'SPOTLIGHT'}
         subtitle={'UI / UX'}
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
       />,
       <ProjectSection title="OVERVIEW" key={0}>
         <ProjectSectionText>
@@ -71,10 +72,10 @@ export default {
             },
           ]}
         >
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
-          <ImageThumbnail src="/example/square.jpg" />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail src={Theme.image.exampleSquare} />
         </Grid>
       </ProjectSection>,
       <ProjectSection title="PROCESS" key={2}>
@@ -86,7 +87,7 @@ export default {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non provident.
         </ProjectSectionText>
-        <ProjectSectionImage src="/example/landscape.jpg">
+        <ProjectSectionImage src={Theme.image.exampleLandscape}>
           This is an image
         </ProjectSectionImage>
         <ProjectSectionText>

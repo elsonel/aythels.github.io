@@ -10,6 +10,9 @@ export type IconSVGType =
   | React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
 
 export interface IconInterface {
+  exampleIconBasic: string;
+  exampleIconThin: string;
+  exampleIconColored: string;
   logo: IconSVGType;
   Linkedin: IconSVGType;
   Github: IconSVGType;
@@ -22,6 +25,10 @@ export interface IconInterface {
 
 export interface ImageInterface {
   profile: string;
+  exampleSmall: string;
+  exampleSquare: string;
+  exampleLandscape: string;
+  examplePortrait: string;
 }
 
 export interface ThemeAssetInterface {
@@ -32,6 +39,9 @@ export interface ThemeAssetInterface {
 export const ThemeAsset: ThemeAssetInterface = {
   icon: {
     logo: '/images/logo.svg',
+    exampleIconBasic: '/images/examples/logo.svg',
+    exampleIconThin: '/images/examples/arrow.svg',
+    exampleIconColored: '/images/examples/Photoshop.svg',
     Linkedin: Linkedin,
     Github: Github,
     Email: Email,
@@ -42,5 +52,9 @@ export const ThemeAsset: ThemeAssetInterface = {
   },
   image: {
     profile: '/images/profile.png',
+    exampleSmall: '/images/examples/small.jpg',
+    exampleSquare: '/images/examples/square.jpg',
+    exampleLandscape: '/images/examples/landscape.jpg',
+    examplePortrait: '/images/examples/portrait.jpg',
   },
 };

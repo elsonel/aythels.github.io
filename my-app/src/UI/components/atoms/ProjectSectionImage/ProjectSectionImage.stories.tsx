@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import {
   ProjectSectionImage,
   ProjectSectionImageProps,
@@ -8,7 +9,7 @@ export default {
   title: 'Atoms/ProjectSectionImage',
   component: ProjectSectionImage,
   args: {
-    src: '/example/landscape.jpg',
+    src: Theme.image.exampleLandscape,
     children: 'This is a caption',
   },
   argTypes: { onClick: { action: 'clicked' } },

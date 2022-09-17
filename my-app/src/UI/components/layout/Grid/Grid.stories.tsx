@@ -1,12 +1,13 @@
 import { Meta, Story } from '@storybook/react';
 import { Grid, GridProps } from './Grid';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
+import { Theme } from '../../../utility/themes/Theme';
 
 export default {
   title: 'Layout/Grid',
   component: Grid,
   args: {
-    children: [<ImageThumbnail key={1} src="/example/square.jpg" />],
+    children: [<ImageThumbnail key={1} src={Theme.image.exampleSquare} />],
     breakpoints: [
       {
         minWidth: 0,
@@ -36,7 +37,7 @@ Few.args = {
   children: [
     <ImageThumbnail
       key={1}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
     />,
@@ -49,7 +50,7 @@ ManySquare.args = {
   children: [
     <ImageThumbnail
       key={1}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
       imageWidth={1}
@@ -57,7 +58,7 @@ ManySquare.args = {
     />,
     <ImageThumbnail
       key={2}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
       imageWidth={1}
@@ -65,7 +66,7 @@ ManySquare.args = {
     />,
     <ImageThumbnail
       key={3}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
       imageWidth={1}
@@ -73,7 +74,7 @@ ManySquare.args = {
     />,
     <ImageThumbnail
       key={4}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
       imageWidth={1}
@@ -81,7 +82,7 @@ ManySquare.args = {
     />,
     <ImageThumbnail
       key={5}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="2020"
       imageWidth={1}
@@ -96,63 +97,63 @@ ManyVaried.args = {
   children: [
     <ImageThumbnail
       key={0}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="0"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={1}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="1"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={2}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="2"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={3}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="3"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={4}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="4"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={5}
-      src="/example/portrait.jpg"
+      src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="5"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={6}
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="6"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={7}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="7"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key={8}
-      src="/example/landscape.jpg"
+      src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="8"
       isTitleVisible={true}

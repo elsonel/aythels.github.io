@@ -1,10 +1,11 @@
 import { Meta, Story } from '@storybook/react';
+import { Theme } from '../../../utility/themes/Theme';
 import { IIconImage, IIconImageProps } from './IIconImage';
 
 export default {
   title: 'Atoms/IIconImage',
   component: IIconImage,
-  args: { size: 32, src: '/example/Photoshop.svg' },
+  args: { size: 32, src: Theme.icon.exampleIconColored },
   argTypes: {},
 } as Meta;
 
@@ -25,5 +26,5 @@ export const NarrowIcon = Template.bind({});
 NarrowIcon.args = {
   ...NarrowIcon.args,
   size: 64,
-  src: '/example/arrow.svg',
+  src: Theme.icon.exampleIconThin,
 };

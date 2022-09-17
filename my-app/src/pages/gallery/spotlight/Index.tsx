@@ -12,6 +12,7 @@ import { ProjectSection } from '../../../UI/components/groups/Project/ProjectSec
 import { Grid } from '../../../UI/components/layout/Grid';
 import { Page } from '../../../components/Page';
 import { Layout } from '../../../components/Layout';
+import { Theme } from '../../../UI/utility/themes/Theme';
 
 export interface IndexProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,7 +26,7 @@ export const Index: React.FC<IndexProps> = ({
           <ProjectLanding
             subtitle={'Media Streaming Platform'}
             title={'Spotlight'}
-            src="/example/square.jpg"
+            src={Theme.image.exampleSquare}
           />
           <ProjectSection title="OVERVIEW">
             <ProjectSectionText>
@@ -72,22 +73,22 @@ export const Index: React.FC<IndexProps> = ({
               ]}
             >
               <ImageThumbnail
-                src="/example/square.jpg"
+                src={Theme.image.exampleSquare}
                 imageWidth={1}
                 imageHeight={1}
               />
               <ImageThumbnail
-                src="/example/square.jpg"
+                src={Theme.image.exampleSquare}
                 imageWidth={1}
                 imageHeight={1}
               />
               <ImageThumbnail
-                src="/example/square.jpg"
+                src={Theme.image.exampleSquare}
                 imageWidth={1}
                 imageHeight={1}
               />
               <ImageThumbnail
-                src="/example/square.jpg"
+                src={Theme.image.exampleSquare}
                 imageWidth={1}
                 imageHeight={1}
               />
@@ -114,7 +115,7 @@ export const Index: React.FC<IndexProps> = ({
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.
             </ProjectSectionText>
-            <ProjectSectionImage src="/example/landscape.jpg">
+            <ProjectSectionImage src={Theme.image.exampleLandscape}>
               This is an image
             </ProjectSectionImage>
             <ProjectSectionText>
@@ -129,7 +130,7 @@ export const Index: React.FC<IndexProps> = ({
         </ProjectLayout>
         <Explore title="EXPLORE">
           <ImageThumbnail
-            src={'/images/uiux/Portfolio.png'}
+            src={Theme.image.exampleSquare}
             title={'PORTFOL.IO'}
             subtitle={'DESIGN LEARNING PLATFORM'}
             imageWidth={1}

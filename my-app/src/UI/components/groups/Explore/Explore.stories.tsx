@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import { Theme } from '../../../utility/themes/Theme';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Explore, ExploreProps } from './Explore';
 
@@ -11,31 +12,31 @@ export default {
     children: [
       <ImageThumbnail
         key="1"
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
         title="1"
         isTitleVisible={true}
       />,
       <ImageThumbnail
         key="2"
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
         title="2"
         isTitleVisible={true}
       />,
       <ImageThumbnail
         key="3"
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
         title="3"
         isTitleVisible={true}
       />,
       <ImageThumbnail
         key="4"
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
         title="4"
         isTitleVisible={true}
       />,
       <ImageThumbnail
         key="5"
-        src="/example/square.jpg"
+        src={Theme.image.exampleSquare}
         title="5"
         isTitleVisible={true}
       />,
@@ -54,25 +55,25 @@ Exact.args = {
   children: [
     <ImageThumbnail
       key="1"
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="1"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key="2"
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="2"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key="3"
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="3"
       isTitleVisible={true}
     />,
     <ImageThumbnail
       key="4"
-      src="/example/square.jpg"
+      src={Theme.image.exampleSquare}
       title="4"
       isTitleVisible={true}
     />,
@@ -82,7 +83,7 @@ Exact.args = {
 export const Few = Template.bind({});
 Few.args = {
   ...Few.args,
-  children: [<ImageThumbnail key={0} src="/example/square.jpg" />],
+  children: [<ImageThumbnail key={0} src={Theme.image.exampleSquare} />],
 };
 
 export const Empty = Template.bind({});
