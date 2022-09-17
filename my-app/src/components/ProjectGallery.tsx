@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import { GalleryProjectPanel } from '../UI/components/atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
 import { ModalImage } from '../UI/components/groups/ModalImage';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';

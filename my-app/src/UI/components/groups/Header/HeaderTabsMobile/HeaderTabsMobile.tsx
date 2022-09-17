@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { LinkFake } from '../../../inputs/LinkFake';
 import { Modal, ModalProps } from '../../../layout/Modal';
 import { Paragraph } from '../../../text/Paragraph';
-import { HeaderTab } from '../HeaderTabs';
+import { HeaderTabData } from '../HeaderTabs';
 
 export interface HeaderTabsMobileProps extends ModalProps {
-  tabs?: HeaderTab[];
+  tabs?: HeaderTabData[];
+  onTabClick?: () => void;
 }
 
 export const HeaderTabsMobile: React.FC<HeaderTabsMobileProps> = ({
   tabs = [],
+  onTabClick,
   ...props
 }): React.ReactElement => {
   return (
@@ -19,7 +21,10 @@ export const HeaderTabsMobile: React.FC<HeaderTabsMobileProps> = ({
         {tabs.map((e, i) => (
           <LinkFake
             key={i}
-            onClick={e.onClick}
+            onClick={() => {
+              onTabClick && onTabClick();
+              e.onClick && e.onClick();
+            }}
             href={e.href}
             children={<Tab isWrapped={false}>{e.label}</Tab>}
           />
@@ -52,7 +57,7 @@ const Content = styled.div`
 
 const Tab = styled(Paragraph)`
   font-size: ${({ theme }) => theme.font.size.h1};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.weight.bold1};
   cursor: pointer;
   transition: ${({ theme }) => theme.speed.normal};
   color: ${({ theme }) => `${theme.color.text}`};

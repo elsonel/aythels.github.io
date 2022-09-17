@@ -6,14 +6,14 @@ import { LinkFake } from '../../../inputs/LinkFake';
 import { Modal } from '../../../layout/Modal';
 import { HeaderTabsMobile } from '../HeaderTabsMobile';
 
-export interface HeaderTab {
+export interface HeaderTabData {
   label: string;
   href: string;
   onClick?: () => void;
 }
 
 export interface HeaderTabsProps extends React.HTMLAttributes<HTMLDivElement> {
-  tabs?: HeaderTab[];
+  tabs?: HeaderTabData[];
 }
 
 export const HeaderTabs: React.FC<HeaderTabsProps> = ({
@@ -50,7 +50,11 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({
     <Wrapper {...props}>
       <Background isVisible={isMenuOpen} />
       <Content>{isDesktop ? renderDesktop() : renderMobile()}</Content>
-      <ModalMobile tabs={tabs} isVisible={isMenuOpen} />
+      <ModalMobile
+        tabs={tabs}
+        isVisible={isMenuOpen}
+        onTabClick={() => setIsMenuOpen(false)}
+      />
     </Wrapper>
   );
 };

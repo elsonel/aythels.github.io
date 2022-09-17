@@ -7,16 +7,15 @@ import {
   useNavigate,
 } from 'react-router-dom';
 
-import { About } from './pages/About';
-import { Error } from './pages/Error';
+import { PageAbout } from './pages/about/PageAbout';
+import { Page404 } from './pages/404/Page404';
 import { Gallery, PAGES } from './pages/Galley/Gallery';
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState } from 'react';
-import { Kineticboardwalk } from './pages/Galley/architecture/kineticboardwalk/Kineticboardwalk';
-import { Index } from './pages/Galley/uiux/spotlight/Index';
 import { Layout } from './components/Layout';
 import { Page } from './components/Page';
-import { Test } from './pages/Test';
+import { Kineticboardwalk } from './pages/Galley/kineticboardwalk/Kineticboardwalk';
+import { Index } from './pages/Galley/spotlight/Index';
 
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
 // https://github.com/rafgraph/spa-github-pages
@@ -34,14 +33,10 @@ export const App: React.FC = (): React.ReactElement => {
           }
         />
         <Route
-          path="/gallery/architecture/kineticboardwalk"
+          path="/gallery/kineticboardwalk"
           element={<Kineticboardwalk />}
         />
-        <Route
-          path="/gallery/architecture/kineticboardwalk"
-          element={<Kineticboardwalk />}
-        />
-        <Route path="/gallery/uiux/spotlight" element={<Index />} />
+        <Route path="/gallery/spotlight" element={<Index />} />
         <Route path="/" element={<Navigate to="/gallery" replace />} />
         <Route path="/gallery" element={<Gallery page={PAGES.VISUALARTS} />} />
         <Route
@@ -53,9 +48,9 @@ export const App: React.FC = (): React.ReactElement => {
           path="/gallery/architecture"
           element={<Gallery page={PAGES.ARCHITECTURE} />}
         />
-        <Route path="/about" element={<About />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/about" element={<PageAbout />} />
+        <Route path="/404" element={<Page404 />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   );

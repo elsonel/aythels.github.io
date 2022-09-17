@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   pointer-events: none;
 
   background-color: ${({ theme }) => theme.color.background};
-  border-bottom: 1px solid ${({ theme }) => theme.color.textHover};
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 
   //mix-blend-mode: difference;
   //filter: invert();
