@@ -9,7 +9,7 @@ import { LessThan } from '../../../../utility/styles/ResponsiveCSS';
 import { clamp } from '../../../../utility/scripts/Math';
 import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
 
-const HEADER_HEIGHT = Theme.size.header;
+const HEADER_HEIGHT = Theme.size.headerHeight;
 const TIMELINE_HEIGHT = 40;
 const TOP_TOLERANCE = 4;
 const TOP_OFFSET = HEADER_HEIGHT + TIMELINE_HEIGHT - TOP_TOLERANCE;

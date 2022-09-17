@@ -4,7 +4,7 @@ import { ModalImage } from '../UI/components/groups/ModalImage';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { GalleryProject } from '../UI/components/groups/GalleryProject';
 
-export interface Fact {
+export interface IFact {
   label: string;
   value: string;
   to?: string;
@@ -14,20 +14,20 @@ export interface IPanelData {
   title: string;
   subtitle: string;
   body: string[];
-  facts: Fact[];
+  facts: IFact[];
 }
 
-export interface Image {
+export interface IImage {
   src: string;
   caption?: string;
 }
 
-export interface Grid {
+export interface IGrid {
   breakpoints: GridBreakpoint[];
-  images: Image[];
+  images: IImage[];
 }
 
-export type IGridsData = Grid[];
+export type IGridsData = IGrid[];
 
 export interface ProjectGalleryProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -73,7 +73,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
         ))}
       </GalleryProject>
       <ModalImage
-        onClick={() => setIsModalOpen(false)}
+        onCloseClick={() => setIsModalOpen(false)}
         indexOffset={modalOffset}
         isVisible={isModalOpen}
         srcArray={gridsData.map((grid) => grid.images).flat()}

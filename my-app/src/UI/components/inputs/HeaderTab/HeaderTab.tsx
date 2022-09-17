@@ -9,7 +9,7 @@ export interface HeaderTabProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const HeaderTab: React.FC<HeaderTabProps> = ({
   children,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);

@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
   borderHovered,
   color = '#F37676',
   colorHovered,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);

@@ -15,7 +15,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
   size = 'medium',
   isSelected = false,
   children = '',
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   return (

@@ -1,19 +1,19 @@
-import img_0 from './assets/0.png';
-import img_1a from './assets/1a.png';
-import img_1b from './assets/1b.png';
-import img_1c from './assets/1c.png';
-import img_1d from './assets/1d.png';
-import img_1e from './assets/1e.png';
-import img_1f from './assets/1f.png';
-import img_2a from './assets/2a.png';
-import img_2b from './assets/2b.png';
-import img_2c from './assets/2c.png';
-import img_2d from './assets/2d.png';
-import img_2e from './assets/2e.png';
-import img_2f from './assets/2f.png';
+import img_0 from '../../../assets/kineticboardwalk/0.png';
+import img_1a from '../../../assets/kineticboardwalk/1a.png';
+import img_1b from '../../../assets/kineticboardwalk/1b.png';
+import img_1c from '../../../assets/kineticboardwalk/1c.png';
+import img_1d from '../../../assets/kineticboardwalk/1d.png';
+import img_1e from '../../../assets/kineticboardwalk/1e.png';
+import img_1f from '../../../assets/kineticboardwalk/1f.png';
+import img_2a from '../../../assets/kineticboardwalk/2a.png';
+import img_2b from '../../../assets/kineticboardwalk/2b.png';
+import img_2c from '../../../assets/kineticboardwalk/2c.png';
+import img_2d from '../../../assets/kineticboardwalk/2d.png';
+import img_2e from '../../../assets/kineticboardwalk/2e.png';
+import img_2f from '../../../assets/kineticboardwalk/2f.png';
 
 import {
-  Image,
+  IImage,
   IGridsData,
   IPanelData,
 } from '../../../components/ProjectGallery';
@@ -75,14 +75,14 @@ const BREAKPOINTS_3: GridBreakpoint[] = [
   },
 ];
 
-const IMAGES_1: Image[] = [
+const IMAGES_1: IImage[] = [
   {
     src: img_0,
     caption: undefined,
   },
 ];
 
-const IMAGES_2: Image[] = [
+const IMAGES_2: IImage[] = [
   {
     src: img_1a,
     caption: undefined,
@@ -109,7 +109,7 @@ const IMAGES_2: Image[] = [
   },
 ];
 
-const IMAGES_3: Image[] = [
+const IMAGES_3: IImage[] = [
   {
     src: img_2a,
     caption: undefined,

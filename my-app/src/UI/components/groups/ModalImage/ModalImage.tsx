@@ -39,13 +39,13 @@ export interface ImageProps {
 export interface ModalImageProps extends ModalProps {
   srcArray: ImageProps[];
   indexOffset?: number;
-  onClick?: () => void;
+  onCloseClick?: () => void;
 }
 
 export const ModalImage = ({
   srcArray,
   indexOffset = 0,
-  onClick,
+  onCloseClick,
   ...props
 }: ModalImageProps) => {
   if (srcArray.length === 0) throw new Error('Need at least one image!');
@@ -69,9 +69,9 @@ export const ModalImage = ({
   return (
     <Wrapper {...props}>
       <RowTop>
-        <ButtonClosePlaceholder onClick={onClick} />
+        <ButtonClosePlaceholder />
         <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
-        <ButtonModalClose onClick={onClick} />
+        <ButtonModalClose onClick={onCloseClick} />
       </RowTop>
       <WrapperMiddle>
         <ImageContainer

@@ -9,7 +9,7 @@ export interface HeaderLogoProps
 }
 
 export const HeaderLogo: React.FC<HeaderLogoProps> = ({
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   return (

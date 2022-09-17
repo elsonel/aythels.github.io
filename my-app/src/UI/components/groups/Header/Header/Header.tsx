@@ -28,11 +28,14 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   width: 100%;
-  padding: 10px 20px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
+  padding: 0px 20px;
+
+  display: flex;
+  align-items: center;
 
   user-select: none;
   pointer-events: none;
-
   background-color: ${({ theme }) => theme.color.background};
   border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 

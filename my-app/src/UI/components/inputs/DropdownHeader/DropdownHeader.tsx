@@ -20,7 +20,7 @@ export const DropdownHeader: React.FC<DropdownHeaderProps> = ({
   subtitle,
   title,
   icon,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   return (

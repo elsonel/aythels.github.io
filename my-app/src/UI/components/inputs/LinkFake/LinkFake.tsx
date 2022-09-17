@@ -15,7 +15,7 @@ export interface LinkFakeProps
 
 export const LinkFake: React.FC<LinkFakeProps> = ({
   children,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   return (

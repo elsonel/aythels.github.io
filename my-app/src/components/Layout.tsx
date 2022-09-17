@@ -49,4 +49,6 @@ const HeaderStyled = styled(Header)`
 
 const Body = styled.div`
   width: 100%;
+  min-height: ${({ theme }) =>
+    `calc(100vh - ${theme.size.headerHeight}px - ${theme.size.footerHeight}px)`};
 `;

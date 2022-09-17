@@ -26,7 +26,7 @@ const Header = styled.div`
   position: sticky;
   top: 0px;
   width: 100%;
-  height: ${({ theme }) => theme.size.header}px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
   background-color: red;
 `;
 

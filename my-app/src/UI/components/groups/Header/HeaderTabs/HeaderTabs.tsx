@@ -65,7 +65,7 @@ const Wrapper = styled.div`
 
 const Background = styled(Modal)`
   z-index: 0;
-  height: ${({ theme }) => theme.size.header}px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
 
   background: ${({ theme }) => theme.color.background};
   transform: none;
@@ -82,8 +82,8 @@ const ModalMobile = styled(HeaderTabsMobile)`
   z-index: 0;
   box-sizing: border-box;
 
-  top: ${({ theme }) => theme.size.header}px;
-  height: ${({ theme }) => `calc(100vh - ${theme.size.header}px)`};
+  top: ${({ theme }) => theme.size.headerHeight}px;
+  height: ${({ theme }) => `calc(100vh - ${theme.size.headerHeight}px)`};
   padding-top: 0px;
 
   background: ${({ theme }) => theme.color.background};

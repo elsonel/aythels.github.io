@@ -11,7 +11,7 @@ export interface TabProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Tab: React.FC<TabProps> = ({
   children = '',
   isSelected = false,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);

@@ -9,7 +9,7 @@ export interface ButtonModalCloseProps extends ButtonModalProps {
 }
 
 export const ButtonModalClose: React.FC<ButtonModalCloseProps> = ({
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   return (

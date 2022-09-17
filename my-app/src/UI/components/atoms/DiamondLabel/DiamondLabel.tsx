@@ -20,7 +20,7 @@ export const DiamondLabel: React.FC<DiamondLabelProps> = ({
   size = 8,
   label,
   state = State.NEUTRAL,
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   const [isActive, setIsActive] = useState(state === State.ACTIVE);

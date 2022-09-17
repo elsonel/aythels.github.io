@@ -49,7 +49,7 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
   imageWidth,
   imageHeight,
   containerSize = '100%',
-  onClick,
+  onClick: onClick,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);

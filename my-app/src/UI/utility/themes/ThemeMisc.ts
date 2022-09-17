@@ -12,7 +12,8 @@ export interface SpeedInterface {
 }
 
 export interface SizeInterface {
-  header: number;
+  headerHeight: number;
+  footerHeight: number;
 }
 
 export interface ThemeMiscInterface {
@@ -34,6 +35,7 @@ export const ThemeMisc: ThemeMiscInterface = {
     test: '3s',
   },
   size: {
-    header: 44,
+    headerHeight: 44,
+    footerHeight: 102,
   },
 };

@@ -36,7 +36,7 @@ export const GalleryProject: React.FC<GalleryProjectProps> = ({
     <Wrapper {...props}>
       <Content leftRatio={1} rightRatio={2} breakIfLessThan={1100}>
         <StickyEndsContainer
-          topMargin={Theme.size.header + PADDING}
+          topMargin={Theme.size.headerHeight + PADDING}
           bottomMargin={20}
         >
           <GalleryProjectPanel

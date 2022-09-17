@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   width: 100%;
+  height: ${({ theme }) => theme.size.footerHeight}px;
   padding: 20px;
 
   display: flex;

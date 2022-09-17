@@ -1,26 +1,13 @@
-export interface GallerySortable {
-  date: Date;
-  title: string;
-}
+import { ISortsData, ITabsData } from '../../components/Gallery';
+import { GalleryGrid, IGalleryEntry } from '../../components/GalleryGrid';
+import {
+  GalleryGridArt,
+  IGalleryEntryArt,
+} from '../../components/GalleryGridArt';
+import { GridBreakpoint } from '../../UI/components/layout/Grid';
+import { sortByDate, sortByName } from '../../utility/sort';
 
-export interface GalleryEntry extends GallerySortable {
-  date: Date;
-  subtitle: string;
-  title: string;
-  src: string;
-}
-
-export interface GalleryVisualArtsEntry extends GalleryEntry {
-  caption: string;
-  width: number;
-  height: number;
-}
-
-export interface GalleryProjectEntry extends GalleryEntry {
-  to: string;
-}
-
-export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
+export const VisualArtsData: IGalleryEntryArt[] = [
   {
     date: new Date(2022, 4),
     subtitle: '2022',
@@ -86,63 +73,128 @@ export const _GalleryVisualArtsData: GalleryVisualArtsEntry[] = [
   },
 ];
 
-export const _GalleryUIUXData: GalleryProjectEntry[] = [
+const Breakpoints1: GridBreakpoint[] = [
+  {
+    minWidth: 0,
+    columnCount: 1,
+  },
+  {
+    minWidth: 800,
+    columnCount: 2,
+  },
+  {
+    minWidth: 1000,
+    columnCount: 3,
+  },
+];
+
+export const UIUXData: IGalleryEntry[] = [
   {
     date: new Date(2020, 8),
     subtitle: '2020',
     title: 'PORTFOL.IO',
     src: '/images/uiux/Portfolio.png',
-    to: '/portfolio',
+    to: '/gallery/portfolio',
   },
   {
     date: new Date(2020, 6),
     subtitle: '2020',
     title: 'SPOTLIGHT',
     src: '/images/uiux/Spotlight.png',
-    to: '/spotlight',
+    to: '/gallery/spotlight',
   },
 ];
 
-export const _GalleryArchitectureData: GalleryProjectEntry[] = [
+const Breakpoints2: GridBreakpoint[] = [
+  {
+    minWidth: 0,
+    columnCount: 1,
+  },
+  {
+    minWidth: 600,
+    columnCount: 2,
+  },
+  {
+    minWidth: 800,
+    columnCount: 3,
+  },
+];
+
+export const ArchitectureData: IGalleryEntry[] = [
   {
     date: new Date(2022, 5),
     subtitle: '2022',
     title: 'FOLD PAVILION',
     src: '/images/architecture/Fold_Pavilion.png',
-    to: '/foldpavilion',
+    to: '/gallery/foldpavilion',
   },
   {
     date: new Date(2020, 11),
     subtitle: 'Drifting Landscapes',
     title: 'KINETIC BOARDWALK',
     src: '/images/architecture/Kinetic_Boardwalk.png',
-    to: '/kineticboardwalk',
+    to: '/gallery/kineticboardwalk',
   },
   {
     date: new Date(2019, 4),
     subtitle: '2019',
     title: 'BASILISK TOWER',
     src: '/images/architecture/Basilisk_Tower.png',
-    to: 'basilisktower',
+    to: '/gallery/basilisktower',
   },
 ];
 
-export function sortByDate(arr: GallerySortable[], decending: boolean = true) {
-  const copy = [...arr];
+const Breakpoints3: GridBreakpoint[] = [
+  {
+    minWidth: 0,
+    columnCount: 1,
+  },
+  {
+    minWidth: 600,
+    columnCount: 2,
+  },
+  {
+    minWidth: 800,
+    columnCount: 3,
+  },
+];
 
-  decending
-    ? copy.sort((a, b) => b.date.valueOf() - a.date.valueOf())
-    : copy.sort((a, b) => a.date.valueOf() - b.date.valueOf());
+export const TabsData: ITabsData = [
+  {
+    label: 'VISUAL ARTS',
+    data: VisualArtsData,
+    breakpoints: Breakpoints1,
+    gridType: GalleryGridArt as typeof GalleryGrid,
+  },
+  {
+    label: 'UI / UX',
+    data: UIUXData,
+    breakpoints: Breakpoints2,
+    gridType: GalleryGrid,
+  },
+  {
+    label: 'ARCHITECTURE',
+    data: ArchitectureData,
+    breakpoints: Breakpoints3,
+    gridType: GalleryGrid,
+  },
+];
 
-  return copy;
-}
-
-export function sortByName(arr: GallerySortable[], decending: boolean = true) {
-  const copy = [...arr];
-
-  decending
-    ? copy.sort((a, b) => a.title.localeCompare(b.title))
-    : copy.sort((a, b) => b.title.localeCompare(a.title));
-
-  return copy;
-}
+export const SortsData: ISortsData = [
+  {
+    label: 'NEWEST',
+    sort: (data) => sortByDate(data),
+  },
+  {
+    label: 'OLDEST',
+    sort: (data) => sortByDate(data, false),
+  },
+  {
+    label: 'A - Z',
+    sort: (data) => sortByName(data),
+  },
+  {
+    label: 'Z - A',
+    sort: (data) => sortByName(data, false),
+  },
+];
