@@ -89,9 +89,11 @@ export const ModalImage = ({
             onClick={() => changeImage(index - 1)}
           />
         )}
-        <Caption isWrapped={false}>
-          {getElementAt(srcArray, index).caption}
-        </Caption>
+        <WrapperCaption>
+          <TextCaption isWrapped={false}>
+            {getElementAt(srcArray, index).caption}
+          </TextCaption>
+        </WrapperCaption>
         {displayNextButtons && (
           <ButtonNext
             direction={'RIGHT'}
@@ -113,19 +115,21 @@ const Wrapper = styled(Modal)`
 const Row = styled.div`
   box-sizing: border-box;
 
-  height: 48px;
+  height: 52px;
   width: 100%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.outline}`} inset;
+  //box-shadow: 0 0 0 1px ${({ theme }) => `${theme.color.outline}`} inset;
 `;
 
 const RowTop = styled(Row)`
-  padding: 0px 8px;
   gap: 20px;
+
+  padding: 10px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 `;
 
 const Title = styled(Paragraph)`
@@ -142,8 +146,6 @@ const ButtonClosePlaceholder = styled(ButtonModalClose)`
 `;
 
 const RowBottom = styled(Row)`
-  gap: 20px;
-
   ${LessThan(
     'mobileLarge',
     `
@@ -169,8 +171,19 @@ const ButtonNext = styled(ButtonModalNext)`
   )}
 `;
 
-const Caption = styled(TextCaption)`
+const WrapperCaption = styled.div`
   flex-grow: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  height: 100%;
+  padding: 0px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-top: 1px solid ${({ theme }) => theme.color.outline};
 
   ${LessThan(
     'mobileLarge',
@@ -184,7 +197,7 @@ const IMAGE_DISTANCE = 200;
 
 const WrapperMiddle = styled.div`
   flex-grow: 1;
-  padding: 10px;
+  padding: 10px 0px;
 `;
 
 const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`

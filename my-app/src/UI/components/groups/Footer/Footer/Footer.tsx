@@ -10,7 +10,6 @@ export const Footer: React.FC<FooterProps> = ({
   ...props
 }): React.ReactElement => (
   <Wrapper {...props}>
-    <FooterIconRowStyled />
     <FooterCopyright />
     <FooterLink />
   </Wrapper>
@@ -27,8 +26,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
 
-const FooterIconRowStyled = styled(FooterIconRow)`
-  margin-bottom: 10px;
+  border-top: 1px solid ${({ theme }) => theme.color.outline};
 `;

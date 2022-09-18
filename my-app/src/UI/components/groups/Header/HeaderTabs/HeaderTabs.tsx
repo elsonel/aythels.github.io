@@ -48,7 +48,6 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({
 
   return (
     <Wrapper {...props}>
-      <Background isVisible={isMenuOpen} />
       <Content>{isDesktop ? renderDesktop() : renderMobile()}</Content>
       <ModalMobile
         tabs={tabs}
@@ -63,16 +62,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const Background = styled(Modal)`
-  z-index: 0;
-  height: ${({ theme }) => theme.size.headerHeight}px;
-
-  background: ${({ theme }) => theme.color.background};
-  transform: none;
-`;
-
 const Content = styled.div`
-  z-index: 1;
   display: flex;
   gap: 20px;
 `;
@@ -80,8 +70,8 @@ const Content = styled.div`
 const ModalMobile = styled(HeaderTabsMobile)`
   box-sizing: border-box;
 
-  top: ${({ theme }) => theme.size.headerHeight}px;
-  height: ${({ theme }) => `calc(100vh - ${theme.size.headerHeight}px)`};
+  top: ${({ theme }) => `calc(${theme.size.headerHeight}px - 1px)`};
+  height: ${({ theme }) => `calc(100vh - ${theme.size.headerHeight}px + 1px)`};
   padding-top: 0px;
 
   background: ${({ theme }) => theme.color.background};

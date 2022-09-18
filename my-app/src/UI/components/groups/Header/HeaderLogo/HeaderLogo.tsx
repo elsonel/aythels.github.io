@@ -14,7 +14,7 @@ export const HeaderLogo: React.FC<HeaderLogoProps> = ({
 }): React.ReactElement => {
   return (
     <LinkFake onClick={onClick} {...props}>
-      <IIconSVG src={Theme.icon.logo} size={24} />
+      <IIconSVG src={Theme.icon.logo} size={20} />
     </LinkFake>
   );
 };

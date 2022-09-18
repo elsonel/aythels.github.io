@@ -42,13 +42,15 @@ const Wrapper = styled(Modal)`
 `;
 
 const Content = styled.div`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+  padding-top: 20px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  row-gap: 20px;
+  row-gap: 30px;
 
   > * {
     max-width: 100%;
@@ -56,6 +58,7 @@ const Content = styled.div`
 `;
 
 const Tab = styled(Paragraph)`
+  line-height: 0.9;
   font-size: ${({ theme }) => theme.font.size.h1};
   font-weight: ${({ theme }) => theme.font.weight.bold1};
   cursor: pointer;

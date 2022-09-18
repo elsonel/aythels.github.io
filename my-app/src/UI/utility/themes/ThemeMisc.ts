@@ -36,6 +36,6 @@ export const ThemeMisc: ThemeMiscInterface = {
   },
   size: {
     headerHeight: 44,
-    footerHeight: 102,
+    footerHeight: 68,
   },
 };

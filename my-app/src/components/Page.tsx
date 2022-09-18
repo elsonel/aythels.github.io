@@ -16,6 +16,7 @@ export const Page: React.FC<PageProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
     document.title = title ? `Elson Liang | ${title}` : `Elson Liang`;
   }, []);
 
