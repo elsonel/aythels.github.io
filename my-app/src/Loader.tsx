@@ -1,25 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { Loading } from './UI/components/other/Loading';
 
-let ActiveHook: any = null;
+interface LoaderManagerInterface {
+  activeHook: React.Dispatch<React.SetStateAction<boolean>> | null;
+  progressHook: React.Dispatch<React.SetStateAction<undefined | number>> | null;
+  finishLoad: () => void;
+  startLoad: () => void;
+  setProgress: (n: number) => void;
+}
 
-export const finishLoad = () => {
-  if (ActiveHook) ActiveHook(false);
-};
+function LoaderManagerFunct(this: LoaderManagerInterface) {
+  this.activeHook = null;
+  this.progressHook = null;
 
-export const startLoad = () => {
-  if (ActiveHook) ActiveHook(true);
-};
+  this.finishLoad = () => {
+    this.progressHook && this.progressHook(1);
+    this.activeHook && this.activeHook(false);
+  };
+
+  this.startLoad = () => {
+    this.progressHook && this.progressHook(0);
+    this.activeHook && this.activeHook(true);
+  };
+
+  this.setProgress = () => {};
+}
+
+export const LoaderManager = new (LoaderManagerFunct as any)();
 
 export const Loader = (): React.ReactElement => {
   const [isLoadingVisible, setLoadingVisible] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    ActiveHook = setLoadingVisible;
+    LoaderManager.activeHook = setLoadingVisible;
+    LoaderManager.progressHook = setProgress;
     return () => {
-      ActiveHook = null;
+      LoaderManager.activeHook = null;
+      LoaderManager.progressHook = null;
     };
   }, []);
 
-  return <Loading isVisible={isLoadingVisible} />;
+  return <Loading isVisible={isLoadingVisible} progress={progress} />;
 };

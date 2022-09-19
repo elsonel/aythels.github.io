@@ -54,9 +54,10 @@ const HeaderStyled = styled(Header)`
 const Body = styled.div`
   box-sizing: border-box;
   width: 100%;
-  display: grid;
   min-height: ${({ theme }) =>
     `calc(100vh - ${theme.size.headerHeight}px - ${theme.size.footerHeight}px)`};
+  display: grid;
+  grid-template-columns: 100%;
 
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);

@@ -31,8 +31,8 @@ const Spinner = styled.div<{ $size: number }>`
   ${({ $size, theme }) => css`
     box-sizing: border-box;
 
-    border: ${$size / 6}px solid rgba(0, 0, 0, 0.2);
-    border-left: ${$size / 6}px solid #000000;
+    border: ${$size / 6}px solid ${({ theme }) => theme.color.outline};
+    border-left: ${$size / 6}px solid ${({ theme }) => theme.color.text};
     border-radius: 9999px;
 
     animation: ${Rotate} ${theme.speed.loading} infinite linear;

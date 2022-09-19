@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { finishLoad } from '../Loader';
+import { LoaderManager } from '../Loader';
 
-const LOADING_TIMEOUT = 20000;
+const LOADING_TIMEOUT = 10000;
 
 export interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -21,19 +21,28 @@ export const Page: React.FC<PageProps> = ({
   }, []);
 
   useEffect(() => {
-    const timeout = setTimeout(() => finishLoad(), LOADING_TIMEOUT);
+    const timeout = setTimeout(
+      () => LoaderManager.finishLoad(),
+      LOADING_TIMEOUT
+    );
     onImageLoad();
     return () => clearTimeout(timeout);
   }, []);
 
   const onImageLoad = () => {
     const allImages = ref.current!.getElementsByTagName('img');
+    let loadedCount = 0;
     for (let i = 0; i < allImages.length; i++) {
       const image = allImages[i];
-      if (!image.complete) return;
+      if (image.complete) {
+        loadedCount++;
+      } else if (!image.complete) {
+        LoaderManager.setProgress(loadedCount / allImages.length);
+        return;
+      }
     }
 
-    finishLoad();
+    LoaderManager.finishLoad();
   };
 
   return (

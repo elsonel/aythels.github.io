@@ -54,12 +54,6 @@ const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
   }
 `;
 
-const Text = styled(Paragraph)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
 const TextSmall = styled(TextButton)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.size.tiny};
   font-weight: ${({ theme, $isSelected }) =>
