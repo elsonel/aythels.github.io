@@ -28,7 +28,7 @@ const ButtonDisabled = css`
 `;
 
 const ButtonEnabled = css<{ $isClicked: boolean }>`
-  opacity: ${({ $isClicked }) => ($isClicked ? 0.9 : 1.0)};
+  opacity: ${({ $isClicked }) => ($isClicked ? 0.8 : 1.0)};
 `;
 
 const ButtonLayoutStyled = styled(Button)<{

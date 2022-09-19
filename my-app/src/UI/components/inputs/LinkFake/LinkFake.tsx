@@ -8,6 +8,10 @@ export interface LinkFakeProps
    */
   children: React.ReactNode;
   /**
+   * override prevent default
+   */
+  isDefaultPrevented?: boolean;
+  /**
    * When link is clicked
    */
   onClick?: () => void;
@@ -15,13 +19,14 @@ export interface LinkFakeProps
 
 export const LinkFake: React.FC<LinkFakeProps> = ({
   children,
-  onClick: onClick,
+  isDefaultPrevented = true,
+  onClick,
   ...props
 }): React.ReactElement => {
   return (
     <Link
       onClick={(e) => {
-        e.preventDefault();
+        isDefaultPrevented && e.preventDefault();
         onClick && onClick();
       }}
       {...props}

@@ -60,11 +60,9 @@ const FrontLine = styled.div<{
 
 const BackLine = styled.div<{ $color: string }>`
   position: absolute;
-
-  height: 1px;
   width: 100%;
   left: 0px;
   bottom: 0px;
 
-  background: ${({ $color }) => $color};
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
 `;

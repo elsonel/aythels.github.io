@@ -37,6 +37,7 @@ const Content = styled.div`
   width: 100%;
 
   display: flex;
+  align-items: bottom;
   justify-content: space-between;
 
   overflow-x: clip;

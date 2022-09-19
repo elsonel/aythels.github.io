@@ -16,6 +16,7 @@ export const Footer: React.FC<FooterProps> = ({
 );
 
 const Wrapper = styled.div`
+  overflow: hidden;
   box-sizing: border-box;
 
   width: 100%;

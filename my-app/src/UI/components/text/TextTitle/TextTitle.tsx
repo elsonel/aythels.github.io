@@ -26,6 +26,7 @@ export const TextTitle: React.FC<TextTitleProps> = ({
 };
 
 const Text = styled(Paragraph)<{ $size: 'small' | 'medium' | 'large' }>`
+  line-height: 1;
   font-size: ${({ $size }) => {
     switch ($size) {
       case 'small':

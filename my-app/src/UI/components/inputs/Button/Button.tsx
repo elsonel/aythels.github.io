@@ -50,7 +50,7 @@ const ButtonDisabled = css`
 `;
 
 const ButtonEnabled = css<{ $isHovered: boolean }>`
-  opacity: ${({ $isHovered }) => ($isHovered ? 0.9 : 1.0)};
+  opacity: ${({ $isHovered }) => ($isHovered ? 0.8 : 1.0)};
   cursor: pointer;
 `;
 

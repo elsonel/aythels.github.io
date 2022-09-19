@@ -1,9 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { TextButton } from '../../text/TextButton';
 import { IconSVGType } from '../../../utility/themes/ThemeAsset';
-import { Button, ButtonProps } from '../Button';
-import { IIconSVG } from '../../atoms/IIconSVG';
+import { ButtonProps } from '../Button';
 import { ButtonReverse } from '../ButtonReverse';
 import { RowIconTextButton } from '../../atoms/RowIconTextButton';
 

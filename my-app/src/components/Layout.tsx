@@ -44,11 +44,20 @@ export const Layout: React.FC<LayoutProps> = ({
 const HeaderStyled = styled(Header)`
   z-index: ${({ theme }) => theme.layer.header};
   position: sticky;
+
+  box-sizing: border-box;
   top: 0px;
+  padding-left: calc(20px + env(safe-area-inset-left));
+  padding-right: calc(20px + env(safe-area-inset-right));
 `;
 
 const Body = styled.div`
+  box-sizing: border-box;
   width: 100%;
+  display: grid;
   min-height: ${({ theme }) =>
     `calc(100vh - ${theme.size.headerHeight}px - ${theme.size.footerHeight}px)`};
+
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 `;

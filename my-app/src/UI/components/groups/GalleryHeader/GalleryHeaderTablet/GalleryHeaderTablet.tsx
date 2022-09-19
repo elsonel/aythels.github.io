@@ -44,8 +44,6 @@ const DropdownStyled = styled(Dropdown)`
   width: 200px;
 
   > * {
-    border-left: 0px;
-    border-right: 0px;
     border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   }
 `;
