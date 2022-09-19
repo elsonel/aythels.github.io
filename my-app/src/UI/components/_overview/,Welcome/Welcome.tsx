@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { ThemeInterface } from '../../../utility/themes/Theme';
 import { FooterIconRow } from '../../groups/Footer/FooterIconRow';
 import { Paragraph } from '../../text/Paragraph';
 import { TextLink } from '../../text/TextLink';
@@ -10,6 +11,8 @@ export interface WelcomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 export const Welcome: React.FC<WelcomeProps> = ({
   ...props
 }): React.ReactElement => {
+  const theme = useTheme() as ThemeInterface;
+
   return (
     <Wrapper {...props}>
       <TextTitle size="small">
@@ -29,7 +32,7 @@ export const Welcome: React.FC<WelcomeProps> = ({
       <br />
       <Paragraph>Feel free to browse around.</Paragraph>
       <br />
-      <a href={'/'}>
+      <a href={theme.link.home}>
         <TextLink>Return to main site.</TextLink>
       </a>
       <br />

@@ -7,6 +7,7 @@ export interface TwoColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   leftRatio?: number;
   rightRatio?: number;
   breakIfLessThan?: number;
+  isRightToTop?: boolean;
 }
 
 export const TwoColumn: React.FC<TwoColumnProps> = ({
@@ -14,6 +15,7 @@ export const TwoColumn: React.FC<TwoColumnProps> = ({
   leftRatio = 0.5,
   rightRatio = 0.5,
   breakIfLessThan,
+  isRightToTop = false,
   ...props
 }): React.ReactElement => {
   leftRatio = Math.max(0, leftRatio);
@@ -23,7 +25,7 @@ export const TwoColumn: React.FC<TwoColumnProps> = ({
     breakIfLessThan === undefined ? true : LessThanHook(breakIfLessThan);
 
   return (
-    <Wrapper {...props}>
+    <Wrapper $isRightToTop={shouldBreak && isRightToTop} {...props}>
       <Content
         $ratio={leftRatio / (leftRatio + rightRatio)}
         $shouldBreak={shouldBreak}
@@ -40,11 +42,13 @@ export const TwoColumn: React.FC<TwoColumnProps> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isRightToTop: boolean }>`
   width: 100%;
 
   display: flex;
   flex-wrap: wrap;
+
+  ${({ $isRightToTop }) => $isRightToTop && `flex-wrap: wrap-reverse;`}
 `;
 
 const Content = styled.div<{ $ratio: number; $shouldBreak: boolean }>`

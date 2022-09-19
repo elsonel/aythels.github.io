@@ -23,7 +23,9 @@ function LoaderManagerFunct(this: LoaderManagerInterface) {
     this.activeHook && this.activeHook(true);
   };
 
-  this.setProgress = () => {};
+  this.setProgress = (n: number) => {
+    this.progressHook && this.progressHook(n);
+  };
 }
 
 export const LoaderManager = new (LoaderManagerFunct as any)();

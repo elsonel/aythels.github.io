@@ -11,15 +11,20 @@ export interface RowIconProps extends React.HTMLAttributes<HTMLDivElement> {
    * Icons
    */
   children?: React.ReactElement<IIconProps>[];
+  /**
+   * Gap size, defaults to half the icon size
+   */
+  gap?: number;
 }
 
 export const RowIcon: React.FC<RowIconProps> = ({
   size = 32,
   children = [],
+  gap,
   ...props
 }): React.ReactElement => {
   return (
-    <Row $gapSize={size / 2} {...props}>
+    <Row $gapSize={gap ? gap : size / 2} {...props}>
       {children.map((e, i) => (
         <IconWrapper $size={size} key={i}>
           {e}

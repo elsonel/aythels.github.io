@@ -1,8 +1,8 @@
 import { Meta, Story } from '@storybook/react';
 import { IconLinkExternal, IconLinkExternalProps } from './IconLinkExternal';
 import { Linkedin } from '@styled-icons/fa-brands/Linkedin';
+import { Theme } from '../../../utility/themes/Theme';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Inputs/IconLinkExternal',
   component: IconLinkExternal,
@@ -10,6 +10,8 @@ export default {
     src: Linkedin,
     to: 'https://github.com/aythels',
     size: 32,
+    color: Theme.color.textNeutral,
+    colorHovered: Theme.color.textHovered,
   },
 } as Meta;
 

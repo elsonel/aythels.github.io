@@ -66,25 +66,23 @@ const Wrapper = styled.div`
 const TitleSmall = css`
   font-size: 2.2rem;
   margin-top: -6px;
-  margin-left: -2px;
 `;
 
 const TitleMedium = css`
   font-size: 3rem;
   margin-top: -6px;
-  margin-left: -2px;
 `;
 
 const TitleLarge = css`
   font-size: 4rem;
   margin-top: -8px;
-  margin-left: -3px;
 `;
 
 const Title = styled(Paragraph)<{ $size: 'small' | 'medium' | 'large' }>`
   line-height: 1;
   font-weight: ${({ theme }) => theme.font.weight.bold2};
   margin-bottom: 3px;
+  margin-left: -2px;
   transition: none;
 
   ${({ $size }) => {

@@ -18,6 +18,7 @@ export default {
     leftRatio: 0.5,
     rightRatio: 0.5,
     breakIfLessThan: 800,
+    isRightToTop: false,
   },
 } as Meta;
 
@@ -29,4 +30,10 @@ export const AlwaysBroken = Template.bind({});
 AlwaysBroken.args = {
   ...AlwaysBroken.args,
   breakIfLessThan: undefined,
+};
+
+export const RightToTop = Template.bind({});
+RightToTop.args = {
+  ...RightToTop.args,
+  isRightToTop: true,
 };

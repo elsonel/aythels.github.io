@@ -1,20 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Theme } from '../../../utility/themes/Theme';
 import { IIconSVG, IIconSVGProps } from '../../atoms/IIconSVG';
 
 export interface IconLinkExternalProps extends IIconSVGProps {
   to: string;
   size?: number | string;
+  color?: string;
+  colorHovered?: string;
 }
 
 export const IconLinkExternal: React.FC<IconLinkExternalProps> = ({
   to,
   size = 32,
+  color = Theme.color.textNeutral,
+  colorHovered = Theme.color.textHovered,
   ...props
 }): React.ReactElement => {
   return (
     <Link $size={size} href={to} target="_blank" rel="noreferrer">
-      <Icon {...props} />
+      <Icon $color={color} $colorHovered={colorHovered} {...props} />
     </Link>
   );
 };
@@ -28,13 +33,13 @@ const Link = styled.a<{ $size: number | string }>`
   cursor: pointer;
 `;
 
-const Icon = styled(IIconSVG)`
+const Icon = styled(IIconSVG)<{ $color: string; $colorHovered: string }>`
   width: inherit;
   height: inherit;
 
-  color: ${({ theme }) => theme.color.textNeutral};
+  color: ${({ $color }) => $color};
   &:hover {
-    color: ${({ theme }) => theme.color.textHovered};
+    color: ${({ $colorHovered }) => $colorHovered};
   }
 
   transition: ${({ theme }) => theme.speed.normal};

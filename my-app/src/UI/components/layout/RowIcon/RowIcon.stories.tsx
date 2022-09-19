@@ -14,6 +14,7 @@ export default {
       <IIconSVG src={Linkedin} />,
       <IIconSVG src={Email} />,
     ],
+    gap: undefined,
   },
 } as Meta;
 

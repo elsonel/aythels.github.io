@@ -16,10 +16,18 @@ export interface SizeInterface {
   footerHeight: number;
 }
 
+export interface LinkInterface {
+  linkedin: string;
+  github: string;
+  email: string;
+  home: string;
+}
+
 export interface ThemeMiscInterface {
   layer: LayerInterface;
   speed: SpeedInterface;
   size: SizeInterface;
+  link: LinkInterface;
 }
 
 export const ThemeMisc: ThemeMiscInterface = {
@@ -37,5 +45,11 @@ export const ThemeMisc: ThemeMiscInterface = {
   size: {
     headerHeight: 44,
     footerHeight: 68,
+  },
+  link: {
+    linkedin: 'https://www.linkedin.com/in/elson-liang/',
+    github: 'https://github.com/elsonel',
+    email: 'mailto:elsonliangel@gmail.com',
+    home: '/',
   },
 };

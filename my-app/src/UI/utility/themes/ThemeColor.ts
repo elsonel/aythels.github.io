@@ -18,7 +18,7 @@ export interface ThemeColorInterface {
 export const ThemeColor: ThemeColorInterface = {
   color: {
     text: '#1a1a1a',
-    textHovered: '#3d3d3d',
+    textHovered: '#4a4a4a',
     textNeutral: '#a8a8a8',
     outline: 'lightgrey',
     backgroundHighlight: '#e6e6e6',
