@@ -3,6 +3,7 @@ import { GalleryHeaderMain } from '../UI/components/groups/GalleryHeader/Gallery
 import { GridBreakpoint } from '../UI/components/layout/Grid';
 import { IGallerySortable } from '../utility/sort';
 import { GalleryGrid, IGalleryEntry } from './GalleryGrid';
+import { v4 as uuidv4 } from 'uuid';
 
 function renderGrid(
   gridType: typeof GalleryGrid,
@@ -10,7 +11,7 @@ function renderGrid(
   breakpoints: GridBreakpoint[]
 ) {
   const Grid = gridType;
-  return <Grid data={data} breakpoints={breakpoints} />;
+  return <Grid key={uuidv4()} data={data} breakpoints={breakpoints} />;
 }
 
 export interface ITab {

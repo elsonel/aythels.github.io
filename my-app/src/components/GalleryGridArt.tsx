@@ -27,7 +27,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
       <GridStyled {...props}>
         {data.map((e, i) => (
           <ImageThumbnailFixed
-            key={i}
+            key={e.src}
             onClick={() => {
               setModalOffset(i);
               setIsModalOpen(true);

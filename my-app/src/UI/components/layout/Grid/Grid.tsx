@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 
 const calculateWidth = (gapPixels: number, columnCount: number) => {
@@ -46,19 +47,15 @@ export const Grid: React.FC<GridProps> = ({
   breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setVisible(true), 100);
-  }, []);
+  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded();
 
   return (
-    <Wrapper {...props}>
+    <Wrapper ref={ref} onLoad={onImageLoad} {...props}>
       {children.map((component, index) => (
         <ItemWrapper
           $breakpoints={breakpoints}
           key={index}
-          $visible={visible}
+          $isVisible={isLoaded}
           $index={index}
         >
           {component}
@@ -78,17 +75,17 @@ const Wrapper = styled.div`
 
 const ItemWrapper = styled.div<{
   $breakpoints: GridBreakpoint[];
-  $visible: boolean;
+  $isVisible: boolean;
   $index: number;
 }>`
   flex-shrink: 0;
 
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   transition-duration: ${({ theme }) => theme.speed.slow};
   transition-timing-function: ease-out;
   transition-property: opacity;
-  transition-delay: ${({ $index }) => $index * 600}ms;
+  transition-delay: ${({ $index }) => $index * 60}ms;
 
   ${({ $breakpoints }) =>
     $breakpoints
