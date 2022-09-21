@@ -2,6 +2,7 @@ import React from 'react';
 import { Gallery } from '../../components/Gallery';
 import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';
+import { SafeNotchPadding } from '../../components/SafeNotchPadding';
 import { PageTitle } from '../../UI/components/atoms/PageTitle';
 import { SortsData, TabsData } from './data';
 
@@ -14,8 +15,10 @@ export const PageGallery: React.FC<PageGalleryProps> = ({
   return (
     <Page title="Gallery" {...props}>
       <Layout>
-        <PageTitle>GALLERY</PageTitle>
-        <Gallery tabsData={TabsData} sortsData={SortsData} />
+        <SafeNotchPadding>
+          <PageTitle>GALLERY</PageTitle>
+          <Gallery tabsData={TabsData} sortsData={SortsData} />
+        </SafeNotchPadding>
       </Layout>
     </Page>
   );

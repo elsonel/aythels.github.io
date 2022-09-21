@@ -29,7 +29,8 @@ const Wrapper = styled.div`
 
   width: 100%;
   height: ${({ theme }) => theme.size.headerHeight}px;
-  padding: 0px 20px;
+  padding-left: calc(20px + env(safe-area-inset-left));
+  padding-right: calc(20px + env(safe-area-inset-right));
 
   display: flex;
   align-items: center;
