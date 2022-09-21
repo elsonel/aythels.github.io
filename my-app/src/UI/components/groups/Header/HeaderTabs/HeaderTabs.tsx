@@ -48,12 +48,15 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({
 
   return (
     <Wrapper {...props}>
-      <Content>{isDesktop ? renderDesktop() : renderMobile()}</Content>
+      <Content>
+        {/*isDesktop ? renderDesktop() : renderMobile()*/ renderDesktop()}
+      </Content>
+      {/*
       <ModalMobile
         tabs={tabs}
         isVisible={isMenuOpen}
         onTabClick={() => setIsMenuOpen(false)}
-      />
+  />*/}
     </Wrapper>
   );
 };
