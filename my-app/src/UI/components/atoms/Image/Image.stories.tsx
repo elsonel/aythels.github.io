@@ -7,6 +7,7 @@ export default {
   component: Image,
   args: {
     src: Theme.image.exampleLandscape,
+    alt: 'img',
   },
 } as Meta;
 

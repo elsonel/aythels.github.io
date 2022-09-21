@@ -10,22 +10,31 @@ import { ButtonModalClose } from '../../inputs/ButtonModalClose';
 import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 
+const getAlt = (imageData: ImageProps) => {
+  if (imageData.title) return imageData.title;
+  else if (imageData.caption) return imageData.caption;
+  return 'img';
+};
+
 const createPane = (srcArray: any[], index: number) => {
   return [
     <ImageStyled
       key={getElementAt(srcArray, index - 1).src}
       $index={index - 1}
       src={getElementAt(srcArray, index - 1).src}
+      alt={getAlt(getElementAt(srcArray, index - 1))}
     />,
     <ImageStyled
       key={getElementAt(srcArray, index).src}
       $index={index}
       src={getElementAt(srcArray, index).src}
+      alt={getAlt(getElementAt(srcArray, index))}
     />,
     <ImageStyled
       key={getElementAt(srcArray, index + 1).src}
       $index={index + 1}
       src={getElementAt(srcArray, index + 1).src}
+      alt={getAlt(getElementAt(srcArray, index + 1))}
     />,
   ];
 };

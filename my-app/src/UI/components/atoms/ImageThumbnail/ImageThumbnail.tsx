@@ -72,6 +72,7 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
           $isHovered={isHovered}
           $isLoaded={isLoaded}
           src={src}
+          alt={title ? title : 'unnamed'}
         />
         {(title || subtitle) && (
           <ImageTitleStyled

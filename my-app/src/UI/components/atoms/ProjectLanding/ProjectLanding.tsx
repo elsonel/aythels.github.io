@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Theme } from '../../../utility/themes/Theme';
-import { Paragraph } from '../../text/Paragraph';
 import { IconScroll } from '../IconScroll';
 import { Image } from '../Image/Image';
 import { ImageTitle } from '../ImageTitle';
@@ -29,7 +28,7 @@ export const ProjectLanding: React.FC<ProjectLandingProps> = ({
   return (
     <Wrapper {...props}>
       <Content>
-        <ImageStyled $isContained={isContained} src={src} />
+        <ImageStyled $isContained={isContained} alt={title} src={src} />
         <BottomWrapper>
           <ImageTitle
             size={isMobile ? 'small' : 'medium'}

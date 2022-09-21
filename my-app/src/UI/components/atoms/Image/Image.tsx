@@ -3,22 +3,17 @@ import styled from 'styled-components';
 
 export interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
   src: string;
+  alt: string;
 }
 
 // https://www.cronyxdigital.com/blog/the-ultimate-website-image-guide
 
 export const Image: React.FC<ImageProps> = ({
   src,
+  alt,
   ...props
 }): React.ReactElement => {
-  return (
-    <ImageStyled
-      /*onLoad={() => console.log("loaded")}*/
-      src={src}
-      alt="img"
-      {...props}
-    />
-  );
+  return <ImageStyled src={src} alt={alt} {...props} />;
 };
 
 const ImageStyled = styled.img`

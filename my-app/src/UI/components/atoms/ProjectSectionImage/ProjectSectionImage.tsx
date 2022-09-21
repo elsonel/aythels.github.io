@@ -6,7 +6,7 @@ import { Image } from '../Image';
 export interface ProjectSectionImageProps
   extends React.HTMLAttributes<HTMLDivElement> {
   src: string;
-  children: string;
+  children?: string;
 }
 
 export const ProjectSectionImage: React.FC<ProjectSectionImageProps> = ({
@@ -16,7 +16,7 @@ export const ProjectSectionImage: React.FC<ProjectSectionImageProps> = ({
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <StyledImage src={src} />
+      <StyledImage alt={children ? children : 'img'} src={src} />
       <TextCaption>{children}</TextCaption>
     </Wrapper>
   );
