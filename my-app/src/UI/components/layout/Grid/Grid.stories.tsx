@@ -26,6 +26,7 @@ export default {
         columnCount: 4,
       },
     ],
+    isAnimated: true,
   },
 } as Meta;
 

@@ -6,6 +6,7 @@ import { distributeIntoChunks } from '../../../utility/scripts/Array';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
 import { v4 as uuidv4 } from 'uuid';
+import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 
 export interface GridDynamicProps extends GridProps {
   children: React.ReactNode[];
@@ -27,16 +28,19 @@ const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
   },
 ];
 
+/*
+ * Basically the key of each column wrapper is "COLUMN_COUNT + i.toString()"
+ * because if GridDynamic re-renders, the column stays the same unless the
+ * COLUMN_COUNT changes, which then means a completely new column is created
+ *
+ */
+
 export const GridDynamic: React.FC<GridDynamicProps> = ({
   children,
   breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setIsVisible(true), 100);
-  }, []);
+  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded();
 
   let COLUMN_COUNT = 3;
   for (let i = 0; i < breakpoints.length; i++) {
@@ -51,11 +55,11 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       COLUMN_COUNT
     );
 
-    const allElements: any[] = childPartitions.map((group) => (
-      <ColumnWrapper key={uuidv4()}>
+    const allElements: any[] = childPartitions.map((group, i) => (
+      <ColumnWrapper key={COLUMN_COUNT + i.toString()}>
         {group.map((component) => (
           <ItemWrapper
-            $isVisible={isVisible}
+            $isVisible={isLoaded}
             $index={children.indexOf(component)}
             key={children.indexOf(component)}
           >
@@ -69,9 +73,11 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
   };
 
   return (
-    <Grid breakpoints={breakpoints} {...props}>
-      {createColumns(children)}
-    </Grid>
+    <div ref={ref} onLoad={onImageLoad} onError={onImageLoad} {...props}>
+      <Grid breakpoints={breakpoints} isAnimated={false}>
+        {createColumns(children)}
+      </Grid>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { LoaderManager } from '../Loader';
+import useOnImagesLoaded from '../UI/utility/hooks/useOnImagesLoaded';
 
 const LOADING_TIMEOUT = 10000;
 
@@ -13,15 +14,13 @@ export const Page: React.FC<PageProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  const ref = useRef<HTMLDivElement>(null);
+  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded(0, (progress) =>
+    LoaderManager.setProgress(progress)
+  );
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.title = title ? `Elson Liang | ${title}` : `Elson Liang`;
-  }, []);
-
-  useEffect(() => {
-    onImageLoad();
   }, []);
 
   useEffect(() => {
@@ -32,21 +31,9 @@ export const Page: React.FC<PageProps> = ({
     return () => clearTimeout(timeout);
   }, []);
 
-  const onImageLoad = () => {
-    const allImages = ref.current!.getElementsByTagName('img');
-    let loadedCount = 0;
-    for (let i = 0; i < allImages.length; i++) {
-      const image = allImages[i];
-      if (image.complete) {
-        loadedCount++;
-      } else if (!image.complete) {
-        LoaderManager.setProgress(loadedCount / allImages.length);
-        return;
-      }
-    }
-
-    LoaderManager.finishLoad();
-  };
+  useEffect(() => {
+    if (isLoaded) LoaderManager.finishLoad();
+  }, [isLoaded]);
 
   return (
     <div ref={ref} onLoad={onImageLoad} onError={onImageLoad} {...props}>

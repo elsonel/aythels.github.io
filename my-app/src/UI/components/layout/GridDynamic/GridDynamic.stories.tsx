@@ -6,7 +6,9 @@ import { Theme } from '../../../utility/themes/Theme';
 export default {
   title: 'Layout/GridDynamic',
   component: GridDynamic,
-  args: { children: <ImageThumbnail src={Theme.image.exampleSquare} /> },
+  args: {
+    children: <ImageThumbnail src={Theme.image.exampleSquare} />,
+  },
 } as Meta;
 
 const Template: Story<GridDynamicProps> = (args) => <GridDynamic {...args} />;
