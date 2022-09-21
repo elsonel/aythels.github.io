@@ -14,7 +14,7 @@ export const Page: React.FC<PageProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded(0, (progress) =>
+  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded(500, (progress) =>
     LoaderManager.setProgress(progress)
   );
 

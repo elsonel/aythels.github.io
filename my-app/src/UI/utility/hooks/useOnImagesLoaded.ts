@@ -12,6 +12,7 @@ export default function useOnImagesLoaded(
   const [isLoadedDelay, setIsLoadedDelay] = useState(false);
 
   useEffect(() => {
+    callback && callback(0);
     onImageLoad();
   }, []);
 
@@ -36,6 +37,7 @@ export default function useOnImagesLoaded(
       }
     }
 
+    callback && callback(1);
     setIsLoaded(true);
   };
 
