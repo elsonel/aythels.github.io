@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import { distributeIntoChunks } from '../../../utility/scripts/Array';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface GridDynamicProps extends GridProps {
-  children?: React.ReactNode[];
+  children: React.ReactNode[];
   breakpoints?: GridBreakpoint[];
 }
 
@@ -27,19 +28,17 @@ const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
 ];
 
 export const GridDynamic: React.FC<GridDynamicProps> = ({
-  children = [],
+  children,
   breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setVisible(true), 100);
+    setTimeout(() => setIsVisible(true), 100);
   }, []);
 
-  !Array.isArray(children) && (children = [children]);
   let COLUMN_COUNT = 3;
-
   for (let i = 0; i < breakpoints.length; i++) {
     const breakpoint = breakpoints[i];
     if (GreaterThanHook(breakpoint.minWidth))
@@ -52,24 +51,21 @@ export const GridDynamic: React.FC<GridDynamicProps> = ({
       COLUMN_COUNT
     );
 
-    const elements: any[] = [];
-
-    for (let i = 0; i < COLUMN_COUNT; i++) {
-      const imageElements: React.ReactElement[] = [];
-
-      // eslint-disable-next-line no-loop-func
-      childPartitions[i].forEach((e, j) => {
-        imageElements.push(
-          <ItemWrapper key={j} $visible={visible} $index={children.indexOf(e)}>
-            {e}
+    const allElements: any[] = childPartitions.map((group) => (
+      <ColumnWrapper key={uuidv4()}>
+        {group.map((component) => (
+          <ItemWrapper
+            $isVisible={isVisible}
+            $index={children.indexOf(component)}
+            key={children.indexOf(component)}
+          >
+            {component}
           </ItemWrapper>
-        );
-      });
+        ))}
+      </ColumnWrapper>
+    ));
 
-      elements.push(<ColumnWrapper key={i}>{imageElements}</ColumnWrapper>);
-    }
-
-    return elements;
+    return allElements;
   };
 
   return (
@@ -87,9 +83,9 @@ const ColumnWrapper = styled.div`
   gap: 20px;
 `;
 
-const ItemWrapper = styled.div<{ $visible: boolean; $index: number }>`
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
+const ItemWrapper = styled.div<{ $isVisible: boolean; $index: number }>`
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
 
   transition-duration: ${({ theme }) => theme.speed.slow};
   transition-timing-function: ease-out;

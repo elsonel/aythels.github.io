@@ -37,18 +37,16 @@ export interface GridBreakpoint {
 }
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode[];
+  children: React.ReactNode[];
   breakpoints?: GridBreakpoint[];
 }
 
 export const Grid: React.FC<GridProps> = ({
-  children = [],
+  children,
   breakpoints = DEFAULT_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
   const [visible, setVisible] = useState(false);
-
-  !Array.isArray(children) && (children = [children]);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 100);
@@ -90,7 +88,7 @@ const ItemWrapper = styled.div<{
   transition-duration: ${({ theme }) => theme.speed.slow};
   transition-timing-function: ease-out;
   transition-property: opacity;
-  transition-delay: ${({ $index }) => $index * 60}ms;
+  transition-delay: ${({ $index }) => $index * 600}ms;
 
   ${({ $breakpoints }) =>
     $breakpoints
