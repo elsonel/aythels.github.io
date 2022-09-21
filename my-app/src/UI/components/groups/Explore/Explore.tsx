@@ -28,19 +28,16 @@ const BREAKPOINTS: GridBreakpoint[] = [
 
 export interface ExploreProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  children?:
-    | React.ReactElement<ImageThumbnailProps>[]
-    | React.ReactElement<ImageThumbnailProps>;
+  children: React.ReactElement<ImageThumbnailProps>[];
   breakpoints?: GridBreakpoint[];
 }
 
 export const Explore: React.FC<ExploreProps> = ({
   title = '',
-  children = [],
+  children,
   breakpoints = BREAKPOINTS,
   ...props
 }): React.ReactElement => {
-  !Array.isArray(children) && (children = [children]);
   const [menuIndex, setMenuIndex] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -106,6 +103,10 @@ export const Explore: React.FC<ExploreProps> = ({
       </HeaderWrapper>
       <div ref={contentRef}>
         <Grid
+          paddingTop={20}
+          paddingBottom={20}
+          paddingLeft={20}
+          paddingRight={20}
           breakpoints={breakpoints}
           $center={children.length < count}
           onScroll={onScroll}
@@ -145,8 +146,6 @@ const Header = styled.div`
 const Grid = styled(GridRow)<{ $center: boolean }>`
   box-sizing: border-box;
   width: 100%;
-  padding: 20px;
-
   justify-content: ${({ $center }) => ($center ? 'center' : 'space-between')};
 `;
 

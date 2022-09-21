@@ -1,19 +1,33 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
 import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 
-const calculateWidth = (gapPixels: number, columnCount: number) => {
+const calculateWidth = (
+  gap: number,
+  columnCount: number,
+  _minusWidth: number
+) => {
   return `
-    width: calc((100% - (${gapPixels}px * ${
-    columnCount - 1
-  })) / ${columnCount});
+    width: calc((100% - ${_minusWidth}px - ${
+    (columnCount - 1) * gap
+  }px) / ${columnCount});
   `;
 };
 
-const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
+const getMediaQueries = (
+  gap: number,
+  breakpoints: GridBreakpoint[],
+  _minusWidth: number
+) => {
+  const allQueries = breakpoints.map((e) =>
+    GreaterThan(e.minWidth, calculateWidth(gap, e.columnCount, _minusWidth))
+  );
+
+  return allQueries.join('\r\n');
+};
+
+export const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
   {
     minWidth: 0,
     columnCount: 1,
@@ -40,26 +54,36 @@ export interface GridBreakpoint {
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode[];
   breakpoints?: GridBreakpoint[];
+  gap?: number;
+  _minusWidth?: number;
   isAnimated?: boolean;
 }
 
 export const Grid: React.FC<GridProps> = ({
   children,
   breakpoints = DEFAULT_BREAKPOINTS,
+  gap = 20,
+  _minusWidth = 0,
   isAnimated = true,
   ...props
 }): React.ReactElement => {
   const [isLoaded, ref, onImageLoad] = useOnImagesLoaded();
 
   return (
-    <Wrapper ref={ref} onLoad={onImageLoad} onError={onImageLoad} {...props}>
+    <Wrapper
+      ref={ref}
+      onLoad={onImageLoad}
+      onError={onImageLoad}
+      $gap={gap}
+      {...props}
+    >
       {children.map((component, index) => (
         <ItemWrapper
-          $breakpoints={breakpoints}
           key={index}
-          $isVisible={isLoaded}
           $index={index}
+          $isVisible={isLoaded}
           $isAnimated={isAnimated}
+          $queries={getMediaQueries(gap, breakpoints, _minusWidth)}
         >
           {component}
         </ItemWrapper>
@@ -68,19 +92,19 @@ export const Grid: React.FC<GridProps> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $gap: number }>`
   width: 100%;
 
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: ${({ $gap }) => $gap}px;
 `;
 
 const ItemWrapper = styled.div<{
-  $breakpoints: GridBreakpoint[];
-  $isVisible: boolean;
   $index: number;
+  $isVisible: boolean;
   $isAnimated: boolean;
+  $queries: string;
 }>`
   flex-shrink: 0;
 
@@ -93,9 +117,5 @@ const ItemWrapper = styled.div<{
   transition-delay: ${({ $index }) => $index * 60}ms;
 
   ${({ $isAnimated }) => !$isAnimated && `transition-delay: none;`}
-
-  ${({ $breakpoints }) =>
-    $breakpoints
-      .map((e) => GreaterThan(e.minWidth, calculateWidth(20, e.columnCount)))
-      .join('\r\n')};
+  ${({ $queries }) => $queries}
 `;

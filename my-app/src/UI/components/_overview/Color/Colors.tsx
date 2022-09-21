@@ -62,7 +62,7 @@ const GridEntry = styled.div`
 const GridEntryColor = styled.div<{ $color: string }>`
   width: 50%;
 
-  background-color: ${({ $color }) => $color};
+  background: ${({ $color }) => $color};
 `;
 
 const GridEntryText = styled.div`

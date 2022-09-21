@@ -129,14 +129,16 @@ export const Index: React.FC<IndexProps> = ({
           </ProjectSection>
         </ProjectLayout>
         <Explore title="EXPLORE">
-          <ImageThumbnail
-            src={Theme.image.exampleSquare}
-            title={'PORTFOL.IO'}
-            subtitle={'DESIGN LEARNING PLATFORM'}
-            imageWidth={1}
-            imageHeight={1}
-            isTitleVisible={true}
-          />
+          {[
+            <ImageThumbnail
+              src={Theme.image.exampleSquare}
+              title={'PORTFOL.IO'}
+              subtitle={'DESIGN LEARNING PLATFORM'}
+              imageWidth={1}
+              imageHeight={1}
+              isTitleVisible={true}
+            />,
+          ]}
         </Explore>
       </Layout>
     </Page>

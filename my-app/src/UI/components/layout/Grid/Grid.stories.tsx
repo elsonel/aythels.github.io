@@ -26,6 +26,8 @@ export default {
         columnCount: 4,
       },
     ],
+    gap: 20,
+    _minusWidth: 0,
     isAnimated: true,
   },
 } as Meta;
