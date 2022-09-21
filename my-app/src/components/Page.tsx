@@ -21,11 +21,14 @@ export const Page: React.FC<PageProps> = ({
   }, []);
 
   useEffect(() => {
+    onImageLoad();
+  }, []);
+
+  useEffect(() => {
     const timeout = setTimeout(
       () => LoaderManager.finishLoad(),
       LOADING_TIMEOUT
     );
-    onImageLoad();
     return () => clearTimeout(timeout);
   }, []);
 
