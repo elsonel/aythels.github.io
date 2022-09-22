@@ -1,24 +1,11 @@
 import React, { useState } from 'react';
 import { GalleryHeaderMain } from '../UI/components/groups/GalleryHeader/GalleryHeaderMain';
-import { GridBreakpoint } from '../UI/components/layout/Grid';
 import { IGallerySortable } from '../utility/sort';
-import { GalleryGrid, IGalleryEntry } from './GalleryGrid';
-import { v4 as uuidv4 } from 'uuid';
-
-function renderGrid(
-  gridType: typeof GalleryGrid,
-  data: IGalleryEntry[],
-  breakpoints: GridBreakpoint[]
-) {
-  const Grid = gridType;
-  return <Grid key={uuidv4()} data={data} breakpoints={breakpoints} />;
-}
+import { GalleryGridProps } from './GalleryGrid';
 
 export interface ITab {
   label: string;
-  data: IGalleryEntry[];
-  breakpoints: GridBreakpoint[];
-  gridType: typeof GalleryGrid;
+  grids: React.ReactElement<GalleryGridProps>[];
 }
 
 export type ITabsData = ITab[];
@@ -61,13 +48,7 @@ export const Gallery: React.FC<GalleryProps> = ({
           };
         })}
       />
-      {renderGrid(
-        tabsData[selectedTab].gridType,
-        sortsData[selectedSort].sort(
-          tabsData[selectedTab].data
-        ) as IGalleryEntry[],
-        tabsData[selectedTab].breakpoints
-      )}
+      {tabsData[selectedTab].grids[selectedSort]}
     </div>
   );
 };

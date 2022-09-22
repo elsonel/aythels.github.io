@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import { Theme } from '../themes/Theme';
 
-export const GlobalScrollHidden = createGlobalStyle`
+export const GlobalScrollLock = createGlobalStyle`
   html, body {
     overflow: hidden;
+    touch-action: none;
   } 
 `;
 

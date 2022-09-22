@@ -19,16 +19,21 @@ export const Loading: React.FC<LoadingProps> = ({
   }
 
   return (
-    <Wrapper isVisible={isVisible} {...props}>
-      <IconLoading size={24} />
-      <TextButton size="tiny">
-        {`LOADING ${progress !== undefined ? progress + '%' : ''}`}
-      </TextButton>
-    </Wrapper>
+    <Modal isVisible={isVisible} {...props}>
+      <Wrapper>
+        <IconLoading size={24} />
+        <TextButton size="tiny">
+          {`LOADING ${progress !== undefined ? progress + '%' : ''}`}
+        </TextButton>
+      </Wrapper>
+    </Modal>
   );
 };
 
-const Wrapper = styled(Modal)`
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

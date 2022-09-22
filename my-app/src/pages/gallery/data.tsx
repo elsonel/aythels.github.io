@@ -6,7 +6,6 @@ import {
 } from '../../components/GalleryGridArt';
 import { GridBreakpoint } from '../../UI/components/layout/Grid';
 import { sortByDate, sortByName } from '../../utility/sort';
-
 import Amethyst_City from '../../assets/gallery/visualarts/Amethyst_City.png';
 import Corruption from '../../assets/gallery/visualarts/Corruption.png';
 import Focus from '../../assets/gallery/visualarts/Focus.png';
@@ -20,6 +19,27 @@ import Basilisk_Tower from '../../assets/gallery/architecture/Basilisk_Tower.png
 import Fold_Pavilion from '../../assets/gallery/architecture/Fold_Pavilion.png';
 import Kinetic_Boardwalk from '../../assets/gallery/architecture/Kinetic_Boardwalk.png';
 
+// Sorting Data
+export const SortsData: ISortsData = [
+  {
+    label: 'NEWEST',
+    sort: (data) => sortByDate(data),
+  },
+  {
+    label: 'OLDEST',
+    sort: (data) => sortByDate(data, false),
+  },
+  {
+    label: 'A - Z',
+    sort: (data) => sortByName(data),
+  },
+  {
+    label: 'Z - A',
+    sort: (data) => sortByName(data, false),
+  },
+];
+
+// Visual Arts Grid Data
 export const VisualArtsData: IGalleryEntryArt[] = [
   {
     date: new Date(2022, 4),
@@ -101,6 +121,15 @@ const Breakpoints1: GridBreakpoint[] = [
   },
 ];
 
+const VisualArtsGrids = SortsData.map((e, i) => (
+  <GalleryGridArt
+    key={'VisualArtsGrids' + i}
+    data={e.sort(VisualArtsData) as IGalleryEntryArt[]}
+    breakpoints={Breakpoints1}
+  />
+));
+
+// UI UX Grid Data
 export const UIUXData: IGalleryEntry[] = [
   {
     date: new Date(2020, 8),
@@ -133,6 +162,15 @@ const Breakpoints2: GridBreakpoint[] = [
   },
 ];
 
+const UIUXGrids = SortsData.map((e, i) => (
+  <GalleryGrid
+    key={'UIUXGrids' + i}
+    data={e.sort(UIUXData) as IGalleryEntry[]}
+    breakpoints={Breakpoints2}
+  />
+));
+
+// Architecture Grid Data
 export const ArchitectureData: IGalleryEntry[] = [
   {
     date: new Date(2022, 5),
@@ -172,42 +210,26 @@ const Breakpoints3: GridBreakpoint[] = [
   },
 ];
 
+const ArchitectureGrids = SortsData.map((e, i) => (
+  <GalleryGrid
+    key={'ArchitectureGrids' + i}
+    data={e.sort(ArchitectureData) as IGalleryEntry[]}
+    breakpoints={Breakpoints3}
+  />
+));
+
+// TabsData
 export const TabsData: ITabsData = [
   {
     label: 'VISUAL ARTS',
-    data: VisualArtsData,
-    breakpoints: Breakpoints1,
-    gridType: GalleryGridArt as typeof GalleryGrid,
+    grids: VisualArtsGrids,
   },
   {
     label: 'UI / UX',
-    data: UIUXData,
-    breakpoints: Breakpoints2,
-    gridType: GalleryGrid,
+    grids: UIUXGrids,
   },
   {
     label: 'ARCHITECTURE',
-    data: ArchitectureData,
-    breakpoints: Breakpoints3,
-    gridType: GalleryGrid,
-  },
-];
-
-export const SortsData: ISortsData = [
-  {
-    label: 'NEWEST',
-    sort: (data) => sortByDate(data),
-  },
-  {
-    label: 'OLDEST',
-    sort: (data) => sortByDate(data, false),
-  },
-  {
-    label: 'A - Z',
-    sort: (data) => sortByName(data),
-  },
-  {
-    label: 'Z - A',
-    sort: (data) => sortByName(data, false),
+    grids: ArchitectureGrids,
   },
 ];

@@ -76,49 +76,53 @@ export const ModalImage = ({
   };
 
   return (
-    <Wrapper {...props}>
-      <RowTop>
-        <ButtonClosePlaceholder />
-        <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
-        <ButtonModalClose onClick={onCloseClick} />
-      </RowTop>
-      <WrapperMiddle>
-        <ImageContainer
-          onTransitionEnd={() => setIsAnimated(false)} // Stop transitions after image has settled to prevent resizing transitions
-          $isAnimated={isAnimated}
-          $offset={index}
-        >
-          {currentPane}
-        </ImageContainer>
-      </WrapperMiddle>
-      <RowBottom>
-        {displayNextButtons && (
-          <ButtonNext
-            direction={'LEFT'}
-            onClick={() => changeImage(index - 1)}
-          />
-        )}
-        <WrapperCaption>
-          <TextCaption isWrapped={false}>
-            {getElementAt(srcArray, index).caption}
-          </TextCaption>
-        </WrapperCaption>
-        {displayNextButtons && (
-          <ButtonNext
-            direction={'RIGHT'}
-            onClick={() => changeImage(index + 1)}
-          />
-        )}
-      </RowBottom>
-    </Wrapper>
+    <Modal {...props}>
+      <Content>
+        <RowTop>
+          <ButtonClosePlaceholder />
+          <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
+          <ButtonModalClose onClick={onCloseClick} />
+        </RowTop>
+        <WrapperMiddle>
+          <ImageContainer
+            onTransitionEnd={() => setIsAnimated(false)} // Stop transitions after image has settled to prevent resizing transitions
+            $isAnimated={isAnimated}
+            $offset={index}
+          >
+            {currentPane}
+          </ImageContainer>
+        </WrapperMiddle>
+        <RowBottom>
+          {displayNextButtons && (
+            <ButtonNext
+              direction={'LEFT'}
+              onClick={() => changeImage(index - 1)}
+            />
+          )}
+          <WrapperCaption>
+            <TextCaption isWrapped={false}>
+              {getElementAt(srcArray, index).caption}
+            </TextCaption>
+          </WrapperCaption>
+          {displayNextButtons && (
+            <ButtonNext
+              direction={'RIGHT'}
+              onClick={() => changeImage(index + 1)}
+            />
+          )}
+        </RowBottom>
+      </Content>
+    </Modal>
   );
 };
 
-const Wrapper = styled(Modal)`
-  background-color: ${({ theme }) => theme.color.background};
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.color.background};
 `;
 
 const Row = styled.div`

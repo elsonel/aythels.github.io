@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
 import { HeaderTab } from '../../../inputs/HeaderTab';
 import { LinkFake } from '../../../inputs/LinkFake';
-import { Modal } from '../../../layout/Modal';
 import { HeaderTabsMobile } from '../HeaderTabsMobile';
 
 export interface HeaderTabData {

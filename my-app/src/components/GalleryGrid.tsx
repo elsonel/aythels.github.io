@@ -28,9 +28,8 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
   return (
     <GridStyled breakpoints={breakpoints} {...props}>
       {data.map((e, i) => (
-        <LinkFake href={e.to} key={i}>
+        <LinkFake href={e.to} key={e.src}>
           <ImageThumbnail
-            key={e.src}
             onClick={() => e.to && goTo(e.to)}
             subtitle={e.subtitle}
             title={e.title}
