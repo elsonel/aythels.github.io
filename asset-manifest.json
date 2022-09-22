@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.5233f632.css",
-    "main.js": "/static/js/main.d22f86d7.js",
+    "main.js": "/static/js/main.aba0e95d.js",
     "static/media/Corruption.png": "/static/media/Corruption.5fd5a10de658c0d32a79.png",
     "static/media/Storm.png": "/static/media/Storm.f583c059dd1f72cef49b.png",
     "static/media/2b.png": "/static/media/2b.bf27a0f47106eccb3f1e.png",
@@ -29,10 +29,10 @@
     "static/media/Basilisk_Tower.png": "/static/media/Basilisk_Tower.e68a934116d89e7898c0.png",
     "index.html": "/index.html",
     "main.5233f632.css.map": "/static/css/main.5233f632.css.map",
-    "main.d22f86d7.js.map": "/static/js/main.d22f86d7.js.map"
+    "main.aba0e95d.js.map": "/static/js/main.aba0e95d.js.map"
   },
   "entrypoints": [
     "static/css/main.5233f632.css",
-    "static/js/main.d22f86d7.js"
+    "static/js/main.aba0e95d.js"
   ]
 }
