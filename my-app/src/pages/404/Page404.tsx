@@ -22,11 +22,6 @@ export const Page404: React.FC<Page404Props> = ({
             email="elsonliangel@gmail.com"
           />
         </SafeNotchPadding>
-        <ErrorPanel
-          homeLink="/"
-          onHomeClick={() => goTo('/')}
-          email="elsonliangel@gmail.com"
-        />
       </Layout>
     </Page>
   );

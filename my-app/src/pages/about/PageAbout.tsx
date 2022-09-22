@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AboutPanel } from '../../UI/components/groups/AboutPanel';
-import { PageTitle } from '../../UI/components/atoms/PageTitle';
 import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';
 import { SafeNotchPadding } from '../../components/SafeNotchPadding';

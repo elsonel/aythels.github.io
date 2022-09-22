@@ -10,7 +10,6 @@ export interface GalleryHeaderMainProps extends GalleryHeaderBaseProps {}
 export const GalleryHeaderMain: React.FC<GalleryHeaderMainProps> = ({
   ...props
 }): React.ReactElement => {
-  //const isMobile = GreaterThanHook(0);
   const isTablet = GreaterThanHook(420);
   const isBrowser = GreaterThanHook(720);
 
