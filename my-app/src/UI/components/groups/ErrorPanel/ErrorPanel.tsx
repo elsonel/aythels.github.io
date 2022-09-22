@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { ThemeInterface } from '../../../utility/themes/Theme';
+import { PageTitle } from '../../atoms/PageTitle';
 import { ButtonReverseText } from '../../inputs/ButtonReverseText';
 import { LinkFake } from '../../inputs/LinkFake';
 import { Paragraph } from '../../text/Paragraph';
-import { TextTitle } from '../../text/TextTitle';
 
 export interface ErrorPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   homeLink: string;
@@ -23,10 +23,8 @@ export const ErrorPanel: React.FC<ErrorPanelProps> = ({
   return (
     <Wrapper {...props}>
       <TitleWrapper>
-        <TextTitle size="large" textAlign="center">
-          404
-        </TextTitle>
-        <Paragraph size="h4" textAlign="center" weight="bold2">
+        <Title breakpoints={[]}>404</Title>
+        <Paragraph size="h3" textAlign="center" weight="bold2">
           PAGE NOT FOUND
         </Paragraph>
       </TitleWrapper>
@@ -74,7 +72,14 @@ const Wrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  margin-bottom: -10px;
+  margin-bottom: -12px;
+`;
+
+const Title = styled(PageTitle)`
+  padding: 0px;
+  > * {
+    text-align: center;
+  }
 `;
 
 const WrapperButtonRow = styled.div`

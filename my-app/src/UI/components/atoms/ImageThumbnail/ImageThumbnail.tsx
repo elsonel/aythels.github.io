@@ -116,8 +116,6 @@ const ImageStyled = styled(Image)<{
   $isHovered: boolean;
   $isLoaded: boolean;
 }>`
-  display: block;
-
   width: 100%;
   min-height: 100%;
 

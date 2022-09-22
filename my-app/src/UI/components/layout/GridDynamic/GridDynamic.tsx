@@ -1,11 +1,8 @@
-import React, { ReactElement } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { distributeIntoChunks } from '../../../utility/scripts/Array';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
-import { v4 as uuidv4 } from 'uuid';
 import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 
 export interface GridDynamicProps extends GridProps {

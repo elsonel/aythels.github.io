@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
 import { Fact } from '../Fact';
+import { PageTitle, PageTitleBreakpoint } from '../PageTitle';
 import { ProjectSectionFactList } from '../ProjectSectionFactList';
 import { ProjectSectionText } from '../ProjectSectionText';
 
@@ -12,25 +13,25 @@ export interface Fact {
 
 export interface GalleryProjectPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  titleSize?: 'small' | 'medium' | 'large';
   title: string;
   subtitle: string;
   body: string[];
   facts: Fact[];
+  titleBreakpoints?: PageTitleBreakpoint[];
 }
 
 export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
-  titleSize = 'large',
   title,
   subtitle,
   body,
   facts,
+  titleBreakpoints,
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
       <div>
-        <Title $size={titleSize}>{title.toUpperCase()}</Title>
+        <Title breakpoints={titleBreakpoints}>{title.toUpperCase()}</Title>
         <Subtitle>{subtitle.toUpperCase()}</Subtitle>
       </div>
       {body.map((e, i) => (
@@ -63,38 +64,8 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const TitleSmall = css`
-  font-size: 2.2rem;
-  margin-top: -6px;
-`;
-
-const TitleMedium = css`
-  font-size: 3rem;
-  margin-top: -6px;
-`;
-
-const TitleLarge = css`
-  font-size: 4rem;
-  margin-top: -8px;
-`;
-
-const Title = styled(Paragraph)<{ $size: 'small' | 'medium' | 'large' }>`
-  line-height: 1;
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
-  margin-bottom: 3px;
-  margin-left: -2px;
-  transition: none;
-
-  ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return TitleSmall;
-      case 'medium':
-        return TitleMedium;
-      case 'large':
-        return TitleLarge;
-    }
-  }};
+const Title = styled(PageTitle)`
+  padding: 0px;
 `;
 
 const Subtitle = styled(Paragraph)`

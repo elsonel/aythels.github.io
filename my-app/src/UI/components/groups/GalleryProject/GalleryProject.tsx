@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Theme } from '../../../utility/themes/Theme';
 import { Fact, GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
+import { PageTitleBreakpoint } from '../../atoms/PageTitle';
 import { StickyEndsContainer } from '../../layout/StickyEndsContainer';
 import { TwoColumn } from '../../layout/TwoColumn';
 
@@ -15,6 +16,29 @@ export interface GalleryProjectProps
   children?: React.ReactNode[];
 }
 
+const TITLE_BREAKPOINTS: PageTitleBreakpoint[] = [
+  {
+    minWidth: 0,
+    size: 'small',
+  },
+  {
+    minWidth: 400,
+    size: 'medium',
+  },
+  {
+    minWidth: 600,
+    size: 'large',
+  },
+  {
+    minWidth: 1100,
+    size: 'medium',
+  },
+  {
+    minWidth: 1350,
+    size: 'large',
+  },
+];
+
 const PADDING = 20;
 
 export const GalleryProject: React.FC<GalleryProjectProps> = ({
@@ -25,13 +49,6 @@ export const GalleryProject: React.FC<GalleryProjectProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  let titleSize: 'small' | 'medium' | 'large' = 'large';
-
-  LessThanHook(1350) && (titleSize = 'medium');
-  LessThanHook(1100) && (titleSize = 'large');
-  LessThanHook(600) && (titleSize = 'medium');
-  LessThanHook(400) && (titleSize = 'small');
-
   return (
     <Wrapper {...props}>
       <Content leftRatio={1} rightRatio={2} breakIfLessThan={1100}>
@@ -40,7 +57,7 @@ export const GalleryProject: React.FC<GalleryProjectProps> = ({
           bottomMargin={20}
         >
           <GalleryProjectPanel
-            titleSize={titleSize}
+            titleBreakpoints={TITLE_BREAKPOINTS}
             title={title}
             subtitle={subtitle}
             body={body}

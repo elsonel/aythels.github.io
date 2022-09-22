@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
+import { DEFAULT_TITLE_BREAKPOINTS } from '../PageTitle';
 import {
   GalleryProjectPanel,
   GalleryProjectPanelProps,
@@ -34,6 +35,7 @@ export default {
         value: <LinkExternalFactText children="Link" link={'/'} />,
       },
     ],
+    titleBreakpoints: DEFAULT_TITLE_BREAKPOINTS,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;

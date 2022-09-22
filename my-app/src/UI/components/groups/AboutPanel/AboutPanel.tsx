@@ -8,6 +8,7 @@ import { GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { FooterIconRow } from '../Footer/FooterIconRow';
 import { AboutSocialRow } from '../../atoms/AboutSocialRow';
 import { TextTitle } from '../../text/TextTitle';
+import { PageTitle } from '../../atoms/PageTitle';
 
 export interface AboutPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -24,11 +25,7 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
       >
         <Image src={Theme.image.profile} />
         <TextWrapper>
-          <TitleWrapper>
-            <TextTitle size="large">DEVELOPER</TextTitle>
-            <TextTitle size="large">DESIGNER</TextTitle>
-            <TextTitle size="large">ARTIST</TextTitle>
-          </TitleWrapper>
+          <Title>DEVELOPER DESIGNER ARTIST</Title>
           <ProjectSectionText>
             {[
               `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla ultricies ultrices. Fusce porttitor, arcu a viverra euismod, sem massa faucibus felis, nec auctor dui orci id lectus.`,
@@ -64,8 +61,13 @@ const TextWrapper = styled.div`
   width: 100%;
 `;
 
-const TitleWrapper = styled.div`
-  margin-bottom: 16px;
+const Title = styled(PageTitle)`
+  padding: 0px;
+  > * {
+    word-spacing: 100vw;
+  }
+
+  margin-bottom: 12px;
 `;
 
 const Image = styled(ImageThumbnail)`

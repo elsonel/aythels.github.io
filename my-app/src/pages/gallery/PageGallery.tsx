@@ -1,9 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Gallery } from '../../components/Gallery';
 import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';
 import { SafeNotchPadding } from '../../components/SafeNotchPadding';
 import { PageTitle } from '../../UI/components/atoms/PageTitle';
+import { GreetingPanel } from '../../UI/components/groups/GreetingPanel';
 import { SortsData, TabsData } from './data';
 
 export interface PageGalleryProps
@@ -16,7 +18,8 @@ export const PageGallery: React.FC<PageGalleryProps> = ({
     <Page title="Gallery" {...props}>
       <Layout>
         <SafeNotchPadding>
-          <PageTitle>GALLERY</PageTitle>
+          <GreetingPanel />
+          <PageTitle isAlignedTop={false}>GALLERY</PageTitle>
           <Gallery tabsData={TabsData} sortsData={SortsData} />
         </SafeNotchPadding>
       </Layout>
