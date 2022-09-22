@@ -30,14 +30,16 @@ export const GreetingPanel: React.FC<GreetingPanelProps> = ({
 const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 66vh;
-  padding: 20px;
+  padding: 80px;
+  padding-left: calc(env(safe-area-inset-left) + 20px);
+  padding-right: calc(env(safe-area-inset-right) + 20px);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   border-bottom: 1px solid ${({ theme }) => theme.color.outline};
+  margin-bottom: 8px;
 `;
 
 const TextWrapper = styled.div`

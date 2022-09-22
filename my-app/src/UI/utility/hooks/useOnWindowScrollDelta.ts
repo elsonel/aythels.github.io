@@ -11,7 +11,6 @@ export default function useOnWindowScrollDelta(
     const handleScroll = (e: Event) => {
       const newValue = window.pageYOffset;
       const delta = oldValue - newValue;
-
       if (delta === 0) return;
 
       callback && callback(delta);

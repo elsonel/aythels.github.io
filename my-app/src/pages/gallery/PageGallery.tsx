@@ -17,8 +17,8 @@ export const PageGallery: React.FC<PageGalleryProps> = ({
   return (
     <Page title="Gallery" {...props}>
       <Layout>
+        <GreetingPanel />
         <SafeNotchPadding>
-          <GreetingPanel />
           <PageTitle isAlignedTop={false}>GALLERY</PageTitle>
           <Gallery tabsData={TabsData} sortsData={SortsData} />
         </SafeNotchPadding>
