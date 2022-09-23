@@ -4,7 +4,6 @@ import { Theme } from '../themes/Theme';
 export const GlobalScrollLock = createGlobalStyle`
   html, body {
     overflow: hidden;
-    touch-action: none;
   } 
 `;
 

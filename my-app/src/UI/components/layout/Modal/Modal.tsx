@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GlobalScrollLock } from '../../../utility/styles/GlobalStyles';
 
@@ -7,38 +7,49 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
+const DELAY = 300;
+
 export const Modal: React.FC<ModalProps> = ({
   isVisible = true,
   children,
   ...props
 }): React.ReactElement => {
+  const [isBackgroundHidden, setIsBackgroundHidden] = useState(isVisible);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout | undefined;
+    if (isVisible)
+      timeout = setTimeout(() => setIsBackgroundHidden(true), DELAY);
+    else setIsBackgroundHidden(false);
+    return () => clearTimeout(timeout);
+  }, [isVisible]);
+
   return (
     <Wrapper $isVisible={isVisible} {...props}>
-      {isVisible && <GlobalScrollLock />}
+      {isBackgroundHidden && <GlobalScrollLock />}
       <Content>{children}</Content>
     </Wrapper>
   );
 };
 
 // https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/
-// A padding of 150px will account for IOS Safari's navigation bar height
-const Wrapper = styled.div<{ $isVisible: boolean }>`
-  overflow: hidden;
-  z-index: ${({ theme }) => theme.layer.modal};
-  position: fixed;
+// Can also set 'visibility: hidden' on body to hide background
 
-  top: -150px;
-  left: -150px;
+const Wrapper = styled.div<{ $isVisible: boolean }>`
+  z-index: ${({ theme }) => theme.layer.modal};
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  padding: 150px;
 
   transform: ${({ $isVisible }) => ($isVisible ? 'scale(1)' : 'scale(1.05)')};
   background-color: ${({ theme }) => theme.color.background};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => `${theme.speed.slow}`};
   transition-property: opacity, transform, height;
 `;
 

@@ -18,37 +18,43 @@ export const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div {...props}>
-      <HeaderStyled>
-        <HeaderLogo href="/" onClick={() => goTo('/')} />
-        <HeaderTabs
-          tabs={[
-            {
-              label: 'GALLERY',
-              href: '/gallery',
-              onClick: () => goTo('/gallery'),
-            },
-            {
-              label: 'ABOUT',
-              href: '/about',
-              onClick: () => goTo('/about'),
-            },
-          ]}
-        />
-      </HeaderStyled>
+      <Sticky>
+        <Header>
+          <HeaderLogo href="/" onClick={() => goTo('/')} />
+          <HeaderTabs
+            tabs={[
+              {
+                label: 'GALLERY',
+                href: '/gallery',
+                onClick: () => goTo('/gallery'),
+              },
+              {
+                label: 'ABOUT',
+                href: '/about',
+                onClick: () => goTo('/about'),
+              },
+            ]}
+          />
+        </Header>
+      </Sticky>
+
       <Body>{children}</Body>
       <Footer />
     </div>
   );
 };
 
-const HeaderStyled = styled(Header)`
+// Flickering issue
+// https://github.com/nolimits4web/swiper/issues/3527
+const Sticky = styled.div`
   z-index: ${({ theme }) => theme.layer.header};
   position: sticky;
+  width: 100%;
   top: 0px;
 `;
 
 const Body = styled.div`
-  box-sizing: border-box;
+  z-index: 0;
   width: 100%;
   min-height: ${({ theme }) =>
     `calc(100vh - ${theme.size.headerHeight}px - ${theme.size.footerHeight}px)`};
