@@ -4,6 +4,7 @@ import { LinkFake } from '../UI/components/inputs/LinkFake';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import useGoTo from '../utility/useGoTo';
 import { IGallerySortable } from '../utility/sort';
+import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 
 export interface IGalleryEntry extends IGallerySortable {
   date: Date;
@@ -29,14 +30,14 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
     <GridStyled breakpoints={breakpoints} {...props}>
       {data.map((e, i) => (
         <LinkFake href={e.to} key={e.src}>
-          <ImageThumbnail
+          <ImageThumbnailAspect
             onClick={() => e.to && goTo(e.to)}
             subtitle={e.subtitle}
             title={e.title}
             src={e.src}
-            isTitleVisible={true}
-            imageWidth={1}
-            imageHeight={1}
+            isTextAlwaysVisible={true}
+            isFillingParent={true}
+            aspect={1}
           />
         </LinkFake>
       ))}

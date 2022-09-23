@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ImageThumbnailFixed } from '../UI/components/atoms/ImageThumbnailFixed';
+import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { ModalImage } from '../UI/components/groups/ModalImage';
 import { GridDynamic } from '../UI/components/layout/GridDynamic';
+import { getAspect } from '../UI/utility/scripts/Aspect';
 import { GalleryGridProps, IGalleryEntry } from './GalleryGrid';
 
 export interface IGalleryEntryArt extends IGalleryEntry {
@@ -26,7 +27,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
     <>
       <GridStyled {...props}>
         {data.map((e, i) => (
-          <ImageThumbnailFixed
+          <ImageThumbnailAspect
             key={e.src}
             onClick={() => {
               setModalOffset(i);
@@ -35,8 +36,8 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
             subtitle={e.subtitle}
             title={e.title}
             src={e.src}
-            imageWidth={e.width}
-            imageHeight={e.height}
+            isFillingParent={true}
+            aspect={getAspect(e.width, e.height)}
           />
         ))}
       </GridStyled>

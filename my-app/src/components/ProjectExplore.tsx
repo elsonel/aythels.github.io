@@ -1,4 +1,5 @@
 import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
+import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { Explore } from '../UI/components/groups/Explore';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import useGoTo from '../utility/useGoTo';
@@ -27,13 +28,12 @@ export const ProjectExplore: React.FC<ProjectExploreProps> = ({
     <Explore title="EXPLORE" {...props}>
       {exploreData.map((e, i) => (
         <LinkFake href={e.to} key={i}>
-          <ImageThumbnail
+          <ImageThumbnailAspect
             src={e.src}
             title={e.title}
             subtitle={e.subtitle}
-            imageWidth={1}
-            imageHeight={1}
-            isTitleVisible={true}
+            aspect={1}
+            isTextAlwaysVisible={true}
             onClick={() => e.to && goTo(e.to)}
           />
         </LinkFake>

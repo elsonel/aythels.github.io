@@ -4,10 +4,7 @@ import { Theme } from '../../../utility/themes/Theme';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { TwoColumn } from '../../layout/TwoColumn';
 import { ProjectSectionText } from '../../atoms/ProjectSectionText';
-import { GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
-import { FooterIconRow } from '../Footer/FooterIconRow';
 import { AboutSocialRow } from '../../atoms/AboutSocialRow';
-import { TextTitle } from '../../text/TextTitle';
 import { PageTitle } from '../../atoms/PageTitle';
 
 export interface AboutPanelProps extends React.HTMLAttributes<HTMLDivElement> {}

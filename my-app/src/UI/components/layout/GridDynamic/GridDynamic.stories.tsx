@@ -35,63 +35,63 @@ Many.args = {
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="0"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={1}
       src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="1"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={2}
       src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="2"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={3}
       src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="3"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={4}
       src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="4"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={5}
       src={Theme.image.examplePortrait}
       title="SOARING SKIES"
       subtitle="5"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={6}
       src={Theme.image.exampleSquare}
       title="SOARING SKIES"
       subtitle="6"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={7}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="7"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={8}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="8"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
   ],
 };
@@ -105,70 +105,70 @@ RenderOrderTest.args = {
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="0"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={1}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="1"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={2}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="2"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={3}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="3"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={4}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="4"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={5}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="5"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={6}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="6"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={7}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="7"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={8}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="8"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key={9}
       src={Theme.image.exampleLandscape}
       title="SOARING SKIES"
       subtitle="9"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
   ],
 };

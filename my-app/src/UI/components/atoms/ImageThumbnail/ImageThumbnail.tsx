@@ -22,19 +22,11 @@ export interface ImageThumbnailProps
   /**
    * If the title is always visible or only visible on hover
    */
-  isTitleVisible?: boolean;
+  isTextAlwaysVisible?: boolean;
   /**
-   * Image width
+   * isFilingContainer
    */
-  imageWidth?: number;
-  /**
-   * Image height
-   */
-  imageHeight?: number;
-  /**
-   * Maximum container size
-   */
-  containerSize?: number | string;
+  isFillingParent?: boolean;
   /**
    * Action onclick
    */
@@ -45,11 +37,9 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
   src,
   title,
   subtitle,
-  isTitleVisible = false,
-  imageWidth,
-  imageHeight,
-  containerSize = '100%',
-  onClick: onClick,
+  isTextAlwaysVisible,
+  isFillingParent = true,
+  onClick,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
@@ -57,16 +47,13 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
 
   return (
     <Wrapper
-      $imageWidth={imageWidth}
-      $imageHeight={imageHeight}
-      $containerSize={containerSize}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      $isFillingParent={isFillingParent}
       {...props}
     >
-      <Content
-        onClick={onClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <Content>
         <ImageStyled
           onLoad={() => setIsLoaded(true)}
           $isHovered={isHovered}
@@ -74,44 +61,32 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
           src={src}
           alt={title ? title : 'unnamed'}
         />
-        {(title || subtitle) && (
-          <ImageTitleStyled
-            $isHovered={isTitleVisible ? true : isHovered}
-            $isLoaded={isLoaded}
-            title={title}
-            subtitle={subtitle}
-            color={Theme.color.background}
-          />
-        )}
+        <TitlePanel
+          $isHovered={isTextAlwaysVisible ? true : isHovered}
+          $isLoaded={(!!title || !!subtitle) && isLoaded}
+          title={title}
+          subtitle={subtitle}
+          color={Theme.color.background}
+        />
         <Border />
       </Content>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div<{
-  $imageWidth?: number;
-  $imageHeight?: number;
-  $containerSize: number | string;
-}>`
-  width: ${({ $containerSize }) =>
-    typeof $containerSize === 'number'
-      ? `${$containerSize}px`
-      : $containerSize};
-
-  aspect-ratio: ${({ $imageWidth, $imageHeight }) =>
-    $imageWidth && $imageHeight ? $imageWidth / $imageHeight : `auto`};
+const Wrapper = styled.div<{ $isFillingParent: boolean }>`
+  width: ${({ $isFillingParent }) => ($isFillingParent ? '100%' : '300px')};
 `;
 
 const Content = styled.div`
+  overflow: hidden;
   position: relative;
   width: 100%;
   height: 100%;
-
-  overflow: hidden;
   cursor: pointer;
 `;
 
+// Have to use min-height instead of height because of rendering bug
 const ImageStyled = styled(Image)<{
   $isHovered: boolean;
   $isLoaded: boolean;
@@ -135,32 +110,28 @@ const ImageStyled = styled(Image)<{
     `};
 `;
 
-const ImageTitleStyled = styled(ImageTitle)<{
+const TitlePanel = styled(ImageTitle)<{
   $isHovered: boolean;
   $isLoaded: boolean;
 }>`
   box-sizing: border-box;
   position: absolute;
-
   bottom: 0px;
   left: 0px;
   width: 100%;
   padding: 20px;
   padding-top: 60px;
 
-  ${({ $isHovered, theme }) => `
+  ${({ $isHovered, $isLoaded, theme }) => `
     transition: ${theme.speed.slow};
     transition-delay: ${$isHovered ? 0 : 400}ms;
-    opacity: ${$isHovered ? 1 : 0};
+    opacity: ${$isHovered && $isLoaded ? 1 : 0};
   `};
-
-  ${({ $isLoaded }) => !$isLoaded && 'opacity: 0;'}
-
-  background: none;
-  background: ${({ theme }) => `${theme.color.greyBackdropUp}`};
 
   user-select: none;
   pointer-events: none;
+  background: none;
+  background: ${({ theme }) => `${theme.color.greyBackdropUp}`};
 `;
 
 const Border = styled.div`

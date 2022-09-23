@@ -13,6 +13,7 @@ import { Grid } from '../../../UI/components/layout/Grid';
 import { Page } from '../../../components/Page';
 import { Layout } from '../../../components/Layout';
 import { Theme } from '../../../UI/utility/themes/Theme';
+import { ImageThumbnailAspect } from '../../../UI/components/atoms/ImageThumbnailAspect';
 
 export interface IndexProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -72,25 +73,21 @@ export const Index: React.FC<IndexProps> = ({
                 },
               ]}
             >
-              <ImageThumbnail
+              <ImageThumbnailAspect
                 src={Theme.image.exampleSquare}
-                imageWidth={1}
-                imageHeight={1}
+                aspect={1}
               />
-              <ImageThumbnail
+              <ImageThumbnailAspect
                 src={Theme.image.exampleSquare}
-                imageWidth={1}
-                imageHeight={1}
+                aspect={1}
               />
-              <ImageThumbnail
+              <ImageThumbnailAspect
                 src={Theme.image.exampleSquare}
-                imageWidth={1}
-                imageHeight={1}
+                aspect={1}
               />
-              <ImageThumbnail
+              <ImageThumbnailAspect
                 src={Theme.image.exampleSquare}
-                imageWidth={1}
-                imageHeight={1}
+                aspect={1}
               />
             </Grid>
           </ProjectSection>
@@ -130,13 +127,12 @@ export const Index: React.FC<IndexProps> = ({
         </ProjectLayout>
         <Explore title="EXPLORE">
           {[
-            <ImageThumbnail
+            <ImageThumbnailAspect
               src={Theme.image.exampleSquare}
               title={'PORTFOL.IO'}
               subtitle={'DESIGN LEARNING PLATFORM'}
-              imageWidth={1}
-              imageHeight={1}
-              isTitleVisible={true}
+              aspect={1}
+              isTextAlwaysVisible={true}
             />,
           ]}
         </Explore>

@@ -14,31 +14,31 @@ export default {
         key="1"
         src={Theme.image.exampleSquare}
         title="1"
-        isTitleVisible={true}
+        isTextAlwaysVisible={true}
       />,
       <ImageThumbnail
         key="2"
         src={Theme.image.exampleSquare}
         title="2"
-        isTitleVisible={true}
+        isTextAlwaysVisible={true}
       />,
       <ImageThumbnail
         key="3"
         src={Theme.image.exampleSquare}
         title="3"
-        isTitleVisible={true}
+        isTextAlwaysVisible={true}
       />,
       <ImageThumbnail
         key="4"
         src={Theme.image.exampleSquare}
         title="4"
-        isTitleVisible={true}
+        isTextAlwaysVisible={true}
       />,
       <ImageThumbnail
         key="5"
         src={Theme.image.exampleSquare}
         title="5"
-        isTitleVisible={true}
+        isTextAlwaysVisible={true}
       />,
     ],
   },
@@ -57,25 +57,25 @@ Exact.args = {
       key="1"
       src={Theme.image.exampleSquare}
       title="1"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key="2"
       src={Theme.image.exampleSquare}
       title="2"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key="3"
       src={Theme.image.exampleSquare}
       title="3"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
     <ImageThumbnail
       key="4"
       src={Theme.image.exampleSquare}
       title="4"
-      isTitleVisible={true}
+      isTextAlwaysVisible={true}
     />,
   ],
 };

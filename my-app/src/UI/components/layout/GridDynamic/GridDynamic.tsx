@@ -87,14 +87,12 @@ const ColumnWrapper = styled.div`
 `;
 
 const ItemWrapper = styled.div<{ $isVisible: boolean; $index: number }>`
+  width: 100%;
+
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-
   transition-duration: ${({ theme }) => theme.speed.slow};
   transition-timing-function: ease-out;
   transition-property: opacity;
   transition-delay: ${({ $index }) => $index * 60}ms;
-
-  width: 100%;
-  height: auto;
 `;

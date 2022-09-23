@@ -9,10 +9,8 @@ export default {
     src: Theme.image.exampleSquare,
     title: 'SOARING SKIES',
     subtitle: '2020',
-    isTitleVisible: false,
-    containerSize: 300,
-    imageWidth: 100,
-    imageHeight: 100,
+    isTextAlwaysVisible: false,
+    isFillingParent: false,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -21,31 +19,30 @@ const Template: Story<ImageThumbnailProps> = (args) => (
   <ImageThumbnail {...args} />
 );
 
-export const Basic = Template.bind({});
+export const Square = Template.bind({});
 
-export const VisibleTitle = Template.bind({});
-VisibleTitle.args = {
-  ...VisibleTitle.args,
-  isTitleVisible: true,
+export const Portrait = Template.bind({});
+Portrait.args = {
+  ...Portrait.args,
+  src: Theme.image.examplePortrait,
+};
+
+export const Landscape = Template.bind({});
+Landscape.args = {
+  ...Landscape.args,
+  src: Theme.image.exampleLandscape,
+};
+
+export const AlwaysVisibleText = Template.bind({});
+AlwaysVisibleText.args = {
+  ...AlwaysVisibleText.args,
+  isTextAlwaysVisible: true,
 };
 
 export const LongText = Template.bind({});
 LongText.args = {
   ...LongText.args,
-  isTitleVisible: true,
+  isTextAlwaysVisible: true,
   title: 'SOARING SKIESSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
   subtitle: '202000000000000000000000000000000000000',
-};
-
-export const DifferentContainerSize = Template.bind({});
-DifferentContainerSize.args = {
-  ...DifferentContainerSize.args,
-  containerSize: 400,
-};
-
-export const DifferentAspect = Template.bind({});
-DifferentAspect.args = {
-  ...DifferentAspect.args,
-  imageWidth: 100,
-  imageHeight: 200,
 };

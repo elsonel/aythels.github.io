@@ -115,7 +115,7 @@ const ItemWrapper = styled.div<{
   transition-timing-function: ease-out;
   transition-property: opacity;
   transition-delay: ${({ $index }) => $index * 60}ms;
-
   ${({ $isAnimated }) => !$isAnimated && `transition-delay: none;`}
+
   ${({ $queries }) => $queries}
 `;
