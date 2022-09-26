@@ -35,7 +35,10 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
             }}
             subtitle={e.subtitle}
             title={e.title}
+            alt={e.title}
             src={e.src}
+            srcSet={e.src}
+            sizes={e.sizes}
             isFillingParent={true}
             aspect={getAspect(e.width, e.height)}
           />

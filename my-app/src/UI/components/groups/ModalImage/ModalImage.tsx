@@ -10,37 +10,22 @@ import { ButtonModalClose } from '../../inputs/ButtonModalClose';
 import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 
-const getAlt = (imageData: ImageProps) => {
-  if (imageData.title) return imageData.title;
-  else if (imageData.caption) return imageData.caption;
-  return 'img';
-};
-
-const createPane = (srcArray: any[], index: number) => {
+const createPane = (srcArray: ImageProps[], index: number) => {
+  const left: ImageProps = getElementAt(srcArray, index - 1);
+  const middle: ImageProps = getElementAt(srcArray, index);
+  const right: ImageProps = getElementAt(srcArray, index + 1);
   return [
-    <ImageStyled
-      key={getElementAt(srcArray, index - 1).src}
-      $index={index - 1}
-      src={getElementAt(srcArray, index - 1).src}
-      alt={getAlt(getElementAt(srcArray, index - 1))}
-    />,
-    <ImageStyled
-      key={getElementAt(srcArray, index).src}
-      $index={index}
-      src={getElementAt(srcArray, index).src}
-      alt={getAlt(getElementAt(srcArray, index))}
-    />,
-    <ImageStyled
-      key={getElementAt(srcArray, index + 1).src}
-      $index={index + 1}
-      src={getElementAt(srcArray, index + 1).src}
-      alt={getAlt(getElementAt(srcArray, index + 1))}
-    />,
+    <ImageStyled key={left.src} $index={index - 1} {...left} />,
+    <ImageStyled key={middle.src} $index={index} {...middle} />,
+    <ImageStyled key={right.src} $index={index + 1} {...right} />,
   ];
 };
 
 export interface ImageProps {
   src: string;
+  alt?: string;
+  srcSet?: string;
+  sizes?: string;
   title?: string;
   caption?: string;
 }
@@ -58,6 +43,8 @@ export const ModalImage = ({
   ...props
 }: ModalImageProps) => {
   if (srcArray.length === 0) throw new Error('Need at least one image!');
+
+  console.log(srcArray);
 
   const displayNextButtons = srcArray.length <= 1 ? false : true;
   const [index, setIndex] = useState(indexOffset);

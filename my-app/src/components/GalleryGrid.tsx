@@ -3,7 +3,7 @@ import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import useGoTo from '../utility/useGoTo';
-import { IGallerySortable } from '../utility/sort';
+import { IGallerySortable } from '../utility/Sort';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 
 export interface IGalleryEntry extends IGallerySortable {
@@ -11,6 +11,8 @@ export interface IGalleryEntry extends IGallerySortable {
   title: string;
   subtitle: string;
   src: string;
+  srcSet?: string;
+  sizes?: string;
   to?: string;
 }
 
@@ -34,7 +36,10 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
             onClick={() => e.to && goTo(e.to)}
             subtitle={e.subtitle}
             title={e.title}
+            alt={e.title}
             src={e.src}
+            srcSet={e.src}
+            sizes={e.sizes}
             isTextAlwaysVisible={true}
             isFillingParent={true}
             aspect={1}

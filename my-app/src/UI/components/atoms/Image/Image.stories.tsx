@@ -8,6 +8,8 @@ export default {
   args: {
     src: Theme.image.exampleLandscape,
     alt: 'img',
+    srcSet: undefined,
+    sizes: undefined,
   },
 } as Meta;
 

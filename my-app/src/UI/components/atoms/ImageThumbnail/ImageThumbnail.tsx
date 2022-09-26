@@ -1,16 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Image } from '../Image/Image';
+import { Image, ImageProps } from '../Image/Image';
 import { useState } from 'react';
 import { Theme } from '../../../utility/themes/Theme';
 import { ImageTitle } from '../ImageTitle';
 
-export interface ImageThumbnailProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * The image source
-   */
-  src: string;
+export interface ImageThumbnailProps extends ImageProps {
   /**
    * The image title
    */
@@ -34,7 +29,6 @@ export interface ImageThumbnailProps
 }
 
 export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
-  src,
   title,
   subtitle,
   isTextAlwaysVisible,
@@ -58,8 +52,7 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
           onLoad={() => setIsLoaded(true)}
           $isHovered={isHovered}
           $isLoaded={isLoaded}
-          src={src}
-          alt={title ? title : 'unnamed'}
+          {...props}
         />
         <TitlePanel
           $isHovered={isTextAlwaysVisible ? true : isHovered}
