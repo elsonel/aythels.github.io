@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Image } from '../../atoms/Image';
+import { Image, ImageProps } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
 import { LessThan } from '../../../utility/styles/ResponsiveCSS';
 import { useState } from 'react';
@@ -21,17 +21,13 @@ const createPane = (srcArray: ImageProps[], index: number) => {
   ];
 };
 
-export interface ImageProps {
-  src: string;
-  alt?: string;
-  srcSet?: string;
-  sizes?: string;
+export interface ModalImageEntry extends ImageProps {
   title?: string;
   caption?: string;
 }
 
 export interface ModalImageProps extends ModalProps {
-  srcArray: ImageProps[];
+  srcArray: ModalImageEntry[];
   indexOffset?: number;
   onCloseClick?: () => void;
 }
@@ -43,8 +39,6 @@ export const ModalImage = ({
   ...props
 }: ModalImageProps) => {
   if (srcArray.length === 0) throw new Error('Need at least one image!');
-
-  console.log(srcArray);
 
   const displayNextButtons = srcArray.length <= 1 ? false : true;
   const [index, setIndex] = useState(indexOffset);

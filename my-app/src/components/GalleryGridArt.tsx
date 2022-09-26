@@ -37,7 +37,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
             title={e.title}
             alt={e.title}
             src={e.src}
-            srcSet={e.src}
+            srcSet={e.srcSet}
             sizes={e.sizes}
             isFillingParent={true}
             aspect={getAspect(e.width, e.height)}
@@ -48,7 +48,15 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
         onCloseClick={() => setIsModalOpen(false)}
         indexOffset={modalOffset}
         isVisible={isModalOpen}
-        srcArray={data}
+        srcArray={data.map((e) => {
+          return {
+            src: e.src,
+            alt: e.title,
+            srcSet: e.srcSet,
+            title: e.title,
+            caption: e.caption,
+          };
+        })} /* HAVE TO CAST THIS */
       />
     </>
   );
