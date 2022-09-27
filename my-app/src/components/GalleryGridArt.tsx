@@ -52,8 +52,8 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
         isVisible={isModalOpen}
         srcArray={data.map((e) => {
           return {
-            src: e.src,
             alt: e.title,
+            src: e.src,
             srcSet: e.srcSet,
             title: e.title,
             caption: e.caption,

@@ -23,3 +23,13 @@ export const UIUXImages = importAll(
 export const ArchitectureImages = importAll(
   require.context('../assets/architecture-assets', false, /\.(png|jpe?g|svg)$/)
 );
+
+//
+
+export const KineticBoardwalkImages = importAll(
+  require.context(
+    '../assets/kineticboardwalk-assets',
+    false,
+    /\.(png|jpe?g|svg)$/
+  )
+);

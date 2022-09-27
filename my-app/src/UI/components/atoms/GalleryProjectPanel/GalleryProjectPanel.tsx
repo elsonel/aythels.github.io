@@ -31,8 +31,8 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
   return (
     <Wrapper {...props}>
       <div>
-        <Title breakpoints={titleBreakpoints}>{title.toUpperCase()}</Title>
-        <Subtitle>{subtitle.toUpperCase()}</Subtitle>
+        <Title breakpoints={titleBreakpoints}>{title}</Title>
+        <Subtitle>{subtitle}</Subtitle>
       </div>
       {body.map((e, i) => (
         <ProjectSectionText key={i}>{e}</ProjectSectionText>

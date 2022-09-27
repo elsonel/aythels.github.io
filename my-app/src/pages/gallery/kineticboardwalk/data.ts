@@ -1,16 +1,4 @@
-import img_0 from '../../../assets/kineticboardwalk/0.png';
-import img_1a from '../../../assets/kineticboardwalk/1a.png';
-import img_1b from '../../../assets/kineticboardwalk/1b.png';
-import img_1c from '../../../assets/kineticboardwalk/1c.png';
-import img_1d from '../../../assets/kineticboardwalk/1d.png';
-import img_1e from '../../../assets/kineticboardwalk/1e.png';
-import img_1f from '../../../assets/kineticboardwalk/1f.png';
-import img_2a from '../../../assets/kineticboardwalk/2a.png';
-import img_2b from '../../../assets/kineticboardwalk/2b.png';
-import img_2c from '../../../assets/kineticboardwalk/2c.png';
-import img_2d from '../../../assets/kineticboardwalk/2d.png';
-import img_2e from '../../../assets/kineticboardwalk/2e.png';
-import img_2f from '../../../assets/kineticboardwalk/2f.png';
+import { KineticBoardwalkImages } from 'utility/ImportImages';
 
 import {
   IImage,
@@ -20,7 +8,7 @@ import {
 import { GridBreakpoint } from '../../../UI/components/layout/Grid';
 
 export const PanelData: IPanelData = {
-  title: 'Kinetic Boardwalk',
+  title: 'KINETIC BOARDWALK',
   subtitle: 'Drifting Landscapes',
   body: [
     'The Kinetic Boardwalk is a programmable system of inflating tiles spanning the coast of Venice Beach. This project addresses the California flood crisis in both an infrastructural and public-friendly manner; a series of embedded inflatables create a variety of built environments including a  deployable floodwall in case of high tides. Each form the boardwalk takes provides a different function and user experience. The Kinetic Boardwalk is a reactive system that responds to an environmental concern in a more adaptable way.',
@@ -75,63 +63,94 @@ const BREAKPOINTS_3: GridBreakpoint[] = [
   },
 ];
 
+/* =============================================================================
+ * IMAGES
+ * =============================================================================
+ */
+
+function getSrcSet(name: string) {
+  return `
+    ${KineticBoardwalkImages[`${name}320.jpg`]} 320w,
+    ${KineticBoardwalkImages[`${name}640.jpg`]} 640w,
+    ${KineticBoardwalkImages[`${name}960.jpg`]} 960w,
+    ${KineticBoardwalkImages[`${name}1280.jpg`]} 1280w,
+    ${KineticBoardwalkImages[`${name}1600.jpg`]} 1600w,
+    ${KineticBoardwalkImages[`${name}1920.jpg`]} 1920w,
+    ${KineticBoardwalkImages[`${name}2240.jpg`]} 2240w,
+    ${KineticBoardwalkImages[`${name}2560.jpg`]} 2560w,
+  `;
+}
+
 const IMAGES_1: IImage[] = [
   {
-    src: img_0,
+    src: KineticBoardwalkImages['1a2560.jpg'],
+    srcSet: getSrcSet('1a'),
     caption: undefined,
   },
 ];
 
 const IMAGES_2: IImage[] = [
   {
-    src: img_1a,
+    src: KineticBoardwalkImages['2a2560.jpg'],
+    srcSet: getSrcSet('2a'),
     caption: undefined,
   },
   {
-    src: img_1b,
+    src: KineticBoardwalkImages['2b2560.jpg'],
+    srcSet: getSrcSet('2b'),
     caption: undefined,
   },
   {
-    src: img_1c,
+    src: KineticBoardwalkImages['2c2560.jpg'],
+    srcSet: getSrcSet('2c'),
     caption: undefined,
   },
   {
-    src: img_1d,
+    src: KineticBoardwalkImages['2d2560.jpg'],
+    srcSet: getSrcSet('2d'),
     caption: undefined,
   },
   {
-    src: img_1e,
+    src: KineticBoardwalkImages['2e2560.jpg'],
+    srcSet: getSrcSet('2e'),
     caption: undefined,
   },
   {
-    src: img_1f,
+    src: KineticBoardwalkImages['2f2560.jpg'],
+    srcSet: getSrcSet('2f'),
     caption: undefined,
   },
 ];
 
 const IMAGES_3: IImage[] = [
   {
-    src: img_2a,
+    src: KineticBoardwalkImages['3a2560.jpg'],
+    srcSet: getSrcSet('3a'),
     caption: undefined,
   },
   {
-    src: img_2b,
+    src: KineticBoardwalkImages['3b2560.jpg'],
+    srcSet: getSrcSet('3b'),
     caption: undefined,
   },
   {
-    src: img_2c,
+    src: KineticBoardwalkImages['3c2560.jpg'],
+    srcSet: getSrcSet('3c'),
     caption: undefined,
   },
   {
-    src: img_2d,
+    src: KineticBoardwalkImages['3d2560.jpg'],
+    srcSet: getSrcSet('3d'),
     caption: undefined,
   },
   {
-    src: img_2e,
+    src: KineticBoardwalkImages['3e2560.jpg'],
+    srcSet: getSrcSet('3e'),
     caption: undefined,
   },
   {
-    src: img_2f,
+    src: KineticBoardwalkImages['3f2560.jpg'],
+    srcSet: getSrcSet('3f'),
     caption: undefined,
   },
 ];
