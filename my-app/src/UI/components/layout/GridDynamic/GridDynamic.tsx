@@ -5,11 +5,6 @@ import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
 import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 
-export interface GridDynamicProps extends GridProps {
-  children: React.ReactNode[];
-  breakpoints?: GridBreakpoint[];
-}
-
 const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
   {
     minWidth: 0,
@@ -24,6 +19,11 @@ const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
     columnCount: 3,
   },
 ];
+
+export interface GridDynamicProps extends GridProps {
+  children: React.ReactNode[];
+  breakpoints?: GridBreakpoint[];
+}
 
 /*
  * Basically the key of each column wrapper is "COLUMN_COUNT + i.toString()"

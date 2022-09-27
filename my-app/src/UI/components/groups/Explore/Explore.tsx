@@ -7,13 +7,13 @@ import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { HorizontalBulletMenu } from '../../atoms/HorizontalBulletMenu';
 import { GridRow } from '../../layout/GridRow';
 
-const BREAKPOINTS: GridBreakpoint[] = [
+export const EXPLORE_BREAKPOINTS: GridBreakpoint[] = [
   {
     minWidth: 0,
     columnCount: 1,
   },
   {
-    minWidth: 500,
+    minWidth: 600,
     columnCount: 2,
   },
   {
@@ -35,7 +35,7 @@ export interface ExploreProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Explore: React.FC<ExploreProps> = ({
   title = '',
   children,
-  breakpoints = BREAKPOINTS,
+  breakpoints = EXPLORE_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
   const [menuIndex, setMenuIndex] = useState(0);

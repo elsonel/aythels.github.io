@@ -15,3 +15,11 @@ function importAll(r: __WebpackModuleApi.RequireContext) {
 export const VisualArtsImages = importAll(
   require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/)
 );
+
+export const UIUXImages = importAll(
+  require.context('../assets/uiux-assets', false, /\.(png|jpe?g|svg)$/)
+);
+
+export const ArchitectureImages = importAll(
+  require.context('../assets/architecture-assets', false, /\.(png|jpe?g|svg)$/)
+);

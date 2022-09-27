@@ -5,6 +5,7 @@ import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import useGoTo from '../utility/useGoTo';
 import { IGallerySortable } from '../utility/Sort';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
+import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 
 export interface IGalleryEntry extends IGallerySortable {
   date: Date;
@@ -27,7 +28,6 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
   ...props
 }): React.ReactElement => {
   const goTo = useGoTo();
-
   return (
     <GridStyled breakpoints={breakpoints} {...props}>
       {data.map((e, i) => (
@@ -39,7 +39,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
             alt={e.title}
             src={e.src}
             srcSet={e.src}
-            sizes={e.sizes}
+            sizes={getSizes(breakpoints)}
             isTextAlwaysVisible={true}
             isFillingParent={true}
             aspect={1}

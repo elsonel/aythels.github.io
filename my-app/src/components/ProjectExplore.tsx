@@ -1,6 +1,6 @@
-import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
+import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
-import { Explore } from '../UI/components/groups/Explore';
+import { Explore, EXPLORE_BREAKPOINTS } from '../UI/components/groups/Explore';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import useGoTo from '../utility/useGoTo';
 
@@ -25,11 +25,13 @@ export const ProjectExplore: React.FC<ProjectExploreProps> = ({
   const goTo = useGoTo();
 
   return (
-    <Explore title="EXPLORE" {...props}>
+    <Explore title="EXPLORE" breakpoints={EXPLORE_BREAKPOINTS} {...props}>
       {exploreData.map((e, i) => (
         <LinkFake href={e.to} key={i}>
           <ImageThumbnailAspect
             src={e.src}
+            srcSet={e.src}
+            sizes={getSizes(EXPLORE_BREAKPOINTS)}
             title={e.title}
             subtitle={e.subtitle}
             aspect={1}

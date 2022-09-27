@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { ModalImage } from '../UI/components/groups/ModalImage';
 import { GridDynamic } from '../UI/components/layout/GridDynamic';
@@ -18,6 +19,7 @@ export interface GalleryGridArtProps extends GalleryGridProps {
 
 export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
   data,
+  breakpoints,
   ...props
 }): React.ReactElement => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +27,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
 
   return (
     <>
-      <GridStyled {...props}>
+      <GridStyled breakpoints={breakpoints} {...props}>
         {data.map((e, i) => (
           <ImageThumbnailAspect
             key={e.src}
@@ -38,7 +40,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
             alt={e.title}
             src={e.src}
             srcSet={e.srcSet}
-            sizes={e.sizes}
+            sizes={getSizes(breakpoints)}
             isFillingParent={true}
             aspect={getAspect(e.width, e.height)}
           />
@@ -56,7 +58,7 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
             title: e.title,
             caption: e.caption,
           };
-        })} /* HAVE TO CAST THIS */
+        })}
       />
     </>
   );

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 
+export const GRID_GAP = 20;
+
 const calculateWidth = (
   gap: number,
   columnCount: number,
@@ -62,7 +64,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Grid: React.FC<GridProps> = ({
   children,
   breakpoints = DEFAULT_BREAKPOINTS,
-  gap = 20,
+  gap = GRID_GAP,
   _minusWidth = 0,
   isAnimated = true,
   ...props
