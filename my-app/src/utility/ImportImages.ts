@@ -1,3 +1,15 @@
+interface IImageManager {
+  get: (src: string) => string;
+}
+
+function ImageManager(this: IImageManager, imageList: ImageList) {
+  this.get = (src: string) => {
+    const image = imageList[src];
+    if (image === undefined) throw 'Invalid image: ' + src;
+    return image;
+  };
+}
+
 interface ImageList {
   [src: string]: string;
 }
@@ -12,24 +24,56 @@ function importAll(r: __WebpackModuleApi.RequireContext) {
   return images;
 }
 
-export const VisualArtsImages = importAll(
-  require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/)
+export const VisualArtsImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/)
+  )
 );
 
-export const UIUXImages = importAll(
-  require.context('../assets/uiux-assets', false, /\.(png|jpe?g|svg)$/)
+export const UIUXImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/uiux-assets', false, /\.(png|jpe?g|svg)$/)
+  )
 );
 
-export const ArchitectureImages = importAll(
-  require.context('../assets/architecture-assets', false, /\.(png|jpe?g|svg)$/)
+export const ArchitectureImages = new (ImageManager as any)(
+  importAll(
+    require.context(
+      '../assets/architecture-assets',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
 );
 
 //
 
-export const KineticBoardwalkImages = importAll(
-  require.context(
-    '../assets/kineticboardwalk-assets',
-    false,
-    /\.(png|jpe?g|svg)$/
+export const KineticBoardwalkImages = new (ImageManager as any)(
+  importAll(
+    require.context(
+      '../assets/kineticboardwalk-assets',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+);
+
+export const BasiliskTowerImages = new (ImageManager as any)(
+  importAll(
+    require.context(
+      '../assets/basilisktower-assets',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+);
+
+export const FoldPavilionImages = new (ImageManager as any)(
+  importAll(
+    require.context(
+      '../assets/foldpavilion-assets',
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
   )
 );

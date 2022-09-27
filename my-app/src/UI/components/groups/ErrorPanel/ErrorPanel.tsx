@@ -29,7 +29,7 @@ export const ErrorPanel: React.FC<ErrorPanelProps> = ({
         </Paragraph>
       </TitleWrapper>
       <Paragraph size="large" textAlign="center">
-        Oops! You've probably stumbled upon a page or project that I haven't
+        Oops! You've probably stumbled upon a page or project that hasen't been
         implemented yet. Let's get you back on track.
       </Paragraph>
       <WrapperButtonRow>

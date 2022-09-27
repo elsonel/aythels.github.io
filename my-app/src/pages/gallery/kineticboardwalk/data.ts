@@ -70,87 +70,87 @@ const BREAKPOINTS_3: GridBreakpoint[] = [
 
 function getSrcSet(name: string) {
   return `
-    ${KineticBoardwalkImages[`${name}320.jpg`]} 320w,
-    ${KineticBoardwalkImages[`${name}640.jpg`]} 640w,
-    ${KineticBoardwalkImages[`${name}960.jpg`]} 960w,
-    ${KineticBoardwalkImages[`${name}1280.jpg`]} 1280w,
-    ${KineticBoardwalkImages[`${name}1600.jpg`]} 1600w,
-    ${KineticBoardwalkImages[`${name}1920.jpg`]} 1920w,
-    ${KineticBoardwalkImages[`${name}2240.jpg`]} 2240w,
-    ${KineticBoardwalkImages[`${name}2560.jpg`]} 2560w,
+    ${KineticBoardwalkImages.get(`${name}320.jpg`)} 320w,
+    ${KineticBoardwalkImages.get(`${name}640.jpg`)} 640w,
+    ${KineticBoardwalkImages.get(`${name}960.jpg`)} 960w,
+    ${KineticBoardwalkImages.get(`${name}1280.jpg`)} 1280w,
+    ${KineticBoardwalkImages.get(`${name}1600.jpg`)} 1600w,
+    ${KineticBoardwalkImages.get(`${name}1920.jpg`)} 1920w,
+    ${KineticBoardwalkImages.get(`${name}2240.jpg`)} 2240w,
+    ${KineticBoardwalkImages.get(`${name}2560.jpg`)} 2560w,
   `;
 }
 
 const IMAGES_1: IImage[] = [
   {
-    src: KineticBoardwalkImages['1a2560.jpg'],
-    srcSet: getSrcSet('1a'),
+    src: KineticBoardwalkImages.get('1a_2560.jpg'),
+    srcSet: getSrcSet('1a_'),
     caption: undefined,
   },
 ];
 
 const IMAGES_2: IImage[] = [
   {
-    src: KineticBoardwalkImages['2a2560.jpg'],
-    srcSet: getSrcSet('2a'),
+    src: KineticBoardwalkImages.get('2a_2560.jpg'),
+    srcSet: getSrcSet('2a_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['2b2560.jpg'],
-    srcSet: getSrcSet('2b'),
+    src: KineticBoardwalkImages.get('2b_2560.jpg'),
+    srcSet: getSrcSet('2b_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['2c2560.jpg'],
-    srcSet: getSrcSet('2c'),
+    src: KineticBoardwalkImages.get('2c_2560.jpg'),
+    srcSet: getSrcSet('2c_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['2d2560.jpg'],
-    srcSet: getSrcSet('2d'),
+    src: KineticBoardwalkImages.get('2d_2560.jpg'),
+    srcSet: getSrcSet('2d_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['2e2560.jpg'],
-    srcSet: getSrcSet('2e'),
+    src: KineticBoardwalkImages.get('2e_2560.jpg'),
+    srcSet: getSrcSet('2e_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['2f2560.jpg'],
-    srcSet: getSrcSet('2f'),
+    src: KineticBoardwalkImages.get('2f_2560.jpg'),
+    srcSet: getSrcSet('2f_'),
     caption: undefined,
   },
 ];
 
 const IMAGES_3: IImage[] = [
   {
-    src: KineticBoardwalkImages['3a2560.jpg'],
-    srcSet: getSrcSet('3a'),
+    src: KineticBoardwalkImages.get('3a_2560.jpg'),
+    srcSet: getSrcSet('3a_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['3b2560.jpg'],
-    srcSet: getSrcSet('3b'),
+    src: KineticBoardwalkImages.get('3b_2560.jpg'),
+    srcSet: getSrcSet('3b_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['3c2560.jpg'],
-    srcSet: getSrcSet('3c'),
+    src: KineticBoardwalkImages.get('3c_2560.jpg'),
+    srcSet: getSrcSet('3c_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['3d2560.jpg'],
-    srcSet: getSrcSet('3d'),
+    src: KineticBoardwalkImages.get('3d_2560.jpg'),
+    srcSet: getSrcSet('3d_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['3e2560.jpg'],
-    srcSet: getSrcSet('3e'),
+    src: KineticBoardwalkImages.get('3e_2560.jpg'),
+    srcSet: getSrcSet('3e_'),
     caption: undefined,
   },
   {
-    src: KineticBoardwalkImages['3f2560.jpg'],
-    srcSet: getSrcSet('3f'),
+    src: KineticBoardwalkImages.get('3f_2560.jpg'),
+    srcSet: getSrcSet('3f_'),
     caption: undefined,
   },
 ];
