@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { DEFAULT_TITLE_BREAKPOINTS } from '../PageTitle';
 import {
   GalleryProjectPanel,
   GalleryProjectPanelProps,
@@ -9,9 +8,6 @@ export default {
   title: 'Atoms/GalleryProjectPanel',
   component: GalleryProjectPanel,
   args: {
-    titleSize: 'large',
-    title: 'SPOTLIGHT',
-    subtitle: 'Media Streaming Platform',
     body: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare ligula a massa congue tempus. Vestibulum molestie efficitur risus, in commodo leo fringilla ut. Maecenas blandit nunc in purus rhoncus maximus efficitur eu ligula. Nam ullamcorper rhoncus luctus. Donec consectetur eget enim vel imperdiet. Suspendisse ut enim sit amet urna scelerisque gravida.',
       'In in urna sed elit sollicitudin ultrices. Aenean quis eros et augue congue tempor. Maecenas vel ornare magna, sit amet luctus lorem. Curabitur nisi felis, maximus at erat quis, rutrum interdum lectus. Aliquam vel enim sit amet lectus ullamcorper dignissim',
@@ -35,7 +31,6 @@ export default {
         to: 'github.com',
       },
     ],
-    titleBreakpoints: DEFAULT_TITLE_BREAKPOINTS,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;

@@ -44,7 +44,7 @@ export const ThemeMisc: ThemeMiscInterface = {
   },
   size: {
     headerHeight: 44,
-    footerHeight: 68,
+    footerHeight: 64,
   },
   link: {
     linkedin: 'https://www.linkedin.com/in/elson-liang/',

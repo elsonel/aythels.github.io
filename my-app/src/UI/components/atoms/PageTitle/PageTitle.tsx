@@ -24,22 +24,25 @@ export interface PageTitleBreakpoint {
 }
 
 export interface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: string;
-  isAlignedTop?: boolean;
+  title: string;
+  subtitle?: string;
+  textAlign?: string;
   breakpoints?: PageTitleBreakpoint[];
 }
 
 export const PageTitle: React.FC<PageTitleProps> = ({
-  children,
-  isAlignedTop = true,
+  title,
+  subtitle,
+  textAlign = 'left',
   breakpoints = DEFAULT_TITLE_BREAKPOINTS,
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <Title $isAlignedTop={isAlignedTop} $breakpoints={breakpoints}>
-        {children}
+      <Title textAlign={textAlign} $breakpoints={breakpoints}>
+        {title}
       </Title>
+      <Subtitle textAlign={textAlign}>{subtitle}</Subtitle>
     </Wrapper>
   );
 };
@@ -48,7 +51,6 @@ const Wrapper = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   padding: 20px;
-  margin-bottom: -5px;
 `;
 
 const TitleSmall = css`
@@ -62,8 +64,8 @@ const TitleMedium = css`
 `;
 
 const TitleLarge = css`
-  font-size: 4rem;
-  top: -7px;
+  font-size: 5rem;
+  top: -8px;
 `;
 
 const SIZES = {
@@ -74,18 +76,21 @@ const SIZES = {
 
 const Title = styled(Paragraph)<{
   $breakpoints: PageTitleBreakpoint[];
-  $isAlignedTop: boolean;
 }>`
   position: relative;
   line-height: 0.94;
   font-weight: ${({ theme }) => theme.font.weight.bold2};
   left: -2px;
+  margin-bottom: -6px;
   transition: none;
 
   ${TitleLarge}
 
   ${({ $breakpoints }) =>
     $breakpoints.map((e) => GreaterThan(e.minWidth, SIZES[e.size]))};
+`;
 
-  ${({ $isAlignedTop }) => !$isAlignedTop && `top: 0px !important;`};
+const Subtitle = styled(Paragraph)`
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: ${({ theme }) => theme.font.weight.bold2};
 `;

@@ -22,12 +22,17 @@ export const ErrorPanel: React.FC<ErrorPanelProps> = ({
 
   return (
     <Wrapper {...props}>
-      <TitleWrapper>
-        <Title breakpoints={[]}>404</Title>
-        <Paragraph size="h3" textAlign="center" weight="bold2">
-          PAGE NOT FOUND
-        </Paragraph>
-      </TitleWrapper>
+      <Title
+        breakpoints={[
+          {
+            minWidth: 0,
+            size: 'large',
+          },
+        ]}
+        title="404"
+        subtitle="PAGE NOT FOUND"
+        textAlign="center"
+      />
       <Paragraph size="large" textAlign="center">
         Oops! You've probably stumbled upon a page or project that hasen't been
         implemented yet. Let's get you back on track.
@@ -71,15 +76,9 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const TitleWrapper = styled.div`
-  margin-bottom: -12px;
-`;
-
 const Title = styled(PageTitle)`
-  padding: 0px;
-  > * {
-    text-align: center;
-  }
+  padding-bottom: 0px;
+  margin-bottom: -8px;
 `;
 
 const WrapperButtonRow = styled.div`

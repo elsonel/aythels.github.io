@@ -22,7 +22,7 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
       >
         <Image src={Theme.image.profile} />
         <TextWrapper>
-          <Title>DEVELOPER DESIGNER ARTIST</Title>
+          <Title title="DEVELOPER DESIGNER ARTIST" />
           <ProjectSectionText>
             {[
               `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla ultricies ultrices. Fusce porttitor, arcu a viverra euismod, sem massa faucibus felis, nec auctor dui orci id lectus.`,

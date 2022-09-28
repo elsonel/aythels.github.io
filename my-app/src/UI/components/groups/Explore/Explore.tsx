@@ -127,7 +127,7 @@ const HeaderWrapper = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
-  padding: 10px 20px;
+  padding: 15px 20px;
 
   border: 1px solid ${({ theme }) => theme.color.textHovered};
   border-left: 0px;

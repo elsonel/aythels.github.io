@@ -9,7 +9,7 @@ import { GridBreakpoint } from '../../../UI/components/layout/Grid';
 
 export const PanelData: IPanelData = {
   title: 'PORTFOL.IO',
-  subtitle: '2020 College + Amazon Design Creative Jam',
+  subtitle: '2020 College + Amazon Creative Jam',
   body: [
     'Entering a new professional field is daunting to the uninitiated, and the field of design is no exception. These uninitiated individuals, primarily consisting of high schoolers trying to discover their interests and career paths, may not possess the means to smoothly transition out of this phase, with limited knowledge on how to proceed.',
     'Our app, portfolio.io, seeks to address these issues gatekeeping young, prospective designers from developing, by incorporating the familiar essence of social media platforms in conjunction with various interactive self-learning tools. It allows users to discover projects for inspiration, professional designers and tutorials, hear of upcoming events, challenges and “circuits” - curated self-paced learning courses.',

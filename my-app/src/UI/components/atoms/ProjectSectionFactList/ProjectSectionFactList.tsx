@@ -17,5 +17,5 @@ export const ProjectSectionFactList: React.FC<ProjectSectionFactListProps> = ({
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 `;

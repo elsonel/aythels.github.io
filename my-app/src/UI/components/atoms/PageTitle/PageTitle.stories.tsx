@@ -9,8 +9,9 @@ export default {
   title: 'Atoms/PageTitle',
   component: PageTitle,
   args: {
-    children: 'GALLERY',
-    isAlignedTop: true,
+    title: 'GALLERY',
+    subtitle: 'This is the gallery page',
+    textAlign: 'left',
     breakpoints: DEFAULT_TITLE_BREAKPOINTS,
   },
   argTypes: {},
@@ -20,8 +21,14 @@ const Template: Story<PageTitleProps> = (args) => <PageTitle {...args} />;
 
 export const Basic = Template.bind({});
 
-export const AlignedCenter = Template.bind({});
-AlignedCenter.args = {
-  ...AlignedCenter.args,
-  isAlignedTop: false,
+export const NoSubtitle = Template.bind({});
+NoSubtitle.args = {
+  ...NoSubtitle.args,
+  subtitle: undefined,
+};
+
+export const Centered = Template.bind({});
+Centered.args = {
+  ...Centered.args,
+  textAlign: 'center',
 };

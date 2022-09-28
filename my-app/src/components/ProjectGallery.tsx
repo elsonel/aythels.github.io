@@ -5,6 +5,9 @@ import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { GalleryProject } from '../UI/components/groups/GalleryProject';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { Fact } from 'UI/components/atoms/GalleryProjectPanel';
+import styled from 'styled-components';
+import { PageTitle } from 'UI/components/atoms/PageTitle';
+import { Paragraph } from 'UI/components/text/Paragraph';
 
 export interface IPanelData {
   title: string;
@@ -42,12 +45,12 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   return (
     <div {...props}>
-      <GalleryProject
+      <Title
+        textAlign="center"
         title={panelData.title}
         subtitle={panelData.subtitle}
-        body={panelData.body}
-        facts={panelData.facts}
-      >
+      />
+      <StyledGalleryProject body={panelData.body} facts={panelData.facts}>
         {gridsData.map((grid, gridIndex) => (
           <Grid breakpoints={grid.breakpoints} key={gridIndex}>
             {grid.images.map((image, imageIndex) => (
@@ -71,7 +74,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             ))}
           </Grid>
         ))}
-      </GalleryProject>
+      </StyledGalleryProject>
       <ModalImage
         onCloseClick={() => setIsModalOpen(false)}
         indexOffset={modalOffset}
@@ -91,3 +94,14 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     </div>
   );
 };
+
+const StyledGalleryProject = styled(GalleryProject)`
+  padding-top: 0px;
+  padding-bottom: 60px;
+`;
+
+const Title = styled(PageTitle)`
+  box-sizing: border-box;
+  width: 100%;
+  padding: 50px 20px 42px 20px;
+`;

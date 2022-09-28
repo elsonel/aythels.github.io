@@ -9,7 +9,7 @@ import { GridBreakpoint } from '../../../UI/components/layout/Grid';
 
 export const PanelData: IPanelData = {
   title: 'SPOTLIGHT',
-  subtitle: '2020 College + Amazon Design Creative Jam',
+  subtitle: '2020 College + Amazon Creative Jam',
   body: [
     'Spotlight is a family friendly media streaming and social platform. It’s ease of navigation, multitude of media options and collaborative and communication system makes it ideal for all ages.',
     'Media platforms like Netflix lack opportunities for collaborative interactions. Spotlight features social communication and real-time screenings catering to small groups of family and friends. It differs from streaming and mass social-networking platforms by prioritizing interactions within the user’s immediate social circle. To virtually substitute the experience of being in a movie theater with friends and family, Spotlight uses cinema associated visual motifs and mechanics like tickets and invitations.',
