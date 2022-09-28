@@ -1,10 +1,8 @@
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { GalleryProject, GalleryProjectProps } from '.';
-import { GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
-import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
 import { Theme } from '../../../utility/themes/Theme';
 
 const BREAKPOINTS: GridBreakpoint[] = [
@@ -60,7 +58,8 @@ export default {
       },
       {
         label: 'GITHUB',
-        value: <LinkExternalFactText children="Link" link={'/'} />,
+        value: 'Link',
+        to: 'github.com',
       },
     ],
     children: [

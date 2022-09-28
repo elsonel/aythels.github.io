@@ -12,7 +12,6 @@ export interface Fact {
   label: string;
   value: React.ReactNode;
   to?: string;
-  onClick?: () => void;
 }
 
 export interface GalleryProjectPanelProps
@@ -49,9 +48,9 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
             isAlwaysWrapped={true}
             value={
               e.to ? (
-                <LinkFake href={e.to} onClick={e.onClick}>
+                <a href={e.to} target="_blank" rel="noreferrer">
                   <TextLink weight="bold2">{e.value}</TextLink>
-                </LinkFake>
+                </a>
               ) : (
                 e.value
               )

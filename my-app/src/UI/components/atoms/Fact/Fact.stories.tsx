@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
 import { Fact, FactProps } from './Fact';
 
 export default {
@@ -31,9 +30,9 @@ Link.args = {
   ...Link.args,
   label: 'GITHUB',
   value: (
-    <LinkExternalFactText link="/">
+    <a href="/">
       Click here to go to website! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    </LinkExternalFactText>
+    </a>
   ),
 };
 

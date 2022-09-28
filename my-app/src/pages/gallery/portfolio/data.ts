@@ -17,13 +17,13 @@ export const PanelData: IPanelData = {
   ],
   facts: [
     {
-      label: 'TYPE',
-      value: 'UI/UX Design Competition Entry',
-    },
-    {
       label: 'PROTOTYPE',
       value: 'Link',
       to: `https://xd.adobe.com/view/ee0f999a-dad6-4945-b43d-27688c3bc47a-bb5c/screen/846bb621-8335-4de7-aae8-72f36b9f11b3?fullscreen`,
+    },
+    {
+      label: 'TYPE',
+      value: 'UI/UX Design Competition Entry',
     },
     {
       label: 'COLLABORATORS',

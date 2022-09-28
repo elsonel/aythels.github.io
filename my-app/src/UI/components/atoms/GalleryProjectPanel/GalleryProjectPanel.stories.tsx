@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { LinkExternalFactText } from '../../inputs/LinkExternalFactText';
 import { DEFAULT_TITLE_BREAKPOINTS } from '../PageTitle';
 import {
   GalleryProjectPanel,
@@ -32,7 +31,8 @@ export default {
       },
       {
         label: 'GITHUB',
-        value: <LinkExternalFactText children="Link" link={'/'} />,
+        value: 'Link',
+        to: 'github.com',
       },
     ],
     titleBreakpoints: DEFAULT_TITLE_BREAKPOINTS,
