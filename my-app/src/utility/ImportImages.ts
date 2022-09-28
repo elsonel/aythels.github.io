@@ -77,3 +77,11 @@ export const FoldPavilionImages = new (ImageManager as any)(
     )
   )
 );
+
+//
+
+export const PortfolioImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/portfolio-assets', false, /\.(png|jpe?g|svg)$/)
+  )
+);

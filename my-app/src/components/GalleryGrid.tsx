@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import useGoTo from '../utility/useGoTo';

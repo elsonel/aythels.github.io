@@ -15,6 +15,7 @@ import { PageKineticboardwalk } from './pages/gallery/kineticboardwalk/PageKinet
 import { PageBasilisktower } from './pages/gallery/basilisktower/PageBasilisktower';
 import { Index } from './pages/gallery/spotlight/Index';
 import { PageFoldpavilion } from 'pages/gallery/foldpavilion/PageFoldPavilion';
+import { PagePortfolio } from 'pages/gallery/portfolio/portfolio';
 
 // https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
@@ -32,6 +33,7 @@ export const App: React.FC = (): React.ReactElement => {
         />
         <Route path="/gallery/basilisktower" element={<PageBasilisktower />} />
         <Route path="/gallery/foldpavilion" element={<PageFoldpavilion />} />
+        <Route path="/gallery/portfolio" element={<PagePortfolio />} />
         <Route path="/gallery/spotlight" element={<Index />} />
         <Route path="/about" element={<PageAbout />} />
         <Route path="/404" element={<Page404 />} />

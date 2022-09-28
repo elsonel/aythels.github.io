@@ -4,18 +4,13 @@ import { ModalImage } from '../UI/components/groups/ModalImage';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { GalleryProject } from '../UI/components/groups/GalleryProject';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
-
-export interface IFact {
-  label: string;
-  value: string;
-  to?: string;
-}
+import { Fact } from 'UI/components/atoms/GalleryProjectPanel';
 
 export interface IPanelData {
   title: string;
   subtitle: string;
   body: string[];
-  facts: IFact[];
+  facts: Fact[];
 }
 
 export interface IImage {

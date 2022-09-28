@@ -18,7 +18,7 @@ export const TextLink: React.FC<TextLinkProps> = ({
 
 const Text = styled(Paragraph)`
   cursor: pointer;
-  color: ${({ theme }) => theme.color.textNeutral};
+  color: ${({ theme }) => theme.color.text};
   text-decoration: underline;
 
   &:hover {

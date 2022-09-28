@@ -221,7 +221,7 @@ const UIUXBreakpoints: GridBreakpoint[] = [
 export const UIUXData: IGalleryEntry[] = [
   {
     date: new Date(2020, 8),
-    subtitle: '2020',
+    subtitle: '2020 College + Amazon Design Creative Jam',
     title: 'PORTFOL.IO',
     src: UIUXImages.get('Portfolio2560.jpg'),
     srcSet: `
@@ -238,7 +238,7 @@ export const UIUXData: IGalleryEntry[] = [
   },
   {
     date: new Date(2020, 6),
-    subtitle: '2020',
+    subtitle: '2020 College + Netflix Design Creative Jam',
     title: 'SPOTLIGHT',
     src: UIUXImages.get('Spotlight2560.jpg'),
     srcSet: `

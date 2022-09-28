@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { LinkFake } from 'UI/components/inputs/LinkFake';
+import { TextLink } from 'UI/components/text/TextLink';
 import { Paragraph } from '../../text/Paragraph';
 import { Fact } from '../Fact';
 import { PageTitle, PageTitleBreakpoint } from '../PageTitle';
@@ -9,6 +11,8 @@ import { ProjectSectionText } from '../ProjectSectionText';
 export interface Fact {
   label: string;
   value: React.ReactNode;
+  to?: string;
+  onClick?: () => void;
 }
 
 export interface GalleryProjectPanelProps
@@ -43,7 +47,15 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
             key={i}
             label={e.label}
             isAlwaysWrapped={true}
-            value={e.value}
+            value={
+              e.to ? (
+                <LinkFake href={e.to} onClick={e.onClick}>
+                  <TextLink weight="bold2">{e.value}</TextLink>
+                </LinkFake>
+              ) : (
+                e.value
+              )
+            }
           />
         ))}
       </ProjectSectionFactList>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
 import { Theme } from '../../../utility/themes/Theme';
 import { Fact, GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { PageTitleBreakpoint } from '../../atoms/PageTitle';
