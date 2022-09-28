@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 
   height: 100%;
   width: 100%;
-  padding: 20px;
+  padding: 0px 20px;
 
   display: flex;
   flex-direction: column;
@@ -53,8 +53,8 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(PageTitle)`
-  padding: 30px 0px;
-  margin-bottom: 12px;
+  padding-top: 54px;
+  padding-bottom: 40px;
 `;
 
 const BodyWrapper = styled.div`
@@ -66,5 +66,5 @@ const BodyWrapper = styled.div`
 `;
 
 const IconRow = styled(AboutSocialRow)`
-  padding: 50px 0px;
+  padding: 48px 0px;
 `;
