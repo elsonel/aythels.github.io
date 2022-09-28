@@ -191,7 +191,7 @@ const IMAGE_DISTANCE = 200;
 
 const WrapperMiddle = styled.div`
   flex-grow: 1;
-  padding: 10px 0px;
+  //padding: 10px 0px;
 `;
 
 const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`

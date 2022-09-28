@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TextFooter, TextFooterProps } from '../../../text/TextFooter';
+import { TextFooterProps } from '../../../text/TextFooter';
 import { TextLink } from '../../../text/TextLink';
 
 export interface FooterLinkProps extends TextFooterProps {}
@@ -10,9 +10,17 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
 }): React.ReactElement => {
   return (
     <a href="/storybook" target="_blank" rel="noreferrer">
-      <TextLink size={'tiny'} isWrapped={false} {...props}>
+      <Link size={'tiny'} isWrapped={false} {...props}>
         Designed and built from scratch with React.
-      </TextLink>
+      </Link>
     </a>
   );
 };
+
+const Link = styled(TextLink)`
+  color: ${({ theme }) => theme.color.textNeutral};
+
+  &:hover {
+    color: ${({ theme }) => theme.color.textHovered};
+  }
+`;
