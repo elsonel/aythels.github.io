@@ -64,7 +64,7 @@ const Section = styled.div`
   box-sizing: border-box;
 
   width: 100%;
-  padding: 20px;
+  padding: 18px 20px;
   border: 1px solid ${({ theme }) => theme.color.outline};
   transition: ${({ theme }) => `${theme.speed.normal}`};
 
