@@ -1,8 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { LinkFake } from 'UI/components/inputs/LinkFake';
-import { TextLink } from 'UI/components/text/TextLink';
+import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph';
+import { TextLink } from '../../text/TextLink';
 import { Fact } from '../Fact';
 import { PageTitle, PageTitleBreakpoint } from '../PageTitle';
 import { ProjectSectionFactList } from '../ProjectSectionFactList';
