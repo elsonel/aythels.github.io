@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
-import { ImageThumbnail } from '../../atoms/ImageThumbnail';
-import { TwoColumn } from '../../layout/TwoColumn';
-import { ProjectSectionText } from '../../atoms/ProjectSectionText';
 import { AboutSocialRow } from '../../atoms/AboutSocialRow';
 import { PageTitle } from '../../atoms/PageTitle';
-import { Paragraph } from 'UI/components/text/Paragraph';
+import { Paragraph } from '../../text/Paragraph';
 
 export interface AboutPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
 
