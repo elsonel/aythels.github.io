@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3b1d9898.css",
-    "main.js": "/static/js/main.0f3f40e2.js",
+    "main.js": "/static/js/main.6d9a366c.js",
     "static/media/2c_2560.jpg": "/static/media/2c_2560.300703168c18aeb130af.jpg",
     "static/media/Corruption2560.jpg": "/static/media/Corruption2560.a66b4428b32e0ce17250.jpg",
     "static/media/Corruption2240.jpg": "/static/media/Corruption2240.8215522d246b721e532f.jpg",
@@ -292,10 +292,10 @@
     "static/media/3f_320.jpg": "/static/media/3f_320.2c734d82462aa460c6e8.jpg",
     "index.html": "/index.html",
     "main.3b1d9898.css.map": "/static/css/main.3b1d9898.css.map",
-    "main.0f3f40e2.js.map": "/static/js/main.0f3f40e2.js.map"
+    "main.6d9a366c.js.map": "/static/js/main.6d9a366c.js.map"
   },
   "entrypoints": [
     "static/css/main.3b1d9898.css",
-    "static/js/main.0f3f40e2.js"
+    "static/js/main.6d9a366c.js"
   ]
 }
