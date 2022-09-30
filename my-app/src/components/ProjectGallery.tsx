@@ -51,7 +51,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
       />
       <StyledGalleryProject body={panelData.body} facts={panelData.facts}>
         {gridsData.map((grid, gridIndex) => (
-          <Grid breakpoints={grid.breakpoints} key={gridIndex}>
+          <StyledGrid breakpoints={grid.breakpoints} key={gridIndex}>
             {grid.images.map((image, imageIndex) => (
               <ImageThumbnail
                 key={imageIndex}
@@ -71,7 +71,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 }}
               />
             ))}
-          </Grid>
+          </StyledGrid>
         ))}
       </StyledGalleryProject>
       <ModalImage
@@ -97,6 +97,10 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 const StyledGalleryProject = styled(GalleryProject)`
   padding-top: 0px;
   padding-bottom: 60px;
+`;
+
+const StyledGrid = styled(Grid)`
+  justify-content: center;
 `;
 
 const Title = styled(PageTitle)`
