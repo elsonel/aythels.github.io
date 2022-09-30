@@ -11,17 +11,17 @@ export const PanelData: IPanelData = {
   title: 'PORTFOL.IO',
   subtitle: '2020 College + Amazon Creative Jam',
   body: [
-    'Breaking into a new professional field is daunting to the uninitiated, and the field of design is no exception. These uninitiated individuals, primarily consisting of students and young adults, may lack resources and guidance to aid in discovering their interests and career paths.',
+    'Breaking into a new professional field is daunting for the uninitiated, and the field of design is no exception. These uninitiated individuals, primarily consisting of students and young adults, may lack resources and guidance to aid in discovering their interests and career paths.',
     <>
-      <em>Portfolio.io</em> is an tablet optimized application that seeks to
-      address these issues gatekeeping young, prospective designers from
+      <em>Portfolio.io</em> is a tablet-optimized application that seeks to
+      address these issues holding back young, prospective designers from
       developing, by incorporating the familiar essence of social media
       platforms in conjunction with various interactive self-learning tools.
       Users can discover inspirational projects, follow professional designers,
       hear of upcoming events, and participate in challenges and "circuits" -
       curated self-paced learning courses.
     </>,
-    `Included is also an integrated image editor which serves as a free alternative to industry specific tools. New designers are hence provided with a beginner-friendly option for learning basic workflows and tools for design projects.`,
+    `Included is also an integrated image editor which serves as a free alternative to industry-specific tools. New designers are hence provided with a beginner-friendly option for learning basic workflows and tools for design projects.`,
   ],
   facts: [
     {

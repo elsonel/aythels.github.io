@@ -12,9 +12,9 @@ export const PanelData: IPanelData = {
   subtitle: 'Twisting Spiral',
   body: [
     <>
-      The <em>Basilisk Tower</em> is a parametric skyscraper concept. The
-      structure's geometric form is created by twisting a custom mesh consisting
-      of a hexagon base which tapers into a triangular top.
+      <em>The Basilisk Tower</em> is a parametric skyscraper. The structure's
+      geometric form is created by twisting a custom mesh consisting of a
+      hexagon base which tapers into a triangular top.
     </>,
   ],
   facts: [

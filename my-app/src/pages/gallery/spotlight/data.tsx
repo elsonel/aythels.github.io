@@ -13,13 +13,13 @@ export const PanelData: IPanelData = {
   body: [
     <>
       <em>Spotlight</em> is an entertainment streaming desktop platform that
-      facilitates close interactions between family and friends experiencing
+      facilitates close interactions between friends and family experiencing
       media together. Combining cinema associated visual motifs with social
       media features, Spotlight aims to replicate the experience of going to the
-      movie theatre with family and friends, that otherwise cannot be achieved
+      movie theatre with friends and family, which otherwise cannot be achieved
       during pandemic-related circumstances.
     </>,
-    'Modern entertainment platforms often lack opportunities for close collaborative interactions. Spotlight however, features instant messaging and real-time watch parties that cater to small groups of family and friends. It differs from streaming and social-networking platforms by prioritizing interactions within the user’s immediate social circle and the content they mutually enjoy.',
+    'Modern entertainment platforms often lack opportunities for close collaborative interactions. Spotlight, however, features instant messaging and real-time watch parties that cater to small groups of friends and family. It differs from streaming and social-networking platforms by prioritizing interactions within the user’s immediate social circle and the content they mutually enjoy.',
   ],
   facts: [
     {

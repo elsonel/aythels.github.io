@@ -12,14 +12,14 @@ export const PanelData: IPanelData = {
   subtitle: 'Drifting Landscapes',
   body: [
     <>
-      The <em>Kinetic Boardwalk</em> is a concept for an adaptive and
-      programmable system of inflating tiles that span the coastline of Venice
-      Beach. Acting as both a public amenity and functional infrastructure, the
-      structure aims to to address high tides and the crisis of rising water
-      levels while also serving as an exhibitive walkway for pedestrians.
+      <em>The Kinetic Boardwalk</em> is an adaptive and programmable system of
+      inflating tiles that span the coastline of Venice Beach. Acting as both a
+      public amenity and functional infrastructure, the structure aims to
+      address high tides and the crisis of rising water levels while also
+      serving as an exhibitive walkway for pedestrians.
     </>,
     `Inspired by sand dunes and grassy hills, the Kinetic Boardwalk's form is made up of a modular system of "bumps" that can be mechanically controlled to individually rise or flatten at will. A variety of built environments with different use cases are created. The bump can be used as a deployable floodwall against high tides, a lookout point or rest area for pedestrians.`,
-    `Each bump is made up of a grid of interlocking tiles layered over inflatables which are powered by motorized air pumps. The tiles rise at different elevations when the round inflatables hidden underneath are powered to create the appearance of a curved surface. Rubber flaps connect each tile length wise, hiding cracks and providing a water tight seal.`,
+    `Each bump is made up of a grid of interlocking tiles layered over inflatables which are powered by motorized air pumps. The tiles rise at different elevations when the round inflatables hidden underneath are powered to create the appearance of a curved surface. Rubber flaps connect each tile length wise, hiding cracks and providing a water-tight seal.`,
   ],
   facts: [
     {
