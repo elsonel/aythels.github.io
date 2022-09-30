@@ -57,7 +57,7 @@ const VisualArtsBreakpoints: GridBreakpoint[] = [
 export const VisualArtsData: IGalleryEntryArt[] = [
   {
     date: new Date(2022, 4),
-    subtitle: '2022',
+    subtitle: 'Digital Painting',
     title: 'NIGHT SKIRMISHES',
     src: VisualArtsImages.get('NightSkirmishes2560.jpg'),
     srcSet: `
@@ -70,13 +70,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('NightSkirmishes2240.jpg')} 2240w,
       ${VisualArtsImages.get('NightSkirmishes2560.jpg')} 2560w,
     `,
-    caption: 'Digital painting',
+    caption: '2022. Digital painting',
     width: 2040,
     height: 2600,
   },
   {
     date: new Date(2020, 5),
-    subtitle: '2020',
+    subtitle: 'Photo Manipulation',
     title: 'CORRUPTION',
     src: VisualArtsImages.get('Corruption2560.jpg'),
     srcSet: `
@@ -89,13 +89,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('Corruption2240.jpg')} 2240w,
       ${VisualArtsImages.get('Corruption2560.jpg')} 2560w,
     `,
-    caption: 'Photo manipulation',
+    caption: '2020. Photo manipulation',
     width: 2448,
     height: 3264,
   },
   {
     date: new Date(2019, 1),
-    subtitle: '2019',
+    subtitle: 'Watercolor',
     title: 'MEMORY',
     src: VisualArtsImages.get('Memory2560.jpg'),
     srcSet: `
@@ -108,13 +108,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('Memory2240.jpg')} 2240w,
       ${VisualArtsImages.get('Memory2560.jpg')} 2560w,
     `,
-    caption: 'Watercolor',
+    caption: '2019. Watercolor',
     width: 1900,
     height: 2520,
   },
   {
     date: new Date(2018, 9),
-    subtitle: '2018',
+    subtitle: 'Watercolor',
     title: 'FOCUS',
     src: VisualArtsImages.get('Focus2560.jpg'),
     srcSet: `
@@ -127,13 +127,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('Focus2240.jpg')} 2240w,
       ${VisualArtsImages.get('Focus2560.jpg')} 2560w,
     `,
-    caption: 'Watercolor',
+    caption: '2018. Watercolor',
     width: 2170,
     height: 3058,
   },
   {
     date: new Date(2018, 8),
-    subtitle: '2018',
+    subtitle: 'Acrylic on Canvas',
     title: 'STORM',
     src: VisualArtsImages.get('Storm2560.jpg'),
     srcSet: `
@@ -146,13 +146,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('Storm2240.jpg')} 2240w,
       ${VisualArtsImages.get('Storm2560.jpg')} 2560w,
     `,
-    caption: 'Acrylic on canvas',
+    caption: '2018. Acrylic on canvas',
     width: 2000,
     height: 2870,
   },
   {
     date: new Date(2018, 3),
-    subtitle: '2017',
+    subtitle: 'Photography',
     title: 'REACH',
     src: VisualArtsImages.get('Reach2560.jpg'),
     srcSet: `
@@ -165,13 +165,13 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('Reach2240.jpg')} 2240w,
       ${VisualArtsImages.get('Reach2560.jpg')} 2560w,
     `,
-    caption: 'Photography',
+    caption: '2017. Photography',
     width: 2339,
     height: 2930,
   },
   {
     date: new Date(2018, 2),
-    subtitle: '2018',
+    subtitle: 'Acrylic on Canvas',
     title: 'AMETHYST CITY',
     src: VisualArtsImages.get('AmethystCity2560.jpg'),
     srcSet: `
@@ -184,7 +184,7 @@ export const VisualArtsData: IGalleryEntryArt[] = [
       ${VisualArtsImages.get('AmethystCity2240.jpg')} 2240w,
       ${VisualArtsImages.get('AmethystCity2560.jpg')} 2560w,
     `,
-    caption: 'Acrylic on canvas',
+    caption: '2018. Acrylic on canvas',
     width: 2900,
     height: 2360,
   },

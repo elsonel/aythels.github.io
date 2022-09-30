@@ -1,3 +1,4 @@
+import { Paragraph } from 'UI/components/text/Paragraph';
 import { Layout } from '../../../components/Layout';
 import { Page } from '../../../components/Page';
 import { ProjectExplore } from '../../../components/ProjectExplore';
@@ -21,6 +22,10 @@ export const PagePortfolio: React.FC<PagePortfolioProps> = ({
         <ProjectExplore
           exploreData={UIUXData.filter((e) => e.title != 'PORTFOL.IO')}
         />
+        <Paragraph>
+          <em>Hi</em>
+          Bye
+        </Paragraph>
       </Layout>
     </Page>
   );

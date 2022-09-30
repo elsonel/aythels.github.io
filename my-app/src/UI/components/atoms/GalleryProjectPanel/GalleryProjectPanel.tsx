@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Paragraph } from '../../text/Paragraph';
 import { TextLink } from '../../text/TextLink';
 import { Fact } from '../Fact';
 import { ProjectSectionFactList } from '../ProjectSectionFactList';
@@ -13,7 +14,7 @@ export interface Fact {
 
 export interface GalleryProjectPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  body: string[];
+  body: React.ReactNode[];
   facts: Fact[];
 }
 
@@ -26,7 +27,7 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
     <Wrapper {...props}>
       <Section>
         {body.map((e, i) => (
-          <ProjectSectionText key={i}>{e}</ProjectSectionText>
+          <Paragraph key={i}>{e}</Paragraph>
         ))}
       </Section>
       <Section>

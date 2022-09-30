@@ -18,19 +18,19 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
       />
       <BodyWrapper>
         <Paragraph textAlign="center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          fringilla ultricies ultrices. Fusce porttitor, arcu a viverra euismod,
-          sem massa faucibus felis, nec auctor dui orci id lectus.
+          I'm a software developer with additional skills in design and visual
+          communication.
         </Paragraph>
         <Paragraph textAlign="center">
-          Etiam quis quam quis nibh vulputate ultrices non vitae felis.
-          Vestibulum placerat mi non urna euismod faucibus. Cras cursus
-          elementum lacus laoreet consequat. Proin dignissim sagittis libero.
-          Sed malesuada vel nunc eget convallis.
+          My Bachelor's in Architectural Technology, a multidisciplinary field
+          that combines materiality, engineering, computation and design, from
+          the University of Toronto, enables me to craft simple, clear, and
+          empathetic solutions to complex and real world problems through
+          iterative and inquisitive methods.
         </Paragraph>
         <Paragraph textAlign="center">
-          Praesent tortor metus, vestibulum vitae mattis ut, viverra luctus
-          odio. Phasellus efficitur urna et dolor sollicitudin porta.
+          When I'm away from the screen, I enjoy swimming, painting, and reading
+          eastern fantasy.
         </Paragraph>
       </BodyWrapper>
       <IconRow />
@@ -58,7 +58,7 @@ const Title = styled(PageTitle)`
 `;
 
 const BodyWrapper = styled.div`
-  max-width: 600px;
+  max-width: 640px;
 
   display: flex;
   flex-direction: column;

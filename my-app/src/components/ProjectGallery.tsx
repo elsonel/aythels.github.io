@@ -7,12 +7,11 @@ import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { Fact } from 'UI/components/atoms/GalleryProjectPanel';
 import styled from 'styled-components';
 import { PageTitle } from 'UI/components/atoms/PageTitle';
-import { Paragraph } from 'UI/components/text/Paragraph';
 
 export interface IPanelData {
   title: string;
   subtitle: string;
-  body: string[];
+  body: React.ReactNode[];
   facts: Fact[];
 }
 

@@ -15,12 +15,12 @@ export const GreetingPanel: React.FC<GreetingPanelProps> = ({
     <Wrapper {...props}>
       <TextWrapper>
         <Paragraph textAlign="center" size="h3" weight="bold2">
-          Hi!
+          Hi, I'm Elson.
         </Paragraph>
         <Paragraph textAlign="center" size="large">
-          Morbi lobortis augue ac scelerisque mattis. Morbi malesuada risus
-          lacus ac imperdiet consequat. Aenean malesuada vulputate lacus vitae
-          massa fermentum lacus condimentum.
+          I'm a full-stack software developer with a formal background in
+          architecture. My passion lies in engineering solutions that integrate
+          well with sophisticated design and user experience.
         </Paragraph>
       </TextWrapper>
     </Wrapper>

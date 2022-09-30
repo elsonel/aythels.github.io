@@ -7,7 +7,7 @@ import { TwoColumn } from '../../layout/TwoColumn';
 
 export interface GalleryProjectProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  body: string[];
+  body: React.ReactNode[];
   facts: Fact[];
   children?: React.ReactNode[];
 }

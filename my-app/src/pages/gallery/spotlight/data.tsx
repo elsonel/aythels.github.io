@@ -11,10 +11,15 @@ export const PanelData: IPanelData = {
   title: 'SPOTLIGHT',
   subtitle: '2020 College + Amazon Creative Jam',
   body: [
-    'Spotlight is a family friendly media streaming and social platform. It’s ease of navigation, multitude of media options and collaborative and communication system makes it ideal for all ages.',
-    'Media platforms like Netflix lack opportunities for collaborative interactions. Spotlight features social communication and real-time screenings catering to small groups of family and friends. It differs from streaming and mass social-networking platforms by prioritizing interactions within the user’s immediate social circle. To virtually substitute the experience of being in a movie theater with friends and family, Spotlight uses cinema associated visual motifs and mechanics like tickets and invitations.',
-    'Navigation is designed to be linear, seamless and intuitive through the use of tailored transitions to aid casuals in accessing both trends and specific interests. For those discovering new content, media pages are informative without being overwhelming.',
-    'The visual design uses whimsical imagery and minimal colors with bright accents to appear friendly, playful and reactive to the target audience.',
+    <>
+      <em>Spotlight</em> is an entertainment streaming desktop platform that
+      facilitates close interactions between family and friends experiencing
+      media together. Combining cinema associated visual motifs with social
+      media features, Spotlight aims to replicate the experience of going to the
+      movie theatre with family and friends, that otherwise cannot be achieved
+      during pandemic-related circumstances.
+    </>,
+    'Modern entertainment platforms often lack opportunities for close collaborative interactions. Spotlight however, features instant messaging and real-time watch parties that cater to small groups of family and friends. It differs from streaming and social-networking platforms by prioritizing interactions within the user’s immediate social circle and the content they mutually enjoy.',
   ],
   facts: [
     {
@@ -74,17 +79,17 @@ const IMAGES_1: IImage[] = [
   {
     src: SpotlightImages.get('1a_2560.jpg'),
     srcSet: getSrcSet('1a_'),
-    caption: undefined,
+    caption: 'Typography and colors overview',
   },
   {
     src: SpotlightImages.get('1b_2560.jpg'),
     srcSet: getSrcSet('1b_'),
-    caption: undefined,
+    caption: 'Registration screen',
   },
   {
     src: SpotlightImages.get('1c_2560.jpg'),
     srcSet: getSrcSet('1c_'),
-    caption: undefined,
+    caption: 'Theatre screen',
   },
 ];
 
@@ -92,17 +97,17 @@ const IMAGES_2: IImage[] = [
   {
     src: SpotlightImages.get('2a_2560.jpg'),
     srcSet: getSrcSet('2a_'),
-    caption: undefined,
+    caption: 'Landing page',
   },
   {
     src: SpotlightImages.get('2b_2560.jpg'),
     srcSet: getSrcSet('2b_'),
-    caption: undefined,
+    caption: 'Show browsing page',
   },
   {
     src: SpotlightImages.get('2c_2560.jpg'),
     srcSet: getSrcSet('2c_'),
-    caption: undefined,
+    caption: 'Show overview page',
   },
 ];
 

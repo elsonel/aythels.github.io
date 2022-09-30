@@ -10,7 +10,13 @@ import { GridBreakpoint } from '../../../UI/components/layout/Grid';
 export const PanelData: IPanelData = {
   title: 'BASILISK TOWER',
   subtitle: 'Twisting Spiral',
-  body: ['A tower with a hexagon base tapering and twisting into a triangle.'],
+  body: [
+    <>
+      The <em>Basilisk Tower</em> is a parametric skyscraper concept. The
+      structure's geometric form is created by twisting a custom mesh consisting
+      of a hexagon base which tapers into a triangular top.
+    </>,
+  ],
   facts: [
     {
       label: 'TYPE',
@@ -64,32 +70,32 @@ const IMAGES: IImage[] = [
   {
     src: BasiliskTowerImages.get('1_2560.jpg'),
     srcSet: getSrcSet('1_'),
-    caption: undefined,
+    caption: 'Render 1/3',
   },
   {
     src: BasiliskTowerImages.get('2_2560.jpg'),
     srcSet: getSrcSet('2_'),
-    caption: undefined,
+    caption: 'Render 2/3',
   },
   {
     src: BasiliskTowerImages.get('3_2560.jpg'),
     srcSet: getSrcSet('3_'),
-    caption: undefined,
+    caption: 'Render 3/3',
   },
   {
     src: BasiliskTowerImages.get('4_2560.jpg'),
     srcSet: getSrcSet('4_'),
-    caption: undefined,
+    caption: 'Elevation',
   },
   {
     src: BasiliskTowerImages.get('5_2560.jpg'),
     srcSet: getSrcSet('5_'),
-    caption: undefined,
+    caption: 'Isometric',
   },
   {
     src: BasiliskTowerImages.get('6_2560.jpg'),
     srcSet: getSrcSet('6_'),
-    caption: undefined,
+    caption: 'Plan',
   },
 ];
 
