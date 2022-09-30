@@ -21,7 +21,7 @@ export const PanelData: IPanelData = {
       hear of upcoming events, and participate in challenges and "circuits" -
       curated self-paced learning courses.
     </>,
-    `Included is also an integrated image editor which serves as a free alternative to industry-specific tools. New designers are hence provided with a beginner-friendly option for learning basic workflows and tools for design projects.`,
+    `Included is an integrated image editor which serves as a free alternative to industry-specific tools. New designers are hence provided with a beginner-friendly option for learning basic workflows and tools for design projects.`,
   ],
   facts: [
     {
