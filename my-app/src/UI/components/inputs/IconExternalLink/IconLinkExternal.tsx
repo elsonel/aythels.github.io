@@ -25,6 +25,7 @@ export const IconLinkExternal: React.FC<IconLinkExternalProps> = ({
 };
 
 const Link = styled.a<{ $size: number | string }>`
+  vertical-align: top;
   display: inline-flex;
 
   width: ${({ $size }) => (typeof $size === 'number' ? `${$size}px` : $size)};

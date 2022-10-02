@@ -35,6 +35,7 @@ export const RowIcon: React.FC<RowIconProps> = ({
 };
 
 const Row = styled.div<{ $gapSize: number }>`
+  vertical-align: top;
   display: inline-flex;
   gap: ${({ $gapSize }) => $gapSize}px;
 `;

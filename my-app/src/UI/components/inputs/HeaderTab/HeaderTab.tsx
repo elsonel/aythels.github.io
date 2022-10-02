@@ -32,6 +32,7 @@ export const HeaderTab: React.FC<HeaderTabProps> = ({
 };
 
 const Wrapper = styled.div<{ $isHovered: boolean }>`
+  vertical-align: top;
   display: inline-flex;
   position: relative;
 

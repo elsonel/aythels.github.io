@@ -24,8 +24,8 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
         <Paragraph textAlign="center">
           My Bachelor's in Architectural Technology, a multidisciplinary field
           that combines materiality, engineering, computation and design, from
-          the University of Toronto, enables me to craft simple, clear, and
-          empathetic solutions to complex and real world problems through
+          the University of Toronto, enables me to craft clear and empathetic
+          solutions to complex challenges and real world problems through
           iterative and inquisitive methods.
         </Paragraph>
         <Paragraph textAlign="center">

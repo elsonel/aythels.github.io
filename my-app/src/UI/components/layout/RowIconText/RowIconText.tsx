@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IIconSVGProps } from '../../atoms/IIconSVG';
+import { IIconProps } from 'UI/components/atoms/IIcon';
 import { ParagraphProps } from '../../text/Paragraph';
 
 export interface RowIconTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement<ParagraphProps>;
-  icon?: React.ReactElement<IIconSVGProps>;
+  icon?: React.ReactElement<IIconProps>;
   gap?: number;
 }
 

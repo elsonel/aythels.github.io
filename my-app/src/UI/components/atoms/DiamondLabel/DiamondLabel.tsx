@@ -71,6 +71,7 @@ const TextStateActive = css`
 `;
 
 const Wrapper = styled.div`
+  vertical-align: top;
   display: inline-block;
   position: relative;
 

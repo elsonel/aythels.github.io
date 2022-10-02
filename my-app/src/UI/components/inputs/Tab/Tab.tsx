@@ -63,6 +63,7 @@ const TextBolded = styled(Text)`
 `;
 
 const Wrapper = styled.div`
+  vertical-align: top;
   display: inline-block;
 
   box-sizing: border-box;

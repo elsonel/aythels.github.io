@@ -52,6 +52,7 @@ export const Tabs: React.FC<TabsProps> = ({
 };
 
 const Wrapper = styled.div`
+  vertical-align: top;
   position: relative;
   display: inline-block;
 `;

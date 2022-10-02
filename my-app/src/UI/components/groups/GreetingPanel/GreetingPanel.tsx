@@ -19,8 +19,8 @@ export const GreetingPanel: React.FC<GreetingPanelProps> = ({
         </Paragraph>
         <Paragraph textAlign="center" size="large">
           I'm a full-stack software developer with a formal background in
-          architecture. My passion lies in engineering solutions that integrate
-          well with sophisticated design and user experience.
+          architecture. My passion lies in engineering resilient solutions that
+          integrate well with sophisticated design and user experience.
         </Paragraph>
       </TextWrapper>
     </Wrapper>
