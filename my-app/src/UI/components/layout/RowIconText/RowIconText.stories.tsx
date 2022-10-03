@@ -11,6 +11,7 @@ export default {
     children: <Paragraph isWrapped={false}>Hello</Paragraph>,
     icon: <IIconSVG src={Github} />,
     gap: 6,
+    isIconOnRight: false,
   },
 } as Meta;
 
@@ -31,4 +32,10 @@ export const IconOnly = Template.bind({});
 IconOnly.args = {
   ...IconOnly.args,
   children: undefined,
+};
+
+export const IconOnRight = Template.bind({});
+IconOnRight.args = {
+  ...IconOnRight.args,
+  isIconOnRight: true,
 };

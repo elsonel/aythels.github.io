@@ -7,18 +7,29 @@ export interface RowIconTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement<ParagraphProps>;
   icon?: React.ReactElement<IIconProps>;
   gap?: number;
+  isIconOnRight?: boolean;
 }
 
 export const RowIconText: React.FC<RowIconTextProps> = ({
   children,
   icon,
   gap = 0,
+  isIconOnRight = false,
   ...props
 }): React.ReactElement => {
   return (
     <Row $gap={gap} {...props}>
-      {icon && icon}
-      {children && children}
+      {isIconOnRight ? (
+        <>
+          {children && children}
+          {icon && icon}
+        </>
+      ) : (
+        <>
+          {icon && icon}
+          {children && children}
+        </>
+      )}
     </Row>
   );
 };

@@ -22,7 +22,7 @@ export const RowIconTextButton: React.FC<RowIconTextButtonProps> = ({
   ) : undefined;
 
   return (
-    <RowIconText gap={size === 'medium' ? 4 : 3} icon={icon} {...props}>
+    <RowIconText gap={size === 'medium' ? 8 : 6} icon={icon} {...props}>
       <TextButton color={color} isWrapped={false} size={size}>
         {text}
       </TextButton>

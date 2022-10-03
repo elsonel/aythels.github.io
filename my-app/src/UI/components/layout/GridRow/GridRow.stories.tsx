@@ -1,13 +1,33 @@
 import { Meta, Story } from '@storybook/react';
 import { GridRow, GridRowProps } from './GridRow';
-import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Theme } from '../../../utility/themes/Theme';
+import { ImageThumbnail } from '../../atoms/ImageThumbnail';
+import { ImageTitle } from '../../atoms/ImageTitle';
+
+let key = 0;
+function createImageThumbnail(src: string, label: string = '2022') {
+  key += 1;
+  return (
+    <ImageThumbnail
+      key={key}
+      src={src}
+      overlayElement={
+        <ImageTitle
+          color={Theme.color.background}
+          title="SOARING SKIES"
+          subtitle={label}
+        />
+      }
+      isOverlayVisible={true}
+    />
+  );
+}
 
 export default {
   title: 'Layout/GridRow',
   component: GridRow,
   args: {
-    children: [<ImageThumbnail key={1} src={Theme.image.exampleSquare} />],
+    children: [createImageThumbnail(Theme.image.exampleSquare)],
     breakpoints: [
       {
         minWidth: 0,
@@ -38,49 +58,21 @@ const Template: Story<GridRowProps> = (args) => <GridRow {...args} />;
 export const Few = Template.bind({});
 Few.args = {
   ...Few.args,
-  children: [
-    <ImageThumbnail
-      key={1}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-  ],
+  children: [createImageThumbnail(Theme.image.exampleSquare)],
 };
 
 export const Many = Template.bind({});
 Many.args = {
   ...Many.args,
   children: [
-    <ImageThumbnail
-      key={1}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-    <ImageThumbnail
-      key={2}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-    <ImageThumbnail
-      key={3}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-    <ImageThumbnail
-      key={4}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-    <ImageThumbnail
-      key={5}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
   ],
 };

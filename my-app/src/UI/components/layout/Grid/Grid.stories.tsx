@@ -2,13 +2,32 @@ import { Meta, Story } from '@storybook/react';
 import { Grid, GridProps } from './Grid';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Theme } from '../../../utility/themes/Theme';
-import { ImageThumbnailAspect } from '../../atoms/ImageThumbnailAspect';
+import { ImageTitle } from '../../atoms/ImageTitle';
+
+let key = 0;
+function createImageThumbnail(src: string, label: string = '2022') {
+  key += 1;
+  return (
+    <ImageThumbnail
+      key={key}
+      src={src}
+      overlayElement={
+        <ImageTitle
+          color={Theme.color.background}
+          title="SOARING SKIES"
+          subtitle={label}
+        />
+      }
+      isOverlayVisible={true}
+    />
+  );
+}
 
 export default {
   title: 'Layout/Grid',
   component: Grid,
   args: {
-    children: [<ImageThumbnail key={1} src={Theme.image.exampleSquare} />],
+    children: [createImageThumbnail(Theme.image.exampleSquare)],
     breakpoints: [
       {
         minWidth: 0,
@@ -36,57 +55,19 @@ export default {
 const Template: Story<GridProps> = (args) => <Grid {...args} />;
 
 export const Few = Template.bind({});
-Few.args = {
-  ...Few.args,
-  children: [
-    <ImageThumbnail
-      key={1}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-    />,
-  ],
-};
 
 export const ManySquare = Template.bind({});
 ManySquare.args = {
   ...ManySquare.args,
   children: [
-    <ImageThumbnailAspect
-      key={1}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-      aspect={1}
-    />,
-    <ImageThumbnailAspect
-      key={2}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-      aspect={1}
-    />,
-    <ImageThumbnailAspect
-      key={3}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-      aspect={1}
-    />,
-    <ImageThumbnailAspect
-      key={4}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-      aspect={1}
-    />,
-    <ImageThumbnailAspect
-      key={5}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="2020"
-      aspect={1}
-    />,
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
   ],
 };
 
@@ -94,68 +75,15 @@ export const ManyVaried = Template.bind({});
 ManyVaried.args = {
   ...ManyVaried.args,
   children: [
-    <ImageThumbnail
-      key={0}
-      src={Theme.image.exampleLandscape}
-      title="SOARING SKIES"
-      subtitle="0"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={1}
-      src={Theme.image.examplePortrait}
-      title="SOARING SKIES"
-      subtitle="1"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={2}
-      src={Theme.image.examplePortrait}
-      title="SOARING SKIES"
-      subtitle="2"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={3}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="3"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={4}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="4"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={5}
-      src={Theme.image.examplePortrait}
-      title="SOARING SKIES"
-      subtitle="5"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={6}
-      src={Theme.image.exampleSquare}
-      title="SOARING SKIES"
-      subtitle="6"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={7}
-      src={Theme.image.exampleLandscape}
-      title="SOARING SKIES"
-      subtitle="7"
-      isTextAlwaysVisible={true}
-    />,
-    <ImageThumbnail
-      key={8}
-      src={Theme.image.exampleLandscape}
-      title="SOARING SKIES"
-      subtitle="8"
-      isTextAlwaysVisible={true}
-    />,
+    createImageThumbnail(Theme.image.exampleLandscape),
+    createImageThumbnail(Theme.image.examplePortrait),
+    createImageThumbnail(Theme.image.examplePortrait),
+    createImageThumbnail(Theme.image.examplePortrait),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.examplePortrait),
+    createImageThumbnail(Theme.image.exampleSquare),
+    createImageThumbnail(Theme.image.exampleLandscape),
+    createImageThumbnail(Theme.image.exampleLandscape),
   ],
 };

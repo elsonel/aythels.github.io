@@ -1,38 +1,37 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Image, ImageProps } from '../Image/Image';
 import { useState } from 'react';
-import { Theme } from '../../../utility/themes/Theme';
 import { ImageTitle } from '../ImageTitle';
 
 export interface ImageThumbnailProps extends ImageProps {
-  /**
-   * The image title
+  /*
+   * Overlaid element
    */
-  title?: string;
-  /**
-   * The image subtitle
-   */
-  subtitle?: string;
-  /**
-   * If the title is always visible or only visible on hover
-   */
-  isTextAlwaysVisible?: boolean;
-  /**
+  overlayElement?: React.ReactNode;
+  /*
    * isFilingContainer
    */
   isFillingParent?: boolean;
-  /**
+  /*
+   * If overlaid element container is always visible
+   */
+  isOverlayVisible?: boolean;
+  /*
+   * Hover override
+   */
+  isBackHovered?: boolean;
+  /*
    * Action onclick
    */
   onClick?: () => void;
 }
 
 export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
-  title,
-  subtitle,
-  isTextAlwaysVisible,
+  overlayElement,
   isFillingParent = true,
+  isOverlayVisible,
+  isBackHovered,
   onClick,
   ...props
 }): React.ReactElement => {
@@ -50,25 +49,29 @@ export const ImageThumbnail: React.FC<ImageThumbnailProps> = ({
       <Content>
         <ImageStyled
           onLoad={() => setIsLoaded(true)}
-          $isHovered={isHovered}
+          $isHovered={isBackHovered == null ? isHovered : isBackHovered}
           $isLoaded={isLoaded}
           {...props}
         />
-        <TitlePanel
-          $isHovered={isTextAlwaysVisible ? true : isHovered}
-          $isLoaded={(!!title || !!subtitle) && isLoaded}
-          title={title}
-          subtitle={subtitle}
-          color={Theme.color.background}
+        <Background
+          $isHovered={isBackHovered == null ? isHovered : isBackHovered}
+          $isLoaded={isLoaded}
         />
-        <Border />
+        <Overlay
+          $isOverlayVisible={
+            isOverlayVisible == null ? isHovered : isOverlayVisible
+          }
+          $isLoaded={isLoaded}
+          children={overlayElement}
+        />
       </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div<{ $isFillingParent: boolean }>`
-  width: ${({ $isFillingParent }) => ($isFillingParent ? '100%' : '300px')};
+  width: ${({ $isFillingParent }) => ($isFillingParent ? '100%' : '320px')};
+  cursor: pointer;
 `;
 
 const Content = styled.div`
@@ -76,7 +79,6 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 `;
 
 // Have to use min-height instead of height because of rendering bug
@@ -103,31 +105,7 @@ const ImageStyled = styled(Image)<{
     `};
 `;
 
-const TitlePanel = styled(ImageTitle)<{
-  $isHovered: boolean;
-  $isLoaded: boolean;
-}>`
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  padding: 20px;
-  padding-top: 60px;
-
-  ${({ $isHovered, $isLoaded, theme }) => `
-    transition: ${theme.speed.slow};
-    transition-delay: ${$isHovered ? 0 : 400}ms;
-    opacity: ${$isHovered && $isLoaded ? 1 : 0};
-  `};
-
-  user-select: none;
-  pointer-events: none;
-  background: none;
-  background: ${({ theme }) => `${theme.color.greyBackdropUp}`};
-`;
-
-const Border = styled.div`
+const Background = styled.div<{ $isHovered: boolean; $isLoaded: boolean }>`
   position: absolute;
   top: 0px;
   left: 0px;
@@ -135,4 +113,21 @@ const Border = styled.div`
   height: 100%;
 
   box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.color.outline}`};
+  transition: ${({ theme }) => `${theme.speed.slow}`};
+  ${({ $isHovered, $isLoaded }) =>
+    $isHovered && $isLoaded && `background-color: rgba(0, 0, 0, 0.1);`};
+`;
+
+const Overlay = styled.div<{ $isOverlayVisible: boolean; $isLoaded: boolean }>`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  ${({ $isOverlayVisible, $isLoaded, theme }) => `
+    transition: ${theme.speed.slow};
+    transition-delay: ${$isOverlayVisible ? 0 : 400}ms;
+    opacity: ${$isOverlayVisible && $isLoaded ? 1 : 0};
+  `};
 `;

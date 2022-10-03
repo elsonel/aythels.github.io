@@ -1,4 +1,4 @@
-import { GalleryGrid } from 'components/GalleryGrid';
+import { ProjectsGrid } from 'components/ProjectsGrid';
 import { Title } from 'components/Title';
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -30,6 +30,6 @@ export const PageProjects: React.FC<PageProjectsProps> = ({
   );
 };
 
-const Grid = styled(GalleryGrid)`
+const Grid = styled(ProjectsGrid)`
   padding-top: 0px;
 `;

@@ -11,6 +11,7 @@ export interface ButtonReverseTextProps extends ButtonProps {
   colorText?: string;
   colorTextHovered?: string;
   size?: 'medium' | 'small';
+  isIconOnRight?: boolean;
 }
 
 export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
@@ -19,6 +20,7 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
   colorText = 'white',
   colorTextHovered,
   size = 'medium',
+  isIconOnRight = false,
   ...props
 }): React.ReactElement => {
   return (
@@ -29,6 +31,7 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
         text={children}
         iconSrc={iconSrc}
         size={size}
+        isIconOnRight={isIconOnRight}
       />
     </ButtonReverse>
   );

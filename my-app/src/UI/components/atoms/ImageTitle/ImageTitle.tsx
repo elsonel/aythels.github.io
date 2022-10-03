@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
+import styled, { useTheme } from 'styled-components';
+import { ThemeInterface } from 'UI/utility/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 
 export interface ImageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,33 +25,75 @@ export interface ImageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
 export const ImageTitle: React.FC<ImageTitleProps> = ({
   title,
   subtitle,
-  color = Theme.color.text,
+  color,
   size = 'small',
   ...props
 }): React.ReactElement => {
+  const theme = useTheme() as ThemeInterface;
+  if (!color) color = theme.color.background;
+
   return (
-    <Wrapper {...props}>
-      <Content $size={size}>
-        <TextTitle $size={size} isWrapped={false} color={color}>
-          {title}
-        </TextTitle>
-        <TextSubtitle $size={size} isWrapped={false} color={color}>
-          {subtitle}
-        </TextSubtitle>
-      </Content>
+    <Wrapper>
+      <Container {...props}>
+        <Background />
+        <TextWrapper>
+          <TextTitle
+            $size={size}
+            isWrapped={false}
+            color={color}
+            textAlign="center"
+          >
+            {title}
+          </TextTitle>
+          <TextSubtitle
+            $size={size}
+            isWrapped={false}
+            color={color}
+            textAlign="center"
+          >
+            {subtitle}
+          </TextSubtitle>
+        </TextWrapper>
+      </Container>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
-
-const Content = styled.div<{ $size: 'medium' | 'small' }>`
+const Wrapper = styled.div`
+  overflow: hidden;
   width: 100%;
-  height: ${({ $size }) => ($size === 'medium' ? 54 : 40)}px;
+  height: 100%;
+`;
+
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+
+  user-select: none;
+`;
+
+const Background = styled.div`
+  z-index: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 160px;
+
+  background: transparent;
+  background: ${({ theme }) => `${theme.color.greyBackdropUp}`};
+`;
+
+const TextWrapper = styled.div`
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
 `;
 
 const TextSubtitle = styled(Paragraph)<{ $size: 'medium' | 'small' }>`

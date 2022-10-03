@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react';
+import styled from 'styled-components';
 import { Theme } from '../../../utility/themes/Theme';
 import { ImageTitle, ImageTitleProps } from './ImageTitle';
 
@@ -8,7 +9,7 @@ export default {
   args: {
     title: 'SPOTLIGHT',
     subtitle: 'Media Streaming Platform',
-    color: Theme.color.text,
+    color: Theme.color.background,
     size: 'small',
   },
   argTypes: {},
@@ -28,4 +29,20 @@ export const NoSubtitle = Template.bind({});
 NoSubtitle.args = {
   ...NoSubtitle.args,
   subtitle: undefined,
+};
+
+const Container = styled.div`
+  width: 300px;
+  height: 300px;
+  background-color: lightgrey;
+`;
+
+const WithContainerTemplate: Story<ImageTitleProps> = (args) => (
+  <Container>
+    <ImageTitle {...args} />
+  </Container>
+);
+export const WithContainer = WithContainerTemplate.bind({});
+WithContainer.args = {
+  ...WithContainer.args,
 };

@@ -1,4 +1,7 @@
+import { useTheme } from 'styled-components';
+import { ImageTitle } from 'UI/components/atoms/ImageTitle';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
+import { ThemeInterface } from 'UI/utility/themes/Theme';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { Explore, EXPLORE_BREAKPOINTS } from '../UI/components/groups/Explore';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
@@ -22,6 +25,7 @@ export const ProjectExplore: React.FC<ProjectExploreProps> = ({
   exploreData,
   ...props
 }): React.ReactElement => {
+  const theme = useTheme() as ThemeInterface;
   const goTo = useGoTo();
 
   return (
@@ -32,10 +36,15 @@ export const ProjectExplore: React.FC<ProjectExploreProps> = ({
             src={e.src}
             srcSet={e.src}
             sizes={getSizes(EXPLORE_BREAKPOINTS)}
-            title={e.title}
-            subtitle={e.subtitle}
+            overlayElement={
+              <ImageTitle
+                color={theme.color.background}
+                title={e.title}
+                subtitle={e.subtitle}
+              />
+            }
             aspect={1}
-            isTextAlwaysVisible={true}
+            isOverlayVisible={true}
             onClick={() => e.to && goTo(e.to)}
           />
         </LinkFake>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { IconSVGType } from '../../../utility/themes/ThemeAsset';
 import { Button, ButtonProps } from '../Button';
@@ -10,6 +10,7 @@ export interface ButtonTextProps extends ButtonProps {
   colorText?: string;
   colorTextHovered?: string;
   size?: 'medium' | 'small';
+  isIconOnRight?: boolean;
 }
 
 export const ButtonText: React.FC<ButtonTextProps> = ({
@@ -18,6 +19,7 @@ export const ButtonText: React.FC<ButtonTextProps> = ({
   colorText = 'white',
   colorTextHovered,
   size = 'medium',
+  isIconOnRight = false,
   ...props
 }): React.ReactElement => {
   return (
@@ -28,6 +30,7 @@ export const ButtonText: React.FC<ButtonTextProps> = ({
         text={children}
         iconSrc={iconSrc}
         size={size}
+        isIconOnRight={isIconOnRight}
       />
     </Button>
   );

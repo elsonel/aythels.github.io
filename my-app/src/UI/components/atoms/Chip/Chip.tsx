@@ -50,5 +50,5 @@ const Wrapper = styled.div`
   align-items: center;
 
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.color.backgroundHighlight};
+  background-color: ${({ theme }) => theme.color.outline};
 `;

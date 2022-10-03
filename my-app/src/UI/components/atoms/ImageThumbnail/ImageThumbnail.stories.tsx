@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { Theme } from '../../../utility/themes/Theme';
+import { ImageTitle } from '../ImageTitle';
 import { ImageThumbnail, ImageThumbnailProps } from './ImageThumbnail';
 
 export default {
@@ -7,10 +8,16 @@ export default {
   component: ImageThumbnail,
   args: {
     src: Theme.image.exampleSquare,
-    title: 'SOARING SKIES',
-    subtitle: '2020',
-    isTextAlwaysVisible: false,
+    overlayElement: (
+      <ImageTitle
+        color={Theme.color.background}
+        title="SOARING SKIES"
+        subtitle="2022"
+      />
+    ),
     isFillingParent: false,
+    isOverlayElement: undefined,
+    isAlwaysHovered: undefined,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -36,13 +43,11 @@ Landscape.args = {
 export const AlwaysVisibleText = Template.bind({});
 AlwaysVisibleText.args = {
   ...AlwaysVisibleText.args,
-  isTextAlwaysVisible: true,
+  isOverlayVisible: true,
 };
 
-export const LongText = Template.bind({});
-LongText.args = {
-  ...LongText.args,
-  isTextAlwaysVisible: true,
-  title: 'SOARING SKIESSSSSSSSSSSSSSSSSSSSSSSSSSSSSS',
-  subtitle: '202000000000000000000000000000000000000',
+export const AlwaysHoveredBack = Template.bind({});
+AlwaysHoveredBack.args = {
+  ...AlwaysHoveredBack.args,
+  isBackHovered: true,
 };

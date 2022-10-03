@@ -13,6 +13,7 @@ export default {
     colorText: 'white',
     colorTextHovered: 'white',
     size: 'medium',
+    isIconOnRight: false,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
@@ -66,4 +67,11 @@ IconSmall.args = {
   ...IconSmall.args,
   size: 'small',
   iconSrc: Sword,
+};
+
+export const IconOnRight = Template.bind({});
+IconOnRight.args = {
+  ...IconOnRight.args,
+  iconSrc: Sword,
+  isIconOnRight: true,
 };
