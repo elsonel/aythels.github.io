@@ -16,6 +16,7 @@ import { PageBasilisktower } from './pages/gallery/basilisktower/PageBasilisktow
 import { PageFoldpavilion } from 'pages/gallery/foldpavilion/PageFoldPavilion';
 import { PageSpotlight } from 'pages/gallery/spotlight/PageSpotlight';
 import { PagePortfolio } from 'pages/gallery/portfolio/PagePortfolio';
+import { PageProjects } from 'pages/projects/PageProjects';
 
 // https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
@@ -25,7 +26,8 @@ export const App: React.FC = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/gallery" replace />} />
+        <Route path="/" element={<Navigate to="/projects" replace />} />
+        <Route path="/projects" element={<PageProjects />} />
         <Route path="/gallery" element={<PageGallery />} />
         <Route
           path="/gallery/kineticboardwalk"

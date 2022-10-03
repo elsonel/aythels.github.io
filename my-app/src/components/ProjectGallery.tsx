@@ -7,6 +7,7 @@ import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { Fact } from 'UI/components/atoms/GalleryProjectPanel';
 import styled from 'styled-components';
 import { PageTitle } from 'UI/components/atoms/PageTitle';
+import { Title } from './Title';
 
 export interface IPanelData {
   title: string;
@@ -44,11 +45,7 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   return (
     <div {...props}>
-      <Title
-        textAlign="center"
-        title={panelData.title}
-        subtitle={panelData.subtitle}
-      />
+      <Title subtitle={panelData.subtitle}>{panelData.title}</Title>
       <StyledGalleryProject body={panelData.body} facts={panelData.facts}>
         {gridsData.map((grid, gridIndex) => (
           <StyledGrid breakpoints={grid.breakpoints} key={gridIndex}>
@@ -101,10 +98,4 @@ const StyledGalleryProject = styled(GalleryProject)`
 
 const StyledGrid = styled(Grid)`
   justify-content: center;
-`;
-
-const Title = styled(PageTitle)`
-  box-sizing: border-box;
-  width: 100%;
-  padding: 50px 20px 42px 20px;
 `;

@@ -45,7 +45,7 @@ const VisualArtsBreakpoints: GridBreakpoint[] = [
     columnCount: 1,
   },
   {
-    minWidth: 800,
+    minWidth: 700,
     columnCount: 2,
   },
   {
@@ -209,11 +209,11 @@ const UIUXBreakpoints: GridBreakpoint[] = [
     columnCount: 1,
   },
   {
-    minWidth: 600,
+    minWidth: 700,
     columnCount: 2,
   },
   {
-    minWidth: 800,
+    minWidth: 900,
     columnCount: 3,
   },
 ];
@@ -273,11 +273,11 @@ const ArchitectureBreakpoints: GridBreakpoint[] = [
     columnCount: 1,
   },
   {
-    minWidth: 600,
+    minWidth: 700,
     columnCount: 2,
   },
   {
-    minWidth: 800,
+    minWidth: 900,
     columnCount: 3,
   },
 ];
@@ -350,15 +350,15 @@ const ArchitectureGrids = SortsData.map((e, i) => (
  */
 export const TabsData: ITabsData = [
   {
-    label: 'VISUAL ARTS',
-    grids: VisualArtsGrids,
-  },
-  {
     label: 'UI / UX',
     grids: UIUXGrids,
   },
   {
     label: 'ARCHITECTURE',
     grids: ArchitectureGrids,
+  },
+  {
+    label: 'VISUAL ARTS',
+    grids: VisualArtsGrids,
   },
 ];

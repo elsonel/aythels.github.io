@@ -24,6 +24,11 @@ export const Layout: React.FC<LayoutProps> = ({
           <HeaderTabs
             tabs={[
               {
+                label: 'PROJECTS',
+                href: '/projects',
+                onClick: () => goTo('/projects'),
+              },
+              {
                 label: 'GALLERY',
                 href: '/gallery',
                 onClick: () => goTo('/gallery'),
