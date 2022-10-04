@@ -13,12 +13,15 @@ export const ButtonReverse: React.FC<ButtonReverseProps> = ({
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <div onMouseLeave={() => setIsClicked(false)}>
+    <div
+      onMouseLeave={() => setIsClicked(false)}
+      onMouseDown={() => setIsClicked(true)}
+      onMouseUp={() => setIsClicked(false)}
+    >
       <ButtonLayoutStyled
-        onMouseDown={() => setIsClicked(true)}
-        onMouseUp={() => setIsClicked(false)}
         $isClicked={isClicked}
         isDisabled={isDisabled}
+        isClickStateEnabled={false}
         {...props}
       />
     </div>

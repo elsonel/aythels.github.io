@@ -8,9 +8,8 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   borderHovered?: string;
   color?: string;
   colorHovered?: string;
+  isClickStateEnabled?: boolean;
   onClick?: () => void;
-  _onMouseDown?: () => void;
-  _onMouseUp?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -20,9 +19,8 @@ export const Button: React.FC<ButtonProps> = ({
   borderHovered,
   color = '#F37676',
   colorHovered,
+  isClickStateEnabled = true,
   onClick,
-  _onMouseDown,
-  _onMouseUp,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
@@ -30,16 +28,10 @@ export const Button: React.FC<ButtonProps> = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => isClickStateEnabled && setIsHovered(false)}
+      onMouseUp={() => isClickStateEnabled && setIsHovered(true)}
     >
       <ButtonStyled
-        onMouseDown={() => {
-          setIsHovered(false);
-          _onMouseDown && _onMouseDown();
-        }}
-        onMouseUp={() => {
-          setIsHovered(true);
-          _onMouseUp && _onMouseUp();
-        }}
         $isHovered={isHovered}
         $border={border || color}
         $borderHovered={borderHovered || border || color}
