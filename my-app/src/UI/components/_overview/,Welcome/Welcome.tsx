@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
+import { Link } from '../../inputs/Link';
 import { ThemeInterface } from '../../../utility/themes/Theme';
 import { FooterIconRow } from '../../groups/Footer/FooterIconRow';
 import { Paragraph } from '../../text/Paragraph';
@@ -32,9 +33,9 @@ export const Welcome: React.FC<WelcomeProps> = ({
       <br />
       <Paragraph>Feel free to browse around.</Paragraph>
       <br />
-      <a href={theme.link.home}>
+      <Link href={theme.link.home} isOpeningNewTab={false}>
         <TextLink>Return to main site.</TextLink>
-      </a>
+      </Link>
       <br />
       <FooterIconRow />
     </Wrapper>

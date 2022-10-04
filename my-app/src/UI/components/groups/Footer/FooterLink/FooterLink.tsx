@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from '../../../inputs/Link';
 import { TextFooterProps } from '../../../text/TextFooter';
 import { TextLink } from '../../../text/TextLink';
 
@@ -9,15 +10,15 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <a href="/storybook" target="_blank" rel="noreferrer">
-      <Link size={'tiny'} isWrapped={false} {...props}>
+    <Link href="/storybook">
+      <StyledTextLink size={'tiny'} isWrapped={false} {...props}>
         Designed and built from scratch with React.
-      </Link>
-    </a>
+      </StyledTextLink>
+    </Link>
   );
 };
 
-const Link = styled(TextLink)`
+const StyledTextLink = styled(TextLink)`
   color: ${({ theme }) => theme.color.textNeutral};
 
   &:hover {

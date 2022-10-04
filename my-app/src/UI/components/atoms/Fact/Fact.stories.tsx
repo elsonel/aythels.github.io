@@ -25,9 +25,9 @@ LongText.args = {
     'There are lots and lots and lots and lots and lots and lots of text here. FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
 };
 
-export const Link = Template.bind({});
-Link.args = {
-  ...Link.args,
+export const WithLink = Template.bind({});
+WithLink.args = {
+  ...WithLink.args,
   label: 'GITHUB',
   value: (
     <a href="/">

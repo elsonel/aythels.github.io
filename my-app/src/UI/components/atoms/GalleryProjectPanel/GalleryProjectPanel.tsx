@@ -4,7 +4,7 @@ import { Paragraph } from '../../text/Paragraph';
 import { TextLink } from '../../text/TextLink';
 import { Fact } from '../Fact';
 import { ProjectSectionFactList } from '../ProjectSectionFactList';
-import { ProjectSectionText } from '../ProjectSectionText';
+import { Link } from '../../inputs/Link';
 
 export interface Fact {
   label: string;
@@ -39,9 +39,9 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
               isAlwaysWrapped={true}
               value={
                 e.to ? (
-                  <a href={e.to} target="_blank" rel="noreferrer">
+                  <StyledLink href={e.to}>
                     <TextLink weight="bold2">{e.value}</TextLink>
-                  </a>
+                  </StyledLink>
                 ) : (
                   e.value
                 )
@@ -72,4 +72,9 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+const StyledLink = styled(Link)`
+  display: inline-flex;
+  vertical-align: top;
 `;
