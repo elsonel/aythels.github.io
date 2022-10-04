@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { IconSVGType } from '../../../utility/themes/ThemeAsset';
 import { ButtonProps } from '../Button';
@@ -18,16 +18,21 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
   children,
   iconSrc,
   colorText = 'white',
-  colorTextHovered,
+  colorTextHovered = 'black',
   size = 'medium',
   isIconOnRight = false,
   ...props
 }): React.ReactElement => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <ButtonReverse {...props}>
+    <ButtonReverse
+      _onMouseEnter={() => setIsHovered(true)}
+      _onMouseLeave={() => setIsHovered(false)}
+      {...props}
+    >
       <ButtonContent
-        $colorText={colorText}
-        $colorTextHovered={colorTextHovered ? colorTextHovered : colorText}
+        $colorText={isHovered ? colorTextHovered : colorText}
         text={children}
         iconSrc={iconSrc}
         size={size}
@@ -52,17 +57,10 @@ const ButtonSmall = css`
 const ButtonContent = styled(RowIconTextButton)<{
   size: 'medium' | 'small';
   $colorText: string;
-  $colorTextHovered: string;
 }>`
   ${({ size }) => (size === 'medium' ? ButtonMedium : ButtonSmall)}
 
   > * {
     color: ${({ $colorText }) => $colorText};
-  }
-
-  &:hover {
-    > * {
-      color: ${({ $colorTextHovered }) => $colorTextHovered};
-    }
   }
 `;

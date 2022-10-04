@@ -91,3 +91,9 @@ export const SpotlightImages = new (ImageManager as any)(
     require.context('../assets/spotlight-assets', false, /\.(png|jpe?g|svg)$/)
   )
 );
+
+export const ProjectsImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/projects-assets', false, /\.(png|jpe?g|svg)$/)
+  )
+);

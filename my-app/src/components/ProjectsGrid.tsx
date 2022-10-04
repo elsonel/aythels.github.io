@@ -39,6 +39,7 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
               prototypeLink={e.prototypeLink}
             />
           }
+          isOverlayVisible={true}
           alt={e.title}
           src={e.src}
           srcSet={e.src}
