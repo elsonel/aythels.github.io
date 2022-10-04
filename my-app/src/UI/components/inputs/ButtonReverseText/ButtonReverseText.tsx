@@ -12,6 +12,8 @@ export interface ButtonReverseTextProps extends ButtonProps {
   colorTextHovered?: string;
   size?: 'medium' | 'small';
   isIconOnRight?: boolean;
+  onMouseLeave?: () => void;
+  onMouseEnter?: () => void;
 }
 
 export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
@@ -21,25 +23,30 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
   colorTextHovered = 'black',
   size = 'medium',
   isIconOnRight = false,
+  onMouseLeave,
+  onMouseEnter,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <ButtonReverse {...props}>
-        <ButtonContent
-          $colorText={isHovered ? colorTextHovered : colorText}
-          text={children}
-          iconSrc={iconSrc}
-          size={size}
-          isIconOnRight={isIconOnRight}
-        />
-      </ButtonReverse>
-    </div>
+    <ButtonReverse {...props}>
+      <ButtonContent
+        onMouseEnter={() => {
+          setIsHovered(true);
+          onMouseEnter && onMouseEnter();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          onMouseLeave && onMouseLeave();
+        }}
+        $colorText={isHovered ? colorTextHovered : colorText}
+        text={children}
+        iconSrc={iconSrc}
+        size={size}
+        isIconOnRight={isIconOnRight}
+      />
+    </ButtonReverse>
   );
 };
 

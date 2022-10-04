@@ -10,6 +10,10 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   colorHovered?: string;
   isClickStateEnabled?: boolean;
   onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onMouseDown?: () => void;
+  onMouseUp?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,29 +25,42 @@ export const Button: React.FC<ButtonProps> = ({
   colorHovered,
   isClickStateEnabled = true,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseDown={() => isClickStateEnabled && setIsHovered(false)}
-      onMouseUp={() => isClickStateEnabled && setIsHovered(true)}
+    <ButtonStyled
+      onMouseEnter={() => {
+        setIsHovered(true);
+        onMouseEnter && onMouseEnter();
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        onMouseLeave && onMouseLeave();
+      }}
+      onMouseDown={() => {
+        isClickStateEnabled && setIsHovered(false);
+        onMouseDown && onMouseDown();
+      }}
+      onMouseUp={() => {
+        isClickStateEnabled && setIsHovered(true);
+        onMouseUp && onMouseUp();
+      }}
+      $isHovered={isHovered}
+      $border={border || color}
+      $borderHovered={borderHovered || border || color}
+      $color={color}
+      $colorHovered={colorHovered || color}
+      $isDisabled={isDisabled}
+      onClick={onClick}
+      {...props}
     >
-      <ButtonStyled
-        $isHovered={isHovered}
-        $border={border || color}
-        $borderHovered={borderHovered || border || color}
-        $color={color}
-        $colorHovered={colorHovered || color}
-        $isDisabled={isDisabled}
-        onClick={onClick}
-        {...props}
-      >
-        {children}
-      </ButtonStyled>
-    </div>
+      {children}
+    </ButtonStyled>
   );
 };
 

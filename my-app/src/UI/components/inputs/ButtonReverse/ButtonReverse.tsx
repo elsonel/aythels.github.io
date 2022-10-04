@@ -4,27 +4,39 @@ import { Button, ButtonProps } from '../Button';
 
 export interface ButtonReverseProps extends ButtonProps {
   isDisabled?: boolean;
+  onMouseLeave?: () => void;
+  onMouseDown?: () => void;
+  onMouseUp?: () => void;
 }
 
 export const ButtonReverse: React.FC<ButtonReverseProps> = ({
   isDisabled = false,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
   ...props
 }): React.ReactElement => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <div
-      onMouseLeave={() => setIsClicked(false)}
-      onMouseDown={() => setIsClicked(true)}
-      onMouseUp={() => setIsClicked(false)}
-    >
-      <ButtonLayoutStyled
-        $isClicked={isClicked}
-        isDisabled={isDisabled}
-        isClickStateEnabled={false}
-        {...props}
-      />
-    </div>
+    <ButtonLayoutStyled
+      onMouseLeave={() => {
+        setIsClicked(false);
+        onMouseLeave && onMouseLeave();
+      }}
+      onMouseDown={() => {
+        setIsClicked(true);
+        onMouseDown && onMouseDown();
+      }}
+      onMouseUp={() => {
+        setIsClicked(false);
+        onMouseUp && onMouseUp();
+      }}
+      $isClicked={isClicked}
+      isDisabled={isDisabled}
+      isClickStateEnabled={false}
+      {...props}
+    />
   );
 };
 

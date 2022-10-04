@@ -109,7 +109,7 @@ const WrapperWrapper = styled.div<{ $isHovered: boolean }>`
   height: 100%;
   padding: 10px;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   opacity: ${({ $isHovered }) => ($isHovered ? 1 : 0)};
   pointer-events: ${({ $isHovered }) => ($isHovered ? 'auto' : 'none')};
   transition: ${({ theme }) => `${theme.speed.normal}`};
