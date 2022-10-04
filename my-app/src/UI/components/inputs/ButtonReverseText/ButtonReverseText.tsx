@@ -26,19 +26,20 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <ButtonReverse
-      _onMouseEnter={() => setIsHovered(true)}
-      _onMouseLeave={() => setIsHovered(false)}
-      {...props}
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <ButtonContent
-        $colorText={isHovered ? colorTextHovered : colorText}
-        text={children}
-        iconSrc={iconSrc}
-        size={size}
-        isIconOnRight={isIconOnRight}
-      />
-    </ButtonReverse>
+      <ButtonReverse {...props}>
+        <ButtonContent
+          $colorText={isHovered ? colorTextHovered : colorText}
+          text={children}
+          iconSrc={iconSrc}
+          size={size}
+          isIconOnRight={isIconOnRight}
+        />
+      </ButtonReverse>
+    </div>
   );
 };
 

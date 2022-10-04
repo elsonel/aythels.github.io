@@ -9,8 +9,6 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: string;
   colorHovered?: string;
   onClick?: () => void;
-  _onMouseEnter?: () => void;
-  _onMouseLeave?: () => void;
   _onMouseDown?: () => void;
   _onMouseUp?: () => void;
 }
@@ -23,42 +21,37 @@ export const Button: React.FC<ButtonProps> = ({
   color = '#F37676',
   colorHovered,
   onClick,
-  _onMouseEnter,
-  _onMouseLeave,
   _onMouseDown,
   _onMouseUp,
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <ButtonStyled
-      onMouseEnter={() => {
-        setIsHovered(true);
-        _onMouseEnter && _onMouseEnter();
-      }}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        _onMouseLeave && _onMouseLeave();
-      }}
-      onMouseDown={() => {
-        setIsHovered(false);
-        _onMouseDown && _onMouseDown();
-      }}
-      onMouseUp={() => {
-        setIsHovered(true);
-        _onMouseUp && _onMouseUp();
-      }}
-      $isHovered={isHovered}
-      $border={border || color}
-      $borderHovered={borderHovered || border || color}
-      $color={color}
-      $colorHovered={colorHovered || color}
-      $isDisabled={isDisabled}
-      onClick={onClick}
-      {...props}
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {children}
-    </ButtonStyled>
+      <ButtonStyled
+        onMouseDown={() => {
+          setIsHovered(false);
+          _onMouseDown && _onMouseDown();
+        }}
+        onMouseUp={() => {
+          setIsHovered(true);
+          _onMouseUp && _onMouseUp();
+        }}
+        $isHovered={isHovered}
+        $border={border || color}
+        $borderHovered={borderHovered || border || color}
+        $color={color}
+        $colorHovered={colorHovered || color}
+        $isDisabled={isDisabled}
+        onClick={onClick}
+        {...props}
+      >
+        {children}
+      </ButtonStyled>
+    </div>
   );
 };
 
