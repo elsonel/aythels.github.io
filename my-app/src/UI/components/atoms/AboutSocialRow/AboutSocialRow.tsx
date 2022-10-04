@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Linkedin, Github } from '@styled-icons/fa-brands/';
 import { Email } from '@styled-icons/material-rounded/';
-import { IconLinkExternal } from '../../inputs/IconExternalLink';
+import { LinkIcon } from '../../inputs/LinkIcon';
 import { RowIcon, RowIconProps } from '../../layout/RowIcon';
 import { ThemeInterface } from '../../../utility/themes/Theme';
 
@@ -15,21 +15,22 @@ export const AboutSocialRow: React.FC<AboutSocialRowProps> = ({
 
   return (
     <RowIcon size={32} gap={40} {...props}>
-      <IconLinkExternal
+      <LinkIcon
         src={Linkedin}
-        to={theme.link.linkedin}
+        href={theme.link.linkedin}
         color={theme.color.text}
         colorHovered={theme.color.textHovered}
       />
-      <IconLinkExternal
+      <LinkIcon
         src={Github}
-        to={theme.link.github}
+        href={theme.link.github}
         color={theme.color.text}
         colorHovered={theme.color.textHovered}
       />
-      <IconLinkExternal
+      <LinkIcon
+        isOpeningNewTab={false}
         src={Email}
-        to={theme.link.email}
+        href={theme.link.email}
         color={theme.color.text}
         colorHovered={theme.color.textHovered}
       />

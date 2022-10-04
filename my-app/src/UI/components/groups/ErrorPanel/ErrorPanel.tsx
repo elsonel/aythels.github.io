@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
+import { Link } from '../../inputs/Link';
 import { ThemeInterface } from '../../../utility/themes/Theme';
 import { PageTitle } from '../../atoms/PageTitle';
 import { ButtonReverseText } from '../../inputs/ButtonReverseText';
@@ -49,14 +50,14 @@ export const ErrorPanel: React.FC<ErrorPanelProps> = ({
             children="HOME"
           />
         </LinkFake>
-        <LinkFake isDefaultPrevented={false} href={`mailto:${email}`}>
+        <Link isOpeningNewTab={false} href={`mailto:${email}`}>
           <ButtonReverseText
             border={theme.color.text}
             color={theme.color.background}
             colorText={theme.color.text}
             children="CONTACT"
           />
-        </LinkFake>
+        </Link>
       </WrapperButtonRow>
     </Wrapper>
   );

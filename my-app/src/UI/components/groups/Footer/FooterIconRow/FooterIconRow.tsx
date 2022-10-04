@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Linkedin, Github } from '@styled-icons/fa-brands/';
 import { Email } from '@styled-icons/material-rounded/';
-import { IconLinkExternal } from '../../../inputs/IconExternalLink/IconLinkExternal';
+import { LinkIcon } from '../../../inputs/LinkIcon/LinkIcon';
 import { RowIcon, RowIconProps } from '../../../layout/RowIcon';
 import { ThemeInterface } from '../../../../utility/themes/Theme';
 
@@ -14,9 +14,9 @@ export const FooterIconRow: React.FC<FooterIconRowProps> = ({
   const theme = useTheme() as ThemeInterface;
   return (
     <RowIcon size={24} {...props}>
-      <IconLinkExternal src={Linkedin} to={theme.link.linkedin} />
-      <IconLinkExternal src={Github} to={theme.link.github} />
-      <IconLinkExternal src={Email} to={theme.link.email} />
+      <LinkIcon src={Linkedin} href={theme.link.linkedin} />
+      <LinkIcon src={Github} href={theme.link.github} />
+      <LinkIcon src={Email} href={theme.link.email} />
     </RowIcon>
   );
 };

@@ -8,7 +8,6 @@ export default {
   args: {
     href: 'https://github.com/aythels',
     children: 'Click Me',
-    isDefaultedPrevented: true,
   },
 } as Meta;
 

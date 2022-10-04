@@ -7,6 +7,7 @@ import { Github } from 'styled-icons/bootstrap';
 import { Chip } from '../Chip';
 import { ExternalLink } from '@styled-icons/feather/ExternalLink';
 import { ImageTitle } from '../ImageTitle';
+import { Link } from '../../inputs/Link/Link';
 
 export interface ThumbnailPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -32,55 +33,42 @@ export const ThumbnailPanel: React.FC<ThumbnailPanelProps> = ({
     <Swapper
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      {...props}
     >
       <WrapperWrapper $isHovered={isHovered}>
-        <Wrapper {...props}>
-          <SubWrapper>
-            {/*
-          <ChipRow>
-            <Chip icon={Github} label="MongoDB" />
-            <Chip icon={Github} label="Node.js" />
-            <Chip icon={Github} label="Express" />
-            <Chip icon={Github} label="Redux Toolkit" />
-            <Chip icon={Github} label="React" />
-            <Chip icon={Github} label="TypeScript" />
-  </ChipRow>*/}
-            <div>
-              <TextTitle textAlign="center">{title}</TextTitle>
-              <br />
-              <TextSubtitle textAlign="center">{description}</TextSubtitle>
-            </div>
-          </SubWrapper>
-          <SubWrapper>
-            <Row>
-              <Link href={githubLink} target="_blank" rel="noreferrer">
-                <ButtonReverseText
-                  iconSrc={Github}
-                  size="small"
-                  border={theme.color.background}
-                  color={'transparent'}
-                  colorHovered={theme.color.background}
-                  colorText={theme.color.background}
-                  colorTextHovered={theme.color.text}
-                  children="GITHUB"
-                />
-              </Link>
-              <Link href={prototypeLink} target="_blank" rel="noreferrer">
-                <ButtonReverseText
-                  iconSrc={ExternalLink}
-                  isIconOnRight={true}
-                  size="small"
-                  border={theme.color.background}
-                  borderHovered={theme.color.background}
-                  color={theme.color.background}
-                  colorHovered={theme.color.background}
-                  colorText={theme.color.text}
-                  colorTextHovered={theme.color.text}
-                  children="PROTOTYPE"
-                />
-              </Link>
-            </Row>
-          </SubWrapper>
+        <Wrapper>
+          <TextWrapper>
+            <TextTitle textAlign="center">{title}</TextTitle>
+            <TextSubtitle textAlign="center">{description}</TextSubtitle>
+          </TextWrapper>
+          <ButtonWrapper>
+            <Link href={githubLink}>
+              <ButtonReverseText
+                iconSrc={Github}
+                size="small"
+                border={theme.color.background}
+                color={'transparent'}
+                colorHovered={theme.color.background}
+                colorText={theme.color.background}
+                colorTextHovered={theme.color.text}
+                children="GITHUB"
+              />
+            </Link>
+            <Link href={prototypeLink}>
+              <ButtonReverseText
+                iconSrc={ExternalLink}
+                isIconOnRight={true}
+                size="small"
+                border={theme.color.background}
+                borderHovered={theme.color.background}
+                color={theme.color.background}
+                colorHovered={theme.color.background}
+                colorText={theme.color.text}
+                colorTextHovered={theme.color.text}
+                children="PROTOTYPE"
+              />
+            </Link>
+          </ButtonWrapper>
         </Wrapper>
       </WrapperWrapper>
       <TitlePreview $isHovered={isHovered} title={title} subtitle={subtitle} />
@@ -128,26 +116,17 @@ const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.textNeutral};
 `;
 
-const SubWrapper = styled.div`
+const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
 `;
 
-const Row = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-`;
-
-const ChipRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 10px;
 `;
 
 const TextTitle = styled(Paragraph)`
@@ -160,16 +139,4 @@ const TextSubtitle = styled(Paragraph)`
   font-size: ${({ theme }) => theme.font.size.small};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme }) => theme.color.background};
-`;
-
-const Link = styled.a`
-  text-decoration: none;
-
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
 `;

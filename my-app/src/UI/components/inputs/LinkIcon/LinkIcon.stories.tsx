@@ -1,22 +1,20 @@
 import { Meta, Story } from '@storybook/react';
-import { IconLinkExternal, IconLinkExternalProps } from './IconLinkExternal';
+import { LinkIcon, LinkIconProps } from './LinkIcon';
 import { Linkedin } from '@styled-icons/fa-brands/Linkedin';
 import { Theme } from '../../../utility/themes/Theme';
 
 export default {
-  title: 'Inputs/IconLinkExternal',
-  component: IconLinkExternal,
+  title: 'Inputs/LinkIcon',
+  component: LinkIcon,
   args: {
     src: Linkedin,
-    to: 'https://github.com/aythels',
+    href: 'https://github.com/',
     size: 32,
     color: Theme.color.textNeutral,
     colorHovered: Theme.color.textHovered,
   },
 } as Meta;
 
-const Template: Story<IconLinkExternalProps> = (args) => (
-  <IconLinkExternal {...args} />
-);
+const Template: Story<LinkIconProps> = (args) => <LinkIcon {...args} />;
 
 export const Basic = Template.bind({});

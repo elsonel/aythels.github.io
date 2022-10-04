@@ -1,16 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Link, LinkProps } from '../Link/Link';
 
-export interface LinkFakeProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Element to be linked
-   */
-  children: React.ReactNode;
-  /**
-   * override prevent default
-   */
-  isDefaultPrevented?: boolean;
+export interface LinkFakeProps extends LinkProps {
   /**
    * When link is clicked
    */
@@ -18,25 +9,16 @@ export interface LinkFakeProps
 }
 
 export const LinkFake: React.FC<LinkFakeProps> = ({
-  children,
-  isDefaultPrevented = true,
   onClick,
   ...props
 }): React.ReactElement => {
   return (
     <Link
       onClick={(e) => {
-        isDefaultPrevented && e.preventDefault();
+        e.preventDefault();
         onClick && onClick();
       }}
       {...props}
-    >
-      {children}
-    </Link>
+    />
   );
 };
-
-const Link = styled.a`
-  display: flex;
-  text-decoration: none;
-`;
