@@ -18,7 +18,7 @@ export const GreetingPanel: React.FC<GreetingPanelProps> = ({
           Hi, I'm Elson.
         </Paragraph>
         <Paragraph textAlign="center" size="large">
-          I'm a full-stack software developer with a formal background in
+          I'm a stack software developer with a formal background in
           architecture. My passion lies in engineering resilient solutions that
           integrate well with sophisticated design and user experience.
         </Paragraph>

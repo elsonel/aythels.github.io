@@ -22,10 +22,6 @@ export const PagePortfolio: React.FC<PagePortfolioProps> = ({
         <ProjectExplore
           exploreData={UIUXData.filter((e) => e.title != 'PORTFOL.IO')}
         />
-        <Paragraph>
-          <em>Hi</em>
-          Bye
-        </Paragraph>
       </Layout>
     </Page>
   );

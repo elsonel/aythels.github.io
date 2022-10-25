@@ -18,7 +18,7 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
       />
       <BodyWrapper>
         <Paragraph textAlign="center">
-          I'm a software developer with additional skills in design and visual
+          I'm a software developer with additional skills in visual design and
           communication.
         </Paragraph>
         <Paragraph textAlign="center">
