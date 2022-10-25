@@ -64,5 +64,5 @@ const Body = styled.div`
   min-height: ${({ theme }) =>
     `calc(100vh - ${theme.size.headerHeight}px - ${theme.size.footerHeight}px)`};
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: minmax(0, 1fr);
 `;

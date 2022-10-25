@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
+import { GridBreakpoint } from 'UI/components/layout/Grid';
 import { GalleryHeaderMain } from '../UI/components/groups/GalleryHeader/GalleryHeaderMain';
 import { IGallerySortable } from '../utility/Sort';
-import { GalleryGridProps } from './GalleryGrid';
+import { GalleryGrid, SortMethods } from './GalleryGrid';
+import { GalleryGridArt } from './GalleryGridArt';
 
 export interface ITab {
   label: string;
-  grids: React.ReactElement<GalleryGridProps>[];
+  data: IGallerySortable[];
+  breakpoints: GridBreakpoint[];
+  isDynamicGrid: boolean;
 }
 
 export type ITabsData = ITab[];
 
-export interface ISort {
-  label: string;
-  sort: (data: IGallerySortable[]) => IGallerySortable[];
-}
-
-export type ISortsData = ISort[];
-
 export interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   tabsData: ITabsData;
-  sortsData: ISortsData;
 }
 
 export const Gallery: React.FC<GalleryProps> = ({
   tabsData,
-  sortsData,
   ...props
 }): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -40,7 +35,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             onClick: () => setSelectedTab(i),
           };
         })}
-        sortTabs={sortsData.map((e, i) => {
+        sortTabs={SortMethods.map((e, i) => {
           return {
             label: e.label,
             isSelected: i === selectedSort,
@@ -48,7 +43,21 @@ export const Gallery: React.FC<GalleryProps> = ({
           };
         })}
       />
-      {tabsData[selectedTab].grids[selectedSort]}
+      {tabsData[selectedTab].isDynamicGrid ? (
+        <GalleryGridArt
+          key={`${selectedTab}-${selectedSort}`}
+          data={tabsData[selectedTab].data}
+          breakpoints={tabsData[selectedTab].breakpoints}
+          sortType={SortMethods[selectedSort]}
+        />
+      ) : (
+        <GalleryGrid
+          key={`${selectedTab}-${selectedSort}`}
+          data={tabsData[selectedTab].data}
+          breakpoints={tabsData[selectedTab].breakpoints}
+          sortType={SortMethods[selectedSort]}
+        />
+      )}
     </div>
   );
 };

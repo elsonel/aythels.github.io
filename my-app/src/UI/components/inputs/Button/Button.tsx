@@ -34,6 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   return (
     <ButtonStyled
+      type="button"
       onMouseEnter={() => {
         setIsHovered(true);
         onMouseEnter && onMouseEnter();

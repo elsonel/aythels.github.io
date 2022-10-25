@@ -1,39 +1,12 @@
-import { ISortsData, ITabsData } from '../../components/Gallery';
-import { GalleryGrid, IGalleryEntry } from '../../components/GalleryGrid';
-import {
-  GalleryGridArt,
-  IGalleryEntryArt,
-} from '../../components/GalleryGridArt';
+import { ITabsData } from '../../components/Gallery';
+import { IGalleryEntry } from '../../components/GalleryGrid';
+import { IGalleryEntryArt } from '../../components/GalleryGridArt';
 import { GridBreakpoint } from '../../UI/components/layout/Grid';
-import { sortByDate, sortByName } from 'utility/Sort';
 import {
   VisualArtsImages,
   UIUXImages,
   ArchitectureImages,
 } from 'utility/ImportImages';
-
-/* =============================================================================
- * Sorting Data
- * =============================================================================
- */
-export const SortsData: ISortsData = [
-  {
-    label: 'NEWEST',
-    sort: (data) => sortByDate(data),
-  },
-  {
-    label: 'OLDEST',
-    sort: (data) => sortByDate(data, false),
-  },
-  {
-    label: 'A - Z',
-    sort: (data) => sortByName(data),
-  },
-  {
-    label: 'Z - A',
-    sort: (data) => sortByName(data, false),
-  },
-];
 
 /* =============================================================================
  * Visual Arts Data
@@ -190,14 +163,6 @@ export const VisualArtsData: IGalleryEntryArt[] = [
   },
 ];
 
-const VisualArtsGrids = SortsData.map((e, i) => (
-  <GalleryGridArt
-    key={'VisualArtsGrids' + i}
-    data={e.sort(VisualArtsData) as IGalleryEntryArt[]}
-    breakpoints={VisualArtsBreakpoints}
-  />
-));
-
 /* =============================================================================
  * UI UX Data
  * =============================================================================
@@ -254,14 +219,6 @@ export const UIUXData: IGalleryEntry[] = [
     to: '/gallery/spotlight',
   },
 ];
-
-const UIUXGrids = SortsData.map((e, i) => (
-  <GalleryGrid
-    key={'UIUXGrids' + i}
-    data={e.sort(UIUXData) as IGalleryEntry[]}
-    breakpoints={UIUXBreakpoints}
-  />
-));
 
 /* =============================================================================
  * Architecture Data
@@ -336,14 +293,6 @@ export const ArchitectureData: IGalleryEntry[] = [
   },
 ];
 
-const ArchitectureGrids = SortsData.map((e, i) => (
-  <GalleryGrid
-    key={'ArchitectureGrids' + i}
-    data={e.sort(ArchitectureData) as IGalleryEntry[]}
-    breakpoints={ArchitectureBreakpoints}
-  />
-));
-
 /* =============================================================================
  * Tabs Data
  * =============================================================================
@@ -351,14 +300,20 @@ const ArchitectureGrids = SortsData.map((e, i) => (
 export const TabsData: ITabsData = [
   {
     label: 'UI / UX',
-    grids: UIUXGrids,
+    data: UIUXData,
+    breakpoints: UIUXBreakpoints,
+    isDynamicGrid: false,
   },
   {
     label: 'ARCHITECTURE',
-    grids: ArchitectureGrids,
+    data: ArchitectureData,
+    breakpoints: ArchitectureBreakpoints,
+    isDynamicGrid: false,
   },
   {
     label: 'VISUAL ARTS',
-    grids: VisualArtsGrids,
+    data: VisualArtsData,
+    breakpoints: VisualArtsBreakpoints,
+    isDynamicGrid: true,
   },
 ];
