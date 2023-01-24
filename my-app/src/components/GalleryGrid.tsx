@@ -2,7 +2,7 @@ import styled, { useTheme } from 'styled-components';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import useGoTo from '../utility/useGoTo';
-import { IGallerySortable } from '../utility/Sort';
+import { IGallerySortable } from '../utility/sortData';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { ImageTitle } from 'UI/components/atoms/ImageTitle';
