@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IIconProps } from 'UI/components/atoms/IIcon';
-import { ParagraphProps } from '../../text/Paragraph';
+import { IParagraphProps } from '../../text/Paragraph';
 
 export interface RowIconTextProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactElement<ParagraphProps>;
+  children?: React.ReactElement<IParagraphProps>;
   icon?: React.ReactElement<IIconProps>;
   gap?: number;
   isIconOnRight?: boolean;

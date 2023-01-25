@@ -34,6 +34,6 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;

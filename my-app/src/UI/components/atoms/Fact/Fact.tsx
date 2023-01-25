@@ -30,11 +30,11 @@ const Wrapper = styled(TwoColumn)`
 
 const Label = styled(Paragraph)`
   color: ${({ theme }) => theme.color.textNeutral};
-  font-size: ${({ theme }) => theme.font.size.tiny};
-  letter-spacing: ${({ theme }) => theme.font.spacing.button};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-size: ${({ theme }) => theme.font.default.size.tiny};
+  letter-spacing: ${({ theme }) => theme.font.default.wordSpacing.button};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
 `;
 
 const Text = styled(Paragraph)`
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Paragraph, ParagraphProps } from '../Paragraph/Paragraph';
+import { Paragraph, IParagraphProps } from '../Paragraph/Paragraph';
 
-export interface TextButtonProps extends ParagraphProps {
+export interface TextButtonProps extends IParagraphProps {
   /**
    * Text
    */
@@ -21,6 +21,6 @@ export const TextButton: React.FC<TextButtonProps> = ({
 };
 
 const Text = styled(Paragraph)`
-  letter-spacing: ${({ theme }) => theme.font.spacing.button};
-  padding-left: ${({ theme }) => theme.font.spacing.button};
+  letter-spacing: ${({ theme }) => theme.font.default.wordSpacing.button};
+  padding-left: ${({ theme }) => theme.font.default.wordSpacing.button};
 `;

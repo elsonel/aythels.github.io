@@ -98,12 +98,16 @@ const TextWrapper = styled.div`
 
 const TextSubtitle = styled(Paragraph)<{ $size: 'medium' | 'small' }>`
   font-size: ${({ $size, theme }) =>
-    $size === 'medium' ? theme.font.size.large : theme.font.size.small};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+    $size === 'medium'
+      ? theme.font.default.size.large
+      : theme.font.default.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
 `;
 
 const TextTitle = styled(Paragraph)<{ $size: 'medium' | 'small' }>`
   font-size: ${({ $size, theme }) =>
-    $size === 'medium' ? theme.font.size.h4 : theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+    $size === 'medium'
+      ? theme.font.default.size.h4
+      : theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;

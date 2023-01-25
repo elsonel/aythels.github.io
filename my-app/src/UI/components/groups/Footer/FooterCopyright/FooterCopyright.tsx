@@ -41,5 +41,5 @@ const Name = styled(TextFooter)`
   flex-grow: 1;
 
   text-align: left;
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;

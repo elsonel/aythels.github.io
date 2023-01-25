@@ -9,7 +9,7 @@ export interface ButtonTextProps extends ButtonProps {
   iconSrc?: IconSVGType;
   colorText?: string;
   colorTextHovered?: string;
-  size?: 'medium' | 'small';
+  size?: 'default' | 'small';
   isIconOnRight?: boolean;
 }
 
@@ -18,7 +18,7 @@ export const ButtonText: React.FC<ButtonTextProps> = ({
   iconSrc,
   colorText = 'white',
   colorTextHovered,
-  size = 'medium',
+  size = 'default',
   isIconOnRight = false,
   ...props
 }): React.ReactElement => {
@@ -49,11 +49,11 @@ const ButtonSmall = css`
 `;
 
 const ButtonContent = styled(RowIconTextButton)<{
-  size: 'medium' | 'small';
+  size: 'default' | 'small';
   $colorText: string;
   $colorTextHovered: string;
 }>`
-  ${({ size }) => (size === 'medium' ? ButtonMedium : ButtonSmall)}
+  ${({ size }) => (size === 'default' ? ButtonMedium : ButtonSmall)}
 
   > * {
     color: ${({ $colorText }) => $colorText};

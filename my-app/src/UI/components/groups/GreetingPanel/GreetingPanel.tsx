@@ -14,7 +14,7 @@ export const GreetingPanel: React.FC<GreetingPanelProps> = ({
   return (
     <Wrapper {...props}>
       <TextWrapper>
-        <Paragraph textAlign="center" size="h3" weight="bold2">
+        <Paragraph textAlign="center" size="h3" weight="bold">
           Hi, I'm Elson.
         </Paragraph>
         <Paragraph textAlign="center" size="large">

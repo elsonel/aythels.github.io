@@ -150,8 +150,8 @@ const Grid = styled(GridRow)<{ $center: boolean }>`
 `;
 
 const TitleText = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.h4};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.h4};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.backgroundHighlight};
 `;
 

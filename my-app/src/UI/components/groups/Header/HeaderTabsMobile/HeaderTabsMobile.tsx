@@ -59,8 +59,8 @@ const Content = styled.div`
 
 const Tab = styled(Paragraph)`
   line-height: 0.9;
-  font-size: ${({ theme }) => theme.font.size.h1};
-  font-weight: ${({ theme }) => theme.font.weight.bold1};
+  font-size: ${({ theme }) => theme.font.default.size.h1};
+  font-weight: ${({ theme }) => theme.font.default.weight.semiBold};
   cursor: pointer;
   transition: ${({ theme }) => theme.speed.normal};
   color: ${({ theme }) => `${theme.color.text}`};

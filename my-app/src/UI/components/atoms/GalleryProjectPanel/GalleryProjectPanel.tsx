@@ -40,7 +40,7 @@ export const GalleryProjectPanel: React.FC<GalleryProjectPanelProps> = ({
               value={
                 e.to ? (
                   <StyledLink href={e.to}>
-                    <TextLink weight="bold2">{e.value}</TextLink>
+                    <TextLink weight="bold">{e.value}</TextLink>
                   </StyledLink>
                 ) : (
                   e.value

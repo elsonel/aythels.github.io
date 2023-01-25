@@ -57,17 +57,17 @@ const DiamondStateActive = css`
 
 const TextStateNeutral = css`
   color: ${({ theme }) => theme.color.textNeutral};
-  font-weight: ${({ theme }) => theme.font.weight.regular};
+  font-weight: ${({ theme }) => theme.font.default.weight.regular};
 `;
 
 const TextStateSemiActive = css`
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.weight.regular};
+  font-weight: ${({ theme }) => theme.font.default.weight.regular};
 `;
 
 const TextStateActive = css`
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;
 
 const Wrapper = styled.div`
@@ -86,7 +86,7 @@ const Text = styled(TextButton)<{ $state: State }>`
 
   user-select: none;
 
-  font-size: ${({ theme }) => theme.font.size.tiny};
+  font-size: ${({ theme }) => theme.font.default.size.tiny};
   ${({ $state }) => {
     switch ($state) {
       case State.NEUTRAL:

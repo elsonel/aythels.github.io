@@ -12,7 +12,7 @@ export default {
     colorHovered: '#F37676',
     colorText: 'white',
     colorTextHovered: 'white',
-    size: 'medium',
+    size: 'default',
     isIconOnRight: false,
   },
   argTypes: { onClick: { action: 'clicked' } },

@@ -137,13 +137,13 @@ const ButtonWrapper = styled.div`
 `;
 
 const TextTitle = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.background};
 `;
 
 const TextSubtitle = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.small};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-size: ${({ theme }) => theme.font.default.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
   color: ${({ theme }) => theme.color.background};
 `;

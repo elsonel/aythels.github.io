@@ -54,7 +54,9 @@ const Text = styled(TextButton)<{
   $size: 'medium' | 'small';
 }>`
   font-size: ${({ theme, $size }) =>
-    $size === 'medium' ? theme.font.size.medium : theme.font.size.small};
+    $size === 'medium'
+      ? theme.font.default.size.medium
+      : theme.font.default.size.small};
 `;
 
 const TextPrefix = styled(Text)`
@@ -69,7 +71,7 @@ const TextSelected = styled(Text)`
   flex-grow: 1;
   flex-basis: 0;
 
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;
 
 const Icon = styled(IIconSVG)<{ $size: 'medium' | 'small' }>`

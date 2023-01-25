@@ -129,8 +129,8 @@ const RowTop = styled(Row)`
 const Title = styled(Paragraph)`
   flex-grow: 1;
 
-  font-size: ${({ theme }) => theme.font.size.h6};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.h6};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   text-align: center;
 `;
 

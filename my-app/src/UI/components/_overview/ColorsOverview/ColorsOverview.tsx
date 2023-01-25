@@ -5,9 +5,10 @@ import { ColorInterface } from '../../../utility/themes/ThemeColor';
 import { Paragraph } from '../../text/Paragraph';
 import { TextTitle } from '../../text/TextTitle';
 
-export interface ColorsProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface IColorsOverviewProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Colors: React.FC<ColorsProps> = ({
+export const ColorsOverview: React.FC<IColorsOverviewProps> = ({
   ...props
 }): React.ReactElement => {
   return (
@@ -77,11 +78,11 @@ const GridEntryText = styled.div`
 `;
 
 const TextColor = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;
 
 const TextHex = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.small};
-  font-weight: ${({ theme }) => theme.font.weight.light};
+  font-size: ${({ theme }) => theme.font.default.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.light};
 `;

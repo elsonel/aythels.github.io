@@ -49,19 +49,25 @@ const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
 
     > * {
       font-weight: ${({ theme, $size }) =>
-        $size === 'medium' ? theme.font.weight.bold2 : theme.font.weight.bold1};
+        $size === 'medium'
+          ? theme.font.default.weight.bold
+          : theme.font.default.weight.semiBold};
     }
   }
 `;
 
 const TextSmall = styled(TextButton)<{ $isSelected: boolean }>`
-  font-size: ${({ theme }) => theme.font.size.tiny};
+  font-size: ${({ theme }) => theme.font.default.size.tiny};
   font-weight: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.font.weight.bold1 : theme.font.weight.regular};
+    $isSelected
+      ? theme.font.default.weight.semiBold
+      : theme.font.default.weight.regular};
 `;
 
 const TextMedium = styled(TextButton)<{ $isSelected: boolean }>`
-  font-size: ${({ theme }) => theme.font.size.small};
+  font-size: ${({ theme }) => theme.font.default.size.small};
   font-weight: ${({ theme, $isSelected }) =>
-    $isSelected ? theme.font.weight.bold2 : theme.font.weight.regular};
+    $isSelected
+      ? theme.font.default.weight.bold
+      : theme.font.default.weight.regular};
 `;

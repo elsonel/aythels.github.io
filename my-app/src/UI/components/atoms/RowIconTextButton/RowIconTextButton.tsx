@@ -7,22 +7,22 @@ export interface RowIconTextButtonProps extends RowIconTextProps {
   text?: string;
   iconSrc?: IconSVGType;
   color?: string;
-  size?: 'medium' | 'small';
+  size?: 'default' | 'small';
 }
 
 export const RowIconTextButton: React.FC<RowIconTextButtonProps> = ({
   text,
   iconSrc,
   color = 'black',
-  size = 'medium',
+  size = 'default',
   ...props
 }): React.ReactElement => {
   const icon = iconSrc ? (
-    <IIconSVG color={color} size={size === 'medium' ? 20 : 16} src={iconSrc} />
+    <IIconSVG color={color} size={size === 'default' ? 20 : 16} src={iconSrc} />
   ) : undefined;
 
   return (
-    <RowIconText gap={size === 'medium' ? 8 : 6} icon={icon} {...props}>
+    <RowIconText gap={size === 'default' ? 8 : 6} icon={icon} {...props}>
       <TextButton color={color} isWrapped={false} size={size}>
         {text}
       </TextButton>

@@ -10,7 +10,7 @@ export interface ButtonReverseTextProps extends ButtonProps {
   iconSrc?: IconSVGType;
   colorText?: string;
   colorTextHovered?: string;
-  size?: 'medium' | 'small';
+  size?: 'default' | 'small';
   isIconOnRight?: boolean;
   onMouseLeave?: () => void;
   onMouseEnter?: () => void;
@@ -21,7 +21,7 @@ export const ButtonReverseText: React.FC<ButtonReverseTextProps> = ({
   iconSrc,
   colorText = 'white',
   colorTextHovered = 'black',
-  size = 'medium',
+  size = 'default',
   isIconOnRight = false,
   onMouseLeave,
   onMouseEnter,
@@ -63,10 +63,10 @@ const ButtonSmall = css`
 `;
 
 const ButtonContent = styled(RowIconTextButton)<{
-  size: 'medium' | 'small';
+  size: 'default' | 'small';
   $colorText: string;
 }>`
-  ${({ size }) => (size === 'medium' ? ButtonMedium : ButtonSmall)}
+  ${({ size }) => (size === 'default' ? ButtonMedium : ButtonSmall)}
 
   > * {
     color: ${({ $colorText }) => $colorText};

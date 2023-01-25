@@ -26,7 +26,7 @@ export interface PageTitleBreakpoint {
 export interface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   subtitle?: string;
-  textAlign?: string;
+  textAlign?: 'center' | 'left' | 'right' | 'justify';
   breakpoints?: PageTitleBreakpoint[];
 }
 
@@ -79,7 +79,7 @@ const Title = styled(Paragraph)<{
 }>`
   position: relative;
   line-height: 0.94;
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   left: -2px;
   margin-bottom: -6px;
   transition: none;
@@ -91,6 +91,6 @@ const Title = styled(Paragraph)<{
 `;
 
 const Subtitle = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;

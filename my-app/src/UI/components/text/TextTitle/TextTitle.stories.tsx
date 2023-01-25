@@ -6,7 +6,7 @@ export default {
   component: TextTitle,
   args: {
     children: 'Title',
-    size: 'medium',
+    size: 'default',
   },
 } as Meta;
 
@@ -23,7 +23,7 @@ export const Medium = Template.bind({});
 Medium.args = {
   ...Medium.args,
   children: 'THIS IS THE TITLE',
-  size: 'medium',
+  size: 'default',
 };
 
 export const Large = Template.bind({});

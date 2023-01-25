@@ -36,12 +36,12 @@ export const Tab: React.FC<TabProps> = ({
 };
 
 const TextSelected = css`
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.text};
 `;
 
 const TextNeutral = css`
-  font-weight: ${({ theme }) => theme.font.weight.regular};
+  font-weight: ${({ theme }) => theme.font.default.weight.regular};
   color: ${({ theme }) => theme.color.textNeutral};
 `;
 

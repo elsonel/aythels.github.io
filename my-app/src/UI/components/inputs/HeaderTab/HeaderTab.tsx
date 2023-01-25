@@ -60,8 +60,8 @@ const Text = styled(Paragraph)`
 
   user-select: none;
   pointer-events: none;
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
-  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  font-size: ${({ theme }) => theme.font.default.size.small};
   transition: ${({ theme }) => theme.speed.normal};
   color: ${({ theme }) => theme.color.text};
 `;

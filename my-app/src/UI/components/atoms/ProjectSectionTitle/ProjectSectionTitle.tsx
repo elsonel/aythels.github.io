@@ -19,7 +19,7 @@ export const ProjectSectionTitle: React.FC<ProjectSectionTitleProps> = ({
         <TextButton
           isWrapped={false}
           size="h5"
-          weight="bold1"
+          weight="semiBold"
           children={children}
         />
         <DividerRight />

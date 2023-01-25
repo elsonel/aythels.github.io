@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Paragraph, ParagraphProps } from '../Paragraph/Paragraph';
+import { Paragraph, IParagraphProps } from '../Paragraph/Paragraph';
 
-export interface TextFooterProps extends ParagraphProps {
+export interface TextFooterProps extends IParagraphProps {
   /**
    * Text to be used as caption
    */
@@ -21,6 +21,6 @@ const Text = styled(Paragraph)`
     text-align:	center;
     color: ${theme.color.textNeutral};
 
-    font-size: ${theme.font.size.tiny};
+    font-size: ${theme.font.default.size.tiny};
   `};
 `;

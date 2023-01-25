@@ -73,13 +73,13 @@ const Text = styled(Paragraph)`
 
 const Subtitle = styled(Text)`
   white-space: nowrap;
-  font-size: ${({ theme }) => theme.font.size.small};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-size: ${({ theme }) => theme.font.default.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
 `;
 
 const Title = styled(Text)`
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold2};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;
 
 const TabWrapper = styled.div`
@@ -114,7 +114,7 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
 `;
 
 const TabText = styled(Text)<{ $isSelected: boolean }>`
-  font-size: ${({ theme }) => theme.font.size.small};
+  font-size: ${({ theme }) => theme.font.default.size.small};
   color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.color.text : theme.color.textNeutral};
   transition: ${({ theme }) => theme.speed.normal};
