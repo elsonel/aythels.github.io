@@ -49,7 +49,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   background-color: ${({ theme }) => theme.color.background};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: ${({ theme }) => `${theme.speed.slow}`};
+  transition: ${({ theme }) => theme.speed.slow}ms;
   transition-property: opacity, transform, height;
 `;
 

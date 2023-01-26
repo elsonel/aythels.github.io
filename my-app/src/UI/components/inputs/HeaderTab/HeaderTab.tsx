@@ -48,7 +48,7 @@ const Background = styled.div<{ $isHovered: boolean }>`
   height: 100%;
   width: ${({ $isHovered }) => ($isHovered ? `100%` : `0%`)};
 
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   background-color: ${({ theme }) => theme.color.background};
   pointer-events: none;
 `;
@@ -62,7 +62,7 @@ const Text = styled(Paragraph)`
   pointer-events: none;
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
   font-size: ${({ theme }) => theme.font.default.size.small};
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   color: ${({ theme }) => theme.color.text};
 `;
 

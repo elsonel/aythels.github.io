@@ -85,7 +85,7 @@ const Wrapper = styled.div`
 const TitlePreview = styled(ImageTitle)<{ $isHovered: boolean }>`
   opacity: ${({ $isHovered }) => ($isHovered ? 0 : 1)};
   pointer-events: ${({ $isHovered }) => ($isHovered ? 'none' : 'auto')};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
 const ContentWrapper = styled.div<{ $isHovered: boolean }>`
@@ -98,7 +98,7 @@ const ContentWrapper = styled.div<{ $isHovered: boolean }>`
   padding: 10px;
 
   background-color: rgba(0, 0, 0, 0.7);
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   opacity: ${({ $isHovered }) => ($isHovered ? 1 : 0)};
   pointer-events: ${({ $isHovered }) => ($isHovered ? 'auto' : 'none')};
 `;

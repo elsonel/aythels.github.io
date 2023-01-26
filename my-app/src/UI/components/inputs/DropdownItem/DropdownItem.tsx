@@ -40,7 +40,7 @@ const Wrapper = styled.div<{ $isSelected: boolean; $size: 'medium' | 'small' }>`
 
   cursor: pointer;
   user-select: none;
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   background: ${({ theme, $isSelected }) =>
     $isSelected ? theme.color.backgroundHighlight : theme.color.background};
 

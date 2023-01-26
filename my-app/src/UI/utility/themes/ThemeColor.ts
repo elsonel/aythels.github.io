@@ -1,4 +1,5 @@
 export interface ColorInterface {
+  primary: string;
   text: string;
   textHovered: string;
   textNeutral: string;
@@ -17,6 +18,7 @@ export interface ThemeColorInterface {
 
 export const ThemeColor: ThemeColorInterface = {
   color: {
+    primary: 'blue',
     text: '#1a1a1a',
     textHovered: '#5c5c5c',
     textNeutral: '#a8a8a8',

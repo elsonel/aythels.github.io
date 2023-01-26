@@ -50,7 +50,7 @@ const Text = styled(TextButton)<{ $isHovered: boolean; $isSelected: boolean }>`
   position: absolute;
 
   user-select: none;
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 
   ${({ $isSelected, $isHovered }) =>
     $isSelected || $isHovered ? TextSelected : TextNeutral};

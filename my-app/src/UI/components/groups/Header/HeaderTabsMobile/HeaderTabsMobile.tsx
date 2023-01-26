@@ -62,7 +62,7 @@ const Tab = styled(Paragraph)`
   font-size: ${({ theme }) => theme.font.default.size.h1};
   font-weight: ${({ theme }) => theme.font.default.weight.semiBold};
   cursor: pointer;
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   color: ${({ theme }) => `${theme.color.text}`};
   &:hover {
     color: ${({ theme }) => theme.color.textHovered};

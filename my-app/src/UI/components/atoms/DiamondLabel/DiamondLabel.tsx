@@ -115,7 +115,7 @@ const Diamond = styled.div<{ $size: number; $state: State }>`
   height: ${({ $size }) => $size}px;
 
   transform: rotate(45deg);
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   ${({ $state }) => {
     switch ($state) {
       case State.NEUTRAL:

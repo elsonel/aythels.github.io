@@ -96,12 +96,12 @@ const ButtonStyled = styled.button<{
       $isHovered ? $borderHovered : $border};
   background-color: ${({ $isHovered, $color, $colorHovered }) =>
     $isHovered ? $colorHovered : $color};
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   user-select: none;
 
   ${({ $isDisabled }) => ($isDisabled ? ButtonDisabled : ButtonEnabled)}
 
   > * {
-    transition: ${({ theme }) => theme.speed.normal};
+    transition: ${({ theme }) => theme.speed.normal}ms;
   }
 `;

@@ -92,7 +92,7 @@ const ImageStyled = styled(Image)<{
   object-fit: cover;
   user-select: none;
   pointer-events: none;
-  transition: ${({ theme }) => `${theme.speed.slow}`};
+  transition: ${({ theme }) => theme.speed.slow}ms;
   opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
 
   ${({ $isHovered }) =>
@@ -113,7 +113,7 @@ const Background = styled.div<{ $isHovered: boolean; $isLoaded: boolean }>`
   height: 100%;
 
   box-shadow: inset 0 0 0 0.8px ${({ theme }) => `${theme.color.outline}`};
-  transition: ${({ theme }) => `${theme.speed.slow}`};
+  transition: ${({ theme }) => theme.speed.slow}ms;
   ${({ $isHovered, $isLoaded }) =>
     $isHovered && $isLoaded && `background-color: rgba(0, 0, 0, 0.1);`};
 `;
@@ -126,7 +126,7 @@ const Overlay = styled.div<{ $isOverlayVisible: boolean; $isLoaded: boolean }>`
   height: 100%;
 
   ${({ $isOverlayVisible, $isLoaded, theme }) => `
-    transition: ${theme.speed.slow};
+    transition: ${theme.speed.slow}ms;
     transition-delay: ${$isOverlayVisible ? 0 : 400}ms;
     opacity: ${$isOverlayVisible && $isLoaded ? 1 : 0};
   `};

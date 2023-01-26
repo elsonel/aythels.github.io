@@ -62,7 +62,7 @@ const Contents = styled.div<{ $isVisible: boolean }>`
     $isVisible ? 'translateX(0%)' : 'translateX(-25%)'};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
   user-select: none;
 `;
 
@@ -94,7 +94,7 @@ const TabRow = styled.div<{ $isVisible: boolean; $index: number }>`
   align-items: center;
 
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: ${({ theme }) => theme.speed.slow};
+  transition: ${({ theme }) => theme.speed.slow}ms;
   transition-delay: ${({ $index, $isVisible }) =>
     $isVisible ? $index * 30 + 30 : 0}ms;
   cursor: pointer;
@@ -110,14 +110,14 @@ const TabBullet = styled.div<{ $isSelected: boolean }>`
   background: ${({ theme, $isSelected }) =>
     $isSelected ? theme.color.text : 'transparent'};
 
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
 const TabText = styled(Text)<{ $isSelected: boolean }>`
   font-size: ${({ theme }) => theme.font.default.size.small};
   color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.color.text : theme.color.textNeutral};
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 
   &:hover {
     color: ${({ theme }) => theme.color.text};

@@ -202,7 +202,7 @@ const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`
   left: ${({ $offset }) => `${-$offset * IMAGE_DISTANCE}vw`};
 
   transition: ${({ theme, $isAnimated }) =>
-    $isAnimated ? `${theme.speed.normal} ease` : 'none'};
+    $isAnimated ? `${theme.speed.normal}ms ease` : 'none'};
 `;
 
 const ImageStyled = styled(Image)<{ $index: number }>`

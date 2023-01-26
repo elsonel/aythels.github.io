@@ -26,6 +26,7 @@ export interface FontInterface {
   };
   lineHeight: {
     default: string;
+    transition: string;
   };
 }
 
@@ -65,6 +66,7 @@ export const ThemeFont: ThemeFontInterface = {
       },
       lineHeight: {
         default: '1.2',
+        transition: '1.6',
       },
     },
     title: {
@@ -94,6 +96,7 @@ export const ThemeFont: ThemeFontInterface = {
       },
       lineHeight: {
         default: '1.2',
+        transition: '1.6',
       },
     },
   },

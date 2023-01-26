@@ -91,7 +91,7 @@ const TextStyle = css<TextStyleInterface>`
     font-family: ${$font.family};
     line-height: ${$font.lineHeight.default};
     word-spacing: ${$font.wordSpacing.default};
-    transition: ${theme.speed.normal};
+    transition: ${theme.speed.normal}ms;
   `}
 
   ${({ $isWrapped }) =>

@@ -76,7 +76,7 @@ const HeaderStyled = styled(DropdownHeader)<{ $isOpen: boolean }>`
 
   border: 1px solid
     ${({ theme, $isOpen }) => ($isOpen ? theme.color.outline : 'transparent')};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
 const Content = styled.div<{ $isVisible: boolean }>`
@@ -93,5 +93,5 @@ const Content = styled.div<{ $isVisible: boolean }>`
 
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;

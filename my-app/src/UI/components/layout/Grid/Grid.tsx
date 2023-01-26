@@ -113,7 +113,7 @@ const ItemWrapper = styled.div<{
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
 
-  transition-duration: ${({ theme }) => theme.speed.slow};
+  transition-duration: ${({ theme }) => theme.speed.slow}ms;
   transition-timing-function: ease-out;
   transition-property: opacity;
   transition-delay: ${({ $index }) => $index * 60}ms;

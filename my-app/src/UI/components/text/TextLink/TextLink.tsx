@@ -25,5 +25,5 @@ const Text = styled(Paragraph)`
     color: ${({ theme }) => theme.color.textHovered};
   }
 
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;

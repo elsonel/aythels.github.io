@@ -186,7 +186,7 @@ const LandingWrapper = styled.div<{ $isLandingVisible: boolean }>`
   pointer-events: ${({ $isLandingVisible }) =>
     $isLandingVisible ? 'auto' : 'none'};
 
-  transition-duration: ${({ theme }) => theme.speed.normal};
+  transition-duration: ${({ theme }) => theme.speed.normal}ms;
   transition-property: opacity, transform;
 `;
 
@@ -215,9 +215,9 @@ const Header = styled.div<{ $isLandingVisible: boolean }>`
     $isLandingVisible ? 'translateY(-120px)' : 'translateY(0px)'};
   opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 0 : 1)};
 
-  transition-duration: ${({ theme }) => theme.speed.fast};
+  transition-duration: ${({ theme }) => theme.speed.fast}ms;
   transition-delay: ${({ $isLandingVisible, theme }) =>
-    $isLandingVisible ? 0 : theme.speed.fast};
+    $isLandingVisible ? 0 : theme.speed.fast}ms;
   transition-property: opacity, transform;
 
   ${LessThan(
@@ -243,8 +243,8 @@ const SectionWrapper = styled.div<{ $isLandingVisible: boolean }>`
   width: min(100%, 800px);
   opacity: ${({ $isLandingVisible }) => ($isLandingVisible ? 0 : 1)};
 
-  transition-duration: ${({ theme }) => theme.speed.normal};
+  transition-duration: ${({ theme }) => theme.speed.normal}ms;
   transition-delay: ${({ $isLandingVisible, theme }) =>
-    $isLandingVisible ? 0 : theme.speed.normal};
+    $isLandingVisible ? 0 : theme.speed.normal}ms;
   transition-property: opacity, transform;
 `;

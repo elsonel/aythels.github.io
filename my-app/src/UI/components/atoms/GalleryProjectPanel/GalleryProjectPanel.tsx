@@ -67,7 +67,7 @@ const Section = styled.div`
   width: 100%;
   padding: 18px 20px;
   border: 1px solid ${({ theme }) => theme.color.outline};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 
   display: flex;
   flex-direction: column;

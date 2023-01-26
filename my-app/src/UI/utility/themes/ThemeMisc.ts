@@ -4,11 +4,11 @@ export interface LayerInterface {
 }
 
 export interface SpeedInterface {
-  fast: string;
-  normal: string;
-  slow: string;
-  loading: string;
-  test: string;
+  fast: number;
+  normal: number;
+  slow: number;
+  loading: number;
+  test: number;
 }
 
 export interface SizeInterface {
@@ -36,11 +36,11 @@ export const ThemeMisc: ThemeMiscInterface = {
     modal: 9999,
   },
   speed: {
-    fast: '0.15s',
-    normal: '0.25s',
-    slow: '0.4s',
-    loading: '1s',
-    test: '3s',
+    fast: 150,
+    normal: 250,
+    slow: 500,
+    loading: 1000,
+    test: 3000,
   },
   size: {
     headerHeight: 44,

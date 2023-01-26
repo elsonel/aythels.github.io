@@ -55,7 +55,7 @@ const FrontLine = styled.div<{
   bottom: 0px;
 
   background: ${({ $color }) => $color};
-  transition: ${({ theme }) => `${theme.speed.normal}`};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
 const BackLine = styled.div<{ $color: string }>`

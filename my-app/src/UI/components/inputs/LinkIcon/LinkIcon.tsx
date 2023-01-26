@@ -32,5 +32,5 @@ const Icon = styled(IIconSVG)<{ $colorHovered: string }>`
     color: ${({ $colorHovered }) => $colorHovered};
   }
 
-  transition: ${({ theme }) => theme.speed.normal};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
