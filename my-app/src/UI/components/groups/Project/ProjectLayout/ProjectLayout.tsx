@@ -200,7 +200,7 @@ const Content = styled.div`
 
 const HeaderTopGap = styled.div`
   width: 100%;
-  height: ${({ theme }) => theme.size.header - TOP_TOLERANCE}px;
+  height: ${({ theme }) => theme.size.headerHeight - TOP_TOLERANCE}px;
 
   background: ${({ theme }) => theme.color.background};
 `;

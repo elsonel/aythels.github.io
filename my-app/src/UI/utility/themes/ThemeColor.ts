@@ -6,6 +6,8 @@ export interface ColorInterface {
   outline: string;
   backgroundHighlight: string;
   background: string;
+  backgroundOppositeHighlight: string;
+  backgroundOpposite: string;
   whiteBackdropDown: string;
   greyBackdropUp: string;
   greyBackdropLeft: string;
@@ -25,6 +27,8 @@ export const ThemeColor: ThemeColorInterface = {
     outline: 'lightgrey',
     backgroundHighlight: '#e6e6e6',
     background: '#ffffff',
+    backgroundOppositeHighlight: '#4d4d4d',
+    backgroundOpposite: 'black',
     whiteBackdropDown: `
     linear-gradient(
       to bottom,

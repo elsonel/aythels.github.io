@@ -82,7 +82,7 @@ interface TextStyleInterface {
 }
 
 const TextStyle = css<TextStyleInterface>`
-  ${({ theme, $font, $size, $weight, $textAlign, $color }) => `
+  ${({ $font, $size, $weight, $textAlign, $color }) => `
     font-size: ${$font.size[$size]};
     font-weight: ${$font.weight[$weight]};
     text-align: ${$textAlign};
@@ -91,7 +91,8 @@ const TextStyle = css<TextStyleInterface>`
     font-family: ${$font.family};
     line-height: ${$font.lineHeight.default};
     word-spacing: ${$font.wordSpacing.default};
-    transition: ${theme.speed.normal}ms;
+    letter-spacing: ${$font.letterSpacing.default};
+
   `}
 
   ${({ $isWrapped }) =>

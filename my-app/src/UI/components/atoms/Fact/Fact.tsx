@@ -31,7 +31,7 @@ const Wrapper = styled(TwoColumn)`
 const Label = styled(Paragraph)`
   color: ${({ theme }) => theme.color.textNeutral};
   font-size: ${({ theme }) => theme.font.default.size.tiny};
-  letter-spacing: ${({ theme }) => theme.font.default.wordSpacing.button};
+  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
   font-weight: ${({ theme }) => theme.font.default.weight.medium};
 `;
 

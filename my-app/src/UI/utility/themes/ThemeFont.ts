@@ -22,6 +22,9 @@ export interface FontInterface {
   };
   wordSpacing: {
     default: string;
+  };
+  letterSpacing: {
+    default: string;
     button: string;
   };
   lineHeight: {
@@ -62,6 +65,9 @@ export const ThemeFont: ThemeFontInterface = {
       },
       wordSpacing: {
         default: 'normal',
+      },
+      letterSpacing: {
+        default: 'normal',
         button: '0.08rem',
       },
       lineHeight: {
@@ -92,7 +98,10 @@ export const ThemeFont: ThemeFontInterface = {
       },
       wordSpacing: {
         default: '0.1rem',
-        button: '0.1rem',
+      },
+      letterSpacing: {
+        default: 'normal',
+        button: '0.08rem',
       },
       lineHeight: {
         default: '1.2',

@@ -55,7 +55,7 @@ const Text = styled(TextButton)<{
 }>`
   font-size: ${({ theme, $size }) =>
     $size === 'medium'
-      ? theme.font.default.size.medium
+      ? theme.font.default.size.default
       : theme.font.default.size.small};
 `;
 

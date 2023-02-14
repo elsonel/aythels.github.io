@@ -21,6 +21,6 @@ export const TextButton: React.FC<TextButtonProps> = ({
 };
 
 const Text = styled(Paragraph)`
-  letter-spacing: ${({ theme }) => theme.font.default.wordSpacing.button};
-  padding-left: ${({ theme }) => theme.font.default.wordSpacing.button};
+  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
+  padding-left: ${({ theme }) => theme.font.default.letterSpacing.button};
 `;
