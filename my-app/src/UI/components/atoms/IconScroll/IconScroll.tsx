@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, useTheme } from 'styled-components';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 import { IIcon, IIconProps } from '../IIcon';
 
@@ -8,13 +8,14 @@ export interface IconScrollProps extends IIconProps {
 }
 
 export const IconScroll: React.FC<IconScrollProps> = ({
-  color = 'gray',
+  color: colorProp,
   ...props
 }): React.ReactElement => {
+  const { color } = useTheme();
   return (
     <IIcon {...props}>
       <IconWrapper>
-        <Icon $color={color} />
+        <Icon $color={colorProp ?? color.background} />
       </IconWrapper>
     </IIcon>
   );
@@ -44,7 +45,7 @@ const Icon = styled.div<{ $color: string }>`
   width: 100%;
   height: 100%;
 
-  box-shadow: inset 0 0 0 1px ${({ $color }) => $color};
+  box-shadow: inset 0 0 0 2px ${({ $color }) => $color};
   border-radius: 9999px;
 
   &:before {
