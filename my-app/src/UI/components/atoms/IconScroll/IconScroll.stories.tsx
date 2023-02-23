@@ -4,7 +4,7 @@ import { IconScroll, IconScrollProps } from './IconScroll';
 export default {
   title: 'Atoms/IconScroll',
   component: IconScroll,
-  args: { color: 'gray', size: 32 },
+  args: { color: 'gray', size: 48 },
   argTypes: {},
 } as Meta;
 
