@@ -71,7 +71,7 @@ export const ThemeFont: ThemeFontInterface = {
         button: '0.08rem',
       },
       lineHeight: {
-        default: '1.2',
+        default: '1.4',
         transition: '1.6',
       },
     },

@@ -4,27 +4,27 @@ import { Paragraph, IParagraphProps } from '../Paragraph/Paragraph';
 
 export interface FadeInParagraphProps extends IParagraphProps {
   children?: React.ReactNode;
-  backgroundColor: string;
-  middleColor: string;
   color: string;
+  middleColor?: string;
   delay?: number;
+  offset?: number;
   isLoaded?: boolean;
 }
 
 export const FadeInParagraph: React.FC<FadeInParagraphProps> = ({
   children,
-  backgroundColor,
-  middleColor,
   color,
+  middleColor,
   delay = 0,
-  isLoaded = false,
+  offset = 10,
+  isLoaded = true,
   ...props
 }): React.ReactElement => {
   return isLoaded ? (
     <Text
-      $color1={backgroundColor}
-      $color2={middleColor}
-      $color3={color}
+      $offset={offset}
+      $color={color}
+      $middleColor={middleColor}
       $delay={delay}
       {...props}
     >
@@ -35,40 +35,34 @@ export const FadeInParagraph: React.FC<FadeInParagraphProps> = ({
   );
 };
 
-const AnimationFadeIn = (color1: string, color2: string, color3: string) =>
+const AnimationFadeIn = (offset: number, color: string, middleColor?: string) =>
   keyframes`
     0% {
-      transform: translateY(6px);
-      color: ${color1};
-      opacity: 0;
+      transform: translateY(${offset}px);
+      color: transparent;
     }
     50% { 
-      transform: translateY(3px);
-      color: ${color2};
-      opacity: 0.5;
+      ${middleColor ? `color: ${middleColor}` : ``};
     }
     100% { 
       transform: translateY(0px);
-      color: ${color3};
-      opacity: 1;
+      color: ${color};
     }
   `;
 
 const Text = styled(Paragraph)<{
-  $color1: string;
-  $color2: string;
-  $color3: string;
+  $color: string;
+  $middleColor?: string;
   $delay: number;
+  $offset: number;
 }>`
   position: relative;
   animation-fill-mode: forwards;
-  animation-timing-function: linear;
   animation-delay: ${({ $delay }) => $delay}ms;
   animation-duration: ${({ theme }) => theme.speed.slow}ms;
-  animation-name: ${({ $color1, $color2, $color3 }) =>
-    AnimationFadeIn($color1, $color2, $color3)};
+  animation-name: ${({ $offset, $color, $middleColor }) =>
+    AnimationFadeIn($offset, $color, $middleColor)};
 
-  transform: translateY(6px);
-  color: ${({ $color1 }) => $color1};
-  opacity: 0;
+  transform: ${({ $offset }) => `translateY(${$offset}px)`};
+  color: transparent;
 `;

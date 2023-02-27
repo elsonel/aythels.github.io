@@ -27,6 +27,7 @@ export interface ImageInterface {
   profile: string;
   exampleSmall: string;
   exampleSquare: string;
+  exampleSquareSmall: string;
   exampleLandscape: string;
   examplePortrait: string;
 }
@@ -54,6 +55,7 @@ export const ThemeAsset: ThemeAssetInterface = {
     profile: '/images/profile.png',
     exampleSmall: '/images/examples/small.jpg',
     exampleSquare: '/images/examples/square.jpg',
+    exampleSquareSmall: '/images/examples/squareSmall.png',
     exampleLandscape: '/images/examples/landscape.jpg',
     examplePortrait: '/images/examples/portrait.jpg',
   },

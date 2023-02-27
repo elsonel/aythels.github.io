@@ -4,6 +4,7 @@ export interface LayerInterface {
 }
 
 export interface SpeedInterface {
+  instant: number;
   fast: number;
   normal: number;
   slow: number;
@@ -36,6 +37,7 @@ export const ThemeMisc: ThemeMiscInterface = {
     modal: 9999,
   },
   speed: {
+    instant: 100,
     fast: 150,
     normal: 250,
     slow: 500,
