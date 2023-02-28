@@ -36,7 +36,7 @@ export const Landing: React.FC<LandingProps> = ({
 
   useEffect(() => {
     onVisibilityChange && onVisibilityChange(isVisible, scrollYRef.current);
-  }, [isVisible]);
+  }, [isVisible, onVisibilityChange]);
 
   useOnWindowScroll((scrollY: number) => {
     if (scrollY > 800) setIsVisible(false);
@@ -148,7 +148,6 @@ const Title = styled(Paragraph)`
   text-align: center;
   color: ${({ theme }) => theme.color.background};
   font-family: ${({ theme }) => theme.font.title.family};
-  font-weight: ${({ theme }) => theme.font.title.weight.bold};
   ${GreaterThan(0, `font-size: 2.8rem; margin-top: 16px; margin-bottom: 12px;`)}
   ${GreaterThan(500, `font-size: 9vw; margin-top: 16px; margin-bottom: 12px;`)}
   ${GreaterThan(1000, `margin: 0px; margin-top: 6px;`)}

@@ -20,18 +20,24 @@ export const Counter: React.FC<CounterProps> = ({
 );
 
 const Wrapper = styled.div`
+  overflow: hidden;
   display: flex;
   gap: 4px;
   align-items: center;
 `;
 
 const Numerator = styled(Paragraph)`
-  font-family: ${({ theme }) => theme.font.title.family};
+  margin-right: 2px;
+  padding-bottom: 1px;
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.background};
-  font-size: ${({ theme }) => theme.font.default.size.h5};
+  font-size: ${({ theme }) => theme.font.default.size.large};
+  overflow-wrap: normal;
 `;
 
 const Denominator = styled(Paragraph)`
-  font-family: ${({ theme }) => theme.font.title.family};
+  font-size: ${({ theme }) => theme.font.default.size.small};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
   color: ${({ theme }) => theme.color.textNeutral};
+  overflow-wrap: normal;
 `;

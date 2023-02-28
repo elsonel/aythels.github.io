@@ -4,7 +4,7 @@ import { Counter, CounterProps } from './Counter';
 export default {
   title: 'Atoms/Counter',
   component: Counter,
-  args: { numerator: 3, denominator: 10 },
+  args: { numerator: 12, denominator: 16 },
   parameters: {
     backgrounds: { default: 'dark' },
   },

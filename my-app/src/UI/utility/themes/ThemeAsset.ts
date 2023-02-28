@@ -4,6 +4,8 @@ import { ChevronUpDown } from '@styled-icons/fluentui-system-regular/ChevronUpDo
 import { Close } from '@styled-icons/zondicons/Close';
 import { ArrowRight } from '@styled-icons/zondicons/ArrowRight';
 import { ArrowLeft } from '@styled-icons/zondicons/ArrowLeft';
+import { ChevronBack } from '@styled-icons/ionicons-sharp/ChevronBack';
+import { ChevronForward } from '@styled-icons/ionicons-sharp/ChevronForward';
 
 export type IconSVGType =
   | string
@@ -19,8 +21,8 @@ export interface IconInterface {
   Email: IconSVGType;
   DropdownChevron: IconSVGType;
   modalClose: IconSVGType;
-  modalRight: IconSVGType;
   modalLeft: IconSVGType;
+  modalRight: IconSVGType;
 }
 
 export interface ImageInterface {
@@ -48,8 +50,8 @@ export const ThemeAsset: ThemeAssetInterface = {
     Email: Email,
     DropdownChevron: ChevronUpDown,
     modalClose: Close,
-    modalRight: ArrowRight,
-    modalLeft: ArrowLeft,
+    modalLeft: ChevronBack,
+    modalRight: ChevronForward,
   },
   image: {
     profile: '/images/profile.png',

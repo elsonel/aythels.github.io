@@ -10,22 +10,50 @@ export default {
       {
         src: Theme.image.exampleLandscape,
         title: 'SKY',
-        caption: 'This is the image caption 1.',
       },
       {
         src: Theme.image.exampleSquare,
         title: 'SQUARE',
-        caption: 'This is the image caption 2.',
       },
       {
-        src: Theme.icon.exampleIconBasic,
-        title: 'LOGO',
-        caption: 'This is the image caption 3.',
+        src: Theme.image.exampleLandscape,
+        title: 'SKY',
+      },
+      {
+        src: Theme.image.exampleSquare,
+        title: 'SQUARE',
       },
       {
         src: Theme.image.examplePortrait,
-        title: 'ICON',
-        caption: 'This is the image caption 4.',
+        title: 'PORTRAIT',
+      },
+      {
+        src: Theme.image.exampleLandscape,
+        title: 'SKY',
+      },
+      {
+        src: Theme.image.exampleSquare,
+        title: 'SQUARE',
+      },
+      {
+        src: Theme.image.examplePortrait,
+        title: 'PORTRAIT',
+      },
+      {
+        src: Theme.image.examplePortrait,
+        title: 'PORTRAIT',
+      },
+      {
+        src: Theme.image.exampleLandscape,
+        title: 'SKY',
+      },
+      {
+        src: Theme.image.exampleSquare,
+        title: 'SQUARE',
+      },
+      {
+        src: Theme.image.examplePortrait,
+        title: 'PORTRAIT',
       },
     ],
     indexOffset: 0,
@@ -53,17 +81,14 @@ ThreeImage.args = {
     {
       src: Theme.image.exampleLandscape,
       title: 'SKY',
-      caption: 'This is the image caption 1.',
     },
     {
       src: Theme.image.exampleSquare,
       title: 'SQUARE',
-      caption: 'This is the image caption 2.',
     },
     {
-      src: Theme.icon.exampleIconBasic,
-      title: 'LOGO',
-      caption: 'This is the image caption 3.',
+      src: Theme.image.examplePortrait,
+      title: 'PORTRAIT',
     },
   ],
 };
@@ -75,12 +100,10 @@ TwoImage.args = {
     {
       src: Theme.image.exampleLandscape,
       title: 'SKY',
-      caption: 'This is the image caption 1.',
     },
     {
       src: Theme.image.exampleSquare,
       title: 'SQUARE',
-      caption: 'This is the image caption 2.',
     },
   ],
 };
@@ -92,7 +115,6 @@ OneImage.args = {
     {
       src: Theme.image.exampleLandscape,
       title: 'SKY',
-      caption: 'This is the image caption 1.',
     },
   ],
 };
@@ -104,7 +126,6 @@ NoCaption.args = {
     {
       src: Theme.image.exampleLandscape,
       title: undefined,
-      caption: undefined,
     },
   ],
 };
@@ -117,15 +138,11 @@ LongCaption.args = {
       src: Theme.image.exampleLandscape,
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
-      caption:
-        'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
     {
       src: Theme.image.exampleSquare,
       title:
         'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
-      caption:
-        'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
   ],
 };

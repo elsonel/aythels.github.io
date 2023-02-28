@@ -23,7 +23,6 @@ const createPane = (srcArray: ImageProps[], index: number) => {
 
 export interface GalleryImageModalEntry extends ImageProps {
   title?: string;
-  caption?: string;
 }
 
 export interface GalleryImageModalProps extends ModalProps {
@@ -40,7 +39,6 @@ export const GalleryImageModal = ({
 }: GalleryImageModalProps) => {
   if (srcArray.length === 0) throw new Error('Need at least one image!');
 
-  const displayNextButtons = srcArray.length <= 1 ? false : true;
   const [index, setIndex] = useState(indexOffset);
   const [currentPane, setCurrentPane] = useState(createPane(srcArray, index));
   const [isAnimated, setIsAnimated] = useState(false);
@@ -62,11 +60,11 @@ export const GalleryImageModal = ({
   return (
     <Modal {...props}>
       <Content>
-        <RowTop>
+        <Row>
           <ButtonClosePlaceholder />
           <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
           <ButtonModalClose onClick={onCloseClick} />
-        </RowTop>
+        </Row>
         <WrapperMiddle>
           <ImageContainer
             onTransitionEnd={() => setIsAnimated(false)} // Stop transitions after image has settled to prevent resizing transitions
@@ -76,47 +74,27 @@ export const GalleryImageModal = ({
             {currentPane}
           </ImageContainer>
         </WrapperMiddle>
-        <RowBottom>
-          <ButtonNext
-            direction={'LEFT'}
-            onClick={() => changeImage(index - 1)}
-          />
-          <ButtonNext
-            direction={'RIGHT'}
-            onClick={() => changeImage(index + 1)}
-          />
-        </RowBottom>
-        {/*<RowBottom>
-          {displayNextButtons && (
-            <ButtonNext
+        <Row>
+          <CounterPlaceholder />
+          <ButtonWrapper>
+            <ButtonModalNext
               direction={'LEFT'}
               onClick={() => changeImage(index - 1)}
             />
-          )}
-          <WrapperCaption>
-            <TextCaption isWrapped={false}>
-              {getElementAt(srcArray, index).caption}
-            </TextCaption>
-          </WrapperCaption>
-          {displayNextButtons && (
-            <ButtonNext
+            <ButtonModalNext
               direction={'RIGHT'}
               onClick={() => changeImage(index + 1)}
             />
-          )}
-          </RowBottom>*/}
+          </ButtonWrapper>
+          <StyledCounter
+            numerator={srcArray.indexOf(getElementAt(srcArray, index)) + 1}
+            denominator={srcArray.length}
+          />
+        </Row>
       </Content>
     </Modal>
   );
 };
-
-/*
-          <Counter
-            numerator={(index % srcArray.length) + 1}
-            denominator={srcArray.length}
-          />
-
-*/
 
 const Content = styled.div`
   width: 100%;
@@ -135,17 +113,11 @@ const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 
   box-shadow: 0 0 0 1px
     ${({ theme }) => `${theme.color.backgroundOppositeHighlight}`} inset;
-`;
-
-const RowTop = styled(Row)`
-  gap: 20px;
-
-  padding: 14px;
-  //border-bottom: 1px solid
-  ${({ theme }) => theme.color.backgroundOppositeHighlight};
+  padding: 0px 14px;
 `;
 
 const Title = styled(Paragraph)`
@@ -156,65 +128,33 @@ const Title = styled(Paragraph)`
   text-align: center;
 
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
+    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
     GreaterThan(500, `font-size: ${theme.font.default.size.h6};`)}
 `;
 
 const ButtonClosePlaceholder = styled.div`
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
 `;
 
-const RowBottom = styled(Row)`
-  display: flex;
-  justify-content: center;
-
-  //border-top: 1px solid
-  ${({ theme }) => theme.color.backgroundOppositeHighlight};
-`;
-
-const ButtonNext = styled(ButtonModalNext)`
+const ButtonWrapper = styled.div`
   height: 100%;
-
-  ${LessThan(500, `width: 50%;`)}
-`;
-
-const Fraction = styled.div`
   display: flex;
-  align-items: center;
 `;
 
-const Numerator = styled(Paragraph)`
-  position: relative;
-  left: -2px;
-  font-family: ${({ theme }) => theme.font.title.family};
-  color: ${({ theme }) => theme.color.background};
-  font-size: ${({ theme }) => theme.font.default.size.h5};
-`;
-
-const Denominator = styled(Paragraph)`
-  font-family: ${({ theme }) => theme.font.title.family};
-  color: ${({ theme }) => theme.color.textNeutral};
-`;
-
-const WrapperCaption = styled.div`
+const StyledCounter = styled(Counter)`
+  width: 0px;
   flex-grow: 1;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  height: 100%;
-  padding: 0px 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-top: 1px solid ${({ theme }) => theme.color.outline};
-
-  ${LessThan(500, `display: none;`)}
+  justify-content: flex-end;
 `;
 
-const IMAGE_DISTANCE = 200;
+const CounterPlaceholder = styled(StyledCounter)`
+  opacity: 0;
+  pointer-events: none;
+`;
+
+const IMAGE_DISTANCE = 100;
 
 const WrapperMiddle = styled.div`
   flex-grow: 1;

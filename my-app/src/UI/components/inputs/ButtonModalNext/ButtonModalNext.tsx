@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import useOnKeyPress from '../../../utility/hooks/useOnKeyPress';
 import { Theme } from '../../../utility/themes/Theme';
 import { IIconSVG } from '../../atoms/IIconSVG';
 import { ButtonModal, ButtonModalProps } from '../ButtonModal';
@@ -18,7 +17,7 @@ export const ButtonModalNext: React.FC<ButtonModalNextProps> = ({
   return (
     <Button keys={[key]} {...props}>
       <IIconSVG
-        size={20}
+        size={24}
         src={
           direction === 'LEFT' ? Theme.icon.modalLeft : Theme.icon.modalRight
         }
@@ -28,6 +27,6 @@ export const ButtonModalNext: React.FC<ButtonModalNextProps> = ({
 };
 
 const Button = styled(ButtonModal)`
-  width: 120px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
 `;
