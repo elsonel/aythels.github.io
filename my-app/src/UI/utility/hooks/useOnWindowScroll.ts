@@ -9,5 +9,5 @@ export default function useOnWindowScroll(callback: (n: number) => void) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [callback]);
 }

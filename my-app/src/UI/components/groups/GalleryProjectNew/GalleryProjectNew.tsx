@@ -25,7 +25,6 @@ export const GalleryProjectNew: React.FC<GalleryProjectNewProps> = ({
         title={'KINETIC BOARDWALK'}
         subtitle={'Drifting Landscapes'}
         imageSrc={image.exampleSquare}
-        isVisible={isLandingVisible}
       />
       <Block />
     </Wrapper>

@@ -11,7 +11,7 @@ export interface IIconSVGProps extends IIconProps {
 }
 
 export const IIconSVG: React.FC<IIconSVGProps> = ({
-  color = Theme.color.text,
+  color = 'inherit',
   src,
   children,
   ...props

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
+import useOnKeyPress from '../../../utility/hooks/useOnKeyPress';
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
@@ -9,6 +10,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: string;
   colorHovered?: string;
   isClickStateEnabled?: boolean;
+  keys?: string[];
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -24,6 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   color = '#F37676',
   colorHovered,
   isClickStateEnabled = true,
+  keys = [],
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -32,13 +35,30 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const onKeyPress = useCallback(
+    (key: string) => {
+      if (isDisabled) return;
+      if (keys.some((e) => e === key)) {
+        onClick && onClick();
+        if (ref.current) ref.current.focus();
+      }
+    },
+    [isDisabled, keys, onClick]
+  );
+
+  useOnKeyPress(onKeyPress);
+
   return (
     <ButtonStyled
+      ref={ref}
       onMouseEnter={() => {
         setIsHovered(true);
         onMouseEnter && onMouseEnter();
       }}
       onMouseLeave={() => {
+        ref.current && ref.current.blur();
         setIsHovered(false);
         onMouseLeave && onMouseLeave();
       }}
@@ -55,7 +75,7 @@ export const Button: React.FC<ButtonProps> = ({
       $borderHovered={borderHovered || border || color}
       $color={color}
       $colorHovered={colorHovered || color}
-      $isDisabled={isDisabled}
+      disabled={isDisabled}
       onClick={onClick}
       {...props}
     >
@@ -66,8 +86,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 const ButtonDisabled = css`
   opacity: 0.4;
-  cursor: default;
-  pointer-events: none;
+  cursor: not-allowed;
 `;
 
 const ButtonEnabled = css<{ $isHovered: boolean }>`
@@ -76,7 +95,6 @@ const ButtonEnabled = css<{ $isHovered: boolean }>`
 `;
 
 const ButtonStyled = styled.button<{
-  $isDisabled: boolean;
   $border: string;
   $borderHovered: string;
   $color: string;
@@ -99,9 +117,14 @@ const ButtonStyled = styled.button<{
   transition: ${({ theme }) => theme.speed.normal}ms;
   user-select: none;
 
-  ${({ $isDisabled }) => ($isDisabled ? ButtonDisabled : ButtonEnabled)}
+  &:focus {
+    outline: none;
+    border-color: ${({ $borderHovered }) => $borderHovered};
+  }
 
-  > * {
-    transition: ${({ theme }) => theme.speed.normal}ms;
+  ${ButtonEnabled}
+
+  &:disabled {
+    ${ButtonDisabled}
   }
 `;

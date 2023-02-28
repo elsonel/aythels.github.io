@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
+import styled, { useTheme } from 'styled-components';
 import { ButtonReverse, ButtonReverseProps } from '../ButtonReverse';
 
 export interface ButtonModalProps extends ButtonReverseProps {}
@@ -8,17 +7,23 @@ export interface ButtonModalProps extends ButtonReverseProps {}
 export const ButtonModal: React.FC<ButtonModalProps> = ({
   ...props
 }): React.ReactElement => {
+  const { color } = useTheme();
+
   return (
     <Button
-      border={Theme.color.outline}
-      borderHovered={Theme.color.text}
-      color={Theme.color.background}
-      colorHovered={Theme.color.text}
+      border={color.backgroundOppositeHighlight}
+      borderHovered={color.background}
+      color="transparent"
+      //colorHovered={color.background}
       {...props}
     />
   );
 };
 
 const Button = styled(ButtonReverse)`
-  //border-width: 2px;
+  color: ${({ theme }) => theme.color.background};
+
+  &:hover {
+    //color: ${({ theme }) => theme.color.backgroundOpposite};
+  }
 `;

@@ -40,3 +40,9 @@ Icon.args = {
   ...Icon.args,
   children: <IIconSVG src={Sword} />,
 };
+
+export const WithKey = Template.bind({});
+WithKey.args = {
+  ...WithKey.args,
+  keys: ['ArrowRight'],
+};
