@@ -27,11 +27,10 @@ const Wrapper = styled.div`
 `;
 
 const Numerator = styled(Paragraph)`
-  margin-right: 2px;
-  padding-bottom: 1px;
+  margin-right: 1px;
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.background};
-  font-size: ${({ theme }) => theme.font.default.size.large};
+  font-size: ${({ theme }) => theme.font.default.size.small};
   overflow-wrap: normal;
 `;
 
