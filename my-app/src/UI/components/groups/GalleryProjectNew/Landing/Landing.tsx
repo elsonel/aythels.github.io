@@ -12,6 +12,10 @@ import { remap } from '../../../../utility/scripts/remap';
 import { clamp } from '../../../../utility/scripts/Math';
 import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
 import { Textfit } from 'react-textfit';
+import { FixedStickyScroll } from '../../../other/FixedStickyScroll';
+
+const SCROLL_BEFORE_DISAPPEAR = 1000;
+const IMAGE_OFFSET = 200;
 
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -40,24 +44,35 @@ export const Landing: React.FC<LandingProps> = ({
   }, [isVisible, onVisibilityChange]);
 
   useOnWindowScroll((scrollY: number) => {
-    if (scrollY > 800) setIsVisible(false);
+    if (scrollY > SCROLL_BEFORE_DISAPPEAR) setIsVisible(false);
     else setIsVisible(true);
     scrollYRef.current = scrollY;
 
     if (!ref.current) return;
 
-    const clampedScrollY = clamp(scrollY, 0, 800);
-    const finalOffsetY = remap(clampedScrollY, 0, 800, 0, -200);
+    const clampedScrollY = clamp(scrollY, 0, SCROLL_BEFORE_DISAPPEAR);
+    const finalOffsetY = remap(
+      clampedScrollY,
+      0,
+      SCROLL_BEFORE_DISAPPEAR,
+      0,
+      -IMAGE_OFFSET
+    );
     ref.current.style.transform = `translateY(${finalOffsetY}px)`;
   });
 
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Wrapper $isVisible={isVisible} {...props}>
+    <Wrapper {...props}>
       <Content>
         <ImageWrapper ref={ref}>
-          <LandingImage alt={title} src={imageSrc} srcSet={imageSrcSet} />
+          <LandingImage
+            $isVisible={isVisible}
+            alt={title}
+            src={imageSrc}
+            srcSet={imageSrcSet}
+          />
         </ImageWrapper>
         <LandingTitleWrapper>
           {prototypeHref && (
@@ -72,26 +87,21 @@ export const Landing: React.FC<LandingProps> = ({
               </FadeIn>
             </FixedScrollFadeOut>
           )}
-          <FixedScrollFadeOut
-            startY={0}
-            duration={200}
-            offsetY={100}
-            isFullWidth
-          >
+          <FixedStickyScroll scrollSpeed={0.5} isFullWidth>
             <FadeIn offset={30} delay={0} isFullWidth>
               <TitleWrapper>
                 <Textfit mode="single" forceSingleModeWidth max={1000}>
-                  <Title>{title}</Title>
+                  <Title $isVisible={isVisible}>{title}</Title>
                 </Textfit>
               </TitleWrapper>
             </FadeIn>
-          </FixedScrollFadeOut>
+          </FixedStickyScroll>
           <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
             <FadeIn delay={500}>
               <Subtitle>{subtitle}</Subtitle>
             </FadeIn>
           </FixedScrollFadeOut>
-          <FixedScrollFadeOut startY={150} duration={200} offsetY={0}>
+          <FixedScrollFadeOut startY={200} duration={200} offsetY={0}>
             <FadeIn delay={700}>
               <Icon />
             </FadeIn>
@@ -102,17 +112,14 @@ export const Landing: React.FC<LandingProps> = ({
   );
 };
 
-const Wrapper = styled.div<{ $isVisible: boolean }>`
+const Wrapper = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
   overflow: hidden;
   width: 100%;
   height: 100vh;
-
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-  transition: ${({ theme }) => theme.speed.normal}ms;
+  pointer-events: none;
 `;
 
 const Content = styled.div`
@@ -123,7 +130,7 @@ const Content = styled.div`
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: calc(100% + 200px);
+  height: calc(100% + ${IMAGE_OFFSET}px);
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
 
@@ -133,10 +140,13 @@ const ImageWrapper = styled.div`
   `)}
 `;
 
-const LandingImage = styled(Image)`
+const LandingImage = styled(Image)<{ $isVisible: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
 const LandingTitleWrapper = styled.div`
@@ -162,10 +172,11 @@ const TitleWrapper = styled.div`
   ${GreaterThan(1000, `margin-bottom: 30px; margin-top: 40px;`)}
 `;
 
-const Title = styled(Paragraph)`
+const Title = styled(Paragraph)<{ $isVisible: boolean }>`
   text-align: center;
   font-size: inherit;
-  color: ${({ theme }) => theme.color.background};
+  color: ${({ theme, $isVisible }) =>
+    $isVisible ? theme.color.background : theme.color.text};
   font-family: ${({ theme }) => theme.font.title.family};
   line-height: 1;
   overflow-wrap: normal;

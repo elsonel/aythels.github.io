@@ -1,27 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function useOnWindowScrollDelta(
-  callback?: (n: number) => void,
-  triggers: any[] = []
+  callback: (deltaY: number) => void
 ) {
-  const [oldValue, setOldValue] = useState(window.pageYOffset);
-  const [delta, setDelta] = useState(0);
+  const currentScrollY = useRef<number>(0);
 
   useEffect(() => {
-    const handleScroll = (e: Event) => {
-      const newValue = window.pageYOffset;
-      const delta = oldValue - newValue;
-      if (delta === 0) return;
-
-      callback && callback(delta);
-      setDelta(delta);
-      setOldValue(newValue);
+    const handleScroll = () => {
+      callback && callback(window.pageYOffset - currentScrollY.current);
+      currentScrollY.current = window.pageYOffset;
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [oldValue, ...triggers]);
-
-  return delta;
+  }, [callback]);
 }

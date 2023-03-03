@@ -36,6 +36,7 @@ export const FixedScrollFadeOut: React.FC<FixedScrollFadeOutProps> = ({
 
     ref.current.style.transform = `translateY(${finalOffsetY}px)`;
     ref.current.style.opacity = finalOpacity + ``;
+    ref.current.style.pointerEvents = finalOpacity > 0.1 ? `auto` : `none`;
   });
 
   return (
