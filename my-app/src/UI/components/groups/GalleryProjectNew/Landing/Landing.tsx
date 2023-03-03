@@ -11,6 +11,7 @@ import { FixedScrollFadeOut } from '../../../other/FixedScrollFadeOut/FixedScrol
 import { remap } from '../../../../utility/scripts/remap';
 import { clamp } from '../../../../utility/scripts/Math';
 import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
+import { Textfit } from 'react-textfit';
 
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -71,12 +72,21 @@ export const Landing: React.FC<LandingProps> = ({
               </FadeIn>
             </FixedScrollFadeOut>
           )}
-          <FixedScrollFadeOut startY={50} duration={200} offsetY={100}>
-            <FadeIn offset={30} delay={0}>
-              <Title>{title}</Title>
+          <FixedScrollFadeOut
+            startY={0}
+            duration={200}
+            offsetY={100}
+            isFullWidth
+          >
+            <FadeIn offset={30} delay={0} isFullWidth>
+              <TitleWrapper>
+                <Textfit mode="single" forceSingleModeWidth max={1000}>
+                  <Title>{title}</Title>
+                </Textfit>
+              </TitleWrapper>
             </FadeIn>
           </FixedScrollFadeOut>
-          <FixedScrollFadeOut startY={150} duration={200} offsetY={100}>
+          <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
             <FadeIn delay={500}>
               <Subtitle>{subtitle}</Subtitle>
             </FadeIn>
@@ -135,7 +145,8 @@ const LandingTitleWrapper = styled.div`
   left: 0px;
   bottom: 0px;
   width: 100%;
-  padding: 30px 20px;
+  ${GreaterThan(0, `padding: 20px max(6vw, 20px);`)}
+  ${GreaterThan(600, `padding: 30px max(6vw, 30px);`)}
 
   display: flex;
   flex-direction: column;
@@ -144,13 +155,19 @@ const LandingTitleWrapper = styled.div`
   user-select: none;
 `;
 
+const TitleWrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  ${GreaterThan(0, `margin-top: 26px; margin-bottom: 20px;`)}
+  ${GreaterThan(1000, `margin-bottom: 30px; margin-top: 40px;`)}
+`;
+
 const Title = styled(Paragraph)`
   text-align: center;
+  font-size: inherit;
   color: ${({ theme }) => theme.color.background};
   font-family: ${({ theme }) => theme.font.title.family};
-  ${GreaterThan(0, `font-size: 2.8rem; margin-top: 16px; margin-bottom: 12px;`)}
-  ${GreaterThan(500, `font-size: 9vw; margin-top: 16px; margin-bottom: 12px;`)}
-  ${GreaterThan(1000, `margin: 0px; margin-top: 6px;`)}
+  line-height: 1;
   overflow-wrap: normal;
 `;
 
@@ -158,8 +175,8 @@ const Subtitle = styled(Paragraph)`
   text-align: center;
   color: ${({ theme }) => theme.color.background};
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
-    GreaterThan(900, `font-size: ${theme.font.default.size.h6};`)}
+    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.large};`)}
   overflow-wrap: normal;
 `;
 
@@ -170,5 +187,5 @@ const LinkText = styled(Subtitle)`
 const Icon = styled(IconScroll)`
   width: 48px;
   height: 48px;
-  margin-top: 60px;
+  margin-top: 80px;
 `;

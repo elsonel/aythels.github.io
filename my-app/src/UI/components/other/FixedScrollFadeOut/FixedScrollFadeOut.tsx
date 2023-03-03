@@ -10,6 +10,7 @@ export interface FixedScrollFadeOutProps
   startY?: number;
   duration?: number;
   offsetY?: number;
+  isFullWidth?: boolean;
 }
 
 export const FixedScrollFadeOut: React.FC<FixedScrollFadeOutProps> = ({
@@ -17,6 +18,7 @@ export const FixedScrollFadeOut: React.FC<FixedScrollFadeOutProps> = ({
   startY = 0,
   duration = 300,
   offsetY,
+  isFullWidth = false,
   ...props
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,13 +39,14 @@ export const FixedScrollFadeOut: React.FC<FixedScrollFadeOutProps> = ({
   });
 
   return (
-    <Wrapper ref={ref} {...props}>
+    <Wrapper ref={ref} $isFullWidth={isFullWidth} {...props}>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isFullWidth: boolean }>`
+  ${({ $isFullWidth }) => $isFullWidth && `width: 100%;`}
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
 `;

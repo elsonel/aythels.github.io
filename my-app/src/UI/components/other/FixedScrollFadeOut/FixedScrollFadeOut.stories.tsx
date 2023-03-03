@@ -29,6 +29,7 @@ export default {
     startY: 0,
     duration: 300,
     offsetY: 150,
+    isFullWidth: false,
   },
 } as Meta;
 

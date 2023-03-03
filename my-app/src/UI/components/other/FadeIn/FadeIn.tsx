@@ -6,6 +6,7 @@ export interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number;
   offset?: number;
   isLoaded?: boolean;
+  isFullWidth?: boolean;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({
@@ -13,10 +14,16 @@ export const FadeIn: React.FC<FadeInProps> = ({
   delay = 0,
   offset = 10,
   isLoaded = true,
+  isFullWidth = false,
   ...props
 }): React.ReactElement => {
   return isLoaded ? (
-    <Wrapper $offset={offset} $delay={delay} {...props}>
+    <Wrapper
+      $offset={offset}
+      $delay={delay}
+      $isFullWidth={isFullWidth}
+      {...props}
+    >
       {children}
     </Wrapper>
   ) : (
@@ -39,7 +46,9 @@ const AnimationFadeIn = (offset: number) =>
 const Wrapper = styled.div<{
   $delay: number;
   $offset: number;
+  $isFullWidth: boolean;
 }>`
+  ${({ $isFullWidth }) => $isFullWidth && `width: 100%;`}
   position: relative;
   animation-fill-mode: forwards;
   animation-delay: ${({ $delay }) => $delay}ms;
