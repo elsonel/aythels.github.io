@@ -89,11 +89,14 @@ export const Landing: React.FC<LandingProps> = ({
           )}
           <FixedStickyScroll scrollSpeed={0.5} isFullWidth>
             <FadeIn offset={30} delay={0} isFullWidth>
-              <TitleWrapper>
-                <Textfit mode="single" forceSingleModeWidth max={1000}>
-                  <Title $isVisible={isVisible}>{title}</Title>
-                </Textfit>
-              </TitleWrapper>
+              <StyledTextFit
+                mode="single"
+                forceSingleModeWidth
+                min={24}
+                max={1000}
+              >
+                <Title $isVisible={isVisible}>{title}</Title>
+              </StyledTextFit>
             </FadeIn>
           </FixedStickyScroll>
           <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
@@ -165,9 +168,11 @@ const LandingTitleWrapper = styled.div`
   user-select: none;
 `;
 
-const TitleWrapper = styled.div`
-  box-sizing: border-box;
+const StyledTextFit = styled(Textfit)`
   width: 100%;
+  display: flex;
+  justify-content: center;
+
   ${GreaterThan(0, `margin-top: 26px; margin-bottom: 20px;`)}
   ${GreaterThan(1000, `margin-bottom: 30px; margin-top: 40px;`)}
 `;
@@ -180,6 +185,8 @@ const Title = styled(Paragraph)<{ $isVisible: boolean }>`
   font-family: ${({ theme }) => theme.font.title.family};
   line-height: 1;
   overflow-wrap: normal;
+  transition: ${({ theme }) => theme.speed.slow}ms;
+  transition-property: color;
 `;
 
 const Subtitle = styled(Paragraph)`
