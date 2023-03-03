@@ -39,7 +39,7 @@ export const Gallery: React.FC<GalleryProps> = ({
 }): React.ReactElement => {
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageRefs = IMAGE_SRC.map(() => useRef<HTMLImageElement>(null));
+  const imageRefs = useRef<HTMLDivElement[]>([]);
 
   /*
   const renderImages = () => {
@@ -72,10 +72,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     const containerHeight = containerRef.current.clientHeight;
     const containerCenterY = containerHeight / 2;
 
-    imageRefs.forEach((ref) => {
-      if (!ref.current) return;
-
-      const element = ref.current;
+    imageRefs.current.forEach((element) => {
       const dimensions = element.getBoundingClientRect();
       const centerY = dimensions.y + dimensions.height / 2;
       let distance = Math.abs(containerCenterY - centerY);
@@ -96,7 +93,7 @@ export const Gallery: React.FC<GalleryProps> = ({
           {IMAGE_SRC.map((src, i) => (
             <ImageWrapper
               key={src}
-              ref={imageRefs[i]}
+              ref={(ref) => ref && (imageRefs.current[i] = ref)}
               $alignLeft={i % 2 === 0}
               $isFirstChild={i === 0}
             >
@@ -120,35 +117,6 @@ const GalleryWrapper = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${({ theme }) => theme.color.background};
-`;
-
-const NumberWrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-
-  display: flex;
-  align-items: flex-end;
-`;
-
-const Number = styled(Paragraph)`
-  text-align: center;
-  font-family: ${({ theme }) => theme.font.title.family};
-  font-weight: ${({ theme }) => theme.font.title.weight.bold};
-  font-size: 80vh;
-  color: #d6d6d6;
-`;
-
-const Title = styled(Paragraph)`
-  width: 100%;
-  text-align: center;
-  font-family: ${({ theme }) => theme.font.title.family};
-  font-weight: ${({ theme }) => theme.font.title.weight.bold};
-  font-size: 8vw;
-  color: black;
 `;
 
 const ScrollContainer = styled.div`
