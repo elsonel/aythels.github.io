@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
 import { clamp } from '../../../utility/scripts/Math';
@@ -22,22 +22,29 @@ export const FixedScrollFadeOut: React.FC<FixedScrollFadeOutProps> = ({
   ...props
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
-  useOnWindowScroll((scrollY: number) => {
-    if (!ref.current) return;
 
-    const finalOffsetY = getValue(
-      scrollY,
-      startY,
-      duration,
-      0,
-      -(offsetY ?? duration)
-    );
-    const finalOpacity = getValue(scrollY, startY, duration, 1, 0);
+  const onScroll = useCallback(
+    (scrollY: number) => {
+      if (!ref.current) return;
 
-    ref.current.style.transform = `translateY(${finalOffsetY}px)`;
-    ref.current.style.opacity = finalOpacity + ``;
-    ref.current.style.pointerEvents = finalOpacity > 0.1 ? `auto` : `none`;
-  });
+      const finalOffsetY = getValue(
+        scrollY,
+        startY,
+        duration,
+        0,
+        -(offsetY ?? duration)
+      );
+      const finalOpacity = getValue(scrollY, startY, duration, 1, 0);
+
+      ref.current.style.transform = `translateY(${finalOffsetY}px)`;
+      ref.current.style.opacity = finalOpacity + ``;
+      ref.current.style.pointerEvents = finalOpacity > 0.1 ? `auto` : `none`;
+    },
+    [startY, duration, offsetY]
+  );
+
+  useLayoutEffect(() => onScroll(0), []);
+  useOnWindowScroll(onScroll);
 
   return (
     <Wrapper ref={ref} $isFullWidth={isFullWidth} {...props}>

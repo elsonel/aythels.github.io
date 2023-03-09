@@ -1,7 +1,10 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { BodyCenter } from '../../../layout/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
+import { FactsList } from '../FactsList/FactsList';
+import { Gallery } from '../Gallery/Gallery';
 
 export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -19,41 +22,46 @@ export const Body: React.FC<BodyProps> = ({
 }): React.ReactElement => {
   return (
     <BodyWrapper {...props}>
-      <Title>KINETIC BOARDWALK</Title>
-
-      <TopLayout>
-        <IntroText>
-          The Kinetic Boardwalk is an adaptive and programmable system of
-          inflating tiles that span the coastline of Venice Beach. Acting as
-          both a public amenity and functional infrastructure, the structure
-          aims to address high tides and rising water levels while substituting
-          as an exhibitive pedestrian walkway.
-        </IntroText>
-        <FactsWrapper>
-          <Fact>
-            <FactTitle>TYPE</FactTitle>
-            <FactValue>Public Mega-Infastructure</FactValue>
-          </Fact>
-          <Fact>
-            <FactTitle>REGION</FactTitle>
-            <FactValue>Los Angeles, California</FactValue>
-          </Fact>
-          <Fact>
-            <FactTitle>SUPERVISOR</FactTitle>
-            <FactValue>Nathan Bishop (ARC380)</FactValue>
-          </Fact>
-          <Fact>
-            <FactTitle>COLLABORATORS</FactTitle>
-            <FactValue>Elson Liang, Omar</FactValue>
-          </Fact>
-          <Fact>
-            <FactTitle>COMPLETED</FactTitle>
-            <FactValue>December 2020</FactValue>
-          </Fact>
-        </FactsWrapper>
-      </TopLayout>
+      <Screen>
+        <Title>KINETIC BOARDWALK</Title>
+        <TopLayout>
+          <FactsList
+            facts={[
+              {
+                label: 'TYPE',
+                value: 'Public Mega-Infastructure',
+              },
+              {
+                label: 'REGION',
+                value: 'Los Angeles, California',
+              },
+              {
+                label: 'SUPERVISOR',
+                value: 'Nathan Bishop (ARC380)',
+              },
+              {
+                label: 'COLLABORATORS',
+                value: 'Elson Liang, Omar Abdellatif',
+              },
+              {
+                label: 'COMPLETED',
+                value: 'December 2020',
+              },
+            ]}
+          />
+        </TopLayout>
+        <BodyCenter>
+          <IntroText>
+            The Kinetic Boardwalk is an adaptive and programmable system of
+            inflating tiles that span the coastline of Venice Beach. Acting as
+            both a public amenity and functional infrastructure, the structure
+            aims to address high tides and rising water levels while
+            substituting as an exhibitive pedestrian walkway.
+          </IntroText>
+        </BodyCenter>
+      </Screen>
       <Layout>
-        <TextWrapper>
+        <BodyCenter>
           <ParagraphTitle>
             Inspired By Sand Dunes and Grass Hills
           </ParagraphTitle>
@@ -64,8 +72,8 @@ export const Body: React.FC<BodyProps> = ({
             cases are created. The bump can be used as a deployable floodwall
             against high tides, a lookout point or rest area for pedestrians.
           </ParagraphText>
-        </TextWrapper>
-        <TextWrapper>
+        </BodyCenter>
+        <BodyCenter>
           <ParagraphTitle>A Mechanized System</ParagraphTitle>
           <ParagraphText>
             Each bump is made up of a grid of interlocking tiles layered over
@@ -75,7 +83,7 @@ export const Body: React.FC<BodyProps> = ({
             flaps connect each tile length wise, hiding cracks and providing a
             water-tight seal.
           </ParagraphText>
-        </TextWrapper>
+        </BodyCenter>
       </Layout>
     </BodyWrapper>
   );
@@ -85,41 +93,58 @@ const BodyWrapper = styled.div`
   width: 100%;
 `;
 
+const Screen = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled(Paragraph)`
+  padding-top: max(6vw, 30px);
+  text-align: center;
+  color: ${({ theme }) => theme.color.text};
+  font-family: ${({ theme }) => theme.font.title.family};
+  font-size: 8.9vw;
+  line-height: 1;
+  overflow-wrap: normal;
+`;
+
+const TopLayout = styled.div`
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: max(6vw, 20px);
+  padding-top: 30px;
+`;
+
+const IntroText = styled(Paragraph)`
+  color: ${({ theme }) => theme.color.text};
+  ${({ theme }) =>
+    GreaterThan(
+      0,
+      `font-size: ${theme.font.default.size.default}; text-align: left;`
+    ) +
+    GreaterThan(
+      600,
+      `font-size: ${theme.font.default.size.large}; text-align: center;`
+    )}
+`;
+
 const Layout = styled.div`
   box-sizing: border-box;
-  width: min(600px, 100%);
-  margin: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  ${GreaterThan(0, `gap: 80px; padding: 30px 20px;`)}
-  ${GreaterThan(600, `gap: 100px; padding: 40px 30px;`)}
-`;
-
-const TopLayout = styled(Layout)`
-  margin-top: 200px;
-  margin-bottom: 200px;
-`;
-
-const TextWrapper = styled.div`
-  width: 100%;
-`;
-
-const Title = styled(Paragraph)`
-  font-family: ${({ theme }) => theme.font.title.family};
-  font-weight: ${({ theme }) => theme.font.title.weight.bold};
-  color: ${({ theme }) => theme.color.text};
-  font-size: ${({ theme }) => theme.font.title.size.h6};
-  user-select: none;
-`;
-
-const IntroText = styled(Paragraph)`
-  text-align: center;
-  color: ${({ theme }) => theme.color.text};
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
-    GreaterThan(600, `font-size: ${theme.font.default.size.h6};`)}
+  ${GreaterThan(0, `gap: 80px;`)}
+  ${GreaterThan(600, `gap: 100px;`)}
 `;
 
 const ParagraphTitle = styled(Paragraph)`
@@ -136,35 +161,4 @@ const ParagraphText = styled(Paragraph)`
   ${({ theme }) =>
     GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
     GreaterThan(600, `font-size: ${theme.font.default.size.large};`)}
-`;
-
-const FactsWrapper = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  ${GreaterThan(0, `gap: 30px;`)}
-  ${GreaterThan(600, `gap: 40px;`)}
-`;
-
-const Fact = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  ${GreaterThan(0, `flex-direction: column; align-items: start;`)}
-  ${GreaterThan(600, `flex-direction: row; align-items: center;`)}
-`;
-
-const FactTitle = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
-`;
-
-const FactValue = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.text};
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
-    GreaterThan(600, `font-size: ${theme.font.default.size.h6};`)};
 `;

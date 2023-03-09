@@ -13,6 +13,7 @@ import { clamp } from '../../../../utility/scripts/Math';
 import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
 import { Textfit } from 'react-textfit';
 import { FixedStickyScroll } from '../../../other/FixedStickyScroll';
+import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 
 const SCROLL_BEFORE_DISAPPEAR = 1000;
 const IMAGE_OFFSET = 200;
@@ -74,16 +75,19 @@ export const Landing: React.FC<LandingProps> = ({
             srcSet={imageSrcSet}
           />
         </ImageWrapper>
+
         <LandingTitleWrapper>
           {prototypeHref && (
             <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
               <FadeIn delay={300}>
-                <LinkWithUnderline
-                  href={prototypeHref}
-                  color={color.background}
-                >
-                  <LinkText>PROTOTYPE</LinkText>
-                </LinkWithUnderline>
+                <LinkWrapper>
+                  <LinkWithUnderline
+                    href={prototypeHref}
+                    color={color.background}
+                  >
+                    <LinkText>PROTOTYPE</LinkText>
+                  </LinkWithUnderline>
+                </LinkWrapper>
               </FadeIn>
             </FixedScrollFadeOut>
           )}
@@ -152,14 +156,12 @@ const LandingImage = styled(Image)<{ $isVisible: boolean }>`
   transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
-const LandingTitleWrapper = styled.div`
+const LandingTitleWrapper = styled(BodyWide)`
   box-sizing: border-box;
   position: absolute;
   left: 0px;
   bottom: 0px;
   width: 100%;
-  ${GreaterThan(0, `padding: 20px max(6vw, 20px);`)}
-  ${GreaterThan(600, `padding: 30px max(6vw, 30px);`)}
 
   display: flex;
   flex-direction: column;
@@ -172,9 +174,10 @@ const StyledTextFit = styled(Textfit)`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 30px; // top border padding
 
-  ${GreaterThan(0, `margin-top: 26px; margin-bottom: 20px;`)}
-  ${GreaterThan(1000, `margin-bottom: 30px; margin-top: 40px;`)}
+  ${GreaterThan(0, `margin-top: 0px; margin-bottom: 20px;`)}
+  ${GreaterThan(1000, `margin-top: 12px; margin-bottom: 30px;`)}
 `;
 
 const Title = styled(Paragraph)<{ $isVisible: boolean }>`
@@ -202,8 +205,16 @@ const LinkText = styled(Subtitle)`
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 `;
 
+const LinkWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const Icon = styled(IconScroll)`
   width: 48px;
   height: 48px;
+  margin: auto;
   margin-top: 80px;
+  margin-bottom: 30px; // bottom border padding
 `;

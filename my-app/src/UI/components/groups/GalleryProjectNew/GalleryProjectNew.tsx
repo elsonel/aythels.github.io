@@ -26,7 +26,7 @@ export const GalleryProjectNew: React.FC<GalleryProjectNewProps> = ({
         subtitle={'Drifting Landscapes'}
         imageSrc={image.exampleSquare}
       />
-      <Block />
+      <Block>Hello</Block>
     </Wrapper>
   );
 };
