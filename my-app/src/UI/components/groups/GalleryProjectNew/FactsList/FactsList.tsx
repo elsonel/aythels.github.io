@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
 export interface FactsListProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,43 +11,60 @@ export interface FactsListProps extends React.HTMLAttributes<HTMLDivElement> {
 export const FactsList: React.FC<FactsListProps> = ({
   facts,
   ...props
-}): React.ReactElement => {
-  return (
-    <Wrapper {...props}>
-      {facts.map((fact) => (
-        <FactWrapper key={fact.label}>
-          <FactTitle isWrapped={false}>{fact.label}</FactTitle>
-          <FactValue isWrapped={false}>{fact.value}</FactValue>
-        </FactWrapper>
-      ))}
-    </Wrapper>
-  );
-};
+}): React.ReactElement => (
+  <Wrapper {...props}>
+    <BodyWide snapWidth={1400}>
+      <Layout>
+        {facts.map((fact) => (
+          <FactWrapper key={fact.label}>
+            <FactTitle isWrapped={false}>{fact.label}</FactTitle>
+            <FactValue isWrapped={false}>{fact.value}</FactValue>
+          </FactWrapper>
+        ))}
+      </Layout>
+    </BodyWide>
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
-  overflow: hidden;
   width: 100%;
+`;
+
+const FactColumn = `
+  flex-direction: column;
+`;
+
+const FactRow = `
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const LayoutColumn = `
+  flex-direction: column;
+  gap: 30px;
+`;
+
+const LayoutRow = `
+  width: 100%;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: space-between;
+`;
+
+const Layout = styled.div`
+  margin: auto;
   display: flex;
-  ${GreaterThan(0, `flex-direction: column; gap: 30px;`)}
-  ${GreaterThan(
-    1400,
-    `flex-direction: row; gap: 40px; justify-content: space-between;`
-  )}
+  ${GreaterThan(0, LayoutColumn)}
+  ${GreaterThan(1400, LayoutRow)}
 `;
 
 const FactWrapper = styled.div`
   display: flex;
 
-  ${GreaterThan(0, `flex-direction: column;`)}
-  ${GreaterThan(
-    450,
-    ` 
-      flex-direction: row; 
-      align-items: center; 
-      justify-content: space-between;
-    `
-  )}
-  ${GreaterThan(1400, `flex-direction: column;`)}
+  ${GreaterThan(0, FactColumn)}
+  ${GreaterThan(450, FactRow)}
+  ${GreaterThan(1400, FactColumn)}
 `;
 
 const FactTitle = styled(Paragraph)`

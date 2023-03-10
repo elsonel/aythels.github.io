@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
+const CENTER_WIDTH = 600; // includes horizontal padding
+const HORIZONTAL_PADDING = 20;
+
 export interface IBodyCenterProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
@@ -21,7 +25,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   box-sizing: border-box;
-  width: min(600px, 100%);
-  padding: 0px 20px;
+  width: min(${CENTER_WIDTH}px, 100%);
+  padding: 0px ${HORIZONTAL_PADDING}px;
   margin: auto;
 `;

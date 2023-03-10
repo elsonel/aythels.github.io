@@ -16,7 +16,7 @@ export const useMediaQuery = (query: string) => {
 
     window.addEventListener('resize', listener);
     return () => window.removeEventListener('resize', listener);
-  }, []);
+  }, [query]);
 
   return isMatching;
 };

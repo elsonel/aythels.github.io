@@ -5,6 +5,8 @@ import { BodyCenter } from '../../../layout/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { FactsList } from '../FactsList/FactsList';
 import { Gallery } from '../Gallery/Gallery';
+import { BodyWide } from '../../../layout/BodyWide';
+import { Textfit } from 'react-textfit';
 
 export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -22,34 +24,36 @@ export const Body: React.FC<BodyProps> = ({
 }): React.ReactElement => {
   return (
     <BodyWrapper {...props}>
-      <Screen>
-        <Title>KINETIC BOARDWALK</Title>
-        <TopLayout>
-          <FactsList
-            facts={[
-              {
-                label: 'TYPE',
-                value: 'Public Mega-Infastructure',
-              },
-              {
-                label: 'REGION',
-                value: 'Los Angeles, California',
-              },
-              {
-                label: 'SUPERVISOR',
-                value: 'Nathan Bishop (ARC380)',
-              },
-              {
-                label: 'COLLABORATORS',
-                value: 'Elson Liang, Omar Abdellatif',
-              },
-              {
-                label: 'COMPLETED',
-                value: 'December 2020',
-              },
-            ]}
-          />
-        </TopLayout>
+      <BodyWide>
+        <StyledTextFit mode="single" forceSingleModeWidth min={24} max={1000}>
+          <Title>KINETIC BOARDWALK</Title>
+        </StyledTextFit>
+      </BodyWide>
+      <FactsList
+        facts={[
+          {
+            label: 'TYPE',
+            value: 'Public Mega-Infastructure',
+          },
+          {
+            label: 'REGION',
+            value: 'Los Angeles, California',
+          },
+          {
+            label: 'SUPERVISOR',
+            value: 'Nathan Bishop (ARC380)',
+          },
+          {
+            label: 'COLLABORATORS',
+            value: 'Elson Liang, Omar Abdellatif',
+          },
+          {
+            label: 'COMPLETED',
+            value: 'December 2020',
+          },
+        ]}
+      />
+      <Layout>
         <BodyCenter>
           <IntroText>
             The Kinetic Boardwalk is an adaptive and programmable system of
@@ -59,8 +63,6 @@ export const Body: React.FC<BodyProps> = ({
             substituting as an exhibitive pedestrian walkway.
           </IntroText>
         </BodyCenter>
-      </Screen>
-      <Layout>
         <BodyCenter>
           <ParagraphTitle>
             Inspired By Sand Dunes and Grass Hills
@@ -101,12 +103,17 @@ const Screen = styled.div`
   flex-direction: column;
 `;
 
+const StyledTextFit = styled(Textfit)`
+  margin: 30px 0px;
+  display: flex;
+  justify-content: center;
+`;
+
 const Title = styled(Paragraph)`
-  padding-top: max(6vw, 30px);
   text-align: center;
+  font-size: inherit;
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.font.title.family};
-  font-size: 8.9vw;
   line-height: 1;
   overflow-wrap: normal;
 `;
@@ -139,6 +146,7 @@ const IntroText = styled(Paragraph)`
 const Layout = styled.div`
   box-sizing: border-box;
   width: 100%;
+  margin: 30px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,8 +160,8 @@ const ParagraphTitle = styled(Paragraph)`
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
   color: ${({ theme }) => theme.color.text};
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.h4};`) +
-    GreaterThan(600, `font-size: ${theme.font.default.size.h3};`)}
+    GreaterThan(0, `font-size: ${theme.font.default.size.h6};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.h5};`)}
 `;
 
 const ParagraphText = styled(Paragraph)`
