@@ -1,11 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import {
-  FADE_MODE,
-  FixedScrollFade,
-  FixedScrollFadeProps,
-} from './FixedScrollFade';
+import { FixedScrollFade, FixedScrollFadeProps } from './FixedScrollFade';
 
 const Block = styled.div`
   width: 100%;
@@ -27,11 +23,12 @@ export default {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </Paragraph>
     ),
-    startY: 0,
-    duration: 300,
-    offsetY: 150,
-    isFullWidth: false,
-    fadeMode: FADE_MODE.OUT,
+    scrollStart: 0,
+    scrollDuration: 300,
+    initialOffsetY: 0,
+    finalOffsetY: 150,
+    initialOpacity: 1,
+    finalOpacity: 0,
   },
 } as Meta;
 

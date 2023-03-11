@@ -25,7 +25,6 @@ export default {
     ),
     scrollSpeed: 0.5,
     topLimit: 100,
-    isFullWidth: false,
   },
 } as Meta;
 

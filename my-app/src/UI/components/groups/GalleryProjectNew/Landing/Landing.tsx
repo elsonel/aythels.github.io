@@ -80,7 +80,11 @@ export const Landing: React.FC<LandingProps> = ({
 
         <LandingTitleWrapper>
           {prototypeHref && (
-            <FixedScrollFade startY={0} duration={200} offsetY={100}>
+            <FixedScrollFade
+              scrollStart={0}
+              scrollDuration={200}
+              finalOffsetY={-100}
+            >
               <FadeIn delay={300}>
                 <LinkWrapper>
                   <LinkWithUnderline
@@ -100,12 +104,20 @@ export const Landing: React.FC<LandingProps> = ({
               </StyledTitle>
             </FadeIn>
           </FixedStickyScroll>
-          <FixedScrollFade startY={0} duration={200} offsetY={100}>
+          <FixedScrollFade
+            scrollStart={0}
+            scrollDuration={200}
+            finalOffsetY={-100}
+          >
             <FadeIn delay={500}>
               <Subtitle>{subtitle}</Subtitle>
             </FadeIn>
           </FixedScrollFade>
-          <FixedScrollFade startY={200} duration={200} offsetY={0}>
+          <FixedScrollFade
+            scrollStart={200}
+            scrollDuration={200}
+            finalOffsetY={0}
+          >
             <FadeIn delay={700}>
               <Icon />
             </FadeIn>

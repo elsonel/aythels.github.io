@@ -9,14 +9,12 @@ export interface FixedStickyScrollProps
   children?: React.ReactNode;
   scrollSpeed?: number;
   topLimit?: number;
-  isFullWidth?: boolean;
 }
 
 export const FixedStickyScroll: React.FC<FixedStickyScrollProps> = ({
   children,
   scrollSpeed = 1,
   topLimit = 0,
-  isFullWidth = false,
   ...props
 }): React.ReactElement => {
   const { speed } = useTheme();
@@ -57,13 +55,13 @@ export const FixedStickyScroll: React.FC<FixedStickyScrollProps> = ({
   useOnWindowScroll(setTransform);
 
   return (
-    <Wrapper ref={ref} $isFullWidth={isFullWidth} {...props}>
+    <Wrapper ref={ref} {...props}>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div<{ $isFullWidth: boolean }>`
-  ${({ $isFullWidth }) => $isFullWidth && `width: 100%;`}
+const Wrapper = styled.div`
+  width: 100%;
   transition-timing-function: linear;
 `;

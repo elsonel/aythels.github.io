@@ -4,29 +4,25 @@ import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
 import { clamp } from '../../../utility/scripts/Math';
 import { remap } from '../../../utility/scripts/remap';
 
-export enum FADE_MODE {
-  IN,
-  OUT,
-  NONE,
-}
-
 export interface FixedScrollFadeProps
   extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
-  startY?: number;
-  duration?: number;
-  offsetY?: number;
-  isFullWidth?: boolean;
-  fadeMode?: FADE_MODE;
+  scrollStart?: number;
+  scrollDuration?: number;
+  initialOffsetY?: number;
+  finalOffsetY?: number;
+  initialOpacity?: number;
+  finalOpacity?: number;
 }
 
 export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
   children,
-  startY = 0,
-  duration = 300,
-  offsetY,
-  isFullWidth = false,
-  fadeMode = FADE_MODE.OUT,
+  scrollStart = 0,
+  scrollDuration = 300,
+  initialOffsetY = 0,
+  finalOffsetY = scrollDuration,
+  initialOpacity = 1,
+  finalOpacity = 0,
   ...props
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
@@ -35,40 +31,48 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
     (scrollY: number) => {
       if (!ref.current) return;
 
-      const finalOffsetY = getValue(
+      const transformY = getValue(
         scrollY,
-        startY,
-        duration,
-        0,
-        -(offsetY ?? duration)
+        scrollStart,
+        scrollDuration,
+        initialOffsetY,
+        finalOffsetY
       );
 
-      let finalOpacity = 1;
+      const opacity = getValue(
+        scrollY,
+        scrollStart,
+        scrollDuration,
+        initialOpacity,
+        finalOpacity
+      );
 
-      if (fadeMode === FADE_MODE.OUT)
-        finalOpacity = getValue(scrollY, startY, duration, 1, 0);
-      else if (fadeMode === FADE_MODE.IN)
-        finalOpacity = getValue(scrollY, startY, duration, 0, 1);
-
-      ref.current.style.transform = `translateY(${finalOffsetY}px)`;
-      ref.current.style.opacity = finalOpacity + ``;
-      ref.current.style.pointerEvents = finalOpacity > 0.1 ? `auto` : `none`;
+      ref.current.style.transform = `translateY(${transformY}px)`;
+      ref.current.style.opacity = opacity + ``;
+      ref.current.style.pointerEvents = opacity > 0.1 ? `auto` : `none`;
     },
-    [startY, duration, offsetY]
+    [
+      scrollStart,
+      scrollDuration,
+      initialOffsetY,
+      finalOffsetY,
+      initialOpacity,
+      finalOpacity,
+    ]
   );
 
   useLayoutEffect(() => onScroll(0), []);
   useOnWindowScroll(onScroll);
 
   return (
-    <Wrapper ref={ref} $isFullWidth={isFullWidth} {...props}>
+    <Wrapper ref={ref} {...props}>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div<{ $isFullWidth: boolean }>`
-  ${({ $isFullWidth }) => $isFullWidth && `width: 100%;`}
+const Wrapper = styled.div`
+  width: 100%;
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
 `;
