@@ -9,92 +9,64 @@ import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 
-export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  facts: { label: string; value: string }[];
+  paragraphs: { title?: string; body: string }[];
+  isLoaded?: boolean;
+}
 
-export const Body: React.FC<BodyProps> = ({ ...props }): React.ReactElement => {
+export const Body: React.FC<BodyProps> = ({
+  title,
+  facts,
+  paragraphs,
+  isLoaded = true,
+  ...props
+}): React.ReactElement => {
+  /*
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useOnWindowScroll(() => {
+    delayRef.current = 0;
+    onScroll();
+  });*/
+
   return (
     <>
-      <Wrapper {...props}>
-        <BodyWide>
-          <StyledTitle>KINETIC BOARDWALK</StyledTitle>
-        </BodyWide>
+      <FixedWrapper {...props}>
         <FixedScrollFade
-          scrollStart={0}
-          scrollDuration={200}
-          initialOffsetY={100}
-          finalOffsetY={0}
+          scrollStart={600}
+          scrollDuration={1000} // height of the container
+          finalOffsetY={-1000}
           initialOpacity={1}
           finalOpacity={1}
         >
-          <FadeIn delay={0} offset={20}>
-            <StyledFactsList
-              facts={[
-                {
-                  label: 'TYPE',
-                  value: 'Public Mega-Infastructure',
-                },
-                {
-                  label: 'REGION',
-                  value: 'Los Angeles, California',
-                },
-                {
-                  label: 'SUPERVISOR',
-                  value: 'Nathan Bishop (ARC380)',
-                },
-                {
-                  label: 'COLLABORATORS',
-                  value: 'Elson Liang, Omar Abdellatif',
-                },
-                {
-                  label: 'COMPLETED',
-                  value: 'December 2020',
-                },
-              ]}
-            />
-          </FadeIn>
+          <BodyWide>
+            <StyledTitle>{title}</StyledTitle>
+          </BodyWide>
+          <FactsWrapper>
+            <FadeIn delay={0} offset={20} isLoaded={isLoaded}>
+              <FactsList facts={facts} />
+            </FadeIn>
+          </FactsWrapper>
           <Layout>
-            <FadeIn delay={200} offset={50}>
-              <BodyCenter>
-                <ParagraphText>
-                  The Kinetic Boardwalk is an adaptive and programmable system
-                  of inflating tiles that span the coastline of Venice Beach.
-                  Acting as both a public amenity and functional infrastructure,
-                  the structure aims to address high tides and rising water
-                  levels while substituting as an exhibitive pedestrian walkway.
-                </ParagraphText>
-              </BodyCenter>
-            </FadeIn>
-            <FadeIn delay={400} offset={50}>
-              <BodyCenter>
-                <ParagraphTitle>
-                  Inspired By Sand Dunes and Grass Hills
-                </ParagraphTitle>
-                <ParagraphText>
-                  The Kinetic Boardwalk's form is made up of a modular system of
-                  "bumps" that can be mechanically controlled to individually
-                  rise or flatten at will. A variety of built environments with
-                  different use cases are created. The bump can be used as a
-                  deployable floodwall against high tides, a lookout point or
-                  rest area for pedestrians.
-                </ParagraphText>
-              </BodyCenter>
-            </FadeIn>
-            <FadeIn delay={600} offset={50}>
-              <BodyCenter>
-                <ParagraphTitle>A Mechanized System</ParagraphTitle>
-                <ParagraphText>
-                  Each bump is made up of a grid of interlocking tiles layered
-                  over inflatables which are powered by motorized air pumps. The
-                  tiles rise at different elevations when the round inflatables
-                  hidden underneath are powered to create the appearance of a
-                  curved surface. Rubber flaps connect each tile length wise,
-                  hiding cracks and providing a water-tight seal.
-                </ParagraphText>
-              </BodyCenter>
-            </FadeIn>
+            {paragraphs.map((e, i) => (
+              <FadeIn
+                key={i}
+                delay={i * 200 + 200}
+                offset={50}
+                isLoaded={isLoaded}
+              >
+                <BodyCenter>
+                  {e.title && <ParagraphTitle>{e.title}</ParagraphTitle>}
+                  <ParagraphText>{e.body}</ParagraphText>
+                </BodyCenter>
+              </FadeIn>
+            ))}
           </Layout>
         </FixedScrollFade>
-      </Wrapper>
+      </FixedWrapper>
+      <Block />
     </>
   );
 };
@@ -104,10 +76,17 @@ const Block = styled.div`
   height: 2000px;
 `;
 
-const Wrapper = styled.div`
-  //position: fixed;
-  //top: 0px;
-  //left: 0px;
+const BodyWrapper = styled.div<{ $isVisible: boolean }>`
+  width: 100%;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
+  transition: ${({ theme }) => theme.speed.slow}ms;
+`;
+
+const FixedWrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100%;
 `;
 
@@ -115,7 +94,8 @@ const StyledTitle = styled(Title)`
   margin-top: 40px;
 `;
 
-const StyledFactsList = styled(FactsList)`
+const FactsWrapper = styled.div`
+  width: 100%;
   ${GreaterThan(0, `margin-bottom: 0px; margin-top: 40px;`)}
   ${GreaterThan(1400, `margin-bottom: 100px; margin-top: 40px;`)}
 `;

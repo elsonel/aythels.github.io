@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
+import { useInView } from 'react-intersection-observer';
 
 const LOAD_DELAY = 100;
 // This is needed because useEffect sometimes returns the wrong value from getBoundingClientReact.
@@ -21,36 +22,40 @@ export const FadeIn: React.FC<FadeInProps> = ({
 }): React.ReactElement => {
   const [isInView, setIsInView] = useState(false);
   const delayRef = useRef(delay);
-  const ref = useRef<HTMLDivElement>(null);
 
-  const onScroll = () => {
-    if (!ref.current) return;
-    const { height, bottom } = ref.current.getBoundingClientRect();
-    if (bottom - height * 0.75 <= window.innerHeight) setIsInView(true);
-  };
-
-  useEffect(() => {
-    // delay only has effect if element is immediately in view;
-    const timer = setTimeout(() => {
-      delayRef.current = delay;
-      onScroll();
-    }, LOAD_DELAY);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  useOnWindowScroll(() => {
-    delayRef.current = 0;
-    onScroll();
+  const { ref, inView } = useInView({
+    threshold: 0.5,
   });
 
-  return isLoaded ? (
-    <WrapperPlaceholder ref={ref} {...props}>
-      <Wrapper $isLoaded={isInView} $offset={offset} $delay={delayRef.current}>
-        {children}
-      </Wrapper>
-    </WrapperPlaceholder>
-  ) : (
-    <></>
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    const timer = setTimeout(() => {
+      delayRef.current = 0;
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded) delayRef.current = delay;
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (inView && isLoaded) setIsInView(true);
+    else if (!inView && !isLoaded) setIsInView(false);
+  }, [inView, isLoaded]);
+
+  return (
+    <Wrapper {...props}>
+      <Content>
+        <Placeholder ref={ref}>{children}</Placeholder>
+        {isLoaded && isInView && (
+          <Copy $offset={offset} $delay={delayRef.current}>
+            {children}
+          </Copy>
+        )}
+      </Content>
+    </Wrapper>
   );
 };
 
@@ -66,25 +71,38 @@ const AnimationFadeIn = (offset: number) =>
     }
   `;
 
-const WrapperPlaceholder = styled.div`
-  overflow: visible;
+const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Wrapper = styled.div<{
+const Content = styled.div`
+  position: relative;
+  overflow: visible;
+  width: 100%;
+
+  background-color: red;
+`;
+
+const Copy = styled.div<{
   $delay: number;
   $offset: number;
-  $isLoaded: boolean;
 }>`
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
 
   animation-fill-mode: forwards;
   animation-delay: ${({ $delay }) => $delay}ms;
   animation-duration: ${({ theme }) => theme.speed.slow}ms;
   animation-name: ${({ $offset }) => AnimationFadeIn($offset)};
-  animation-play-state: ${({ $isLoaded }) =>
-    $isLoaded ? `running` : `paused`};
 
   transform: ${({ $offset }) => `translateY(${$offset}px)`};
   opacity: 0;
+`;
+
+const Placeholder = styled.div`
+  width: 100%;
+  opacity: 0;
+  pointer-events: 0;
 `;
