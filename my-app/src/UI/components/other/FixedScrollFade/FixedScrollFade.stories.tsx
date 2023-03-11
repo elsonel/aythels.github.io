@@ -2,9 +2,10 @@ import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import {
-  FixedScrollFadeOut,
-  FixedScrollFadeOutProps,
-} from './FixedScrollFadeOut';
+  FADE_MODE,
+  FixedScrollFade,
+  FixedScrollFadeProps,
+} from './FixedScrollFade';
 
 const Block = styled.div`
   width: 100%;
@@ -18,8 +19,8 @@ const Container = styled.div`
 `;
 
 export default {
-  title: 'Other/FixedScrollFadeOut',
-  component: FixedScrollFadeOut,
+  title: 'Other/FixedScrollFade',
+  component: FixedScrollFade,
   args: {
     children: (
       <Paragraph size="h2">
@@ -30,13 +31,14 @@ export default {
     duration: 300,
     offsetY: 150,
     isFullWidth: false,
+    fadeMode: FADE_MODE.OUT,
   },
 } as Meta;
 
-const Template: Story<FixedScrollFadeOutProps> = (args) => (
+const Template: Story<FixedScrollFadeProps> = (args) => (
   <>
     <Container>
-      <FixedScrollFadeOut {...args} />
+      <FixedScrollFade {...args} />
     </Container>
     <Block />
   </>

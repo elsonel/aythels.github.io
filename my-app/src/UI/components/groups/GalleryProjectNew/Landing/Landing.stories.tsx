@@ -17,6 +17,7 @@ export default {
     subtitle: 'Drifting Landscapes',
     imageSrc: Theme.image.exampleSquareSmall,
     prototypeHref: '/',
+    scrollLength: 1000,
   },
 } as Meta;
 

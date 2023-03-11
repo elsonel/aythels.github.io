@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
+
+const LOAD_DELAY = 100;
+// This is needed because useEffect sometimes returns the wrong value from getBoundingClientReact.
 
 export interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   delay?: number;
   offset?: number;
   isLoaded?: boolean;
-  isFullWidth?: boolean;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({
@@ -14,18 +17,38 @@ export const FadeIn: React.FC<FadeInProps> = ({
   delay = 0,
   offset = 10,
   isLoaded = true,
-  isFullWidth = false,
   ...props
 }): React.ReactElement => {
+  const [isInView, setIsInView] = useState(false);
+  const delayRef = useRef(delay);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onScroll = () => {
+    if (!ref.current) return;
+    const { height, bottom } = ref.current.getBoundingClientRect();
+    if (bottom - height * 0.75 <= window.innerHeight) setIsInView(true);
+  };
+
+  useEffect(() => {
+    // delay only has effect if element is immediately in view;
+    const timer = setTimeout(() => {
+      delayRef.current = delay;
+      onScroll();
+    }, LOAD_DELAY);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useOnWindowScroll(() => {
+    delayRef.current = 0;
+    onScroll();
+  });
+
   return isLoaded ? (
-    <Wrapper
-      $offset={offset}
-      $delay={delay}
-      $isFullWidth={isFullWidth}
-      {...props}
-    >
-      {children}
-    </Wrapper>
+    <WrapperPlaceholder ref={ref} {...props}>
+      <Wrapper $isLoaded={isInView} $offset={offset} $delay={delayRef.current}>
+        {children}
+      </Wrapper>
+    </WrapperPlaceholder>
   ) : (
     <></>
   );
@@ -43,17 +66,24 @@ const AnimationFadeIn = (offset: number) =>
     }
   `;
 
+const WrapperPlaceholder = styled.div`
+  overflow: visible;
+  width: 100%;
+`;
+
 const Wrapper = styled.div<{
   $delay: number;
   $offset: number;
-  $isFullWidth: boolean;
+  $isLoaded: boolean;
 }>`
-  ${({ $isFullWidth }) => $isFullWidth && `width: 100%;`}
-  position: relative;
+  width: 100%;
+
   animation-fill-mode: forwards;
   animation-delay: ${({ $delay }) => $delay}ms;
   animation-duration: ${({ theme }) => theme.speed.slow}ms;
   animation-name: ${({ $offset }) => AnimationFadeIn($offset)};
+  animation-play-state: ${({ $isLoaded }) =>
+    $isLoaded ? `running` : `paused`};
 
   transform: ${({ $offset }) => `translateY(${$offset}px)`};
   opacity: 0;

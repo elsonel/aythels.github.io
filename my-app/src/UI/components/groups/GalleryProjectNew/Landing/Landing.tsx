@@ -7,15 +7,16 @@ import { Image } from '../../../atoms/Image/Image';
 import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline/LinkWithUnderline';
-import { FixedScrollFadeOut } from '../../../other/FixedScrollFadeOut/FixedScrollFadeOut';
 import { remap } from '../../../../utility/scripts/remap';
 import { clamp } from '../../../../utility/scripts/Math';
 import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
 import { Textfit } from 'react-textfit';
 import { FixedStickyScroll } from '../../../other/FixedStickyScroll';
 import { BodyWide } from '../../../layout/BodyWide/BodyWide';
+import { Title } from '../Title/Title';
+import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
+import useOnWindowResize from '../../../../utility/hooks/useOnWindowResize';
 
-const SCROLL_BEFORE_DISAPPEAR = 1000;
 const IMAGE_OFFSET = 200;
 
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,6 +25,7 @@ export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   prototypeHref?: string;
   imageSrc: string;
   imageSrcSet?: string;
+  scrollLength?: number;
   onVisibilityChange?: (isVisible: boolean, scrollY: number) => void;
 }
 
@@ -33,6 +35,7 @@ export const Landing: React.FC<LandingProps> = ({
   prototypeHref,
   imageSrc,
   imageSrcSet,
+  scrollLength = 1000,
   onVisibilityChange,
   ...props
 }): React.ReactElement => {
@@ -45,17 +48,17 @@ export const Landing: React.FC<LandingProps> = ({
   }, [isVisible, onVisibilityChange]);
 
   useOnWindowScroll((scrollY: number) => {
-    if (scrollY > SCROLL_BEFORE_DISAPPEAR) setIsVisible(false);
+    if (scrollY > scrollLength) setIsVisible(false);
     else setIsVisible(true);
     scrollYRef.current = scrollY;
 
     if (!ref.current) return;
 
-    const clampedScrollY = clamp(scrollY, 0, SCROLL_BEFORE_DISAPPEAR);
+    const clampedScrollY = clamp(scrollY, 0, scrollLength);
     const finalOffsetY = remap(
       clampedScrollY,
       0,
-      SCROLL_BEFORE_DISAPPEAR,
+      scrollLength,
       0,
       -IMAGE_OFFSET
     );
@@ -63,7 +66,6 @@ export const Landing: React.FC<LandingProps> = ({
   });
 
   const ref = useRef<HTMLDivElement>(null);
-
   return (
     <Wrapper {...props}>
       <Content>
@@ -78,7 +80,7 @@ export const Landing: React.FC<LandingProps> = ({
 
         <LandingTitleWrapper>
           {prototypeHref && (
-            <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
+            <FixedScrollFade startY={0} duration={200} offsetY={100}>
               <FadeIn delay={300}>
                 <LinkWrapper>
                   <LinkWithUnderline
@@ -89,30 +91,25 @@ export const Landing: React.FC<LandingProps> = ({
                   </LinkWithUnderline>
                 </LinkWrapper>
               </FadeIn>
-            </FixedScrollFadeOut>
+            </FixedScrollFade>
           )}
-          <FixedStickyScroll scrollSpeed={0.5} isFullWidth>
-            <FadeIn offset={30} delay={0} isFullWidth>
-              <StyledTextFit
-                mode="single"
-                forceSingleModeWidth
-                min={24}
-                max={1000}
-              >
-                <Title $isVisible={isVisible}>{title}</Title>
-              </StyledTextFit>
+          <FixedStickyScroll scrollSpeed={0.5}>
+            <FadeIn offset={30} delay={0}>
+              <StyledTitle color={isVisible ? color.background : color.text}>
+                {title}
+              </StyledTitle>
             </FadeIn>
           </FixedStickyScroll>
-          <FixedScrollFadeOut startY={0} duration={200} offsetY={100}>
+          <FixedScrollFade startY={0} duration={200} offsetY={100}>
             <FadeIn delay={500}>
               <Subtitle>{subtitle}</Subtitle>
             </FadeIn>
-          </FixedScrollFadeOut>
-          <FixedScrollFadeOut startY={200} duration={200} offsetY={0}>
+          </FixedScrollFade>
+          <FixedScrollFade startY={200} duration={200} offsetY={0}>
             <FadeIn delay={700}>
               <Icon />
             </FadeIn>
-          </FixedScrollFadeOut>
+          </FixedScrollFade>
         </LandingTitleWrapper>
       </Content>
     </Wrapper>
@@ -170,26 +167,10 @@ const LandingTitleWrapper = styled(BodyWide)`
   user-select: none;
 `;
 
-const StyledTextFit = styled(Textfit)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+const StyledTitle = styled(Title)`
   padding-top: 40px; // top border padding
-
   ${GreaterThan(0, `margin-top: 0px; margin-bottom: 20px;`)}
   ${GreaterThan(1000, `margin-top: 12px; margin-bottom: 30px;`)}
-`;
-
-const Title = styled(Paragraph)<{ $isVisible: boolean }>`
-  text-align: center;
-  font-size: inherit;
-  color: ${({ theme, $isVisible }) =>
-    $isVisible ? theme.color.background : theme.color.text};
-  font-family: ${({ theme }) => theme.font.title.family};
-  line-height: 1;
-  overflow-wrap: normal;
-  transition: ${({ theme }) => theme.speed.slow}ms;
-  transition-property: color;
 `;
 
 const Subtitle = styled(Paragraph)`

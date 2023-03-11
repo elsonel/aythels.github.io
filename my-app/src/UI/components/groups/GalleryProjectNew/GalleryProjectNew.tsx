@@ -9,6 +9,8 @@ export interface GalleryProjectNewProps
   children?: React.ReactNode[];
 }
 
+const LANDING_HEIGHT = 1000;
+
 export const GalleryProjectNew: React.FC<GalleryProjectNewProps> = ({
   children,
   ...props
@@ -18,12 +20,14 @@ export const GalleryProjectNew: React.FC<GalleryProjectNewProps> = ({
   return (
     <Wrapper {...props}>
       <Block />
+      <Block2 />
       <Landing
         title={'KINETIC BOARDWALK'}
         subtitle={'Drifting Landscapes'}
+        prototypeHref={'/'}
         imageSrc={image.exampleSquare}
+        scrollLength={LANDING_HEIGHT}
       />
-      <Body />
     </Wrapper>
   );
 };
@@ -35,4 +39,10 @@ const Wrapper = styled.div`
 const Block = styled.div`
   width: 100%;
   height: 1000px;
+`;
+
+const Block2 = styled.div`
+  width: 100%;
+  height: 5000px;
+  background-color: green;
 `;

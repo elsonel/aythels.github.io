@@ -20,7 +20,6 @@ export default {
     delay: 0,
     offset: 10,
     isLoaded: true,
-    isFullWidth: false,
   },
 } as Meta;
 
