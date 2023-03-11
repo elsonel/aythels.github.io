@@ -8,20 +8,9 @@ import { Gallery } from '../Gallery/Gallery';
 import { BodyWide } from '../../../layout/BodyWide';
 import { Textfit } from 'react-textfit';
 
-export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
-  subtitle: string;
-  imageSrc: string;
-  imageSrcSet?: string;
-}
+export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Body: React.FC<BodyProps> = ({
-  title,
-  subtitle,
-  imageSrc,
-  imageSrcSet,
-  ...props
-}): React.ReactElement => {
+export const Body: React.FC<BodyProps> = ({ ...props }): React.ReactElement => {
   return (
     <BodyWrapper {...props}>
       <BodyWide>
@@ -29,39 +18,39 @@ export const Body: React.FC<BodyProps> = ({
           <Title>KINETIC BOARDWALK</Title>
         </StyledTextFit>
       </BodyWide>
-      <FactsList
-        facts={[
-          {
-            label: 'TYPE',
-            value: 'Public Mega-Infastructure',
-          },
-          {
-            label: 'REGION',
-            value: 'Los Angeles, California',
-          },
-          {
-            label: 'SUPERVISOR',
-            value: 'Nathan Bishop (ARC380)',
-          },
-          {
-            label: 'COLLABORATORS',
-            value: 'Elson Liang, Omar Abdellatif',
-          },
-          {
-            label: 'COMPLETED',
-            value: 'December 2020',
-          },
-        ]}
-      />
       <Layout>
+        <StyledFactsList
+          facts={[
+            {
+              label: 'TYPE',
+              value: 'Public Mega-Infastructure',
+            },
+            {
+              label: 'REGION',
+              value: 'Los Angeles, California',
+            },
+            {
+              label: 'SUPERVISOR',
+              value: 'Nathan Bishop (ARC380)',
+            },
+            {
+              label: 'COLLABORATORS',
+              value: 'Elson Liang, Omar Abdellatif',
+            },
+            {
+              label: 'COMPLETED',
+              value: 'December 2020',
+            },
+          ]}
+        />
         <BodyCenter>
-          <IntroText>
+          <ParagraphText>
             The Kinetic Boardwalk is an adaptive and programmable system of
             inflating tiles that span the coastline of Venice Beach. Acting as
             both a public amenity and functional infrastructure, the structure
             aims to address high tides and rising water levels while
             substituting as an exhibitive pedestrian walkway.
-          </IntroText>
+          </ParagraphText>
         </BodyCenter>
         <BodyCenter>
           <ParagraphTitle>
@@ -95,18 +84,15 @@ const BodyWrapper = styled.div`
   width: 100%;
 `;
 
-const Screen = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-`;
-
 const StyledTextFit = styled(Textfit)`
-  margin: 30px 0px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
+`;
+
+const StyledFactsList = styled(FactsList)`
+  ${GreaterThan(0, `margin-bottom: 0px;`)}
+  ${GreaterThan(1400, `margin-bottom: 100px;`)}
 `;
 
 const Title = styled(Paragraph)`
@@ -118,41 +104,16 @@ const Title = styled(Paragraph)`
   overflow-wrap: normal;
 `;
 
-const TopLayout = styled.div`
-  flex-grow: 1;
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  padding: max(6vw, 20px);
-  padding-top: 30px;
-`;
-
-const IntroText = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.text};
-  ${({ theme }) =>
-    GreaterThan(
-      0,
-      `font-size: ${theme.font.default.size.default}; text-align: left;`
-    ) +
-    GreaterThan(
-      600,
-      `font-size: ${theme.font.default.size.large}; text-align: center;`
-    )}
-`;
-
 const Layout = styled.div`
   box-sizing: border-box;
   width: 100%;
-  margin: 30px 0px;
+  padding: 40px 0px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  ${GreaterThan(0, `gap: 80px;`)}
-  ${GreaterThan(600, `gap: 100px;`)}
+  ${GreaterThan(0, `gap: 40px;`)}
+  ${GreaterThan(600, `gap: 80px;`)}
+  ${GreaterThan(1000, `gap: 120px;`)}
 `;
 
 const ParagraphTitle = styled(Paragraph)`
@@ -161,7 +122,7 @@ const ParagraphTitle = styled(Paragraph)`
   color: ${({ theme }) => theme.color.text};
   ${({ theme }) =>
     GreaterThan(0, `font-size: ${theme.font.default.size.h6};`) +
-    GreaterThan(600, `font-size: ${theme.font.default.size.h5};`)}
+    GreaterThan(600, `font-size: ${theme.font.default.size.h4};`)}
 `;
 
 const ParagraphText = styled(Paragraph)`

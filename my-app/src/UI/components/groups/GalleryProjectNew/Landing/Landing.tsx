@@ -174,7 +174,7 @@ const StyledTextFit = styled(Textfit)`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 30px; // top border padding
+  padding-top: 40px; // top border padding
 
   ${GreaterThan(0, `margin-top: 0px; margin-bottom: 20px;`)}
   ${GreaterThan(1000, `margin-top: 12px; margin-bottom: 30px;`)}
@@ -216,5 +216,5 @@ const Icon = styled(IconScroll)`
   height: 48px;
   margin: auto;
   margin-top: 80px;
-  margin-bottom: 30px; // bottom border padding
+  margin-bottom: 40px; // bottom border padding
 `;

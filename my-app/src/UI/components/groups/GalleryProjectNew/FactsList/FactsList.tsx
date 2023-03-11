@@ -12,23 +12,17 @@ export const FactsList: React.FC<FactsListProps> = ({
   facts,
   ...props
 }): React.ReactElement => (
-  <Wrapper {...props}>
-    <BodyWide snapWidth={1400}>
-      <Layout>
-        {facts.map((fact) => (
-          <FactWrapper key={fact.label}>
-            <FactTitle isWrapped={false}>{fact.label}</FactTitle>
-            <FactValue isWrapped={false}>{fact.value}</FactValue>
-          </FactWrapper>
-        ))}
-      </Layout>
-    </BodyWide>
-  </Wrapper>
+  <BodyWide snapWidth={1400} {...props}>
+    <Layout>
+      {facts.map((fact) => (
+        <FactWrapper key={fact.label}>
+          <FactTitle isWrapped={false}>{fact.label}</FactTitle>
+          <FactValue isWrapped={false}>{fact.value}</FactValue>
+        </FactWrapper>
+      ))}
+    </Layout>
+  </BodyWide>
 );
-
-const Wrapper = styled.div`
-  width: 100%;
-`;
 
 const FactColumn = `
   flex-direction: column;
@@ -42,18 +36,17 @@ const FactRow = `
 
 const LayoutColumn = `
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 `;
 
 const LayoutRow = `
-  width: 100%;
   flex-direction: row;
   gap: 40px;
   justify-content: space-between;
 `;
 
 const Layout = styled.div`
-  margin: auto;
+  width: 100%;
   display: flex;
   ${GreaterThan(0, LayoutColumn)}
   ${GreaterThan(1400, LayoutRow)}
@@ -81,6 +74,6 @@ const FactValue = styled(Paragraph)`
   width: 100%;
   color: ${({ theme }) => theme.color.text};
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
-    GreaterThan(600, `font-size: ${theme.font.default.size.large};`)};
+    GreaterThan(0, `font-size: ${theme.font.default.size.small};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.default};`)};
 `;
