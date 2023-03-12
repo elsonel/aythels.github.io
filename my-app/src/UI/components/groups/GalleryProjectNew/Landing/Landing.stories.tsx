@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import { Theme } from '../../../../utility/themes/Theme';
 import { Landing, LandingProps } from './Landing';
 
-const Block = styled.div`
-  width: 100%;
-  height: 10000px;
-`;
-
 export default {
   title: 'Groups/GalleryProjectNew/Landing',
   component: Landing,
@@ -21,11 +16,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<LandingProps> = (args) => (
-  <>
-    <Landing {...args} />
-    <Block />
-  </>
-);
+const Template: Story<LandingProps> = (args) => <Landing {...args} />;
 
 export const Basic = Template.bind({});

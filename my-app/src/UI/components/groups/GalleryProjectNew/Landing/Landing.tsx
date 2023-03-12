@@ -39,6 +39,7 @@ export const Landing: React.FC<LandingProps> = ({
   onVisibilityChange,
   ...props
 }): React.ReactElement => {
+  const imageRef = useRef<HTMLDivElement>(null);
   const scrollYRef = useRef(0);
   const [isVisible, setIsVisible] = useState(true);
   const { color } = useTheme();
@@ -48,11 +49,14 @@ export const Landing: React.FC<LandingProps> = ({
   }, [isVisible, onVisibilityChange]);
 
   useOnWindowScroll((scrollY: number) => {
-    if (scrollY > scrollLength) setIsVisible(false);
+    if (scrollY >= scrollLength) setIsVisible(false);
     else setIsVisible(true);
+  });
+
+  useOnWindowScroll((scrollY: number) => {
     scrollYRef.current = scrollY;
 
-    if (!ref.current) return;
+    if (!imageRef.current) return;
 
     const clampedScrollY = clamp(scrollY, 0, scrollLength);
     const finalOffsetY = remap(
@@ -62,86 +66,97 @@ export const Landing: React.FC<LandingProps> = ({
       0,
       -IMAGE_OFFSET
     );
-    ref.current.style.transform = `translateY(${finalOffsetY}px)`;
+    imageRef.current.style.transform = `translateY(${finalOffsetY}px)`;
   });
 
-  const ref = useRef<HTMLDivElement>(null);
   return (
     <Wrapper {...props}>
-      <Content>
-        <ImageWrapper ref={ref}>
-          <LandingImage
-            $isVisible={isVisible}
-            alt={title}
-            src={imageSrc}
-            srcSet={imageSrcSet}
-          />
-        </ImageWrapper>
-
-        <LandingTitleWrapper>
-          {prototypeHref && (
+      <Block $height={scrollLength} />
+      <Overlay $isVisible={isVisible}>
+        <OverlayContent>
+          <ImageWrapper ref={imageRef}>
+            <LandingImage alt={title} src={imageSrc} srcSet={imageSrcSet} />
+          </ImageWrapper>
+          <LandingTitleWrapper>
+            {prototypeHref && (
+              <FixedScrollFade
+                scrollStart={0}
+                scrollDuration={200}
+                finalOffsetY={-100}
+              >
+                <FadeIn delay={300}>
+                  <LinkWrapper>
+                    <LinkWithUnderline
+                      href={prototypeHref}
+                      color={color.background}
+                    >
+                      <LinkText>PROTOTYPE</LinkText>
+                    </LinkWithUnderline>
+                  </LinkWrapper>
+                </FadeIn>
+              </FixedScrollFade>
+            )}
+            <TitleTopGap />
+            <FixedStickyScroll scrollSpeed={window.innerHeight / scrollLength}>
+              <FadeIn offset={30} delay={0}>
+                <StyledTitle color={isVisible ? color.background : color.text}>
+                  {title}
+                </StyledTitle>
+              </FadeIn>
+            </FixedStickyScroll>
+            <TitleBottomGap />
             <FixedScrollFade
               scrollStart={0}
               scrollDuration={200}
               finalOffsetY={-100}
             >
-              <FadeIn delay={300}>
-                <LinkWrapper>
-                  <LinkWithUnderline
-                    href={prototypeHref}
-                    color={color.background}
-                  >
-                    <LinkText>PROTOTYPE</LinkText>
-                  </LinkWithUnderline>
-                </LinkWrapper>
+              <FadeIn delay={500}>
+                <Subtitle>{subtitle}</Subtitle>
               </FadeIn>
             </FixedScrollFade>
-          )}
-          <FixedStickyScroll scrollSpeed={0.5}>
-            <FadeIn offset={30} delay={0}>
-              <StyledTitle color={isVisible ? color.background : color.text}>
-                {title}
-              </StyledTitle>
-            </FadeIn>
-          </FixedStickyScroll>
-          <FixedScrollFade
-            scrollStart={0}
-            scrollDuration={200}
-            finalOffsetY={-100}
-          >
-            <FadeIn delay={500}>
-              <Subtitle>{subtitle}</Subtitle>
-            </FadeIn>
-          </FixedScrollFade>
-          <FixedScrollFade
-            scrollStart={200}
-            scrollDuration={200}
-            finalOffsetY={0}
-          >
-            <FadeIn delay={700}>
-              <Icon />
-            </FadeIn>
-          </FixedScrollFade>
-        </LandingTitleWrapper>
-      </Content>
+            <IconTopGap />
+            <FixedScrollFade
+              scrollStart={0}
+              scrollDuration={200}
+              finalOffsetY={0}
+            >
+              <FadeIn delay={700}>
+                <Icon />
+              </FadeIn>
+            </FixedScrollFade>
+          </LandingTitleWrapper>
+        </OverlayContent>
+      </Overlay>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) => theme.color.background};
+`;
+
+const Block = styled.div<{ $height: number }>`
+  width: 100%;
+  height: ${({ $height }) => $height}px;
+`;
+
+const Overlay = styled.div<{ $isVisible: boolean }>`
+  overflow: hidden;
   position: fixed;
   top: 0px;
   left: 0px;
-  overflow: hidden;
   width: 100%;
   height: 100vh;
-  pointer-events: none;
+  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
-const Content = styled.div`
+const OverlayContent = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
 `;
 
 const ImageWrapper = styled.div`
@@ -156,13 +171,10 @@ const ImageWrapper = styled.div`
   `)}
 `;
 
-const LandingImage = styled(Image)<{ $isVisible: boolean }>`
+const LandingImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
 const LandingTitleWrapper = styled(BodyWide)`
@@ -177,12 +189,26 @@ const LandingTitleWrapper = styled(BodyWide)`
   justify-content: center;
   align-items: center;
   user-select: none;
+
+  margin-bottom: 30px; // bottom border padding
+`;
+
+const TitleTopGap = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+  ${GreaterThan(0, `height: 0px;`)}
+  ${GreaterThan(1000, `height: 12px;`)}
 `;
 
 const StyledTitle = styled(Title)`
-  padding-top: 40px; // top border padding
-  ${GreaterThan(0, `margin-top: 0px; margin-bottom: 20px;`)}
-  ${GreaterThan(1000, `margin-top: 12px; margin-bottom: 30px;`)}
+  padding-top: 30px; // top border padding
+`;
+
+const TitleBottomGap = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+  ${GreaterThan(0, `height: 24px;`)}
+  ${GreaterThan(1000, `height: 30px;`)}
 `;
 
 const Subtitle = styled(Paragraph)`
@@ -204,10 +230,17 @@ const LinkWrapper = styled.div`
   justify-content: center;
 `;
 
+const IconTopGap = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+
+  ${GreaterThan(0, `height: 60px;`)}
+  ${GreaterThan(600, `height: 80px;`)}
+`;
+
 const Icon = styled(IconScroll)`
   width: 48px;
   height: 48px;
-  margin: auto;
-  margin-top: 80px;
-  margin-bottom: 40px; // bottom border padding
+  margin-left: auto;
+  margin-right: auto;
 `;

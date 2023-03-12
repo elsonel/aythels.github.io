@@ -24,7 +24,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
   const delayRef = useRef(delay);
 
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.25,
   });
 
   useEffect(() => {
@@ -49,11 +49,13 @@ export const FadeIn: React.FC<FadeInProps> = ({
     <Wrapper {...props}>
       <Content>
         <Placeholder ref={ref}>{children}</Placeholder>
-        {isLoaded && isInView && (
-          <Copy $offset={offset} $delay={delayRef.current}>
-            {children}
-          </Copy>
-        )}
+        <Copy
+          $offset={offset}
+          $delay={delayRef.current}
+          $isLoaded={isLoaded && isInView}
+        >
+          {children}
+        </Copy>
       </Content>
     </Wrapper>
   );
@@ -63,11 +65,9 @@ const AnimationFadeIn = (offset: number) =>
   keyframes`
     0% {
       transform: translateY(${offset}px);
-      opacity: 0;
     }
     100% { 
       transform: translateY(0px);
-      opacity: 1;
     }
   `;
 
@@ -76,29 +76,36 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
+  margin: inherit;
   position: relative;
   overflow: visible;
   width: 100%;
-
-  background-color: red;
 `;
 
 const Copy = styled.div<{
   $delay: number;
   $offset: number;
+  $isLoaded: boolean;
 }>`
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
 
-  animation-fill-mode: forwards;
   animation-delay: ${({ $delay }) => $delay}ms;
   animation-duration: ${({ theme }) => theme.speed.slow}ms;
-  animation-name: ${({ $offset }) => AnimationFadeIn($offset)};
+  animation-name: ${({ $isLoaded, $offset }) =>
+    $isLoaded ? AnimationFadeIn($offset) : 'none'};
+  animation-fill-mode: forwards;
 
-  transform: ${({ $offset }) => `translateY(${$offset}px)`};
-  opacity: 0;
+  transition: ${({ theme }) => theme.speed.slow}ms;
+  transition-delay: ${({ $delay }) => $delay}ms;
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
+
+  > * {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 `;
 
 const Placeholder = styled.div`

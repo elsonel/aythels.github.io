@@ -65,7 +65,7 @@ export default {
         `,
       },
     ],
-    isLoaded: true,
+    scrollStart: 0,
   },
 } as Meta;
 

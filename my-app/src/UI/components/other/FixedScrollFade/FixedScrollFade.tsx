@@ -27,11 +27,9 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const onScroll = useCallback(
+  const getStyle = useCallback(
     (scrollY: number) => {
-      if (!ref.current) return;
-
-      const transformY = getValue(
+      const transform = getValue(
         scrollY,
         scrollStart,
         scrollDuration,
@@ -47,9 +45,13 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
         finalOpacity
       );
 
-      ref.current.style.transform = `translateY(${transformY}px)`;
-      ref.current.style.opacity = opacity + ``;
-      ref.current.style.pointerEvents = opacity > 0.1 ? `auto` : `none`;
+      const pointerEvents = opacity > 0.1 ? `auto` : `none`;
+
+      return {
+        transform: `translateY(${transform}px)`,
+        opacity: opacity.toString(),
+        pointerEvents: pointerEvents,
+      };
     },
     [
       scrollStart,
@@ -61,20 +63,46 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
     ]
   );
 
-  useLayoutEffect(() => onScroll(0), []);
+  const style = getStyle(window.scrollY);
+
+  const onScroll = useCallback(
+    (scrollY: number) => {
+      if (!ref.current) return;
+      const style = getStyle(scrollY);
+      ref.current.style.transform = style.transform;
+      ref.current.style.opacity = style.opacity;
+      ref.current.style.pointerEvents = style.pointerEvents;
+    },
+    [getStyle]
+  );
+
   useOnWindowScroll(onScroll);
 
   return (
-    <Wrapper ref={ref} {...props}>
+    <Wrapper
+      ref={ref}
+      $transform={style.transform}
+      $opacity={style.opacity}
+      $pointerEvents={style.pointerEvents}
+      {...props}
+    >
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  $transform: string;
+  $opacity: string;
+  $pointerEvents: string;
+}>`
   width: 100%;
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
+
+  transform: ${({ $transform }) => $transform};
+  opacity: ${({ $opacity }) => $opacity};
+  pointer-events: ${({ $pointerEvents }) => $pointerEvents};
 `;
 
 function getValue(

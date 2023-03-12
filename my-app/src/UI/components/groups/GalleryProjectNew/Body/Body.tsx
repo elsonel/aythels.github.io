@@ -1,86 +1,102 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { BodyCenter } from '../../../layout/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
-import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import { BodyWide } from '../../../layout/BodyWide/BodyWide';
+import useResizeObserver from '@react-hook/resize-observer';
+
+const PRE_ANIMATION_DURATION = 200;
+const ANIMATION_DURATION = 600;
+const POST_ANIMATION_DURATION = 400;
+const ADDITION =
+  PRE_ANIMATION_DURATION + ANIMATION_DURATION + POST_ANIMATION_DURATION;
 
 export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   facts: { label: string; value: string }[];
   paragraphs: { title?: string; body: string }[];
-  isLoaded?: boolean;
+  scrollStart?: number;
 }
 
 export const Body: React.FC<BodyProps> = ({
   title,
   facts,
   paragraphs,
-  isLoaded = true,
+  scrollStart = 0,
   ...props
 }): React.ReactElement => {
-  /*
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [height, setHeight] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useOnWindowScroll(() => {
-    delayRef.current = 0;
-    onScroll();
-  });*/
+  // Get container height
+  useResizeObserver(ref, (entry) => {
+    const height = entry.borderBoxSize[0].blockSize;
+    setHeight(height);
+  });
+
+  // Get fade in props for body components
+  const getScrollFadeProps = (index: number) => {
+    const scrollDuration = ANIMATION_DURATION / (1 + paragraphs.length);
+    const finalScrollStart =
+      index * scrollDuration + PRE_ANIMATION_DURATION + scrollStart;
+
+    return {
+      scrollStart: finalScrollStart,
+      scrollDuration: scrollDuration,
+      initialOffsetY: scrollDuration / 2,
+      finalOffsetY: 0,
+      initialOpacity: 0,
+      finalOpacity: 1,
+    };
+  };
 
   return (
-    <>
-      <FixedWrapper {...props}>
+    <Wrapper {...props}>
+      <Block $height={height + ADDITION} />
+      <FixedWrapper ref={ref}>
         <FixedScrollFade
-          scrollStart={600}
-          scrollDuration={1000} // height of the container
-          finalOffsetY={-1000}
+          scrollStart={scrollStart + ADDITION}
+          scrollDuration={height}
+          finalOffsetY={-height}
           initialOpacity={1}
           finalOpacity={1}
         >
           <BodyWide>
             <StyledTitle>{title}</StyledTitle>
           </BodyWide>
-          <FactsWrapper>
-            <FadeIn delay={0} offset={20} isLoaded={isLoaded}>
-              <FactsList facts={facts} />
-            </FadeIn>
-          </FactsWrapper>
           <Layout>
-            {paragraphs.map((e, i) => (
-              <FadeIn
-                key={i}
-                delay={i * 200 + 200}
-                offset={50}
-                isLoaded={isLoaded}
-              >
+            <FactsWrapper>
+              <FixedScrollFade {...getScrollFadeProps(0)}>
+                <FactsList facts={facts} />
+              </FixedScrollFade>
+            </FactsWrapper>
+            {paragraphs.map((p, i) => (
+              <FixedScrollFade key={i} {...getScrollFadeProps(i + 1)}>
                 <BodyCenter>
-                  {e.title && <ParagraphTitle>{e.title}</ParagraphTitle>}
-                  <ParagraphText>{e.body}</ParagraphText>
+                  {p.title && <ParagraphTitle>{p.title}</ParagraphTitle>}
+                  <ParagraphText>{p.body}</ParagraphText>
                 </BodyCenter>
-              </FadeIn>
+              </FixedScrollFade>
             ))}
           </Layout>
         </FixedScrollFade>
       </FixedWrapper>
-      <Block />
-    </>
+    </Wrapper>
   );
 };
 
-const Block = styled.div`
+const Wrapper = styled.div`
   width: 100%;
-  height: 2000px;
+  background-color: ${({ theme }) => theme.color.background};
 `;
 
-const BodyWrapper = styled.div<{ $isVisible: boolean }>`
+const Block = styled.div<{ $height: number }>`
   width: 100%;
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-  transition: ${({ theme }) => theme.speed.slow}ms;
+  height: ${({ $height }) => `${$height}px`};
 `;
 
 const FixedWrapper = styled.div`
@@ -91,25 +107,25 @@ const FixedWrapper = styled.div`
 `;
 
 const StyledTitle = styled(Title)`
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 const FactsWrapper = styled.div`
   width: 100%;
-  ${GreaterThan(0, `margin-bottom: 0px; margin-top: 40px;`)}
-  ${GreaterThan(1400, `margin-bottom: 100px; margin-top: 40px;`)}
+  ${GreaterThan(0, `margin-bottom: 0px;`)}
+  ${GreaterThan(1400, `margin-bottom: 100px;`)}
 `;
 
 const Layout = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding-bottom: 40px;
+  margin: 30px 0px;
   display: flex;
   flex-direction: column;
 
-  ${GreaterThan(0, `gap: 40px; padding-top: 40px;`)}
-  ${GreaterThan(600, `gap: 80px; padding-top: 80px;`)}
-  ${GreaterThan(1000, `gap: 120px; padding-top: 120px`)}
+  ${GreaterThan(0, `gap: 40px;`)}
+  ${GreaterThan(600, `gap: 80px;`)}
+  ${GreaterThan(1000, `gap: 120px;`)}
 `;
 
 const ParagraphTitle = styled(Paragraph)`
