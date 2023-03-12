@@ -41,4 +41,5 @@ const Text = styled(Paragraph)`
 
   transition: ${({ theme }) => theme.speed.slow}ms;
   transition-property: color;
+  user-select: none;
 `;

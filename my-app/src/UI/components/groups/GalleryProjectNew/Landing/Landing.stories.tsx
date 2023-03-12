@@ -6,7 +6,6 @@ import { Landing, LandingProps } from './Landing';
 export default {
   title: 'Groups/GalleryProjectNew/Landing',
   component: Landing,
-  argTypes: { onVisibilityChange: { action: 'Visibility changed' } },
   args: {
     title: 'KINETIC BOARDWALK',
     subtitle: 'Drifting Landscapes',

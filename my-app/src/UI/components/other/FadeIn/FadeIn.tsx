@@ -3,9 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
 import { useInView } from 'react-intersection-observer';
 
-const LOAD_DELAY = 100;
-// This is needed because useEffect sometimes returns the wrong value from getBoundingClientReact.
-
 export interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   delay?: number;

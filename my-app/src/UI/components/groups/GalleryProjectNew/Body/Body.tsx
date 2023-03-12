@@ -8,6 +8,7 @@ import { Title } from '../Title/Title';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 import useResizeObserver from '@react-hook/resize-observer';
+import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 
 const PRE_ANIMATION_DURATION = 200;
 const ANIMATION_DURATION = 600;
@@ -55,9 +56,11 @@ export const Body: React.FC<BodyProps> = ({
   };
 
   return (
-    <Wrapper {...props}>
-      <Block $height={height + ADDITION} />
-      <FixedWrapper ref={ref}>
+    <>
+      <ScrollBlock
+        scrollLength={ADDITION + Math.max(0, height - window.innerHeight)}
+      />
+      <FixedWrapper ref={ref} {...props}>
         <FixedScrollFade
           scrollStart={scrollStart + ADDITION}
           scrollDuration={height}
@@ -85,19 +88,9 @@ export const Body: React.FC<BodyProps> = ({
           </Layout>
         </FixedScrollFade>
       </FixedWrapper>
-    </Wrapper>
+    </>
   );
 };
-
-const Wrapper = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.color.background};
-`;
-
-const Block = styled.div<{ $height: number }>`
-  width: 100%;
-  height: ${({ $height }) => `${$height}px`};
-`;
 
 const FixedWrapper = styled.div`
   position: fixed;

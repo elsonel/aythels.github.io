@@ -16,6 +16,7 @@ import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 import { Title } from '../Title/Title';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import useOnWindowResize from '../../../../utility/hooks/useOnWindowResize';
+import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 
 const IMAGE_OFFSET = 200;
 
@@ -26,7 +27,6 @@ export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   imageSrc: string;
   imageSrcSet?: string;
   scrollLength?: number;
-  onVisibilityChange?: (isVisible: boolean, scrollY: number) => void;
 }
 
 export const Landing: React.FC<LandingProps> = ({
@@ -36,47 +36,32 @@ export const Landing: React.FC<LandingProps> = ({
   imageSrc,
   imageSrcSet,
   scrollLength = 1000,
-  onVisibilityChange,
   ...props
 }): React.ReactElement => {
-  const imageRef = useRef<HTMLDivElement>(null);
-  const scrollYRef = useRef(0);
   const [isVisible, setIsVisible] = useState(true);
   const { color } = useTheme();
-
-  useEffect(() => {
-    onVisibilityChange && onVisibilityChange(isVisible, scrollYRef.current);
-  }, [isVisible, onVisibilityChange]);
 
   useOnWindowScroll((scrollY: number) => {
     if (scrollY >= scrollLength) setIsVisible(false);
     else setIsVisible(true);
   });
 
-  useOnWindowScroll((scrollY: number) => {
-    scrollYRef.current = scrollY;
-
-    if (!imageRef.current) return;
-
-    const clampedScrollY = clamp(scrollY, 0, scrollLength);
-    const finalOffsetY = remap(
-      clampedScrollY,
-      0,
-      scrollLength,
-      0,
-      -IMAGE_OFFSET
-    );
-    imageRef.current.style.transform = `translateY(${finalOffsetY}px)`;
-  });
-
   return (
-    <Wrapper {...props}>
-      <Block $height={scrollLength} />
-      <Overlay $isVisible={isVisible}>
-        <OverlayContent>
-          <ImageWrapper ref={imageRef}>
-            <LandingImage alt={title} src={imageSrc} srcSet={imageSrcSet} />
-          </ImageWrapper>
+    <>
+      <ScrollBlock scrollLength={scrollLength} />
+      <Overlay $isVisible={isVisible} {...props}>
+        <OverlayContent $isVisible={isVisible}>
+          <FixedScrollFade
+            scrollStart={0}
+            scrollDuration={400}
+            finalOffsetY={-IMAGE_OFFSET}
+            initialOpacity={1}
+            finalOpacity={1}
+          >
+            <ImageWrapper>
+              <LandingImage alt={title} src={imageSrc} srcSet={imageSrcSet} />
+            </ImageWrapper>
+          </FixedScrollFade>
           <LandingTitleWrapper>
             {prototypeHref && (
               <FixedScrollFade
@@ -127,19 +112,9 @@ export const Landing: React.FC<LandingProps> = ({
           </LandingTitleWrapper>
         </OverlayContent>
       </Overlay>
-    </Wrapper>
+    </>
   );
 };
-
-const Wrapper = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.color.background};
-`;
-
-const Block = styled.div<{ $height: number }>`
-  width: 100%;
-  height: ${({ $height }) => $height}px;
-`;
 
 const Overlay = styled.div<{ $isVisible: boolean }>`
   overflow: hidden;
@@ -149,24 +124,27 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   width: 100%;
   height: 100vh;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
+  background-color: ${({ $isVisible, theme }) =>
+    $isVisible ? theme.color.background : 'transparent'};
+`;
+
+const OverlayContent = styled.div<{ $isVisible: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
-const OverlayContent = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
 const ImageWrapper = styled.div`
   width: 100%;
-  height: calc(100% + ${IMAGE_OFFSET}px);
+  height: calc(100vh + ${IMAGE_OFFSET}px);
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
 
   ${IfTouchScreen(`
-    height: 100%;
+    height: 100vh;
     transform: none !important;
   `)}
 `;
