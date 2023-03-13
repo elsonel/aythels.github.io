@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
+import { IfTouchScreen } from '../../../utility/styles/DetectTouchScreenCSS';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 import { IIcon, IIconProps } from '../IIcon';
 
@@ -37,8 +38,7 @@ const IconWrapper = styled.div`
   width: 60%;
   height: 100%;
 
-  ${GreaterThan(0, `transform: scaleY(-1);`)}
-  ${GreaterThan(500, `transform: scaleY(1);`)}
+  ${IfTouchScreen(`transform: scaleY(-1);`)}
 `;
 
 const Icon = styled.div<{ $color: string }>`

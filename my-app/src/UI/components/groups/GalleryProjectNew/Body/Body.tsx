@@ -10,7 +10,7 @@ import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 import useResizeObserver from '@react-hook/resize-observer';
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 
-const PRE_ANIMATION_DURATION = 200;
+const PRE_ANIMATION_DURATION = 400;
 const ANIMATION_DURATION = 600;
 const POST_ANIMATION_DURATION = 400;
 const ADDITION =

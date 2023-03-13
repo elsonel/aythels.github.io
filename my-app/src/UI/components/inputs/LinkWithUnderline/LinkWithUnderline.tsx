@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FontInterface } from '../../../utility/themes/ThemeFont';
-import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { Link } from '../Link/Link';
+import { IParagraphProps, Paragraph } from '../../text/Paragraph/Paragraph';
+import { Link, LinkProps } from '../Link/Link';
+import { ArrowRightUp } from '@styled-icons/remix-line/ArrowRightUp';
+import useResizeObserver from '@react-hook/resize-observer';
 
 export interface LinkWithUnderlineProps
   extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
-  href: string;
+  linkProps?: LinkProps;
   color?: string;
-  size?: keyof FontInterface['size'];
 }
 
 export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
   children,
-  href,
+  linkProps,
   color = 'black',
-  size = 'h4',
   ...props
 }): React.ReactElement => {
+  const textLayoutRef = useRef<HTMLDivElement>(null);
+  const [iconSize, setIconSize] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
+
+  useResizeObserver(textLayoutRef, (entry) => {
+    const height = entry.borderBoxSize[0].blockSize;
+    setIconSize(height);
+  });
 
   return (
     <Wrapper
@@ -35,10 +41,16 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
       {...props}
     >
       <Content $isHovered={isHovered}>
-        <Link href={href}>
-          <Text color={color} size={size}>
+        <Link {...linkProps}>
+          <Layout ref={textLayoutRef}>
             {children}
-          </Text>
+            <Icon
+              color={color}
+              as={ArrowRightUp}
+              size={iconSize}
+              $marginRight={iconSize * -0.2}
+            />
+          </Layout>
         </Link>
         <LineWrapper
           $isAnimationPlaying={isAnimationPlaying}
@@ -77,11 +89,6 @@ const Content = styled.div<{
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
-const Text = styled(Paragraph)`
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
-  overflow-wrap: normal;
-`;
-
 const LineWrapper = styled.div<{ $isAnimationPlaying: boolean }>`
   position: absolute;
   width: 300%;
@@ -100,4 +107,13 @@ const Underline = styled.div<{ $color: string }>`
   flex-grow: 1;
   height: 2px;
   background-color: ${({ $color }) => $color};
+`;
+
+const Layout = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.svg<{ $marginRight: number }>`
+  margin-right: ${({ $marginRight }) => $marginRight}px;
 `;

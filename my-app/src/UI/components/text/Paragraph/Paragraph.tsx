@@ -58,7 +58,7 @@ export const Paragraph: React.FC<IParagraphProps> = ({
   isWrapped = true,
   ...props
 }: IParagraphProps) => {
-  const defaultFont = (useTheme() as ThemeInterface).font.default;
+  const defaultFont = useTheme().font.default;
 
   return React.createElement(getTextElementBySize(size), {
     children: children,

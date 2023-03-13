@@ -45,7 +45,7 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
         finalOpacity
       );
 
-      const pointerEvents = opacity > 0.1 ? `auto` : `none`;
+      const pointerEvents = opacity > 0.1 ? `inherit` : `none`;
 
       return {
         transform: `translateY(${transform}px)`,

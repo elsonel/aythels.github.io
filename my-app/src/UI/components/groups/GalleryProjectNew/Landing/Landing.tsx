@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
@@ -7,15 +7,11 @@ import { Image } from '../../../atoms/Image/Image';
 import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline/LinkWithUnderline';
-import { remap } from '../../../../utility/scripts/remap';
-import { clamp } from '../../../../utility/scripts/Math';
 import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
-import { Textfit } from 'react-textfit';
 import { FixedStickyScroll } from '../../../other/FixedStickyScroll';
 import { BodyWide } from '../../../layout/BodyWide/BodyWide';
 import { Title } from '../Title/Title';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
-import useOnWindowResize from '../../../../utility/hooks/useOnWindowResize';
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 
 const IMAGE_OFFSET = 200;
@@ -72,7 +68,9 @@ export const Landing: React.FC<LandingProps> = ({
                 <FadeIn delay={300}>
                   <LinkWrapper>
                     <LinkWithUnderline
-                      href={prototypeHref}
+                      linkProps={{
+                        href: prototypeHref,
+                      }}
                       color={color.background}
                     >
                       <LinkText>PROTOTYPE</LinkText>
@@ -199,6 +197,7 @@ const Subtitle = styled(Paragraph)`
 `;
 
 const LinkText = styled(Subtitle)`
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 `;
 

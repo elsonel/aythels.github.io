@@ -70,7 +70,7 @@ const BODY_PROPS = {
     },
   ],
 };
-const LANDING_HEIGHT = 1000;
+const LANDING_HEIGHT = 800;
 
 export const GalleryProjectNew: React.FC<GalleryProjectNewProps> = ({
   children,
