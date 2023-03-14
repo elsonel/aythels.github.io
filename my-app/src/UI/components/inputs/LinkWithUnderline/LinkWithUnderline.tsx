@@ -18,32 +18,32 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
   color = 'black',
   ...props
 }): React.ReactElement => {
-  const textLayoutRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const [iconSize, setIconSize] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
 
-  useResizeObserver(textLayoutRef, (entry) => {
+  useResizeObserver(textRef, (entry) => {
     const height = entry.borderBoxSize[0].blockSize;
     setIconSize(height);
   });
 
   return (
-    <Wrapper
-      onPointerEnter={() => {
-        setIsHovered(true);
-        setIsAnimationPlaying(true);
-      }}
-      onPointerLeave={() => {
-        setIsHovered(false);
-        setIsAnimationPlaying(true);
-      }}
-      {...props}
-    >
-      <Content $isHovered={isHovered}>
+    <div {...props}>
+      <Content
+        $isHovered={isHovered}
+        onPointerEnter={() => {
+          setIsHovered(true);
+          setIsAnimationPlaying(true);
+        }}
+        onPointerLeave={() => {
+          setIsHovered(false);
+          setIsAnimationPlaying(true);
+        }}
+      >
         <Link {...linkProps}>
-          <Layout ref={textLayoutRef}>
-            {children}
+          <Layout>
+            <span ref={textRef}>{children}</span>
             <Icon
               color={color}
               as={ArrowRightUp}
@@ -61,7 +61,7 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
           <Underline $color={color} />
         </LineWrapper>
       </Content>
-    </Wrapper>
+    </div>
   );
 };
 
@@ -74,16 +74,13 @@ const Animation = keyframes`
     }
   `;
 
-const Wrapper = styled.div`
-  display: inline-block;
-  vertical-align: top;
-`;
-
 const Content = styled.div<{
   $isHovered: boolean;
 }>`
   overflow-x: clip;
   position: relative;
+  display: inline-block;
+  vertical-align: top;
   transform: ${({ $isHovered }) =>
     $isHovered ? `translateY(-4px)` : `translateY(0px)`};
   transition: ${({ theme }) => theme.speed.normal}ms;

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { GreaterThan, LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { LinkWithUnderline } from '../../inputs/LinkWithUnderline/LinkWithUnderline';
+import { BodyWide } from '../../layout/BodyWide/BodyWide';
 import { FadeInParagraph } from '../../text/FadeInParagraph/FadeInParagraph';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { Background } from './Background/Background';
@@ -26,122 +28,98 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
   return (
     <>
       <Wrapper {...props}>
-        <TextWrapper>
+        <BodyWide>
           <SubTitle {...sharedTextProps}>That's all for now...</SubTitle>
           <Title {...sharedTextProps}>LET'S CONNECT</Title>
-        </TextWrapper>
-        <ContactWrapper>
-          <Fact>
-            <FactLabel {...sharedTextProps} delay={100}>
-              MEDIA
-            </FactLabel>
-            <div>
-              <FactText {...sharedTextProps} delay={100}>
-                GITHUB
-              </FactText>
-              <FactText {...sharedTextProps} delay={100}>
-                LINKEDIN
-              </FactText>
-            </div>
-          </Fact>
-          <Fact>
-            <FactLabel {...sharedTextProps} delay={100}>
-              EMAIL
-            </FactLabel>
-            <div>
-              <FactText {...sharedTextProps} delay={100}>
-                ELSONLIANG@GMAIL.COM
-              </FactText>
-            </div>
-          </Fact>
-        </ContactWrapper>
-        <ContainerBottom
-          {...sharedTextProps}
-          color={color.backgroundOppositeHighlight}
-          delay={200}
-        >
-          This website was designed and built from scratch with React.
-        </ContainerBottom>
+        </BodyWide>
+        <BodyWide>
+          <Layout>
+            <LinkColumn>
+              <LinkLabel>MEDIA</LinkLabel>
+              <LinkWithUnderline
+                linkProps={{ href: '/' }}
+                color={color.background}
+              >
+                <LinkText>GitHub</LinkText>
+              </LinkWithUnderline>
+
+              <LinkWithUnderline
+                linkProps={{ href: '/' }}
+                color={color.background}
+              >
+                <LinkText>LinkedIn</LinkText>
+              </LinkWithUnderline>
+            </LinkColumn>
+            <LinkColumn>
+              <LinkLabel>EMAIL</LinkLabel>
+              <LinkWithUnderline
+                linkProps={{ href: '/' }}
+                color={color.background}
+              >
+                <LinkText>elsonliangel@gmail.com</LinkText>
+              </LinkWithUnderline>
+            </LinkColumn>
+          </Layout>
+        </BodyWide>
       </Wrapper>
-      <Background />
     </>
   );
 };
 
 const Wrapper = styled.div`
-  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
   width: 100%;
+  ${GreaterThan(0, `padding: 30px 0px;`)}
+  ${GreaterThan(700, `padding: 40px 0px;`)}
   background-color: ${({ theme }) => theme.color.backgroundOpposite};
 `;
 
-const TextWrapper = styled.div`
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  ${GreaterThan(0, `padding: 20px; padding-top: 24px;`)}
-  ${GreaterThan(600, ` padding: 40px; padding-top: 50px;`)}
-  ${GreaterThan(1000, ` padding: 60px; padding-top: 74px;`)}
+const SubTitle = styled(Paragraph)`
+  ${({ theme }) =>
+    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.h4};`)}
+  margin-bottom: 8px;
 `;
 
-const SubTitle = styled(FadeInParagraph)`
-  font-size: ${({ theme }) => theme.font.default.size.large};
-
-  line-height: 1.4;
-`;
-
-const Title = styled(FadeInParagraph)`
+const Title = styled(Paragraph)`
   ${GreaterThan(0, `font-size: 2rem;`)}
   ${GreaterThan(450, `font-size: 3rem;`)}
   ${GreaterThan(600, `font-size: 4rem;`)}
-  ${GreaterThan(700, `font-size: 5rem;`)}
   ${GreaterThan(1000, `font-size: 7rem;`)}
-  ${GreaterThan(1400, `font-size: 10rem;`)}
+  ${GreaterThan(1400, `font-size: 9rem;`)}
 
   font-family: ${({ theme }) => theme.font.title.family};
   line-height: 1;
+  margin-bottom: 40px;
 `;
 
-const ContactWrapper = styled.div`
-  overflow: hidden;
-  box-sizing: border-box;
+const Layout = styled.div`
   width: 100%;
   display: flex;
-  column-gap: 200px;
-  row-gap: 40px;
-
-  ${GreaterThan(0, `padding: 20px; flex-direction: column;`)}
-  ${GreaterThan(600, ` padding: 44px; flex-direction: column;`)}
-  ${GreaterThan(900, ` padding: 44px; flex-direction: row; `)}
-  ${GreaterThan(1000, ` padding: 64px; flex-direction: row; `)}
-
-  border-bottom: 1px solid
-    ${({ theme }) => theme.color.backgroundOppositeHighlight};
+  gap: 200px;
 `;
 
-const Fact = styled.div`
+const LinkLabel = styled(Paragraph)`
+  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
+  color: ${({ theme }) => theme.color.background};
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  ${({ theme }) =>
+    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.large};`)};
+`;
+
+const LinkText = styled(Paragraph)`
+  overflow-wrap: normal;
+  color: ${({ theme }) => theme.color.background};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
+  ${({ theme }) =>
+    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
+    GreaterThan(600, `font-size: ${theme.font.default.size.large};`)}
+`;
+
+const LinkColumn = styled.div`
   display: flex;
-  column-gap: 60px;
-  ${LessThan(900, `flex-direction: column;`)}
-`;
-
-const FactLabel = styled(FadeInParagraph)`
-  font-size: ${({ theme }) => theme.font.default.size.small};
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
-  margin-bottom: 10px;
-`;
-
-const FactText = styled(FadeInParagraph)`
-  font-size: ${({ theme }) => theme.font.default.size.large};
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
-  margin-bottom: 2px;
-`;
-
-const ContainerBottom = styled(FadeInParagraph)`
-  box-sizing: border-box;
-  position: absolute;
-  top: 100%;
-  left: 0px;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
+  flex-direction: column;
+  gap: 16px;
 `;

@@ -14,7 +14,7 @@ import { Title } from '../Title/Title';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 
-const IMAGE_OFFSET = 200;
+const IMAGE_OFFSET = 100;
 
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;

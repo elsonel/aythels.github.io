@@ -26,7 +26,7 @@ export default {
     scrollStart: 0,
     scrollDuration: 300,
     initialOffsetY: 0,
-    finalOffsetY: 150,
+    finalOffsetY: -150,
     initialOpacity: 1,
     finalOpacity: 0,
   },

@@ -7,7 +7,7 @@ import { BodyCenter } from '../BodyCenter';
 const CENTER_WIDTH = 600; // includes horizontal padding
 const HORIZONTAL_PADDING = 20;
 const MAX_WIDTH = 2000;
-const SNAP_WIDTH = 800;
+const SNAP_WIDTH = 700;
 
 export interface IBodyWideProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

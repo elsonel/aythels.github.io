@@ -16,7 +16,7 @@ export const FactsList: React.FC<FactsListProps> = ({
     <Layout>
       {facts.map((fact) => (
         <FactWrapper key={fact.label}>
-          <FactTitle isWrapped={false}>{fact.label}</FactTitle>
+          <FactLabel isWrapped={false}>{fact.label}</FactLabel>
           <FactValue isWrapped={false}>{fact.value}</FactValue>
         </FactWrapper>
       ))}
@@ -60,7 +60,7 @@ const FactWrapper = styled.div`
   ${GreaterThan(1400, FactColumn)}
 `;
 
-const FactTitle = styled(Paragraph)`
+const FactLabel = styled(Paragraph)`
   width: 100%;
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
