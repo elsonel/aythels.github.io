@@ -27,6 +27,6 @@ export const ButtonModalNext: React.FC<ButtonModalNextProps> = ({
 };
 
 const Button = styled(ButtonModal)`
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
 `;

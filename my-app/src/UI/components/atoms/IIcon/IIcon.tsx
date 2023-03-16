@@ -20,6 +20,7 @@ export const IIcon: React.FC<IIconProps> = ({
 
 const Wrapper = styled.div<{ $size: number | string }>`
   overflow: hidden;
+  flex-shrink: 0;
   width: ${({ $size }) => (typeof $size === 'number' ? `${$size}px` : $size)};
   height: ${({ $size }) => (typeof $size === 'number' ? `${$size}px` : $size)};
 

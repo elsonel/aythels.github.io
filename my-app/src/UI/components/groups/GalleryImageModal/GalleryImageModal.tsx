@@ -107,7 +107,7 @@ const Content = styled.div`
 
 const Row = styled.div`
   box-sizing: border-box;
-  height: 60px;
+  height: 52px;
   width: 100%;
 
   display: flex;
@@ -117,7 +117,7 @@ const Row = styled.div`
 
   box-shadow: 0 0 0 1px
     ${({ theme }) => `${theme.color.backgroundOppositeHighlight}`} inset;
-  padding: 0px 14px;
+  padding: 0px 10px;
 `;
 
 const Title = styled(Paragraph)`

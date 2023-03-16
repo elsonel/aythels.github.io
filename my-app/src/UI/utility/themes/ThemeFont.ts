@@ -37,6 +37,7 @@ export interface ThemeFontInterface {
   font: {
     default: FontInterface;
     title: FontInterface;
+    logo: FontInterface;
   };
 }
 
@@ -52,7 +53,7 @@ export const ThemeFont: ThemeFontInterface = {
         bold: 700,
       },
       size: {
-        tiny: '0.62rem',
+        tiny: '0.70rem',
         small: '0.80rem',
         default: '0.94rem',
         large: '1.1rem',
@@ -68,7 +69,7 @@ export const ThemeFont: ThemeFontInterface = {
       },
       letterSpacing: {
         default: 'normal',
-        button: '0.08rem',
+        button: '0.06rem',
       },
       lineHeight: {
         default: '1.4',
@@ -76,7 +77,40 @@ export const ThemeFont: ThemeFontInterface = {
       },
     },
     title: {
-      family: `'Viga', sans-serif;`,
+      family: `'Viga', sans-serif`,
+      weight: {
+        light: 400,
+        regular: 400,
+        medium: 400,
+        semiBold: 400,
+        bold: 400,
+      },
+      size: {
+        tiny: '0.65rem',
+        small: '0.80rem',
+        default: '1rem',
+        large: '1.1rem',
+        h6: '1.2rem',
+        h5: '1.3rem',
+        h4: '1.4rem',
+        h3: '1.6rem',
+        h2: '1.8rem',
+        h1: '2rem',
+      },
+      wordSpacing: {
+        default: '0.1rem',
+      },
+      letterSpacing: {
+        default: 'normal',
+        button: '0.08rem',
+      },
+      lineHeight: {
+        default: '1.2',
+        transition: '1.6',
+      },
+    },
+    logo: {
+      family: `'Montserrat', sans-serif`,
       weight: {
         light: 400,
         regular: 400,

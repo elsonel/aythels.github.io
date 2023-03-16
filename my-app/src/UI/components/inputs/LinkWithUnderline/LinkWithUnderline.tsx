@@ -20,7 +20,7 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
 }): React.ReactElement => {
   const textRef = useRef<HTMLDivElement>(null);
   const [iconSize, setIconSize] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
 
   useResizeObserver(textRef, (entry) => {
@@ -31,15 +31,8 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
   return (
     <div {...props}>
       <Content
-        $isHovered={isHovered}
-        onPointerEnter={() => {
-          setIsHovered(true);
-          setIsAnimationPlaying(true);
-        }}
-        onPointerLeave={() => {
-          setIsHovered(false);
-          setIsAnimationPlaying(true);
-        }}
+        onPointerEnter={() => setIsAnimationPlaying(true)}
+        onPointerLeave={() => setIsAnimationPlaying(true)}
       >
         <Link {...linkProps}>
           <Layout>
@@ -47,7 +40,7 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
             <Icon
               color={color}
               as={ArrowRightUp}
-              size={iconSize}
+              size={iconSize * 0.9}
               $marginRight={iconSize * -0.2}
             />
           </Layout>
@@ -74,15 +67,12 @@ const Animation = keyframes`
     }
   `;
 
-const Content = styled.div<{
-  $isHovered: boolean;
-}>`
+const Content = styled.div`
   overflow-x: clip;
   position: relative;
   display: inline-block;
   vertical-align: top;
-  transform: ${({ $isHovered }) =>
-    $isHovered ? `translateY(-4px)` : `translateY(0px)`};
+
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 

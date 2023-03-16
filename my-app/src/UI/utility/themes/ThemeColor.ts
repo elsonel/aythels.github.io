@@ -12,6 +12,7 @@ export interface ColorInterface {
   greyBackdropUp: string;
   greyBackdropLeft: string;
   greyBackdropRight: string;
+  transparentWhite: string;
 }
 
 export interface ThemeColorInterface {
@@ -20,11 +21,11 @@ export interface ThemeColorInterface {
 
 export const ThemeColor: ThemeColorInterface = {
   color: {
-    primary: 'blue',
+    primary: '#ed5f13',
     text: '#1a1a1a',
-    textHovered: '#5c5c5c',
+    textHovered: '#6e6e6e',
     textNeutral: '#a8a8a8',
-    outline: 'lightgrey',
+    outline: '#dbd9d9',
     backgroundHighlight: '#e6e6e6',
     background: '#ffffff',
     backgroundOppositeHighlight: '#4d4d4d',
@@ -109,5 +110,6 @@ export const ThemeColor: ThemeColorInterface = {
       hsla(0, 0%, 0%, 0.006) 91.9%,
       hsla(0, 0%, 0%, 0) 100%
     )`,
+    transparentWhite: 'rgba(255, 255, 255, 0.9)',
   },
 };
