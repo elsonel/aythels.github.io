@@ -93,7 +93,7 @@ const LineWrapper = styled.div<{ $isAnimationPlaying: boolean }>`
 const Underline = styled.div<{ $color: string }>`
   flex-grow: 1;
   height: 2px;
-  background-color: ${({ $color }) => $color};
+  box-shadow: inset 0px 2px 0px 0px ${({ $color }) => $color};
 `;
 
 const Layout = styled.div`

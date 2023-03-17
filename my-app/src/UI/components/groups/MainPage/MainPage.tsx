@@ -6,6 +6,7 @@ import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { Frame } from '../../atoms/Frame/Frame';
 import { HeaderOverlay } from '../HeaderOverlay/HeaderOverlay';
 import { ProjectLabel } from './ProjectLabel/ProjectLabel';
+import { HiddenTouchScrollY } from '../../../utility/styles/ScrollStyles';
 
 const DEVELOPMENT_DATA = [
   {
@@ -71,26 +72,15 @@ export interface IMainPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 export const MainPage: React.FC<IMainPageProps> = ({
   ...props
 }): React.ReactElement => {
-  const { color, icon } = useTheme();
-  const [hoveredText, setHoveredText] = useState({
-    name: '',
-    description: '',
-  });
-  const lineRef = useRef<HTMLDivElement>(null);
-  const lineVerticalRef = useRef<HTMLDivElement>(null);
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!lineRef.current) return;
-
-    lineRef.current.style.transform = `translateY(${e.clientY}px)`;
-  };
+  const [hoveredText, setHoveredText] = useState('');
 
   return (
-    <Wrapper onPointerMove={onPointerMove} {...props}>
-      {/*<HeaderWrapper>
-        <Name>ELSON LIANG</Name>
-        <Text>Developer & Designer</Text>
-        </HeaderWrapper>*/}
+    <Wrapper {...props}>
+      <BioWrapper>
+        <LineText>{hoveredText}</LineText>
+        {/*<Name>ELSON LIANG</Name>
+        <Paragraph>Developer & Designer</Paragraph>*/}
+      </BioWrapper>
       {/*<InfoWrapper $isVisible={!!hoveredText.name}>
         <LineText>{hoveredText.description}</LineText>
         </InfoWrapper>*/}
@@ -103,12 +93,8 @@ export const MainPage: React.FC<IMainPageProps> = ({
                 name={p.name}
                 type={p.type}
                 year={p.year}
-                onHoverLeave={() =>
-                  setHoveredText({ name: '', description: '' })
-                }
-                onHoverEnter={() =>
-                  setHoveredText({ name: p.name, description: p.description })
-                }
+                onHoverLeave={() => setHoveredText('')}
+                onHoverEnter={() => setHoveredText(p.description)}
               />
             ))}
           </ProjectLabelColumn>
@@ -121,12 +107,8 @@ export const MainPage: React.FC<IMainPageProps> = ({
                 name={p.name}
                 type={p.type}
                 year={p.year}
-                onHoverLeave={() =>
-                  setHoveredText({ name: '', description: '' })
-                }
-                onHoverEnter={() =>
-                  setHoveredText({ name: p.name, description: p.description })
-                }
+                onHoverLeave={() => setHoveredText('')}
+                onHoverEnter={() => setHoveredText(p.description)}
               />
             ))}
           </ProjectLabelColumn>
@@ -158,77 +140,26 @@ const Name = styled(Paragraph).attrs(() => ({
   size: 'h1',
   isWrapped: false,
 }))`
-  padding: 40px;
-  padding-bottom: 0;
-
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.font.logo.family};
   font-size: 2.4rem;
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
-  //transform-origin: center left;
-  //transform: scaleX(1.12);
-`;
-
-const Subtitle = styled(Paragraph).attrs(() => ({
-  size: 'h5',
-  isWrapped: false,
-}))`
-  padding: 0px 40px;
-  color: ${({ theme }) => theme.color.text};
 `;
 
 const BioWrapper = styled.div`
   position: fixed;
   left: 0px;
   bottom: 0px;
-`;
 
-const InfoWrapper = styled.div<{ $isVisible: boolean }>`
-  position: fixed;
-  width: 600px;
-  left: 0px;
-  bottom: 0px;
-  transition: ${({ theme }) => theme.speed.slow}ms;
-  background-color: ${({ theme }) => theme.color.background};
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
-`;
-
-const Line = styled.div<{ $isHovered: boolean }>`
-  z-index: -1;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  width: 100%;
-  height: 1px;
-  transition: ${({ theme }) => theme.speed.instant}ms;
-  transition-timing-function: linear;
-  background-color: ${({ $isHovered, theme }) =>
-    $isHovered ? theme.color.primary : theme.color.outline};
-`;
-
-const LineTitleWrapper = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
+  padding-left: calc(52px + 20px);
+  padding-bottom: calc(20px + 20px);
 `;
 
 const LineText = styled(Paragraph)`
-  box-sizing: border-box;
+  width: 400px;
+  //margin-bottom: 20px;
   color: ${({ theme }) => theme.color.primary};
-  padding: 40px;
-`;
-
-const BackgroundTitle = styled(Paragraph)`
-  color: ${({ theme }) => theme.color.outline};
-  font-family: ${({ theme }) => theme.font.title.family};
-  font-size: inherit;
-  line-height: 1;
 `;
 
 const Wrapper = styled.div`
@@ -238,7 +169,9 @@ const Wrapper = styled.div`
 const Project = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 200px 0px;
+  padding-top: 52px;
+  ${GreaterThan(0, `padding-bottom: 0px;`)}
+  ${GreaterThan(800, `padding-bottom: 20px;`)}
 `;
 
 const ProjectWrapper = styled.div`

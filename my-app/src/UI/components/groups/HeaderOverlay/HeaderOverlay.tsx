@@ -29,7 +29,7 @@ export const HeaderOverlay: React.FC<IHeaderOverlayProps> = ({
   return (
     <Wrapper {...props}>
       <Content>
-        <LinkFake onClick={iconTab.onClick}>
+        <LinkFake href={iconTab.href} onClick={iconTab.onClick}>
           <IconWrapper>
             <IIconSVG src={icon.logo} size={20} color={color.text} />
           </IconWrapper>
@@ -88,13 +88,11 @@ const Row = styled.div`
   ${GreaterThan(MOBILE_BREAKPOINT, `flex-grow: 1; justify-content: center; `)}
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
 `;
 
 const LinkWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  position: relative;
 `;
 
 const Text = styled(Paragraph).attrs(() => ({
@@ -107,11 +105,14 @@ const Text = styled(Paragraph).attrs(() => ({
 `;
 
 const Square = styled.div<{ $isHovered: boolean }>`
-  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 8px);
   height: 8px;
   width: 8px;
   background-color: ${({ theme }) => theme.color.text};
   opacity: ${({ $isHovered }) => ($isHovered ? 1 : 0)};
+  transform: translateY(-50%);
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 

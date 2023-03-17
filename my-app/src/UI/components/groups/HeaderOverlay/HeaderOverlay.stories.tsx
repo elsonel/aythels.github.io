@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { HeaderOverlay, IHeaderOverlayProps } from './HeaderOverlay';
 
 export default {
-  title: 'Groups/MainPage/HeaderOverlay',
+  title: 'Groups/HeaderOverlay',
   component: HeaderOverlay,
   argTypes: {
     onClick: { action: 'clicked' },

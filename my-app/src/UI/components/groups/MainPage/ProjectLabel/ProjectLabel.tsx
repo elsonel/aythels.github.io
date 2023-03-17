@@ -64,7 +64,7 @@ const Title = styled(Paragraph).attrs(() => ({
   line-height: 0.9;
   ${GreaterThan(0, `font-size: 2rem; margin-left: 6px;`)}
   ${GreaterThan(800, `font-size: 3rem; margin-left: 10px;`)}
-  ${GreaterThan(1200, `font-size: 4rem; margin-left: 10px;`)}
+  ${GreaterThan(1200, `font-size: 4.5rem; margin-left: 10px;`)}
 `;
 
 const TextLayout = styled.div`

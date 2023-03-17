@@ -29,8 +29,8 @@ export const AboutPanel: React.FC<AboutPanelProps> = ({
           iterative and inquisitive methods.
         </Paragraph>
         <Paragraph textAlign="center">
-          When I'm away from the screen, I enjoy swimming, painting, and reading
-          eastern fantasy.
+          When I'm away from the screen, I enjoy painting, and reading eastern
+          fantasy.
         </Paragraph>
       </BodyWrapper>
       <IconRow />
