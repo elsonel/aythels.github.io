@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
@@ -21,20 +22,25 @@ export const ProjectLabel: React.FC<IProjectLabelProps> = ({
   onHoverEnter,
   onHoverLeave,
   ...props
-}): React.ReactElement => (
-  <Wrapper key={name} {...props}>
-    <TextLayout
-      onClick={onClick}
-      onPointerEnter={() => onHoverEnter && onHoverEnter()}
-      onPointerLeave={() => onHoverLeave && onHoverLeave()}
-    >
-      <Subtitle>
-        {year}&nbsp;&nbsp;/&nbsp;&nbsp;{type}
-      </Subtitle>
-      <Title>{name}</Title>
-    </TextLayout>
-  </Wrapper>
-);
+}): React.ReactElement => {
+  const isDesktop = GreaterThanHook(600);
+
+  return (
+    <Wrapper key={name} {...props}>
+      <TextLayout
+        onClick={onClick}
+        onPointerEnter={() => onHoverEnter && onHoverEnter()}
+        onPointerLeave={() => onHoverLeave && onHoverLeave()}
+      >
+        <Subtitle>
+          {year}&nbsp;•&nbsp;{type.toUpperCase()}
+          {isDesktop && '\xa0'}
+        </Subtitle>
+        <Title>{name}</Title>
+      </TextLayout>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   width: 100%;
@@ -46,12 +52,14 @@ const Subtitle = styled(Paragraph).attrs(() => ({
   isWrapped: false,
 }))`
   text-align: right;
-  transition: ${({ theme }) => theme.speed.normal}ms;
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  font-weight: ${({ theme }) => theme.font.default.weight.medium};
+  font-family: ${({ theme }) => theme.font.mono.family};
+  transition: ${({ theme }) => theme.speed.normal}ms;
+
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.small};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.default};`)}
+    GreaterThan(0, `font-size: ${theme.font.default.size.tiny};`) +
+    GreaterThan(800, `font-size: ${theme.font.default.size.small};`)}
 `;
 
 const Title = styled(Paragraph).attrs(() => ({
@@ -61,19 +69,21 @@ const Title = styled(Paragraph).attrs(() => ({
   transition: ${({ theme }) => theme.speed.normal}ms;
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.font.title.family};
-  line-height: 0.9;
-  ${GreaterThan(0, `font-size: 2rem; margin-left: 6px;`)}
-  ${GreaterThan(800, `font-size: 3rem; margin-left: 10px;`)}
-  ${GreaterThan(1200, `font-size: 4.5rem; margin-left: 10px;`)}
+  line-height: 0.8;
+  ${GreaterThan(0, `font-size: 2rem;`)}
+  ${GreaterThan(800, `font-size: 3rem;`)}
+  ${GreaterThan(1200, `font-size: 4rem;`)}
+  ${GreaterThan(1400, `font-size: 5rem;`)}
+  ${GreaterThan(1600, `font-size: 6rem;`)}
 `;
 
 const TextLayout = styled.div`
+  overflow: hidden;
   display: inline-flex;
   user-select: none;
   cursor: pointer;
   ${GreaterThan(0, `flex-direction: column-reverse;`)}
   ${GreaterThan(600, `flex-direction: row;`)}
-
   transition: ${({ theme }) => theme.speed.normal}ms;
 
   &:hover {

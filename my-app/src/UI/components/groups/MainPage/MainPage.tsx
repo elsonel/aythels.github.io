@@ -125,7 +125,7 @@ const LogoWrapper = styled.div`
   top: 0px;
   left: 0px;
   padding-left: calc(52px + 20px);
-  padding-top: calc(52px + 20px);
+  padding-top: calc(52px + 30px);
 `;
 
 const TextWrapper = styled.div`
@@ -133,7 +133,7 @@ const TextWrapper = styled.div`
   left: 0px;
   bottom: 0px;
   padding-left: calc(52px + 20px);
-  padding-bottom: calc(20px + 20px);
+  padding-bottom: calc(20px + 30px);
 `;
 
 const LineText = styled(Paragraph)<{ $color: string }>`

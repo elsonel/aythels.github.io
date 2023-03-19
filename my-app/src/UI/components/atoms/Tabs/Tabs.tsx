@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { LinkFake } from '../../../inputs/LinkFake/LinkFake';
-import { Paragraph } from '../../../text/Paragraph/Paragraph';
+import { LinkFake } from '../../inputs/LinkFake/LinkFake';
+import { Paragraph } from '../../text/Paragraph/Paragraph';
 
 export interface ITabsProps extends React.HTMLAttributes<HTMLDivElement> {
   tabs: {

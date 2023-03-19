@@ -110,6 +110,6 @@ export const ThemeColor: ThemeColorInterface = {
       hsla(0, 0%, 0%, 0.006) 91.9%,
       hsla(0, 0%, 0%, 0) 100%
     )`,
-    transparentWhite: 'rgba(255, 255, 255, 0.9)',
+    transparentWhite: 'rgba(255, 255, 255, 0.8)',
   },
 };
