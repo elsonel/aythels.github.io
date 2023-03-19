@@ -90,7 +90,6 @@ const BottomRight = styled(Overlay)`
 const Transparent = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.color.transparentWhite};
-  backdrop-filter: blur(2px);
   pointer-events: auto;
 `;
 

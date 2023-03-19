@@ -11,42 +11,40 @@ export const ContactInfo: React.FC<IContactInfoProps> = ({
   ...props
 }): React.ReactElement => (
   <Layout {...props}>
+    <Title>Links</Title>
     <LinkColumn>
       <Link linkProps={{ href: '/' }}>
-        <LinkText>GitHub</LinkText>
+        <TextBold>GitHub</TextBold>
       </Link>
       <Link linkProps={{ href: '/' }}>
-        <LinkText>LinkedIn</LinkText>
+        <TextBold>LinkedIn</TextBold>
       </Link>
     </LinkColumn>
     <LinkColumn>
       <Text>Email</Text>
       <Link linkProps={{ href: '/' }}>
-        <LinkText>elsonliangel@gmail.com</LinkText>
+        <TextBold>elsonliangel@gmail.com</TextBold>
       </Link>
     </LinkColumn>
     <LinkColumn>
       <Text>Built with React.</Text>
       <Link linkProps={{ href: '/' }}>
-        <LinkText>Storybook</LinkText>
+        <TextBold>Storybook</TextBold>
       </Link>
     </LinkColumn>
   </Layout>
 );
 
 const Layout = styled.div`
-  overflow: hidden;
-  width: 100%;
   display: flex;
-
-  ${GreaterThan(0, `flex-direction: column; gap: 20px;`)}
-  ${GreaterThan(600, `flex-direction: row; gap: 60px;`)}
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const LinkColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 `;
 
 const Text = styled(Paragraph).attrs(() => ({
@@ -56,10 +54,14 @@ const Text = styled(Paragraph).attrs(() => ({
   font-size: ${({ theme }) => theme.font.default.size.small};
 `;
 
-const LinkText = styled(Text)`
+const TextBold = styled(Text)`
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
 `;
 
 const Link = styled(LinkWithUnderline).attrs(({ theme }) => ({
   color: theme.color.text,
 }))``;
+
+const Title = styled(TextBold)`
+  font-size: ${({ theme }) => theme.font.default.size.large};
+`;

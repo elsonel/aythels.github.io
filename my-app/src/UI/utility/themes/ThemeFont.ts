@@ -38,6 +38,7 @@ export interface ThemeFontInterface {
     default: FontInterface;
     title: FontInterface;
     logo: FontInterface;
+    mono: FontInterface;
   };
 }
 
@@ -117,6 +118,39 @@ export const ThemeFont: ThemeFontInterface = {
         medium: 400,
         semiBold: 400,
         bold: 400,
+      },
+      size: {
+        tiny: '0.65rem',
+        small: '0.80rem',
+        default: '1rem',
+        large: '1.1rem',
+        h6: '1.2rem',
+        h5: '1.3rem',
+        h4: '1.4rem',
+        h3: '1.6rem',
+        h2: '1.8rem',
+        h1: '2rem',
+      },
+      wordSpacing: {
+        default: '0.1rem',
+      },
+      letterSpacing: {
+        default: 'normal',
+        button: '0.08rem',
+      },
+      lineHeight: {
+        default: '1.2',
+        transition: '1.6',
+      },
+    },
+    mono: {
+      family: `'Roboto Mono', monospace`,
+      weight: {
+        light: 300,
+        regular: 400,
+        medium: 500,
+        semiBold: 600,
+        bold: 700,
       },
       size: {
         tiny: '0.65rem',

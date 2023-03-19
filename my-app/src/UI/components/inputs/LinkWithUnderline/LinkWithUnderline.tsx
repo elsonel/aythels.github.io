@@ -19,29 +19,29 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
   ...props
 }): React.ReactElement => {
   const textRef = useRef<HTMLDivElement>(null);
-  const [iconSize, setIconSize] = useState(0);
+  const [height, setHeight] = useState(0);
 
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(false);
 
   useResizeObserver(textRef, (entry) => {
     const height = entry.borderBoxSize[0].blockSize;
-    setIconSize(height);
+    setHeight(height);
   });
 
   return (
-    <div {...props}>
+    <Wrapper $height={height} {...props}>
       <Content
         onPointerEnter={() => setIsAnimationPlaying(true)}
         onPointerLeave={() => setIsAnimationPlaying(true)}
       >
         <Link {...linkProps}>
           <Layout>
-            <span ref={textRef}>{children}</span>
+            <TextWrapper ref={textRef}>{children}</TextWrapper>
             <Icon
               color={color}
               as={ArrowRightUp}
-              size={iconSize * 0.9}
-              $marginRight={iconSize * -0.2}
+              size={height * 0.9}
+              $marginRight={height * -0.2}
             />
           </Layout>
         </Link>
@@ -54,7 +54,7 @@ export const LinkWithUnderline: React.FC<LinkWithUnderlineProps> = ({
           <Underline $color={color} />
         </LineWrapper>
       </Content>
-    </div>
+    </Wrapper>
   );
 };
 
@@ -67,17 +67,19 @@ const Animation = keyframes`
     }
   `;
 
+const Wrapper = styled.div<{ $height: number }>`
+  height: ${({ $height }) => $height}px;
+`;
+
 const Content = styled.div`
   overflow-x: clip;
   position: relative;
-  display: inline-block;
-  vertical-align: top;
-
-  transition: ${({ theme }) => theme.speed.normal}ms;
+  display: inline-flex;
 `;
 
 const LineWrapper = styled.div<{ $isAnimationPlaying: boolean }>`
   position: absolute;
+  top: 100%;
   width: 300%;
   right: 0%;
 
@@ -103,4 +105,8 @@ const Layout = styled.div`
 
 const Icon = styled.svg<{ $marginRight: number }>`
   margin-right: ${({ $marginRight }) => $marginRight}px;
+`;
+
+const TextWrapper = styled.span`
+  display: inline-block;
 `;

@@ -7,6 +7,7 @@ import { Frame } from '../../atoms/Frame/Frame';
 import { HeaderOverlay } from '../HeaderOverlay/HeaderOverlay';
 import { ProjectLabel } from './ProjectLabel/ProjectLabel';
 import { HiddenTouchScrollY } from '../../../utility/styles/ScrollStyles';
+import { Logo } from '../AboutContent/Logo/Logo';
 
 const DEVELOPMENT_DATA = [
   {
@@ -67,118 +68,87 @@ const DESIGN_DATA = [
   },
 ];
 
+const BIO_TEXT = `I'm a software developer with a formal background in architecture. My passion lies in engineering resilient solutions that integrate well with sophisticated design and user experience.`;
+
 export interface IMainPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const MainPage: React.FC<IMainPageProps> = ({
   ...props
 }): React.ReactElement => {
+  const { color } = useTheme();
   const [hoveredText, setHoveredText] = useState('');
 
   return (
     <Wrapper {...props}>
-      <BioWrapper>
-        <LineText>{hoveredText}</LineText>
-        {/*<Name>ELSON LIANG</Name>
-        <Paragraph>Developer & Designer</Paragraph>*/}
-      </BioWrapper>
-      {/*<InfoWrapper $isVisible={!!hoveredText.name}>
-        <LineText>{hoveredText.description}</LineText>
-        </InfoWrapper>*/}
-      <Project>
-        <ProjectWrapper>
-          <Label>/ DEVELOPMENT /</Label>
-          <ProjectLabelColumn>
-            {DEVELOPMENT_DATA.map((p) => (
-              <ProjectLabel
-                name={p.name}
-                type={p.type}
-                year={p.year}
-                onHoverLeave={() => setHoveredText('')}
-                onHoverEnter={() => setHoveredText(p.description)}
-              />
-            ))}
-          </ProjectLabelColumn>
-        </ProjectWrapper>
-        <ProjectWrapper>
-          <Label>/ DESIGN /</Label>
-          <ProjectLabelColumn>
-            {DESIGN_DATA.map((p) => (
-              <ProjectLabel
-                name={p.name}
-                type={p.type}
-                year={p.year}
-                onHoverLeave={() => setHoveredText('')}
-                onHoverEnter={() => setHoveredText(p.description)}
-              />
-            ))}
-          </ProjectLabelColumn>
-        </ProjectWrapper>
-      </Project>
-      <Frame />
-      <HeaderOverlay
-        iconTab={{
-          href: '/',
-        }}
-        tabs={[
-          {
-            label: 'PROJECTS',
-            href: '/',
-            isActive: true,
-          },
-          {
-            label: 'ABOUT',
-            href: '/',
-            isActive: false,
-          },
-        ]}
-      />
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <TextWrapper>
+        <LineText $color={hoveredText ? color.primary : color.text}>
+          {hoveredText ? hoveredText : BIO_TEXT}
+        </LineText>
+      </TextWrapper>
+      <ProjectWrapper>
+        <Label>/ DEVELOPMENT /</Label>
+        <ProjectLabelColumn>
+          {DEVELOPMENT_DATA.map((p) => (
+            <ProjectLabel
+              name={p.name}
+              type={p.type}
+              year={p.year}
+              onHoverLeave={() => setHoveredText('')}
+              onHoverEnter={() => setHoveredText(p.description)}
+            />
+          ))}
+        </ProjectLabelColumn>
+      </ProjectWrapper>
+      <ProjectWrapper>
+        <Label>/ DESIGN /</Label>
+        <ProjectLabelColumn>
+          {DESIGN_DATA.map((p) => (
+            <ProjectLabel
+              name={p.name}
+              type={p.type}
+              year={p.year}
+              onHoverLeave={() => setHoveredText('')}
+              onHoverEnter={() => setHoveredText(p.description)}
+            />
+          ))}
+        </ProjectLabelColumn>
+      </ProjectWrapper>
     </Wrapper>
   );
 };
 
-const Name = styled(Paragraph).attrs(() => ({
-  size: 'h1',
-  isWrapped: false,
-}))`
-  color: ${({ theme }) => theme.color.text};
-  font-family: ${({ theme }) => theme.font.logo.family};
-  font-size: 2.4rem;
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+const LogoWrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding-left: calc(52px + 20px);
+  padding-top: calc(52px + 20px);
 `;
 
-const BioWrapper = styled.div`
+const TextWrapper = styled.div`
   position: fixed;
   left: 0px;
   bottom: 0px;
-
   padding-left: calc(52px + 20px);
   padding-bottom: calc(20px + 20px);
 `;
 
-const LineText = styled(Paragraph)`
+const LineText = styled(Paragraph)<{ $color: string }>`
   width: 400px;
-  //margin-bottom: 20px;
-  color: ${({ theme }) => theme.color.primary};
+  color: ${({ $color }) => $color};
 `;
 
 const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Project = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  padding-top: 52px;
-  ${GreaterThan(0, `padding-bottom: 0px;`)}
-  ${GreaterThan(800, `padding-bottom: 20px;`)}
-`;
-
 const ProjectWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  ${GreaterThan(0, `padding: 30px 20px;`)}
-  ${GreaterThan(800, `padding: 40px 40px;`)}
+  padding: 20px;
 `;
 
 const ProjectLabelColumn = styled.div`

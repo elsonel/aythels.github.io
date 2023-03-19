@@ -10,6 +10,7 @@ export const Awards: React.FC<IAwardsProps> = ({
   ...props
 }): React.ReactElement => (
   <Layout {...props}>
+    <Title>Awards</Title>
     <LinkColumn>
       <Text>College + Netflix Creative Jam</Text>
       <TextBold>2nd Place</TextBold>
@@ -22,8 +23,6 @@ export const Awards: React.FC<IAwardsProps> = ({
 );
 
 const Layout = styled.div`
-  overflow: hidden;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -32,7 +31,7 @@ const Layout = styled.div`
 const LinkColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 `;
 
 const Text = styled(Paragraph).attrs(() => ({
@@ -44,4 +43,8 @@ const Text = styled(Paragraph).attrs(() => ({
 
 const TextBold = styled(Text)`
   font-weight: ${({ theme }) => theme.font.default.weight.bold};
+`;
+
+const Title = styled(TextBold)`
+  font-size: ${({ theme }) => theme.font.default.size.large};
 `;
