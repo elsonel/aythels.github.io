@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useOnWindowResize from '../../../utility/hooks/useOnWindowResize';
 import { remap } from '../../../utility/scripts/remap';
@@ -83,7 +83,7 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
     rows: number;
   }>();
 
-  const [,] = useOnWindowResize(() => {
+  const onResize = useCallback(() => {
     if (!wrapperRef.current) return;
 
     const dimensions = wrapperRef.current.getBoundingClientRect();
@@ -106,7 +106,9 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
       columns: isLandscape ? altFlowStripeCount : MIN_STRIPES,
       rows: isLandscape ? MIN_STRIPES : altFlowStripeCount,
     });
-  });
+  }, []);
+
+  useOnWindowResize(onResize);
 
   return (
     <Wrapper ref={wrapperRef} {...props}>
