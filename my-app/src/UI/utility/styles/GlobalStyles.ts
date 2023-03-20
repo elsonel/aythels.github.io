@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { Theme } from '../themes/Theme';
 
 export const GlobalScrollLock = createGlobalStyle`
   html, body {
@@ -9,6 +8,6 @@ export const GlobalScrollLock = createGlobalStyle`
 
 export const GlobalBackground = createGlobalStyle`
   html, body {
-    background-color: ${Theme.color.background};
+    background-color: ${({ theme }) => theme.color.background};
   }
 `;
