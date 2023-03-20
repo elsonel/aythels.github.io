@@ -99,17 +99,17 @@ const Text = styled(Paragraph).attrs(() => ({
   isWrapped: false,
 }))`
   color: ${({ theme }) => theme.color.text};
-  font-size: ${({ theme }) => theme.font.default.size.tiny};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
+  font-size: ${({ theme }) => theme.font.mono.size.small};
+  font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
+  font-family: ${({ theme }) => theme.font.mono.family};
 `;
 
 const Square = styled.div<{ $isHovered: boolean }>`
   position: absolute;
   top: 50%;
   right: calc(100% + 8px);
-  height: 8px;
-  width: 8px;
+  height: 6px;
+  width: 6px;
   background-color: ${({ theme }) => theme.color.text};
   opacity: ${({ $isHovered }) => ($isHovered ? 1 : 0)};
   transform: translateY(-50%);

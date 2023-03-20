@@ -23,7 +23,7 @@ export const ProjectLabel: React.FC<IProjectLabelProps> = ({
   onHoverLeave,
   ...props
 }): React.ReactElement => {
-  const isDesktop = GreaterThanHook(600);
+  const isRowLayout = GreaterThanHook(600);
 
   return (
     <Wrapper key={name} {...props}>
@@ -34,7 +34,7 @@ export const ProjectLabel: React.FC<IProjectLabelProps> = ({
       >
         <Subtitle>
           {year}&nbsp;•&nbsp;{type.toUpperCase()}
-          {isDesktop && '\xa0'}
+          {isRowLayout && '\xa0\xa0'}
         </Subtitle>
         <Title>{name}</Title>
       </TextLayout>
@@ -53,13 +53,10 @@ const Subtitle = styled(Paragraph).attrs(() => ({
 }))`
   text-align: right;
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.default.weight.medium};
+  font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
   font-family: ${({ theme }) => theme.font.mono.family};
   transition: ${({ theme }) => theme.speed.normal}ms;
-
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.tiny};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.small};`)}
+  font-size: ${({ theme }) => theme.font.mono.size.small};
 `;
 
 const Title = styled(Paragraph).attrs(() => ({

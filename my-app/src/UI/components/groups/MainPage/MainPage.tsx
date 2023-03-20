@@ -160,11 +160,9 @@ const ProjectLabelColumn = styled.div`
 
 const Label = styled(Paragraph)`
   text-align: right;
-  letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
+  font-family: ${({ theme }) => theme.font.mono.family};
+  font-size: ${({ theme }) => theme.font.mono.size.large};
   margin-bottom: 20px;
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.large};`)};
 `;
