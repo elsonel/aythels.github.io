@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, Keyframes, keyframes, useTheme } from 'styled-components';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 
 export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -7,28 +7,24 @@ export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {}
 export const Frame: React.FC<IFrameProps> = ({
   ...props
 }): React.ReactElement => {
-  const isDesktop = GreaterThanHook(800);
+  const { breakpoint } = useTheme();
+  const isDesktop = GreaterThanHook(breakpoint.header);
 
   return (
     <Wrapper {...props}>
-      <TransparentTop />
-      {isDesktop ? (
+      <TransparentTop $isDesktop={isDesktop} />
+      {isDesktop && (
         <>
           <TransparentLeft />
           <TransparentBottom />
-          <TopLeft />
+          <Left />
           <BottomRight />
-          <Corner />
         </>
-      ) : (
-        <TopMobile />
       )}
+      <Top $isDesktop={isDesktop} />
     </Wrapper>
   );
 };
-
-const HEADER_WIDTH = 52;
-const PADDING = 20;
 
 const Wrapper = styled.div`
   z-index: ${({ theme }) => theme.layer.header};
@@ -38,53 +34,90 @@ const Wrapper = styled.div`
   left: 0px;
   width: 100%;
   height: 100vh;
+  min-height: ${({ theme }) =>
+    theme.size.headerHeight * 3 + theme.size.padding}px;
   pointer-events: none;
 `;
 
-const Overlay = styled.div`
+const AnimationBase = (animation: (props: any) => Keyframes) => css`
+  animation-fill-mode: forwards;
+  animation-duration: ${({ theme }) => theme.speed.loading}ms;
+  animation-name: ${animation};
+`;
+
+const BottomRightAnimation = ({ theme }: any) => keyframes`
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+  100% {
+    width: calc(100% - ${theme.size.padding}px);
+    height: calc(100% - ${theme.size.padding}px);
+    opacity: 1;
+  }
+`;
+
+const BottomRight = styled.div`
   position: absolute;
-  border: 1px solid ${({ theme }) => theme.color.outline};
-`;
-
-const TopMobile = styled(Overlay)`
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: ${HEADER_WIDTH}px;
-
-  border-top: none;
-  border-left: none;
-  border-right: none;
-`;
-
-const Corner = styled(Overlay)`
-  top: 0px;
-  left: 0px;
-  width: ${HEADER_WIDTH}px;
-  height: ${HEADER_WIDTH}px;
-
-  border-top: none;
-  border-left: none;
-`;
-
-const TopLeft = styled(Overlay)`
-  top: ${HEADER_WIDTH}px;
-  left: ${HEADER_WIDTH}px;
-  width: calc(100% - ${HEADER_WIDTH}px - ${PADDING}px);
-  height: calc(100% - ${HEADER_WIDTH}px - ${PADDING}px);
-
-  border-right: none;
-  border-bottom: none;
-`;
-
-const BottomRight = styled(Overlay)`
-  top: 0px;
-  left: 0px;
-  width: calc(100% - ${PADDING}px);
-  height: calc(100% - ${PADDING}px);
-  border-top: none;
-  border-left: none;
+  right: ${({ theme }) => theme.size.padding}px;
+  bottom: ${({ theme }) => theme.size.padding}px;
+  width: 0px;
+  height: 0px;
+  border-right: 1px solid ${({ theme }) => theme.color.outline};
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   border-bottom-right-radius: 8px;
+  opacity: 0;
+
+  ${AnimationBase(BottomRightAnimation)}
+`;
+
+const TopAnimation = ({ theme, $isDesktop }: any) => keyframes`
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  100% { 
+    width: calc(
+      100% - ${$isDesktop ? theme.size.padding : 0}px
+    );
+    opacity: 1;
+  }
+`;
+
+const Top = styled.div<{ $isDesktop: boolean }>`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
+  opacity: 0;
+
+  ${AnimationBase(TopAnimation)}
+`;
+
+const LeftAnimation = ({ theme }: any) => keyframes`
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+  100% { 
+    height: calc(100% - ${theme.size.padding}px);
+    opacity: 1;
+  }
+`;
+
+const Left = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: ${({ theme }) => theme.size.headerHeight}px;
+  height: 0px;
+  border-right: 1px solid ${({ theme }) => theme.color.outline};
+  opacity: 0;
+
+  ${AnimationBase(LeftAnimation)}
 `;
 
 const Transparent = styled.div`
@@ -93,23 +126,24 @@ const Transparent = styled.div`
   pointer-events: auto;
 `;
 
-const TransparentTop = styled(Transparent)`
+const TransparentTop = styled(Transparent)<{ $isDesktop: boolean }>`
   top: 0px;
-  left: 0px;
+  left: ${({ $isDesktop, theme }) =>
+    $isDesktop ? theme.size.headerHeight : 0}px;
   width: 100%;
-  height: ${HEADER_WIDTH}px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
 `;
 
 const TransparentLeft = styled(Transparent)`
-  top: ${HEADER_WIDTH}px;
+  top: 0px;
   left: 0px;
-  width: ${HEADER_WIDTH}px;
-  height: calc(100% - ${HEADER_WIDTH}px - ${PADDING}px);
+  width: ${({ theme }) => theme.size.headerHeight}px;
+  height: 100%;
 `;
 
 const TransparentBottom = styled(Transparent)`
-  top: calc(100% - ${PADDING}px);
-  left: 0px;
+  bottom: 0px;
+  left: ${({ theme }) => theme.size.headerHeight}px;
   width: 100%;
-  height: ${PADDING}px;
+  height: ${({ theme }) => theme.size.padding}px;
 `;

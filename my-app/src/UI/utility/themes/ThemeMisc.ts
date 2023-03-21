@@ -14,6 +14,7 @@ export interface SpeedInterface {
 
 export interface SizeInterface {
   headerHeight: number;
+  padding: number;
   footerHeight: number;
 }
 
@@ -24,11 +25,16 @@ export interface LinkInterface {
   home: string;
 }
 
+export interface BreakpointInterface {
+  header: number;
+}
+
 export interface ThemeMiscInterface {
   layer: LayerInterface;
   speed: SpeedInterface;
   size: SizeInterface;
   link: LinkInterface;
+  breakpoint: BreakpointInterface;
 }
 
 export const ThemeMisc: ThemeMiscInterface = {
@@ -45,8 +51,12 @@ export const ThemeMisc: ThemeMiscInterface = {
     test: 3000,
   },
   size: {
-    headerHeight: 44,
+    headerHeight: 52,
+    padding: 20,
     footerHeight: 64,
+  },
+  breakpoint: {
+    header: 800,
   },
   link: {
     linkedin: 'https://www.linkedin.com/in/elson-liang/',

@@ -15,3 +15,9 @@ export const Theme: ThemeInterface = {
   ...ThemeAsset,
   ...ThemeMisc,
 };
+
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface DefaultTheme extends ThemeInterface {}
+  export function useTheme(): ThemeInterface;
+}

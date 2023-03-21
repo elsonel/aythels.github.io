@@ -29,11 +29,11 @@ export const HeaderOverlay: React.FC<IHeaderOverlayProps> = ({
   return (
     <Wrapper {...props}>
       <Content>
-        <LinkFake href={iconTab.href} onClick={iconTab.onClick}>
-          <IconWrapper>
+        <IconWrapper>
+          <LinkFake href={iconTab.href} onClick={iconTab.onClick}>
             <IIconSVG src={icon.logo} size={20} color={color.text} />
-          </IconWrapper>
-        </LinkFake>
+          </LinkFake>
+        </IconWrapper>
         <Row>
           {tabs.map((t, i) => (
             <LinkWrapper>
@@ -54,15 +54,11 @@ export const HeaderOverlay: React.FC<IHeaderOverlayProps> = ({
   );
 };
 
-const MOBILE_BREAKPOINT = 800;
-const HEADER_WIDTH = 52;
-const PADDING = 20;
-
 const Wrapper = styled.div`
   z-index: ${({ theme }) => theme.layer.header};
   position: fixed;
   width: 100%;
-  height: ${HEADER_WIDTH}px;
+  height: ${({ theme }) => theme.size.headerHeight}px;
   top: 0px;
   left: 0px;
 `;
@@ -72,20 +68,37 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
 
-  ${GreaterThan(0, `padding-left: ${PADDING}px; padding-right: ${PADDING}px;`)}
-  ${GreaterThan(
-    MOBILE_BREAKPOINT,
-    `padding-left: 0px; padding-right: ${PADDING * 2}px;`
-  )}
+  ${({ theme }) =>
+    GreaterThan(
+      0,
+      `
+        padding-left: ${theme.size.padding}px; 
+        padding-right: ${theme.size.padding}px;
+      `
+    ) +
+    GreaterThan(
+      theme.breakpoint.header,
+      `
+        padding-left: 0px; 
+        padding-right: ${theme.size.padding * 2}px;
+      `
+    )}
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: ${PADDING}px;
+  gap: ${({ theme }) => theme.size.padding}px;
 `;
 
 const Row = styled.div`
-  ${GreaterThan(MOBILE_BREAKPOINT, `flex-grow: 1; justify-content: center; `)}
+  ${({ theme }) =>
+    GreaterThan(
+      theme.breakpoint.header,
+      `
+        flex-grow: 1; 
+        justify-content: center; 
+      `
+    )}
   display: flex;
   align-items: center;
   gap: 50px;
@@ -117,15 +130,16 @@ const Square = styled.div<{ $isHovered: boolean }>`
 `;
 
 const IconWrapper = styled.div`
-  ${GreaterThan(
-    MOBILE_BREAKPOINT,
-    `
-      width: ${HEADER_WIDTH}px;
-      height: ${HEADER_WIDTH}px;
+  ${({ theme }) =>
+    GreaterThan(
+      theme.breakpoint.header,
+      `
+        width: ${theme.size.headerHeight}px;
+        height: ${theme.size.headerHeight}px;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `
-  )}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `
+    )}
 `;

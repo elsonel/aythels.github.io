@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
+import { zeroPad } from '../../../utility/scripts/zeroPad';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { ProjectLabel } from './ProjectLabel/ProjectLabel';
 
@@ -87,7 +89,7 @@ export const MainPage: React.FC<IMainPageProps> = ({
   const defaultTextdata = {
     text: BIO_TEXT,
     color: color.text,
-    number: '000',
+    number: zeroPad(0, 3),
   };
   const [textData, setTextData] = useState(defaultTextdata);
 
@@ -95,6 +97,8 @@ export const MainPage: React.FC<IMainPageProps> = ({
     const elements: React.ReactElement[] = [];
 
     const dataGroups: { [key: string]: ProjectData[] } = {};
+
+    let projectIndex = 0;
 
     for (let i = 0; i < data.length; i++) {
       const entry = data[i];
@@ -118,7 +122,7 @@ export const MainPage: React.FC<IMainPageProps> = ({
                   setTextData({
                     text: p.description,
                     color: color.primary,
-                    number: '000',
+                    number: zeroPad((projectIndex += 1), 3),
                   })
                 }
               />
@@ -132,38 +136,29 @@ export const MainPage: React.FC<IMainPageProps> = ({
   };
 
   return (
-    <Wrapper {...props}>
-      {/*<LogoWrapper>
-        <Logo />
-  </LogoWrapper>*/}
-      <LeftPosition>
-        <TextWrapper>
-          <LineText color={textData.color}>{textData.text}</LineText>
-          <LineTextLabel color={textData.color}>
-            {textData.number}
-          </LineTextLabel>
-        </TextWrapper>
-      </LeftPosition>
+    <FrameLayout
+      stickyChild={
+        <LeftPosition>
+          <TextWrapper>
+            <LineText color={textData.color}>{textData.text}</LineText>
+            <LineTextLabel color={textData.color}>
+              {textData.number}
+            </LineTextLabel>
+          </TextWrapper>
+        </LeftPosition>
+      }
+      {...props}
+    >
       {renderProjects(DATA)}
-    </Wrapper>
+    </FrameLayout>
   );
 };
 
-const LogoWrapper = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  padding-left: calc(52px + 20px);
-  padding-top: calc(52px + 30px);
-`;
-
 const LeftPosition = styled.div`
-  position: fixed;
+  position: absolute;
   left: 0px;
   bottom: 0px;
-  padding-left: calc(52px + 20px);
-  padding-bottom: calc(20px + 20px);
-
+  padding: 30px 20px;
   ${GreaterThan(0, `display: none;`)}
   ${GreaterThan(1000, `display: block;`)}
 `;
@@ -171,7 +166,7 @@ const LeftPosition = styled.div`
 const TextWrapper = styled.div`
   overflow: hidden;
   width: 200px;
-  height: 200px;
+  height: 250px;
 
   display: flex;
   flex-direction: column;
@@ -183,12 +178,13 @@ const LineTextLabel = styled(Paragraph)`
 
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   font-family: ${({ theme }) => theme.font.mono.family};
+  font-size: ${({ theme }) => theme.font.default.size.large};
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
 const LineText = styled(Paragraph)`
   width: 100%;
-
+  font-size: ${({ theme }) => theme.font.default.size.large};
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
