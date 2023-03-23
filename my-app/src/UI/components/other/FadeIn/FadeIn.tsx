@@ -5,12 +5,14 @@ import { v4 as uuidv4 } from 'uuid';
 const getAnimation = (offset: number | string) => {
   return keyframes`
     0% {
+      opacity: 0;
       transform: translateY(${
         typeof offset === 'number' ? offset + 'px' : offset
       });
       // ${uuidv4()}
     }
     100% { 
+      opacity: 1;
       transform: translateY(0px);
     }
   `;
@@ -43,13 +45,12 @@ export const FadeIn: React.FC<FadeInProps> = ({
   }, [isLoaded]);
 
   return (
-    <Wrapper {...props}>
+    <Wrapper $isVisible={isLoaded} {...props}>
       <Content
         ref={ref}
         $animation={animation}
         $duration={duration ?? speed.slow}
-        $delay={isLoaded ? delay : 0}
-        $isVisible={isLoaded}
+        $delay={delay}
         onAnimationEnd={() => {
           if (ref.current) {
             ref.current.style.pointerEvents = 'auto';
@@ -62,24 +63,25 @@ export const FadeIn: React.FC<FadeInProps> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  $isVisible: boolean;
+}>`
   width: 100%;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+
+  ${({ theme, $isVisible }) =>
+    !$isVisible && `transition: ${theme.speed.slow}ms;`};
 `;
 
 const Content = styled.div<{
   $delay: number;
   $duration: number;
   $animation: Keyframes;
-  $isVisible: boolean;
 }>`
   width: 100%;
-
+  opacity: 0;
   animation-delay: ${({ $delay }) => $delay}ms;
   animation-duration: ${({ $duration }) => $duration}ms;
   animation-name: ${({ $animation }) => $animation};
   animation-fill-mode: forwards;
-
-  transition: ${({ theme }) => theme.speed.slow}ms;
-  transition-delay: ${({ $delay }) => $delay}ms;
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 `;

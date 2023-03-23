@@ -21,7 +21,6 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
   isLoaded = true,
   delay = 0,
 }): React.ReactElement => {
-  const { speed } = useTheme();
   const [hoveredData, setHoveredData] = useState<{
     index?: number;
     text: string;
@@ -33,7 +32,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
   return (
     <>
       <FrameLayout>
-        <FadeIn offset="-100%" delay={delay} duration={800} isLoaded={isLoaded}>
+        <FadeIn offset="-100%" delay={delay} duration={600} isLoaded={isLoaded}>
           <ProjectList
             projectData={projectData}
             onHoverEnter={(i) =>
@@ -50,7 +49,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
       </FrameLayout>
       <FrameLayoutSticky>
         <LeftPosition>
-          <FadeIn delay={delay + speed.stagger} isLoaded={isLoaded} offset={20}>
+          <FadeIn delay={delay + 400} isLoaded={isLoaded} offset={20}>
             <ProjectHoverText number={hoveredData.index}>
               {hoveredData.text}
             </ProjectHoverText>

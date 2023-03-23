@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
+import useType from '../../../../utility/hooks/useType';
 import { zeroPad } from '../../../../utility/scripts/zeroPad';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
@@ -10,18 +11,17 @@ export interface IProjectHoverTextProps
 }
 
 export const ProjectHoverText: React.FC<IProjectHoverTextProps> = ({
-  children,
+  children = '',
   number,
   ...props
 }): React.ReactElement => {
   const { color } = useTheme();
   const textColor = number === undefined ? color.text : color.primary;
+  const title = useType(number === undefined ? `ABOUT` : zeroPad(number, 3));
 
   return (
     <TextWrapper {...props}>
-      <LineTextLabel color={textColor}>
-        // {number === undefined ? `ABOUT` : zeroPad(number, 3)}
-      </LineTextLabel>
+      <LineTextLabel color={textColor}>// {title}</LineTextLabel>
       <br />
       <LineText color={textColor}>{children}</LineText>
     </TextWrapper>

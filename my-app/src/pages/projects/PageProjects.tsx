@@ -25,8 +25,8 @@ export const PageProjects: React.FC<IPageProjectsProps> = ({
   }, []);
 
   const frameDelay = speed.loading;
-  const headerDelay = speed.loading + speed.stagger;
-  const pageDelay = speed.loading + speed.stagger + speed.stagger;
+  const headerDelay = speed.loading + speed.slow;
+  const pageDelay = speed.loading + speed.slow + speed.normal;
 
   return (
     <>

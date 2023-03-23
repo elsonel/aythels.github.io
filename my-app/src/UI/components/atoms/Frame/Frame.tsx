@@ -124,7 +124,7 @@ const Left = styled.div<{ $isLoaded: boolean; $delay: number }>`
   left: 0px;
   width: ${({ theme }) => theme.size.headerHeight}px;
   height: 0px;
-  border-right: 1px solid ${({ theme }) => theme.color.textNeutral};
+  border-right: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
 
   ${({ $isLoaded }) => $isLoaded && AnimationBase(LeftAnimation)}
