@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { Awards } from './Awards/Awards';
 import { ContactInfo } from './ContactInfo/ContactInfo';
 import { Logo } from './Logo/Logo';
@@ -13,26 +14,29 @@ export const AboutContent: React.FC<IAboutContentProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <Wrapper {...props}>
-      <StyledLogo />
-      <CenteredWrapper>
-        <Layout>
-          <PersonalInfoWrapper>
-            <PersonalInfo />
-          </PersonalInfoWrapper>
-          <Awards />
-          <ContactInfo />
-        </Layout>
-      </CenteredWrapper>
-    </Wrapper>
+    <FrameLayout {...props}>
+      <Wrapper>
+        <StyledLogo />
+        <CenteredWrapper>
+          <Layout>
+            <PersonalInfoWrapper>
+              <PersonalInfo />
+            </PersonalInfoWrapper>
+            <Awards />
+            <ContactInfo />
+          </Layout>
+        </CenteredWrapper>
+      </Wrapper>
+    </FrameLayout>
   );
 };
 
 const Wrapper = styled.div`
   width: 100%;
-  min-height: inherit;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const StyledLogo = styled(Logo)`

@@ -1,7 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
 import { Frame } from '../../atoms/Frame/Frame';
-import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { Header } from '../Header/Header';
 import { HeaderTab } from '../Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../Header/HeaderTabIcon/HeaderTabIcon';
@@ -23,9 +21,7 @@ export const Basic = Template.bind({});
 
 const WithFrameTemplate: Story<IAboutContentProps> = (args) => (
   <>
-    <FrameLayout>
-      <AboutContent {...args} />
-    </FrameLayout>
+    <AboutContent {...args} />
     <Frame />
     <Header tabIcon={<HeaderTabIcon />}>
       <HeaderTab isActive>PROJECTS</HeaderTab>

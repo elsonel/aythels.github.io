@@ -20,6 +20,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
   defaultHoverText,
   isLoaded = true,
   delay = 0,
+  ...props
 }): React.ReactElement => {
   const [hoveredData, setHoveredData] = useState<{
     index?: number;
@@ -30,7 +31,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
   });
 
   return (
-    <>
+    <Wrapper {...props}>
       <FrameLayout>
         <FadeIn offset="-100%" delay={delay} duration={600} isLoaded={isLoaded}>
           <ProjectList
@@ -56,9 +57,13 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
           </FadeIn>
         </LeftPosition>
       </FrameLayoutSticky>
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 100%;
+`;
 
 const LeftPosition = styled.div`
   position: absolute;
