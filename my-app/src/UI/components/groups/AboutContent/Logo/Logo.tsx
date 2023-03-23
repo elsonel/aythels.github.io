@@ -1,5 +1,5 @@
 import React from 'react';
-import { Textfit } from 'react-textfit';
+
 import styled from 'styled-components';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';

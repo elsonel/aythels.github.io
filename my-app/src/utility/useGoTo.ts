@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoaderManager } from '../Loader';
 
 const DELAY = 300;
 
@@ -12,11 +11,11 @@ export default function useGoTo() {
     let timeout: NodeJS.Timeout | undefined;
     if (route) timeout = setTimeout(() => navigate(route), DELAY);
     return () => clearTimeout(timeout);
-  }, [route]);
+  }, [navigate, route]);
 
   const goTo = (link: string) => {
     if (link === window.location.pathname) return;
-    LoaderManager.startLoad();
+    //LoaderManager.startLoad();
     setRoute(link);
   };
 

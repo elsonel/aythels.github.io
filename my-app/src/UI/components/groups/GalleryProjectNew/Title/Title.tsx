@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
-import { Textfit } from 'react-textfit';
+import { Textfit } from '@namhong2001/react-textfit';
 
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: string;

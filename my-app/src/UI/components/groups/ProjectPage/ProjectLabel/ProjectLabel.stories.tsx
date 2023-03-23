@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { ProjectLabel, IProjectLabelProps } from './ProjectLabel';
 
 export default {
-  title: 'Groups/MainPage/ProjectLabel',
+  title: 'Groups/ProjectPage/ProjectLabel',
   component: ProjectLabel,
   argTypes: {
     onClick: { action: 'clicked' },

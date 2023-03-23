@@ -19,18 +19,16 @@ export interface ScrollHandlerProps
   onUp?: (e: SyntheticEvent) => void;
   onDown?: (e: SyntheticEvent) => void;
   onScrollWindow?: (e: number) => void;
-  scrollTriggers?: any[];
 }
 
 export const ScrollHandler: React.FC<ScrollHandlerProps> = ({
   onUp,
   onDown,
   onScrollWindow,
-  scrollTriggers = [],
   children,
   ...props
 }): React.ReactElement => {
-  useOnWindowScrollDelta(onScrollWindow, scrollTriggers);
+  useOnWindowScrollDelta((e) => onScrollWindow && onScrollWindow(e));
 
   // When mouse wheel is triggered
   const handleWheel = (e: React.WheelEvent) => {

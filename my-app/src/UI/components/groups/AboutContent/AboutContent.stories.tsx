@@ -2,7 +2,10 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Frame } from '../../atoms/Frame/Frame';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
-import { HeaderOverlay } from '../HeaderOverlay/HeaderOverlay';
+import { Header } from '../Header/Header';
+import { HeaderTab } from '../Header/HeaderTab/HeaderTab';
+import { HeaderTabIcon } from '../Header/HeaderTabIcon/HeaderTabIcon';
+
 import { AboutContent, IAboutContentProps } from './AboutContent';
 
 export default {
@@ -24,23 +27,10 @@ const WithFrameTemplate: Story<IAboutContentProps> = (args) => (
       <AboutContent {...args} />
     </FrameLayout>
     <Frame />
-    <HeaderOverlay
-      iconTab={{
-        href: '/',
-      }}
-      tabs={[
-        {
-          label: 'PROJECTS',
-          href: '/',
-          isActive: true,
-        },
-        {
-          label: 'ABOUT',
-          href: '/',
-          isActive: false,
-        },
-      ]}
-    />
+    <Header tabIcon={<HeaderTabIcon />}>
+      <HeaderTab isActive>PROJECTS</HeaderTab>
+      <HeaderTab>ABOUT</HeaderTab>
+    </Header>
   </>
 );
 export const WithFrame = WithFrameTemplate.bind({});

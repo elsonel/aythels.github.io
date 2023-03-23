@@ -2,9 +2,14 @@ import React from 'react';
 import styled, { css, Keyframes, keyframes, useTheme } from 'styled-components';
 import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
 
-export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {
+  isLoaded?: boolean;
+  delay?: number;
+}
 
 export const Frame: React.FC<IFrameProps> = ({
+  isLoaded = true,
+  delay = 0,
   ...props
 }): React.ReactElement => {
   const { breakpoint } = useTheme();
@@ -17,31 +22,30 @@ export const Frame: React.FC<IFrameProps> = ({
         <>
           <TransparentLeft />
           <TransparentBottom />
-          <Left />
-          <BottomRight />
+          <Left $isLoaded={isLoaded} $delay={delay} />
+          <BottomRight $isLoaded={isLoaded} $delay={delay} />
         </>
       )}
-      <Top $isDesktop={isDesktop} />
+      <Top $isLoaded={isLoaded} $delay={delay} $isDesktop={isDesktop} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  z-index: ${({ theme }) => theme.layer.header};
   overflow: hidden;
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100vh;
-  min-height: ${({ theme }) =>
-    theme.size.headerHeight * 3 + theme.size.padding}px;
+  height: 100dvh;
+  min-height: ${({ theme }) => theme.size.frameMinHeight}px;
   pointer-events: none;
 `;
 
 const AnimationBase = (animation: (props: any) => Keyframes) => css`
   animation-fill-mode: forwards;
-  animation-duration: ${({ theme }) => theme.speed.loading}ms;
+  animation-duration: ${({ theme }) => theme.speed.slow}ms;
   animation-name: ${animation};
 `;
 
@@ -58,7 +62,7 @@ const BottomRightAnimation = ({ theme }: any) => keyframes`
   }
 `;
 
-const BottomRight = styled.div`
+const BottomRight = styled.div<{ $isLoaded: boolean; $delay: number }>`
   position: absolute;
   right: ${({ theme }) => theme.size.padding}px;
   bottom: ${({ theme }) => theme.size.padding}px;
@@ -69,7 +73,8 @@ const BottomRight = styled.div`
   border-bottom-right-radius: 8px;
   opacity: 0;
 
-  ${AnimationBase(BottomRightAnimation)}
+  ${({ $isLoaded }) => $isLoaded && AnimationBase(BottomRightAnimation)}
+  ${({ $isLoaded, $delay }) => $isLoaded && `animation-delay: ${$delay}ms;`}
 `;
 
 const TopAnimation = ({ theme, $isDesktop }: any) => keyframes`
@@ -85,7 +90,11 @@ const TopAnimation = ({ theme, $isDesktop }: any) => keyframes`
   }
 `;
 
-const Top = styled.div<{ $isDesktop: boolean }>`
+const Top = styled.div<{
+  $isDesktop: boolean;
+  $isLoaded: boolean;
+  $delay: number;
+}>`
   position: absolute;
   top: 0px;
   left: 0px;
@@ -94,7 +103,8 @@ const Top = styled.div<{ $isDesktop: boolean }>`
   border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
 
-  ${AnimationBase(TopAnimation)}
+  ${({ $isLoaded }) => $isLoaded && AnimationBase(TopAnimation)}
+  ${({ $isLoaded, $delay }) => $isLoaded && `animation-delay: ${$delay}ms;`}
 `;
 
 const LeftAnimation = ({ theme }: any) => keyframes`
@@ -108,16 +118,17 @@ const LeftAnimation = ({ theme }: any) => keyframes`
   }
 `;
 
-const Left = styled.div`
+const Left = styled.div<{ $isLoaded: boolean; $delay: number }>`
   position: absolute;
   top: 0px;
   left: 0px;
   width: ${({ theme }) => theme.size.headerHeight}px;
   height: 0px;
-  border-right: 1px solid ${({ theme }) => theme.color.outline};
+  border-right: 1px solid ${({ theme }) => theme.color.textNeutral};
   opacity: 0;
 
-  ${AnimationBase(LeftAnimation)}
+  ${({ $isLoaded }) => $isLoaded && AnimationBase(LeftAnimation)}
+  ${({ $isLoaded, $delay }) => $isLoaded && `animation-delay: ${$delay}ms;`}
 `;
 
 const Transparent = styled.div`

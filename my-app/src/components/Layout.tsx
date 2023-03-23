@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Footer } from '../UI/components/groups/Footer/Footer';
-import { Header } from '../UI/components/groups/Header/Header';
-import { HeaderLogo } from '../UI/components/groups/Header/HeaderLogo';
-import { HeaderTabs } from '../UI/components/groups/Header/HeaderTabs';
 import useGoTo from '../utility/useGoTo';
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,30 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div {...props}>
-      <Sticky>
-        <Header>
-          <HeaderLogo href="/" onClick={() => goTo('/')} />
-          <HeaderTabs
-            tabs={[
-              {
-                label: 'PROJECTS',
-                href: '/projects',
-                onClick: () => goTo('/projects'),
-              },
-              {
-                label: 'GALLERY',
-                href: '/gallery',
-                onClick: () => goTo('/gallery'),
-              },
-              {
-                label: 'ABOUT',
-                href: '/about',
-                onClick: () => goTo('/about'),
-              },
-            ]}
-          />
-        </Header>
-      </Sticky>
+      <Sticky></Sticky>
 
       <Body>{children}</Body>
       <Footer />

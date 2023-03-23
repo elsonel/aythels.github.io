@@ -113,8 +113,9 @@ export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
 
   const [scrollProgress, setScrollProgress] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [scrollTop, setScrollTop] = useState(0);
 
-  const scrollTop = useOnWindowScroll();
+  useOnWindowScroll((scrollTop) => setScrollTop(scrollTop));
   const allRefs = sections.map(() => useRef<HTMLDivElement>(null));
   const allIsOnScreen = allRefs.map((ref) =>
     useOnScreen(ref, [], {

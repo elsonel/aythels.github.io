@@ -31,3 +31,19 @@ export const GreaterThan = (
     }
 `;
 };
+
+export const LessThanQuery = (width = 0, height = 0, style: string) => {
+  return `  
+    @media all and (max-width: ${width}px) and (max-height: ${height}px) {
+      ${style}
+    }
+  `;
+};
+
+export const GreaterThanQuery = (width = 0, height = 0, style: string) => {
+  return `  
+    @media all and (min-width: ${width}px) and (min-height: ${height}px) {
+      ${style}
+    }
+  `;
+};

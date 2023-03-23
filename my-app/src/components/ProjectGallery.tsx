@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
-import { ModalImage } from '../UI/components/groups/ModalImage';
+
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { GalleryProject } from '../UI/components/groups/GalleryProject';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
@@ -71,22 +71,6 @@ export const ProjectGallery: React.FC<ProjectGalleryProps> = ({
           </StyledGrid>
         ))}
       </StyledGalleryProject>
-      <ModalImage
-        onCloseClick={() => setIsModalOpen(false)}
-        indexOffset={modalOffset}
-        isVisible={isModalOpen}
-        srcArray={gridsData
-          .map((grid) => grid.images)
-          .flat()
-          .map((image) => {
-            return {
-              alt: image.caption,
-              src: image.src,
-              srcSet: image.srcSet,
-              caption: image.caption,
-            };
-          })}
-      />
     </div>
   );
 };

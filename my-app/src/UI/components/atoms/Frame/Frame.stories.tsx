@@ -4,7 +4,10 @@ import { Frame, IFrameProps } from './Frame';
 export default {
   title: 'Atoms/Frame',
   component: Frame,
-  args: {},
+  args: {
+    isLoaded: true,
+    delay: 500,
+  },
 } as Meta;
 
 const Template: Story<IFrameProps> = (args) => <Frame {...args} />;

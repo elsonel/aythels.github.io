@@ -16,6 +16,14 @@ export const ScrollStyle = css`
   }
 `;
 
+export const HideScrollbar = css`
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 export const HiddenTouchScrollX = css`
   overflow-x: scroll;
   scrollbar-width: none; /* Firefox */

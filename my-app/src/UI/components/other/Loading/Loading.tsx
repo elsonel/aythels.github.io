@@ -3,6 +3,7 @@ import { IconLoading } from '../../atoms/IconLoading';
 import styled from 'styled-components';
 import { TextButton } from '../../text/TextButton';
 import { clamp } from '../../../utility/scripts/Math';
+import { Paragraph } from '../../text/Paragraph/Paragraph';
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   isVisible?: boolean;
@@ -19,16 +20,20 @@ export const Loading: React.FC<LoadingProps> = ({
   }
 
   return (
-    <Modal isVisible={isVisible} {...props}>
+    <StyledModal isVisible={isVisible} {...props}>
       <Wrapper>
         <IconLoading size={24} />
-        <TextButton size="tiny">
+        <Text size="tiny">
           {`LOADING ${progress !== undefined ? progress + '%' : ''}`}
-        </TextButton>
+        </Text>
       </Wrapper>
-    </Modal>
+    </StyledModal>
   );
 };
+
+const StyledModal = styled(Modal)`
+  transition: ${({ theme }) => theme.speed.loading}ms;
+`;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -40,5 +45,9 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  background-color: ${({ theme }) => theme.color.background};
+  background-color: ${({ theme }) => theme.color.text};
+`;
+
+const Text = styled(Paragraph)`
+  color: ${({ theme }) => theme.color.background};
 `;

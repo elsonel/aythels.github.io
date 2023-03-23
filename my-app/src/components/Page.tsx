@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { LoaderManager } from '../Loader';
+
 import useOnImagesLoaded from '../UI/utility/hooks/useOnImagesLoaded';
 
 const LOADING_TIMEOUT = 10000;
@@ -14,8 +14,9 @@ export const Page: React.FC<PageProps> = ({
   children,
   ...props
 }): React.ReactElement => {
-  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded(500, (progress) =>
-    LoaderManager.setProgress(progress)
+  const [isLoaded, ref, onImageLoad] = useOnImagesLoaded(
+    500,
+    (progress) => {} //LoaderManager.setProgress(progress)
   );
 
   useEffect(() => {
@@ -25,14 +26,15 @@ export const Page: React.FC<PageProps> = ({
 
   useEffect(() => {
     const timeout = setTimeout(
-      () => LoaderManager.finishLoad(),
+      //() => LoaderManager.finishLoad(),
+      () => {},
       LOADING_TIMEOUT
     );
     return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
-    if (isLoaded) LoaderManager.finishLoad();
+    //if (isLoaded) LoaderManager.finishLoad();
   }, [isLoaded]);
 
   return (

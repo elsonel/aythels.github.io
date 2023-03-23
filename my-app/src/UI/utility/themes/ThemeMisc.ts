@@ -10,11 +10,14 @@ export interface SpeedInterface {
   slow: number;
   loading: number;
   test: number;
+  stagger: number;
 }
 
 export interface SizeInterface {
   headerHeight: number;
   padding: number;
+  paddingVertical: number;
+  frameMinHeight: number;
   footerHeight: number;
 }
 
@@ -47,12 +50,15 @@ export const ThemeMisc: ThemeMiscInterface = {
     fast: 150,
     normal: 250,
     slow: 500,
-    loading: 1000,
+    loading: 500,
     test: 3000,
+    stagger: 300,
   },
   size: {
     headerHeight: 52,
     padding: 20,
+    paddingVertical: 30,
+    frameMinHeight: 176,
     footerHeight: 64,
   },
   breakpoint: {

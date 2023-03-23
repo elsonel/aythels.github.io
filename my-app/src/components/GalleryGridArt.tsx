@@ -4,7 +4,6 @@ import { ImageTitle } from 'UI/components/atoms/ImageTitle';
 import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
 import { ThemeInterface } from 'UI/utility/themes/Theme';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
-import { ModalImage } from '../UI/components/groups/ModalImage';
 import { GridDynamic } from '../UI/components/layout/GridDynamic';
 import { getAspect } from '../UI/utility/scripts/Aspect';
 import { GalleryGridProps, IGalleryBase, IGalleryEntry } from './GalleryGrid';
@@ -54,20 +53,6 @@ export const GalleryGridArt: React.FC<GalleryGridArtProps> = ({
           />
         ))}
       </GridStyled>
-      <ModalImage
-        onCloseClick={() => setIsModalOpen(false)}
-        indexOffset={modalOffset}
-        isVisible={isModalOpen}
-        srcArray={data.map((e) => {
-          return {
-            alt: e.title,
-            src: e.src,
-            srcSet: e.srcSet,
-            title: e.title,
-            caption: e.caption,
-          };
-        })}
-      />
     </>
   );
 };

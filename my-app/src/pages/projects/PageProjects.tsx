@@ -1,35 +1,54 @@
-import { ProjectsGrid } from 'components/ProjectsGrid';
-import { Title } from 'components/Title';
-import React from 'react';
-import styled, { useTheme } from 'styled-components';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
-import { Layout } from '../../components/Layout';
-import { Page } from '../../components/Page';
-import { SafeNotchPadding } from '../../components/SafeNotchPadding';
-import { GreetingPanel } from '../../UI/components/groups/GreetingPanel';
-import { Breakpoints, Data } from './data';
+import React, { useContext, useEffect } from 'react';
+import { useTheme } from 'styled-components';
+import { Frame } from '../../UI/components/atoms/Frame/Frame';
+import { Header } from '../../UI/components/groups/Header/Header';
+import { HeaderTab } from '../../UI/components/groups/Header/HeaderTab/HeaderTab';
+import { HeaderTabIcon } from '../../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
+import { ProjectPage } from '../../UI/components/groups/ProjectPage/ProjectPage';
+import usePageTitle from '../../UI/utility/hooks/usePageTitle';
+import { BIO_TEXT, PROJECT_DATA } from '../../utility/constants';
+import { LoadingContext } from '../../utility/LoadingContext';
 
-export interface PageProjectsProps
+export interface IPageProjectsProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageProjects: React.FC<PageProjectsProps> = ({
+export const PageProjects: React.FC<IPageProjectsProps> = ({
   ...props
 }): React.ReactElement => {
-  const theme = useTheme() as ThemeInterface;
+  usePageTitle(`Elson Liang | Projects`);
+  const { speed } = useTheme();
+  const { goTo, finishLoad, isLoaded } = useContext(LoadingContext);
+
+  useEffect(() => {
+    finishLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const frameDelay = speed.loading;
+  const headerDelay = speed.loading + speed.stagger;
+  const pageDelay = speed.loading + speed.stagger + speed.stagger;
 
   return (
-    <Page title="Projects" {...props}>
-      <Layout>
-        <GreetingPanel />
-        <SafeNotchPadding>
-          <Title>PROJECTS</Title>
-          <Grid data={Data} breakpoints={Breakpoints} />
-        </SafeNotchPadding>
-      </Layout>
-    </Page>
+    <>
+      <ProjectPage
+        projectData={PROJECT_DATA}
+        defaultHoverText={BIO_TEXT}
+        isLoaded={isLoaded}
+        delay={pageDelay}
+      />
+      <Frame isLoaded={isLoaded} delay={frameDelay} />
+      <Header
+        isLoaded={isLoaded}
+        delay={headerDelay}
+        tabIcon={<HeaderTabIcon href="/" onClick={() => goTo('/')} />}
+      >
+        <HeaderTab href="/projects" onClick={() => goTo('/projects')} isActive>
+          PROJECTS
+        </HeaderTab>
+        <HeaderTab href="/about" onClick={() => goTo('/about')}>
+          ABOUT
+        </HeaderTab>
+      </Header>
+    </>
   );
 };
-
-const Grid = styled(ProjectsGrid)`
-  padding-top: 0px;
-`;

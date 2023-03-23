@@ -9,12 +9,6 @@ const Content = styled.div`
   background-color: yellow;
 `;
 
-const Sticky = styled.div`
-  width: 100px;
-  height: 100%;
-  background-color: red;
-`;
-
 export default {
   title: 'Layout/FrameLayout',
   component: FrameLayout,
@@ -39,14 +33,13 @@ export default {
         assumenda est, omnis dolor repellendus.'
       </Content>
     ),
-    stickyChild: <Sticky />,
   },
 } as Meta;
 
 const Template: Story<IFrameLayoutProps> = (args) => (
   <>
-    <Frame />
     <FrameLayout {...args} />
+    <Frame />
   </>
 );
 

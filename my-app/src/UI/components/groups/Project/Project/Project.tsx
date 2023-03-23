@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ProjectLanding } from '../../../atoms/ProjectLanding';
 import { ScrollHandler } from '../../../inputs/ScrollHandler';
@@ -36,17 +36,16 @@ export const Project: React.FC<ProjectProps> = ({
     }
   };
 
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     onDown();
     if (isScrollLocked) document.documentElement.scrollTop = 0;
-  };
+  }, [isScrollLocked]);
 
   return (
     <ScrollHandler
       onDown={onDown}
       onUp={onUp}
       onScrollWindow={onScroll}
-      scrollTriggers={[isScrollLocked]}
       {...props}
     >
       <ProjectLayout

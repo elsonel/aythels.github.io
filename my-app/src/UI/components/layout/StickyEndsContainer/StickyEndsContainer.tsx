@@ -19,7 +19,9 @@ export const StickyEndsContainer: React.FC<StickyEndsContainerProps> = ({
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(topMargin);
-  const scrollDelta = useOnWindowScrollDelta();
+  const [scrollDelta, setScrollDelta] = useState(0);
+
+  useOnWindowScrollDelta((delta) => setScrollDelta(delta));
   const [sizeDeltaX, sizeDeltaY] = useOnWindowResizeDelta();
 
   const handleRef = (scrollDelta: number) => {

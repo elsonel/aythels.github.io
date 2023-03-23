@@ -1,112 +1,85 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
-import { useInView } from 'react-intersection-observer';
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import styled, { Keyframes, keyframes, useTheme } from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+
+const getAnimation = (offset: number | string) => {
+  return keyframes`
+    0% {
+      transform: translateY(${
+        typeof offset === 'number' ? offset + 'px' : offset
+      });
+      // ${uuidv4()}
+    }
+    100% { 
+      transform: translateY(0px);
+    }
+  `;
+};
 
 export interface FadeInProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   delay?: number;
-  offset?: number;
+  duration?: number;
+  offset?: number | string;
   isLoaded?: boolean;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({
   children,
   delay = 0,
+  duration,
   offset = 10,
   isLoaded = true,
   ...props
 }): React.ReactElement => {
-  const [isInView, setIsInView] = useState(false);
-  const delayRef = useRef(delay);
+  const { speed } = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
+  const [animation, setAnimation] = useState(getAnimation(offset));
 
-  const { ref, inView } = useInView({
-    threshold: 0.25,
-  });
-
-  useEffect(() => {
-    if (!isLoaded) return;
-
-    const timer = setTimeout(() => {
-      delayRef.current = 0;
-    }, delay);
-    return () => clearTimeout(timer);
+  useLayoutEffect(() => {
+    if (ref.current) ref.current.style.pointerEvents = 'none';
+    if (isLoaded) setAnimation(getAnimation(offset));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
-
-  useEffect(() => {
-    if (!isLoaded) delayRef.current = delay;
-  }, [isLoaded]);
-
-  useEffect(() => {
-    if (inView && isLoaded) setIsInView(true);
-    else if (!inView && !isLoaded) setIsInView(false);
-  }, [inView, isLoaded]);
 
   return (
     <Wrapper {...props}>
-      <Content>
-        <Placeholder ref={ref}>{children}</Placeholder>
-        <Copy
-          $offset={offset}
-          $delay={delayRef.current}
-          $isLoaded={isLoaded && isInView}
-        >
-          {children}
-        </Copy>
+      <Content
+        ref={ref}
+        $animation={animation}
+        $duration={duration ?? speed.slow}
+        $delay={isLoaded ? delay : 0}
+        $isVisible={isLoaded}
+        onAnimationEnd={() => {
+          if (ref.current) {
+            ref.current.style.pointerEvents = 'auto';
+          }
+        }}
+      >
+        {children}
       </Content>
     </Wrapper>
   );
 };
 
-const AnimationFadeIn = (offset: number) =>
-  keyframes`
-    0% {
-      transform: translateY(${offset}px);
-    }
-    100% { 
-      transform: translateY(0px);
-    }
-  `;
-
 const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Content = styled.div`
-  margin: inherit;
-  position: relative;
-  overflow: visible;
-  width: 100%;
-`;
-
-const Copy = styled.div<{
+const Content = styled.div<{
   $delay: number;
-  $offset: number;
-  $isLoaded: boolean;
+  $duration: number;
+  $animation: Keyframes;
+  $isVisible: boolean;
 }>`
-  position: absolute;
-  top: 0px;
-  left: 0px;
   width: 100%;
 
   animation-delay: ${({ $delay }) => $delay}ms;
-  animation-duration: ${({ theme }) => theme.speed.slow}ms;
-  animation-name: ${({ $isLoaded, $offset }) =>
-    $isLoaded ? AnimationFadeIn($offset) : 'none'};
+  animation-duration: ${({ $duration }) => $duration}ms;
+  animation-name: ${({ $animation }) => $animation};
   animation-fill-mode: forwards;
 
   transition: ${({ theme }) => theme.speed.slow}ms;
   transition-delay: ${({ $delay }) => $delay}ms;
-  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
-
-  > * {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-  }
-`;
-
-const Placeholder = styled.div`
-  width: 100%;
-  opacity: 0;
-  pointer-events: 0;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 `;
