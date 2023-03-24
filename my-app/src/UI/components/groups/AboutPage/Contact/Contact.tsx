@@ -1,38 +1,41 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 
 export interface IContactProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Contact: React.FC<IContactProps> = ({
   ...props
-}): React.ReactElement => (
-  <Layout {...props}>
-    <Title>/ LINKS /</Title>
-    <LinkColumn>
-      <Link linkProps={{ href: '/' }}>
-        <TextBold>GitHub</TextBold>
-      </Link>
-      <Link linkProps={{ href: '/' }}>
-        <TextBold>LinkedIn</TextBold>
-      </Link>
-    </LinkColumn>
-    <LinkColumn>
-      <Text>Email</Text>
-      <Link linkProps={{ href: '/' }}>
-        <TextBold>elsonliangel@gmail.com</TextBold>
-      </Link>
-    </LinkColumn>
-    <LinkColumn>
-      <Text>Built with React.</Text>
-      <Link linkProps={{ href: '/' }}>
-        <TextBold>Storybook</TextBold>
-      </Link>
-    </LinkColumn>
-  </Layout>
-);
+}): React.ReactElement => {
+  const { link } = useTheme();
+
+  return (
+    <Layout {...props}>
+      <Title>/ LINKS /</Title>
+      <LinkColumn>
+        <Link linkProps={{ href: link.github }}>
+          <TextBold>GitHub</TextBold>
+        </Link>
+        <Link linkProps={{ href: link.linkedin }}>
+          <TextBold>LinkedIn</TextBold>
+        </Link>
+      </LinkColumn>
+      <LinkColumn>
+        <Text>Email</Text>
+        <Link linkProps={{ href: link.email, isOpeningNewTab: false }}>
+          <TextBold>elsonliangel@gmail.com</TextBold>
+        </Link>
+      </LinkColumn>
+      <LinkColumn>
+        <Text>Built with React.</Text>
+        <Link linkProps={{ href: link.storybook }}>
+          <TextBold>Storybook</TextBold>
+        </Link>
+      </LinkColumn>
+    </Layout>
+  );
+};
 
 const Layout = styled.div`
   display: flex;

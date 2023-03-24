@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { Theme } from '../../../../utility/themes/Theme';
 import { Body, BodyProps } from './Body';
 
 export default {

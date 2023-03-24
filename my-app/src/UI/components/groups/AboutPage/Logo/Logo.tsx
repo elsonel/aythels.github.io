@@ -29,7 +29,8 @@ const Name = styled(Paragraph).attrs(() => ({
   position: relative;
 
   color: ${({ theme }) => theme.color.text};
-  font-family: ${({ theme }) => theme.font.logo.family};
+  font-family: ${({ theme }) => theme.font.mono.family};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 
   ${GreaterThan(0, `font-size: 2.2rem; left: -2px; top: -2px;`)}

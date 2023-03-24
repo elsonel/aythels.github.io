@@ -30,7 +30,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
   children,
   delay = 0,
   duration,
-  offset = 10,
+  offset = 16,
   isLoaded = true,
   ...props
 }): React.ReactElement => {

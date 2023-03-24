@@ -58,7 +58,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
       </FrameLayout>
       <FrameLayoutSticky>
         <LeftPosition>
-          <FadeIn delay={hoveredTextDelay} isLoaded={isLoaded} offset={20}>
+          <FadeIn delay={hoveredTextDelay} isLoaded={isLoaded}>
             <ProjectHoverText number={hoveredData.index}>
               {hoveredData.text}
             </ProjectHoverText>

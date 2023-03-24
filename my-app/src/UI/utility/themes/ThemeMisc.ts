@@ -24,6 +24,7 @@ export interface LinkInterface {
   github: string;
   email: string;
   home: string;
+  storybook: string;
 }
 
 export interface BreakpointInterface {
@@ -65,5 +66,6 @@ export const ThemeMisc: ThemeMiscInterface = {
     github: 'https://github.com/elsonel',
     email: 'mailto:elsonliangel@gmail.com',
     home: '/',
+    storybook: '/storybook',
   },
 };

@@ -1,8 +1,5 @@
 import { Meta, Story } from '@storybook/react';
 import { Frame } from '../../atoms/Frame/Frame';
-import { Header } from '../Header/Header';
-import { HeaderTab } from '../Header/HeaderTab/HeaderTab';
-import { HeaderTabIcon } from '../Header/HeaderTabIcon/HeaderTabIcon';
 import { ProjectPage, IProjectPageProps } from './ProjectPage';
 import { ProjectData } from './ProjectList/ProjectList';
 
@@ -87,10 +84,6 @@ const Template: Story<IProjectPageProps> = (args) => (
   <>
     <ProjectPage {...args} />
     <Frame />
-    <Header tabIcon={<HeaderTabIcon />}>
-      <HeaderTab isActive>PROJECTS</HeaderTab>
-      <HeaderTab>ABOUT</HeaderTab>
-    </Header>
   </>
 );
 
