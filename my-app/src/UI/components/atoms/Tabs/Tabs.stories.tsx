@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { Tabs, ITabsProps } from './Tabs';
 
 export default {
-  title: 'Groups/Atoms/Tabs',
+  title: 'Atoms/Tabs',
   component: Tabs,
   argTypes: {
     onClick: { action: 'clicked' },

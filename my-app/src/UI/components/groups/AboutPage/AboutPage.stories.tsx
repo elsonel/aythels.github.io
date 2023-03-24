@@ -4,24 +4,22 @@ import { Header } from '../Header/Header';
 import { HeaderTab } from '../Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../Header/HeaderTabIcon/HeaderTabIcon';
 
-import { AboutContent, IAboutContentProps } from './AboutContent';
+import { AboutPage, IAboutPageProps } from './AboutPage';
 
 export default {
-  title: 'Groups/AboutContent',
-  component: AboutContent,
+  title: 'Groups/AboutPage',
+  component: AboutPage,
   args: {},
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<IAboutContentProps> = (args) => (
-  <AboutContent {...args} />
-);
+const Template: Story<IAboutPageProps> = (args) => <AboutPage {...args} />;
 
 export const Basic = Template.bind({});
 
-const WithFrameTemplate: Story<IAboutContentProps> = (args) => (
+const WithFrameTemplate: Story<IAboutPageProps> = (args) => (
   <>
-    <AboutContent {...args} />
+    <AboutPage {...args} />
     <Frame />
     <Header tabIcon={<HeaderTabIcon />}>
       <HeaderTab isActive>PROJECTS</HeaderTab>

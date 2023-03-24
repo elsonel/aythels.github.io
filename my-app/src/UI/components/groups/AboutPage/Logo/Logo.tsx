@@ -26,15 +26,13 @@ const Name = styled(Paragraph).attrs(() => ({
   size: 'h1',
 }))`
   position: relative;
-  top: -4px;
-  left: -4px;
 
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.font.logo.family};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 
-  ${GreaterThan(0, `font-size: 2.4rem;`)}
-  ${GreaterThan(400, `font-size: 3rem;`)}
+  ${GreaterThan(0, `font-size: 2.2rem; left: -2px; top: -2px;`)}
+  ${GreaterThan(440, `font-size: 3rem; left: -4px; top: -4px;`)}
   line-height: 1;
   overflow-wrap: normal;
 `;
@@ -43,7 +41,5 @@ const Subtitle = styled(Paragraph).attrs(() => ({
   isWrapped: false,
 }))`
   color: ${({ theme }) => theme.color.text};
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
-    GreaterThan(400, `font-size: ${theme.font.default.size.h6};`)}
+  font-size: ${({ theme }) => theme.font.mono.size.h5};
 `;

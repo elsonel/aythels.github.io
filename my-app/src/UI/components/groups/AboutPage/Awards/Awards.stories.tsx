@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { Awards, IAwardsProps } from './Awards';
 
 export default {
-  title: 'Groups/AboutContent/Awards',
+  title: 'Groups/AboutPage/Awards',
   component: Awards,
   args: {},
 } as Meta;

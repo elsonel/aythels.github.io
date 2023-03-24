@@ -50,6 +50,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
+  overflow: hidden;
   position: relative;
   width: 100%;
 

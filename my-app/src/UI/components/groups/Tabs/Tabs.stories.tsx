@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { Tab } from '../../inputs/Tab';
 import { Tabs, TabsProps } from './Tabs';
 
 export default {

@@ -3,7 +3,7 @@ import React from 'react';
 import { Logo, ILogoProps } from './Logo';
 
 export default {
-  title: 'Groups/AboutContent/Logo',
+  title: 'Groups/AboutPage/Logo',
   component: Logo,
   args: {},
 } as Meta;

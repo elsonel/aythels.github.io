@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
-export interface IPersonalInfoProps
+export interface IBackgroundProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PersonalInfo: React.FC<IPersonalInfoProps> = ({
+export const Background: React.FC<IBackgroundProps> = ({
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <Title>About</Title>
+      <Title>/ BACKGROUND /</Title>
       <Text>
         I'm a software developer specializing in front-end technologies with
-        additional skills in visual communication and design.
+        additional experience in visual communication and design.
       </Text>
       <br />
       <Text>
@@ -26,7 +25,7 @@ export const PersonalInfo: React.FC<IPersonalInfoProps> = ({
       </Text>
       <br />
       <Text>
-        When I'm away from the screen, I enjoy painting, and reading eastern
+        When I'm away from the screen, I enjoy painting and reading eastern
         fantasy.
       </Text>
     </Wrapper>
@@ -38,15 +37,19 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Title = styled(Paragraph)`
+const Title = styled(Paragraph).attrs(() => ({
+  isWrapped: false,
+  size: 'h5',
+}))`
   color: ${({ theme }) => theme.color.text};
-  font-size: ${({ theme }) => theme.font.default.size.large};
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
+  font-family: ${({ theme }) => theme.font.mono.family};
+  font-size: ${({ theme }) => theme.font.mono.size.h5};
+
   margin-bottom: 20px;
 `;
 
 const Text = styled(Paragraph)`
   text-align: inherit;
   color: ${({ theme }) => theme.color.text};
-  font-size: ${({ theme }) => theme.font.default.size.small};
 `;

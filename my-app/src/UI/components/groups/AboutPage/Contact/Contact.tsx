@@ -4,14 +4,13 @@ import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 
-export interface IContactInfoProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface IContactProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const ContactInfo: React.FC<IContactInfoProps> = ({
+export const Contact: React.FC<IContactProps> = ({
   ...props
 }): React.ReactElement => (
   <Layout {...props}>
-    <Title>Links</Title>
+    <Title>/ LINKS /</Title>
     <LinkColumn>
       <Link linkProps={{ href: '/' }}>
         <TextBold>GitHub</TextBold>
@@ -62,6 +61,11 @@ const Link = styled(LinkWithUnderline).attrs(({ theme }) => ({
   color: theme.color.text,
 }))``;
 
-const Title = styled(TextBold)`
-  font-size: ${({ theme }) => theme.font.default.size.large};
+const Title = styled(Paragraph).attrs(() => ({
+  isWrapped: false,
+}))`
+  color: ${({ theme }) => theme.color.text};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
+  font-family: ${({ theme }) => theme.font.mono.family};
+  font-size: ${({ theme }) => theme.font.mono.size.large};
 `;
