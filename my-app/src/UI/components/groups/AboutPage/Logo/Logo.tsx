@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
 const Name = styled(Paragraph).attrs(() => ({
   size: 'h1',
+  isWrapped: false,
 }))`
   position: relative;
 

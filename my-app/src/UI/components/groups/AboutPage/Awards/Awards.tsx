@@ -11,11 +11,11 @@ export const Awards: React.FC<IAwardsProps> = ({
     <Title>/ AWARDS /</Title>
     <LinkColumn>
       <Text>College + Netflix Creative Jam</Text>
-      <TextBold>2nd Place</TextBold>
+      <TextBold>2nd Place - 985 Teams</TextBold>
     </LinkColumn>
     <LinkColumn>
       <Text>College + Amazon Creative Jam</Text>
-      <TextBold>Honoree</TextBold>
+      <TextBold>Top 15 - 419 Teams</TextBold>
     </LinkColumn>
   </Layout>
 );

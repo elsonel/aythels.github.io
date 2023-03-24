@@ -6,22 +6,42 @@ import { Awards } from './Awards/Awards';
 import { Contact } from './Contact/Contact';
 import { Logo } from './Logo/Logo';
 import { Background } from './Background/Background';
+import { FadeIn } from '../../other/FadeIn/FadeIn';
 
-export interface IAboutPageProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface IAboutPageProps extends React.HTMLAttributes<HTMLDivElement> {
+  isLoaded?: boolean;
+  delay?: number;
+}
 
 export const AboutPage: React.FC<IAboutPageProps> = ({
+  isLoaded = true,
+  delay = 0,
   ...props
 }): React.ReactElement => {
+  const stagger = 150;
+  const logoDelay = delay + stagger;
+  const backgroundDelay = delay + stagger * 2;
+  const awardsDelay = delay + stagger * 3;
+  const contactDelay = delay + stagger * 4;
+
   return (
     <FrameLayout {...props}>
       <Wrapper>
-        <StyledLogo />
+        <FadeIn isLoaded={isLoaded} delay={logoDelay}>
+          <StyledLogo />
+        </FadeIn>
         <Layout>
           <BackgroundWrapper>
-            <Background />
+            <FadeIn isLoaded={isLoaded} delay={backgroundDelay}>
+              <Background />
+            </FadeIn>
           </BackgroundWrapper>
-          <Awards />
-          <Contact />
+          <StyledFadeIn isLoaded={isLoaded} delay={awardsDelay}>
+            <Awards />
+          </StyledFadeIn>
+          <StyledFadeIn isLoaded={isLoaded} delay={contactDelay}>
+            <Contact />
+          </StyledFadeIn>
         </Layout>
       </Wrapper>
     </FrameLayout>
@@ -38,9 +58,13 @@ const Wrapper = styled.div`
 
 const StyledLogo = styled(Logo)`
   box-sizing: border-box;
-  width: 100%;
   ${GreaterThan(0, `padding: 30px 20px;`)}
   ${GreaterThan(800, `padding: 50px 40px;`)}
+`;
+
+const StyledFadeIn = styled(FadeIn)`
+  display: inline-block;
+  width: auto;
 `;
 
 const Layout = styled.div`
@@ -55,5 +79,5 @@ const Layout = styled.div`
 
 const BackgroundWrapper = styled.div`
   ${GreaterThan(0, `width: 100%;`)}
-  ${GreaterThan(1200, `width: 600px;`)}
+  ${GreaterThan(1200, `width: 560px;`)}
 `;

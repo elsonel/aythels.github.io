@@ -30,10 +30,18 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
     text: defaultHoverText,
   });
 
+  const projectListDelay = delay;
+  const hoveredTextDelay = delay + 400;
+
   return (
     <Wrapper {...props}>
       <FrameLayout>
-        <FadeIn offset="-100%" delay={delay} duration={600} isLoaded={isLoaded}>
+        <FadeIn
+          offset="-100%"
+          delay={projectListDelay}
+          duration={600}
+          isLoaded={isLoaded}
+        >
           <ProjectList
             projectData={projectData}
             onHoverEnter={(i) =>
@@ -50,7 +58,7 @@ export const ProjectPage: React.FC<IProjectPageProps> = ({
       </FrameLayout>
       <FrameLayoutSticky>
         <LeftPosition>
-          <FadeIn delay={delay + 400} isLoaded={isLoaded} offset={20}>
+          <FadeIn delay={hoveredTextDelay} isLoaded={isLoaded} offset={20}>
             <ProjectHoverText number={hoveredData.index}>
               {hoveredData.text}
             </ProjectHoverText>

@@ -9,8 +9,11 @@ import { AboutPage, IAboutPageProps } from './AboutPage';
 export default {
   title: 'Groups/AboutPage',
   component: AboutPage,
-  args: {},
   argTypes: { onClick: { action: 'clicked' } },
+  args: {
+    isLoaded: true,
+    delay: 0,
+  },
 } as Meta;
 
 const Template: Story<IAboutPageProps> = (args) => <AboutPage {...args} />;
@@ -22,8 +25,8 @@ const WithFrameTemplate: Story<IAboutPageProps> = (args) => (
     <AboutPage {...args} />
     <Frame />
     <Header tabIcon={<HeaderTabIcon />}>
-      <HeaderTab isActive>PROJECTS</HeaderTab>
-      <HeaderTab>ABOUT</HeaderTab>
+      <HeaderTab>PROJECTS</HeaderTab>
+      <HeaderTab isActive>ABOUT</HeaderTab>
     </Header>
   </>
 );

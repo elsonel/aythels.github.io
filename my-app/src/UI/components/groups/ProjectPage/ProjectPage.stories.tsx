@@ -79,7 +79,7 @@ export default {
     projectData: DATA,
     defaultHoverText: BIO_TEXT,
     isLoaded: true,
-    delay: 500,
+    delay: 0,
   },
 } as Meta;
 
