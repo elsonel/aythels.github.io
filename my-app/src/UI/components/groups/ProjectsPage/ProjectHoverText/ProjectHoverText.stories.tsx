@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { ProjectHoverText, IProjectHoverTextProps } from './ProjectHoverText';
 
 export default {
-  title: 'Groups/ProjectPage/ProjectHoverText',
+  title: 'Groups/ProjectsPage/ProjectHoverText',
   component: ProjectHoverText,
   args: {
     children: `Sed reprehenderit quas est saepe rerum ut impedit autem est rerum similique ut rerum ipsum sed sunt ducimus. Rerum ut impedit autem est rerum similique ut rerum ipsum sed sunt ducimus.`,

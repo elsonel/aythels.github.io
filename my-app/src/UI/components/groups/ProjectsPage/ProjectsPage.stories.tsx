@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { Frame } from '../../atoms/Frame/Frame';
-import { ProjectPage, IProjectPageProps } from './ProjectPage';
+import { ProjectsPage, IProjectsPageProps } from './ProjectsPage';
 import { ProjectData } from './ProjectList/ProjectList';
 
 const DATA: ProjectData[] = [
@@ -70,8 +70,8 @@ const DATA: ProjectData[] = [
 const BIO_TEXT = `I'm a software developer with a passion for engineering resilient solutions that integrate well with sophisticated design and user experience.`;
 
 export default {
-  title: 'Groups/ProjectPage',
-  component: ProjectPage,
+  title: 'Groups/ProjectsPage',
+  component: ProjectsPage,
   args: {
     projectData: DATA,
     defaultHoverText: BIO_TEXT,
@@ -80,9 +80,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IProjectPageProps> = (args) => (
+const Template: Story<IProjectsPageProps> = (args) => (
   <>
-    <ProjectPage {...args} />
+    <ProjectsPage {...args} />
     <Frame />
   </>
 );

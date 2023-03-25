@@ -68,7 +68,7 @@ const DATA: ProjectData[] = [
 ];
 
 export default {
-  title: 'Groups/ProjectPage/ProjectList',
+  title: 'Groups/ProjectsPage/ProjectList',
   component: ProjectList,
   args: {
     projectData: DATA,

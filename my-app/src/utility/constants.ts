@@ -1,4 +1,4 @@
-import { ProjectData } from '../UI/components/groups/ProjectPage/ProjectList/ProjectList';
+import { ProjectData } from '../UI/components/groups/ProjectsPage/ProjectList/ProjectList';
 
 export const BIO_TEXT = `I'm a software developer with a passion for engineering resilient solutions that integrate well with sophisticated design and user experience.`;
 

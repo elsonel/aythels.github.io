@@ -7,7 +7,7 @@ import { FadeIn } from '../../other/FadeIn/FadeIn';
 import { ProjectHoverText } from './ProjectHoverText/ProjectHoverText';
 import { ProjectData, ProjectList } from './ProjectList/ProjectList';
 
-export interface IProjectPageProps
+export interface IProjectsPageProps
   extends React.HTMLAttributes<HTMLDivElement> {
   projectData: ProjectData[];
   defaultHoverText: string;
@@ -15,7 +15,7 @@ export interface IProjectPageProps
   delay?: number;
 }
 
-export const ProjectPage: React.FC<IProjectPageProps> = ({
+export const ProjectsPage: React.FC<IProjectsPageProps> = ({
   projectData,
   defaultHoverText,
   isLoaded = true,

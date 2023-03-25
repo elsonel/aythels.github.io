@@ -4,7 +4,7 @@ import { Frame } from '../../UI/components/atoms/Frame/Frame';
 import { Header } from '../../UI/components/groups/Header/Header';
 import { HeaderTab } from '../../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
-import { ProjectPage } from '../../UI/components/groups/ProjectPage/ProjectPage';
+import { ProjectsPage } from '../../UI/components/groups/ProjectsPage/ProjectsPage';
 import usePageTitle from '../../UI/utility/hooks/usePageTitle';
 import { BIO_TEXT, PROJECT_DATA } from '../../utility/constants';
 import { LoadingContext } from '../../utility/LoadingContext';
@@ -30,7 +30,7 @@ export const PageProjects: React.FC<IPageProjectsProps> = ({
 
   return (
     <>
-      <ProjectPage
+      <ProjectsPage
         projectData={PROJECT_DATA}
         defaultHoverText={BIO_TEXT}
         isLoaded={isLoaded}
