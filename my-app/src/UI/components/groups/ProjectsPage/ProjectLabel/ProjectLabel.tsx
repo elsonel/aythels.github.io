@@ -2,13 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
 import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { LinkFake } from '../../../inputs/LinkFake/LinkFake';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
+import { Link } from '../../../inputs/Link/Link';
 
 export interface IProjectLabelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   type: string;
   year: number;
+  href?: string;
+  isOpeningNewTab?: boolean;
   onClick?: () => void;
   onHoverEnter?: () => void;
   onHoverLeave?: () => void;
@@ -18,6 +22,8 @@ export const ProjectLabel: React.FC<IProjectLabelProps> = ({
   name,
   type,
   year,
+  href,
+  isOpeningNewTab = false,
   onClick,
   onHoverEnter,
   onHoverLeave,
@@ -27,17 +33,25 @@ export const ProjectLabel: React.FC<IProjectLabelProps> = ({
 
   return (
     <Wrapper key={name} {...props}>
-      <TextLayout
-        onClick={onClick}
-        onPointerEnter={() => onHoverEnter && onHoverEnter()}
-        onPointerLeave={() => onHoverLeave && onHoverLeave()}
+      <Link
+        href={href}
+        isOpeningNewTab={isOpeningNewTab}
+        onClick={(e) => {
+          !isOpeningNewTab && e.preventDefault();
+        }}
       >
-        <Subtitle>
-          {year}&nbsp;•&nbsp;{type.toUpperCase()}
-          {isRowLayout && '\xa0\xa0'}
-        </Subtitle>
-        <Title>{name}</Title>
-      </TextLayout>
+        <TextLayout
+          onClick={onClick}
+          onPointerEnter={() => onHoverEnter && onHoverEnter()}
+          onPointerLeave={() => onHoverLeave && onHoverLeave()}
+        >
+          <Subtitle>
+            {year}&nbsp;•&nbsp;{type.toUpperCase()}
+            {isRowLayout && '\xa0\xa0'}
+          </Subtitle>
+          <Title>{name}</Title>
+        </TextLayout>
+      </Link>
     </Wrapper>
   );
 };
@@ -68,7 +82,7 @@ const Title = styled(Paragraph).attrs(() => ({
   font-family: ${({ theme }) => theme.font.title.family};
   line-height: 0.8;
   ${GreaterThan(0, `font-size: 2rem;`)}
-  ${GreaterThan(800, `font-size: 3rem;`)}
+  ${GreaterThan(900, `font-size: 3rem;`)}
   ${GreaterThan(1200, `font-size: 4rem;`)}
   ${GreaterThan(1400, `font-size: 5rem;`)}
   ${GreaterThan(1600, `font-size: 6rem;`)}
@@ -84,7 +98,7 @@ const TextLayout = styled.div`
   transition: ${({ theme }) => theme.speed.normal}ms;
 
   &:hover {
-    transform: translateX(-20px);
+    padding-right: 20px;
   }
 
   &:hover ${Title} {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -5,55 +6,49 @@ import { setIsLoaderVisible } from '../Loader';
 
 export const LoadingContext = createContext<{
   isLoaded: boolean;
-  isFirstLoaded: boolean;
-  goTo: (route: string) => void;
+  goTo: (route: string, delay?: number) => void;
   finishLoad: () => void;
+  isFirstLoad: boolean;
 }>({
   isLoaded: false,
-  isFirstLoaded: false,
   goTo: () => {},
   finishLoad: () => {},
+  isFirstLoad: true,
 });
 
 export const LoadingContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const { speed } = useTheme();
-
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isFirstLoaded, setIsFirstLoaded] = useState(false);
-  const isTransitioning = useRef(true);
+  const navigateTimer = useRef<NodeJS.Timeout>();
+
   const navigate = useNavigate();
 
-  const goTo = (route: string, isMenuEnabled = true) => {
+  const goTo = (route: string, delay = 0) => {
     if (route === window.location.pathname) return;
-    if (isTransitioning.current) return;
-    isTransitioning.current = true;
+    clearTimeout(navigateTimer.current);
+    setIsLoaded(false);
 
-    if (isMenuEnabled) setIsLoaderVisible(true);
-    setTimeout(
-      () => {
-        navigate(route);
-        setIsLoaded(false);
-      },
-      isMenuEnabled ? speed.loading : 0
-    );
+    navigateTimer.current = setTimeout(() => {
+      navigate(route);
+      setIsFirstLoad(false);
+    }, delay);
   };
 
   const finishLoad = () => {
-    isTransitioning.current = false;
-    setIsLoaderVisible(false);
+    clearTimeout(navigateTimer.current);
     setIsLoaded(true);
-    setIsFirstLoaded(true);
+    setIsLoaderVisible(false);
   };
 
   return (
     <LoadingContext.Provider
       value={{
         isLoaded,
-        isFirstLoaded,
         goTo,
         finishLoad,
+        isFirstLoad,
       }}
     >
       {children}

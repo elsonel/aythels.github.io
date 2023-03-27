@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { useTheme } from 'styled-components';
+import { setIsLoaderVisible } from '../../Loader';
 import { Frame } from '../../UI/components/atoms/Frame/Frame';
 import { Header } from '../../UI/components/groups/Header/Header';
 import { HeaderTab } from '../../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
 import { ProjectsPage } from '../../UI/components/groups/ProjectsPage/ProjectsPage';
-import usePageTitle from '../../UI/utility/hooks/usePageTitle';
+
 import { BIO_TEXT, PROJECT_DATA } from '../../utility/constants';
 import { LoadingContext } from '../../utility/LoadingContext';
 
@@ -15,15 +16,17 @@ export interface IPageProjectsProps
 export const PageProjects: React.FC<IPageProjectsProps> = ({
   ...props
 }): React.ReactElement => {
-  usePageTitle(`Elson Liang | Projects`);
   const { speed } = useTheme();
   const { goTo, finishLoad, isLoaded } = useContext(LoadingContext);
 
   useEffect(() => {
+    document.title = `Elson Liang | Projects`;
     finishLoad();
+    setIsLoaderVisible(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const fadeOutDuration = speed.slow;
   const frameDelay = speed.loading;
   const headerDelay = speed.loading + speed.normal;
   const pageDelay = speed.loading + speed.normal + speed.normal;
@@ -40,12 +43,21 @@ export const PageProjects: React.FC<IPageProjectsProps> = ({
       <Header
         isLoaded={isLoaded}
         delay={headerDelay}
-        tabIcon={<HeaderTabIcon href="/" onClick={() => goTo('/')} />}
+        tabIcon={
+          <HeaderTabIcon href="/" onClick={() => goTo('/', fadeOutDuration)} />
+        }
       >
-        <HeaderTab href="/projects" onClick={() => goTo('/projects')} isActive>
+        <HeaderTab
+          href="/projects"
+          onClick={() => goTo('/projects', fadeOutDuration)}
+          isActive
+        >
           PROJECTS
         </HeaderTab>
-        <HeaderTab href="/about" onClick={() => goTo('/about')}>
+        <HeaderTab
+          href="/about"
+          onClick={() => goTo('/about', fadeOutDuration)}
+        >
           ABOUT
         </HeaderTab>
       </Header>

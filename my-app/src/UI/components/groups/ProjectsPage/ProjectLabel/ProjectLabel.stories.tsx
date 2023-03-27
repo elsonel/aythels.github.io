@@ -13,6 +13,8 @@ export default {
     name: 'KINETIC BOARDWALK',
     type: 'Architecture',
     year: 2020,
+    href: '/',
+    isOpeningNewTab: false,
   },
 } as Meta;
 
@@ -21,3 +23,10 @@ const Template: Story<IProjectLabelProps> = (args) => (
 );
 
 export const Basic = Template.bind({});
+
+export const OpenNewPage = Template.bind({});
+OpenNewPage.args = {
+  ...OpenNewPage.args,
+  href: 'https://www.google.ca',
+  isOpeningNewTab: true,
+};

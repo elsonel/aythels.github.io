@@ -4,8 +4,9 @@ import { GreaterThanQuery } from '../../../utility/styles/ResponsiveCSS';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { FrameLayoutSticky } from '../../layout/FrameLayoutSticky/FrameLayoutSticky';
 import { FadeIn } from '../../other/FadeIn/FadeIn';
+import { ProjectData } from './helpers';
 import { ProjectHoverText } from './ProjectHoverText/ProjectHoverText';
-import { ProjectData, ProjectList } from './ProjectList/ProjectList';
+import { ProjectList } from './ProjectList/ProjectList';
 
 export interface IProjectsPageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -77,7 +78,7 @@ const LeftPosition = styled.div`
   position: absolute;
   bottom: 0px;
   left: 0px;
-  padding: 30px 20px;
+  padding: 50px 40px;
   ${GreaterThanQuery(
     0,
     0,

@@ -1,15 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
+import { ProjectData } from '../helpers';
 import { ProjectLabel } from '../ProjectLabel/ProjectLabel';
-
-export type ProjectData = {
-  group: string;
-  name: string;
-  type: string;
-  year: number;
-  description: string;
-};
 
 type ProjectDataWithIndex = ProjectData & { index: number };
 
@@ -42,14 +36,12 @@ export const ProjectList: React.FC<IProjectListProps> = ({
         <ProjectWrapper key={key}>
           <Label>/ {dataGroup[0].group} /</Label>
           <ProjectLabelColumn>
-            {dataGroup.map((p) => (
+            {dataGroup.map((project) => (
               <ProjectLabel
-                key={p.name}
-                name={p.name}
-                type={p.type}
-                year={p.year}
-                onHoverLeave={() => onHoverLeave && onHoverLeave(p.index)}
-                onHoverEnter={() => onHoverEnter && onHoverEnter(p.index)}
+                key={project.name}
+                onHoverLeave={() => onHoverLeave && onHoverLeave(project.index)}
+                onHoverEnter={() => onHoverEnter && onHoverEnter(project.index)}
+                {...project}
               />
             ))}
           </ProjectLabelColumn>
@@ -70,8 +62,8 @@ const Wrapper = styled.div`
 const ProjectWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: ${({ theme }) =>
-    `${theme.size.paddingVertical}px ${theme.size.paddingVertical}px`};
+  ${GreaterThan(0, `padding: 30px 20px;`)}
+  ${GreaterThan(800, `padding: 40px 30px;`)}
 `;
 
 const ProjectLabelColumn = styled.div`

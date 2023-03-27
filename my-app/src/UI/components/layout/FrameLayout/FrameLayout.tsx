@@ -46,11 +46,11 @@ const Wrapper = styled.div`
   // For child to fill the grid because min-height inheritance is buggy
   min-height: 100vh;
   min-height: 100dvh;
+
   display: grid;
 `;
 
 const Content = styled.div`
-  overflow: hidden;
   position: relative;
   width: 100%;
 

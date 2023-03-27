@@ -55,8 +55,8 @@ export const ThemeFont: ThemeFontInterface = {
       },
       size: {
         tiny: '0.70rem',
-        small: '0.80rem',
-        default: '0.94rem',
+        small: '0.84rem',
+        default: '0.96rem',
         large: '1.1rem',
         h6: '1.2rem',
         h5: '1.3rem',
