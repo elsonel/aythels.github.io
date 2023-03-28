@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { Awards } from './Awards/Awards';
@@ -18,8 +18,8 @@ export const AboutPage: React.FC<IAboutPageProps> = ({
   delay = 0,
   ...props
 }): React.ReactElement => {
-  const stagger = 150;
-  const logoDelay = delay + stagger;
+  const stagger = useTheme().speed.stagger;
+  const logoDelay = delay + stagger * 1;
   const backgroundDelay = delay + stagger * 2;
   const awardsDelay = delay + stagger * 3;
   const contactDelay = delay + stagger * 4;

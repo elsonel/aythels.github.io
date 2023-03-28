@@ -4,6 +4,7 @@ import { GalleryProjectNew, GalleryProjectNewProps } from '.';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
 import { Theme } from '../../../utility/themes/Theme';
+import { Frame } from '../../atoms/Frame/Frame';
 
 const BREAKPOINTS: GridBreakpoint[] = [
   {
@@ -77,7 +78,10 @@ export default {
 } as Meta;
 
 const Template: Story<GalleryProjectNewProps> = (args) => (
-  <GalleryProjectNew {...args} />
+  <>
+    <GalleryProjectNew {...args} />
+    <Frame />
+  </>
 );
 
 export const Basic = Template.bind({});

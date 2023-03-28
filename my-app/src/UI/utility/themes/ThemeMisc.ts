@@ -9,6 +9,7 @@ export interface SpeedInterface {
   normal: number;
   slow: number;
   loading: number;
+  stagger: number;
 }
 
 export interface SizeInterface {
@@ -50,6 +51,7 @@ export const ThemeMisc: ThemeMiscInterface = {
     normal: 250,
     slow: 500,
     loading: 500,
+    stagger: 150,
   },
   size: {
     headerHeight: 52,

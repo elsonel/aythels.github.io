@@ -34,7 +34,7 @@ const Name = styled(Paragraph).attrs(() => ({
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 
   ${GreaterThan(0, `font-size: 2.2rem; left: -2px; top: -2px;`)}
-  ${GreaterThan(440, `font-size: 3rem; left: -4px; top: -4px;`)}
+  ${GreaterThan(440, `font-size: 3rem; left: -3px; top: -3px;`)}
   line-height: 1;
   overflow-wrap: normal;
 `;
