@@ -4,10 +4,10 @@ import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { FrameLayoutSticky } from '../../layout/FrameLayoutSticky/FrameLayoutSticky';
 import { FadeIn } from '../../other/FadeIn/FadeIn';
-import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { BodyText } from './BodyText/BodyText';
 import { FactsList } from './FactsList/FactsList';
 import { Title } from './Title/Title';
+import { Divider } from './Divider/Divider';
 
 export interface IProjectDetailsPageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,11 +38,11 @@ export const ProjectDetailsPage: React.FC<IProjectDetailsPageProps> = ({
         <FadeIn isLoaded={isLoaded} delay={titleDelay}>
           <Title>{title}</Title>
         </FadeIn>
-        <Divider $isLoaded={isLoaded} $delay={titleDelay} />
+        <Divider isLoaded={isLoaded} delay={titleDelay} />
         <FadeIn isLoaded={isLoaded} delay={factsDelay}>
           <FactsList facts={facts} />
         </FadeIn>
-        <Divider $isLoaded={isLoaded} $delay={factsDelay} />
+        <Divider isLoaded={isLoaded} delay={factsDelay} />
         <BodyLayout>
           {paragraphs.map((p, i) => (
             <FadeIn
@@ -69,28 +69,4 @@ const BodyLayout = styled.div`
   flex-direction: column;
   ${GreaterThan(0, `gap: 50px; padding: 30px 0px;`)}
   ${GreaterThan(800, `gap: 80px; padding: 80px 0px;`)}
-`;
-
-const Animation = keyframes`
-  0% {
-    opacity: 0;
-    width: 0%;
-  }
-  100% {
-    opacity: 1;
-    width: 100%;
-  }
-`;
-
-const Divider = styled.div<{ $isLoaded: boolean; $delay: number }>`
-  box-sizing: border-box;
-  height: 2px;
-  width: 0%;
-  opacity: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.color.outline};
-
-  animation-fill-mode: forwards;
-  animation-duration: ${({ theme }) => theme.speed.slow}ms;
-  animation-delay: ${({ $delay }) => $delay}ms;
-  animation-name: ${({ $isLoaded }) => ($isLoaded ? Animation : 'none')};
 `;
