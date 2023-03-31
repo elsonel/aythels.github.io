@@ -4,12 +4,12 @@ import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { BodyCenter } from '../../../layout/BodyCenter/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
-export interface BodyTextProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IBodyTextProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   children?: string;
 }
 
-export const BodyText: React.FC<BodyTextProps> = ({
+export const BodyText: React.FC<IBodyTextProps> = ({
   title,
   children,
   ...props

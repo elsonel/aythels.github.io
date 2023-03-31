@@ -7,17 +7,25 @@ import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: string;
   color?: string;
+  onReady?: () => void;
 }
 
 export const Title: React.FC<TitleProps> = ({
   children,
   color: colorProp,
+  onReady,
   ...props
 }): React.ReactElement => {
   const { color } = useTheme();
   return (
     <Wrapper {...props}>
-      <StyledTextFit mode="single" forceSingleModeWidth min={24} max={1000}>
+      <StyledTextFit
+        mode="single"
+        forceSingleModeWidth
+        min={24}
+        max={140}
+        onReady={onReady}
+      >
         <Text color={colorProp ? colorProp : color.text}>{children}</Text>
       </StyledTextFit>
     </Wrapper>
@@ -34,6 +42,7 @@ const Wrapper = styled.div`
 const StyledTextFit = styled(Textfit)`
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -41,7 +50,7 @@ const Text = styled(Paragraph)`
   text-align: center;
   font-size: inherit;
   font-family: ${({ theme }) => theme.font.title.family};
-  line-height: 1;
+  line-height: 0.84;
   overflow-wrap: normal;
 
   transition: ${({ theme }) => theme.speed.slow}ms;

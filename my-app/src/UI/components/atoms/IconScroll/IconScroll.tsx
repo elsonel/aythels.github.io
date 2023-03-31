@@ -51,7 +51,7 @@ const Icon = styled.div<{ $color: string }>`
   &:before {
     position: absolute;
     content: '';
-    width: 15%;
+    width: 16%;
     aspect-ratio: 1;
     left: 0;
     right: 0;

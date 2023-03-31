@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { Title, TitleProps } from './Title';
 
 export default {
-  title: 'Groups/GalleryProjectNew/Title',
+  title: 'Groups/ProjectDetailsPage/Title',
   component: Title,
   args: {
     children: 'KINETIC BOARDWALK',

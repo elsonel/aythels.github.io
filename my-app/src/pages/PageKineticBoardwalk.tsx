@@ -1,4 +1,9 @@
-export const EXAMPLE_FACTS = [
+import React, { useContext, useEffect } from 'react';
+import { ProjectDetailsPage } from '../UI/components/groups/ProjectDetailsPage/ProjectDetailsPage';
+import { LoadingContext } from '../utility/LoadingContext';
+
+const TITLE = 'KINETIC BOARDWALK';
+const FACTS = [
   {
     label: 'TYPE',
     value: 'Public Mega-Infastructure',
@@ -21,7 +26,7 @@ export const EXAMPLE_FACTS = [
   },
 ];
 
-export const EXAMPLE_PARAGRAPHS = [
+const PARAGRAPHS = [
   {
     title: undefined,
     body: `                  
@@ -57,3 +62,17 @@ export const EXAMPLE_PARAGRAPHS = [
     `,
   },
 ];
+
+export const PageKineticBoardwalk: React.FC = (): React.ReactElement => {
+  const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);
+
+  useEffect(() => {
+    finishLoad();
+    document.title = `Elson Liang | Kinetic Boardwalk`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <ProjectDetailsPage title={TITLE} facts={FACTS} paragraphs={PARAGRAPHS} />
+  );
+};

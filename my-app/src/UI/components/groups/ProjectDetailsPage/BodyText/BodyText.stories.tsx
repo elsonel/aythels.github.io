@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { BodyText, BodyTextProps } from './BodyText';
+import { BodyText, IBodyTextProps } from './BodyText';
 
 export default {
   title: 'Groups/ProjectDetailsPage/BodyText',
@@ -15,6 +15,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<BodyTextProps> = (args) => <BodyText {...args} />;
+const Template: Story<IBodyTextProps> = (args) => <BodyText {...args} />;
 
 export const Basic = Template.bind({});

@@ -49,7 +49,7 @@ export const ThemeMisc: ThemeMiscInterface = {
     instant: 100,
     fast: 150,
     normal: 250,
-    slow: 500,
+    slow: 600,
     loading: 500,
     stagger: 150,
   },

@@ -39,8 +39,6 @@ export const MainPage: React.FC = (): React.ReactElement => {
     setDestinedRoute(currentRoute);
   }, [currentRoute]);
 
-  let navigate = useNavigate();
-
   return (
     <>
       <Outlet />

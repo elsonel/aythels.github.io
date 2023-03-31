@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LoadingContextProvider } from './utility/LoadingContext';
 import { AboutPage, MainPage, ProjectsPage } from './pages/MainPage';
+import { PageKineticBoardwalk } from './pages/PageKineticBoardwalk';
 
 // https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
 // https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
@@ -16,6 +17,10 @@ export const App: React.FC = (): React.ReactElement => {
             <Route index element={<Navigate to="/projects" replace />} />
             <Route path="projects" element={<ProjectsPage />} />
             <Route path="about" element={<AboutPage />} />
+            <Route
+              path="projects/kinetic-boardwalk"
+              element={<PageKineticBoardwalk />}
+            />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
