@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 import { Landing } from './Landing/Landing';
 import { Body } from './Body/Body';
 
-const LANDING_SCROLL_LENGTH = 600;
+const LANDING_SCROLL_LENGTH = 800;
 
 export interface IProjectDetailsPageProps
   extends React.HTMLAttributes<HTMLDivElement> {

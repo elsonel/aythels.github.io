@@ -4,7 +4,7 @@ import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { EXAMPLE_FACTS, EXAMPLE_PARAGRAPHS } from '../helpers';
 import { Body, IBodyProps } from './Body';
 
-const INITIAL_LENGTH = 600;
+const INITIAL_LENGTH = 800;
 
 export default {
   title: 'Groups/ProjectDetailsPage/Body',

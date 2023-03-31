@@ -29,7 +29,7 @@ export const Landing: React.FC<LandingProps> = ({
   prototypeHref,
   imageSrc,
   imageSrcSet,
-  scrollLength = 600,
+  scrollLength = 800,
   ...props
 }): React.ReactElement => {
   const { color, speed, size } = useTheme();
@@ -88,11 +88,9 @@ export const Landing: React.FC<LandingProps> = ({
               topLimit={size.headerHeight}
             >
               <FadeIn offset={30} delay={titleDelay}>
-                <FrameLayoutHorizontal>
-                  <Title color={isVisible ? color.background : color.text}>
-                    {title}
-                  </Title>
-                </FrameLayoutHorizontal>
+                <TitleWrapper $isVisible={isVisible}>
+                  <Title color={color.background}>{title}</Title>
+                </TitleWrapper>
               </FadeIn>
             </FixedStickyScroll>
             <FixedScrollFade
@@ -131,6 +129,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
     $isVisible ? theme.color.background : 'transparent'};
+  z-index: ${({ theme }) => theme.layer.modal};
 `;
 
 const OverlayContent = styled.div<{ $isVisible: boolean }>`
@@ -213,4 +212,8 @@ const Icon = styled(IconScroll)`
   height: 44px;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const TitleWrapper = styled(FrameLayoutHorizontal)<{ $isVisible: boolean }>`
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 `;

@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import useOnWindowResize from '../../../../utility/hooks/useOnWindowResize';
 import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
@@ -18,7 +12,7 @@ import { Divider } from '../Divider/Divider';
 import { FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
 
-const STATIONARY_LENGTH = 600;
+const STATIONARY_LENGTH = 800;
 
 function getScrollBlockHeight(contentHeight: number) {
   const contentScrollHeight = Math.max(0, contentHeight - window.innerHeight);
@@ -39,7 +33,8 @@ export const Body: React.FC<IBodyProps> = ({
   scrollStart = 0,
   ...props
 }): React.ReactElement => {
-  const stagger = useTheme().speed.stagger;
+  const { speed, color } = useTheme();
+  const stagger = speed.stagger;
   const [isLoaded, setIsLoaded] = useState(scrollStart === 0);
   const [height, setHeight] = useState(0);
 
@@ -77,7 +72,12 @@ export const Body: React.FC<IBodyProps> = ({
             initialOpacity={1}
             finalOpacity={1}
           >
-            <Title onReady={onWindowResize}>{title}</Title>
+            <Title
+              onReady={onWindowResize}
+              color={isLoaded ? color.text : color.background}
+            >
+              {title}
+            </Title>
             <Divider isLoaded={isLoaded} delay={factsDelay} />
             <FadeIn isLoaded={isLoaded} delay={factsDelay} offset={50}>
               <FactsList facts={facts} />
@@ -103,6 +103,7 @@ export const Body: React.FC<IBodyProps> = ({
 
 const Wrapper = styled.div`
   position: fixed;
+  width: 100%;
   top: 0px;
   left: 0px;
 `;
