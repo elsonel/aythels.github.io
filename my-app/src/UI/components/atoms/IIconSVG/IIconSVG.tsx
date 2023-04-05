@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
 import { IIcon, IIconProps } from '../IIcon';
 
 export interface IIconSVGProps extends IIconProps {

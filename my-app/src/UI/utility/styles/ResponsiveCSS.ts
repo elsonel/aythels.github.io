@@ -9,8 +9,8 @@ export const LessThan = (
   media: keyof typeof Media | number | string,
   style: string
 ): string => {
-  if (Media[media]) media = Media[media] + 1 + `px`;
-  else if (typeof media === 'number') media = `${media}px`;
+  if (Media[media]) media = Media[media] + `px`;
+  else if (typeof media === 'number') media = `${media - 1}px`;
   return `
     @media all and (max-width: ${media}) {
         ${style}
@@ -23,7 +23,7 @@ export const GreaterThan = (
   media: keyof typeof Media | number,
   style: string
 ): string => {
-  if (Media[media]) media = Media[media] + 1 + `px`;
+  if (Media[media]) media = Media[media] + `px`;
   else if (typeof media === 'number') media = `${media}px`;
   return `
     @media all and (min-width: ${media}) {
@@ -33,6 +33,9 @@ export const GreaterThan = (
 };
 
 export const LessThanQuery = (width = 0, height = 0, style: string) => {
+  width = width - 1;
+  height = height - 1;
+
   return `  
     @media all and (max-width: ${width}px) and (max-height: ${height}px) {
       ${style}

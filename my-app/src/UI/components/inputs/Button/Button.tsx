@@ -90,7 +90,7 @@ const ButtonDisabled = css`
 `;
 
 const ButtonEnabled = css<{ $isHovered: boolean }>`
-  opacity: ${({ $isHovered }) => ($isHovered ? 0.8 : 1.0)};
+  opacity: ${({ $isHovered }) => ($isHovered ? 1 : 0.8)};
   cursor: pointer;
 `;
 
@@ -109,7 +109,7 @@ const ButtonStyled = styled.button<{
   justify-content: center;
   align-items: center;
 
-  border: 1.5px solid
+  border: 1px solid
     ${({ $isHovered, $border, $borderHovered }) =>
       $isHovered ? $borderHovered : $border};
   background-color: ${({ $isHovered, $color, $colorHovered }) =>

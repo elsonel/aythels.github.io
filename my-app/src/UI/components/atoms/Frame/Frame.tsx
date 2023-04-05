@@ -32,6 +32,7 @@ export const Frame: React.FC<IFrameProps> = ({
 };
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   overflow: hidden;
   position: fixed;
   top: 0px;
@@ -63,6 +64,7 @@ const BottomRightAnimation = ({ theme }: any) => keyframes`
 `;
 
 const BottomRight = styled.div<{ $isLoaded: boolean; $delay: number }>`
+  box-sizing: border-box;
   position: absolute;
   right: ${({ theme }) => theme.size.padding}px;
   bottom: ${({ theme }) => theme.size.padding}px;
@@ -95,10 +97,11 @@ const Top = styled.div<{
   $isLoaded: boolean;
   $delay: number;
 }>`
+  box-sizing: border-box;
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 0px;
+  width: 0px; // -> 100%
   height: ${({ theme }) => theme.size.headerHeight}px;
   border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
@@ -119,11 +122,12 @@ const LeftAnimation = ({ theme }: any) => keyframes`
 `;
 
 const Left = styled.div<{ $isLoaded: boolean; $delay: number }>`
+  box-sizing: border-box;
   position: absolute;
   top: 0px;
   left: 0px;
   width: ${({ theme }) => theme.size.headerHeight}px;
-  height: 0px;
+  height: 0px; // -> 100% - padding
   border-right: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
 
