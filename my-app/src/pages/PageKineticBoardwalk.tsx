@@ -1,8 +1,17 @@
 import React, { useContext, useEffect } from 'react';
-import { ProjectDetailsPage } from '../UI/components/groups/ProjectDetailsPage/ProjectDetailsPage';
 import { LoadingContext } from '../utility/LoadingContext';
+import { PageNavButtons } from '../UI/components/inputs/PageNavButtons';
+import { ROUTES } from '../utility/routes';
+import { Frame } from '../UI/components/atoms/Frame/Frame';
+import { Body } from '../UI/components/groups/ProjectDetailsPage/Body/Body';
+import {
+  LANDING_SCROLL_LENGTH,
+  Landing,
+} from '../UI/components/groups/ProjectDetailsPage/Landing/Landing';
 
+const LANDING_IMAGE = '/images/examples/landscape.jpg';
 const TITLE = 'KINETIC BOARDWALK';
+const SUBTITLE = 'Drifting Landscapes';
 const FACTS = [
   {
     label: 'TYPE',
@@ -63,16 +72,35 @@ const PARAGRAPHS = [
   },
 ];
 
+const PAGE_TITLE = `Elson Liang | Kinetic Boardwalk`;
+
 export const PageKineticBoardwalk: React.FC = (): React.ReactElement => {
   const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);
 
   useEffect(() => {
     finishLoad();
-    document.title = `Elson Liang | Kinetic Boardwalk`;
+    document.title = PAGE_TITLE;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <ProjectDetailsPage title={TITLE} facts={FACTS} paragraphs={PARAGRAPHS} />
+    <>
+      <Body
+        scrollStart={LANDING_SCROLL_LENGTH}
+        title={TITLE}
+        facts={FACTS}
+        paragraphs={PARAGRAPHS}
+      />
+      <PageNavButtons
+        backHref={ROUTES.architecture.foldPavilion}
+        forwardHref={ROUTES.architecture.basiliskTower}
+      />
+      <Landing
+        scrollLength={LANDING_SCROLL_LENGTH}
+        title={TITLE}
+        subtitle={SUBTITLE}
+        imageSrc={LANDING_IMAGE}
+      />
+    </>
   );
 };

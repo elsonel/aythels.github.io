@@ -12,7 +12,7 @@ import { Divider } from '../Divider/Divider';
 import { FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
 
-const STATIONARY_LENGTH = 800;
+const STATIONARY_LENGTH = 600;
 
 function getScrollBlockHeight(contentHeight: number) {
   const contentScrollHeight = Math.max(0, contentHeight - window.innerHeight);

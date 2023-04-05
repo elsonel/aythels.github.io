@@ -21,8 +21,8 @@ export const PageNavButtons: React.FC<PageNavButtonsProps> = ({
   ...props
 }): React.ReactElement => {
   return (
-    <FrameLayoutSticky {...props}>
-      <Wrapper>
+    <Wrapper {...props}>
+      <ButtonWrapper>
         <LeftLink href={backHref} onClick={onBackClick} $isVisible={!!backHref}>
           <Button direction="LEFT" />
         </LeftLink>
@@ -31,12 +31,16 @@ export const PageNavButtons: React.FC<PageNavButtonsProps> = ({
             <Button direction="RIGHT">NEXT PROJECT</Button>
           </RightLink>
         )}
-      </Wrapper>
-    </FrameLayoutSticky>
+      </ButtonWrapper>
+    </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(FrameLayoutSticky)`
+  z-index: ${({ theme }) => theme.layer.header};
+`;
+
+const ButtonWrapper = styled.div`
   position: absolute;
   bottom: 0px;
   display: flex;

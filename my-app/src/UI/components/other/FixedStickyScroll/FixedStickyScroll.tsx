@@ -35,7 +35,7 @@ export const FixedStickyScroll: React.FC<FixedStickyScrollProps> = ({
         ? speed.instant + 'ms'
         : '0ms';
     },
-    [scrollSpeed]
+    [scrollSpeed, speed.instant]
   );
 
   const onResize = useCallback(() => {

@@ -53,7 +53,10 @@ export const MainPage: React.FC = (): React.ReactElement => {
           <HeaderTab
             key={route}
             href={route}
-            isActive={destinedRoute === route}
+            isActive={
+              destinedRoute === route ||
+              (route !== '/about' && destinedRoute !== '/about')
+            }
             onClick={() => {
               setDestinedRoute(route);
               goTo(route, speed.slow);

@@ -23,7 +23,7 @@ export const PageNavButton: React.FC<PageNavButtonProps> = ({
     <StyledButton
       border={color.outline}
       borderHovered={color.text}
-      color="transparent"
+      color={color.transparentWhite}
       {...props}
     >
       {direction === 'RIGHT' && children && <Text>{children}</Text>}
@@ -86,7 +86,7 @@ export const PageNavButton: React.FC<PageNavButtonProps> = ({
     <StyledButton
       border={color.outline}
       borderHovered={color.text}
-      color={color.background}
+      color={color.transparentWhite}
       colorHovered={color.text}
       {...props}
     >

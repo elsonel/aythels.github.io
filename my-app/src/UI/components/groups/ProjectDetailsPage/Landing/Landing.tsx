@@ -14,6 +14,8 @@ import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { Title } from '../Title/Title';
 import { FrameLayoutHorizontal } from '../../../layout/FrameLayoutHorizontal/FrameLayoutHorizontal';
 
+export const LANDING_SCROLL_LENGTH = 800;
+
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   subtitle: string;
@@ -29,12 +31,12 @@ export const Landing: React.FC<LandingProps> = ({
   prototypeHref,
   imageSrc,
   imageSrcSet,
-  scrollLength = 800,
+  scrollLength = LANDING_SCROLL_LENGTH,
   ...props
 }): React.ReactElement => {
   const { color, speed, size } = useTheme();
   const [isVisible, setIsVisible] = useState(true);
-  const IMAGE_OFFSET = scrollLength / 8;
+  const IMAGE_OFFSET = scrollLength / 4;
 
   const titleDelay = speed.stagger * 1;
   const prototypeDelay = speed.stagger * 2;

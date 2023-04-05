@@ -53,7 +53,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
         $delay={delay}
         onAnimationEnd={() => {
           if (ref.current) {
-            ref.current.style.pointerEvents = 'auto';
+            ref.current.style.pointerEvents = 'inherit';
           }
         }}
       >
