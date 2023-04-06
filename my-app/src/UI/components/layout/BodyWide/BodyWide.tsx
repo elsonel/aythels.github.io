@@ -26,6 +26,7 @@ export const BodyWide: React.FC<IBodyWideProps> = ({
 
 const Wrapper = styled.div`
   width: 100%;
+  height: inherit;
 `;
 
 const CenterLayout = `
@@ -40,6 +41,7 @@ const WideLayout = `
 
 const Layout = styled.div<{ $snapWidth: number }>`
   box-sizing: border-box;
+  height: inherit;
 
   ${GreaterThan(0, CenterLayout)}
   ${({ $snapWidth }) => GreaterThan($snapWidth, WideLayout)}

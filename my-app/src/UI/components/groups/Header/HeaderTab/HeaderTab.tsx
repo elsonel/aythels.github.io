@@ -44,7 +44,7 @@ const Text = styled(Paragraph).attrs(() => ({
   color: ${({ $isHovered, theme }) =>
     $isHovered ? theme.color.text : theme.color.textNeutral};
   font-size: ${({ theme }) => theme.font.mono.size.small};
-  font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   font-family: ${({ theme }) => theme.font.mono.family};
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;

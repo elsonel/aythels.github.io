@@ -72,7 +72,7 @@ const PARAGRAPHS = [
   },
 ];
 
-const PAGE_TITLE = `Elson Liang | Kinetic Boardwalk`;
+const PAGE_TITLE = `ELSON LIANG | Kinetic Boardwalk`;
 
 export const PageKineticBoardwalk: React.FC = (): React.ReactElement => {
   const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);

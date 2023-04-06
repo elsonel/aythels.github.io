@@ -41,16 +41,15 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   height: 100dvh;
 
-  transform: ${({ $isVisible }) => ($isVisible ? 'scale(1)' : 'scale(1.05)')};
   background-color: ${({ theme }) => theme.color.background};
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => theme.speed.normal}ms;
-  transition-property: opacity, transform, height;
+  transition-property: opacity;
 `;
 
 const Content = styled.div`

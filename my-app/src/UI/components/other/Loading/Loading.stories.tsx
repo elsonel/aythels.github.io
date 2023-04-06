@@ -7,7 +7,6 @@ export default {
   component: Loading,
   args: {
     isVisible: true,
-    progress: 0.2,
   },
 } as Meta;
 
@@ -16,12 +15,6 @@ const Template: Story<LoadingProps> = (args) => <Loading {...args} />;
 export const Basic = Template.bind({});
 Basic.args = {
   ...Basic.args,
-};
-
-export const NoProgress = Template.bind({});
-NoProgress.args = {
-  ...NoProgress.args,
-  progress: undefined,
 };
 
 export const Tablet = Template.bind({});

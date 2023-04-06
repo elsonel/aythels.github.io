@@ -30,7 +30,7 @@ const Name = styled(Paragraph).attrs(() => ({
 
   color: ${({ theme }) => theme.color.text};
   font-family: ${({ theme }) => theme.font.mono.family};
-  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
+  font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 
   ${GreaterThan(0, `font-size: 2.2rem; left: -2px; top: -2px;`)}
