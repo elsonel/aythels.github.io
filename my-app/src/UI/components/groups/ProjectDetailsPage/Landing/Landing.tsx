@@ -14,24 +14,28 @@ import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { Title } from '../Title/Title';
 import { FrameLayoutHorizontal } from '../../../layout/FrameLayoutHorizontal/FrameLayoutHorizontal';
 
-export const LANDING_SCROLL_LENGTH = 800;
+export const LANDING_SCROLL_LENGTH = 600;
 
 export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
+  isTextLoaded?: boolean;
   title: string;
   subtitle: string;
   prototypeHref?: string;
   imageSrc: string;
   imageSrcSet?: string;
   scrollLength?: number;
+  onImageLoad?: (isSuccessful: boolean) => void;
 }
 
 export const Landing: React.FC<LandingProps> = ({
+  isTextLoaded = true,
   title,
   subtitle,
   prototypeHref,
   imageSrc,
   imageSrcSet,
   scrollLength = LANDING_SCROLL_LENGTH,
+  onImageLoad,
   ...props
 }): React.ReactElement => {
   const { color, speed, size } = useTheme();
@@ -61,7 +65,13 @@ export const Landing: React.FC<LandingProps> = ({
             finalOpacity={1}
           >
             <ImageWrapper $offset={IMAGE_OFFSET}>
-              <LandingImage alt={title} src={imageSrc} srcSet={imageSrcSet} />
+              <LandingImage
+                alt={title}
+                src={imageSrc}
+                srcSet={imageSrcSet}
+                onLoad={() => onImageLoad && onImageLoad(true)}
+                onError={() => onImageLoad && onImageLoad(false)}
+              />
             </ImageWrapper>
           </FixedScrollFade>
           <LandingTextWrapper>
@@ -71,7 +81,7 @@ export const Landing: React.FC<LandingProps> = ({
                 scrollDuration={200}
                 finalOffsetY={-100}
               >
-                <FadeIn delay={prototypeDelay}>
+                <FadeIn delay={prototypeDelay} isLoaded={isTextLoaded}>
                   <LinkWrapper>
                     <LinkWithUnderline
                       linkProps={{
@@ -89,7 +99,7 @@ export const Landing: React.FC<LandingProps> = ({
               scrollSpeed={window.innerHeight / scrollLength}
               topLimit={size.headerHeight}
             >
-              <FadeIn offset={30} delay={titleDelay}>
+              <FadeIn offset={30} delay={titleDelay} isLoaded={isTextLoaded}>
                 <TitleWrapper $isVisible={isVisible}>
                   <Title color={color.background}>{title}</Title>
                 </TitleWrapper>
@@ -100,7 +110,7 @@ export const Landing: React.FC<LandingProps> = ({
               scrollDuration={200}
               finalOffsetY={-100}
             >
-              <FadeIn delay={subtitleDelay}>
+              <FadeIn delay={subtitleDelay} isLoaded={isTextLoaded}>
                 <Subtitle>{subtitle}</Subtitle>
               </FadeIn>
             </FixedScrollFade>
@@ -110,7 +120,7 @@ export const Landing: React.FC<LandingProps> = ({
               scrollDuration={200}
               finalOffsetY={0}
             >
-              <FadeIn delay={iconDelay}>
+              <FadeIn delay={iconDelay} isLoaded={isTextLoaded}>
                 <Icon />
               </FadeIn>
             </FixedScrollFade>
@@ -131,7 +141,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
     $isVisible ? theme.color.background : 'transparent'};
-  z-index: ${({ theme }) => theme.layer.modal};
+  z-index: ${({ theme }) => theme.layer.landing};
 `;
 
 const OverlayContent = styled.div<{ $isVisible: boolean }>`

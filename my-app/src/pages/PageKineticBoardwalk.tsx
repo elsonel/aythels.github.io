@@ -1,18 +1,28 @@
-import React, { useContext, useEffect } from 'react';
-import { LoadingContext } from '../utility/LoadingContext';
+import React, { useEffect, useState } from 'react';
 import { PageNavButtons } from '../UI/components/inputs/PageNavButtons';
 import { ROUTES } from '../utility/routes';
-import { Frame } from '../UI/components/atoms/Frame/Frame';
 import { Body } from '../UI/components/groups/ProjectDetailsPage/Body/Body';
 import {
   LANDING_SCROLL_LENGTH,
   Landing,
 } from '../UI/components/groups/ProjectDetailsPage/Landing/Landing';
+import {
+  Loading,
+  MINIMUM_DURATION,
+} from '../UI/components/other/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
+import { LoadingBlank } from '../UI/components/other/LoadingBlank/LoadingBlank';
+import { Frame } from '../UI/components/atoms/Frame/Frame';
+import { Header } from '../UI/components/groups/Header/Header';
+import { HeaderTabIcon } from '../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
+import { HeaderTab } from '../UI/components/groups/Header/HeaderTab/HeaderTab';
+import { ProjectTemplate } from './ProjectTemplate';
 
-const LANDING_IMAGE = '/images/examples/landscape.jpg';
-const TITLE = 'KINETIC BOARDWALK';
-const SUBTITLE = 'Drifting Landscapes';
-const FACTS = [
+const PROJECT_LANDING_IMAGE = '/images/examples/landscape.jpg';
+const PROJECT_TITLE = 'KINETIC BOARDWALK';
+const PROJECT_SUBTITLE = 'Drifting Landscapes';
+
+const PROJECT_FACTS = [
   {
     label: 'TYPE',
     value: 'Public Mega-Infastructure',
@@ -35,7 +45,7 @@ const FACTS = [
   },
 ];
 
-const PARAGRAPHS = [
+const PROJECT_PARAGRAPHS = [
   {
     title: undefined,
     body: `                  
@@ -72,35 +82,20 @@ const PARAGRAPHS = [
   },
 ];
 
+const BACK_ROUTE = ROUTES.architecture.foldPavilion;
+const FORWARD_ROUTE = ROUTES.architecture.basiliskTower;
 const PAGE_TITLE = `ELSON LIANG | Kinetic Boardwalk`;
 
-export const PageKineticBoardwalk: React.FC = (): React.ReactElement => {
-  const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);
-
-  useEffect(() => {
-    finishLoad();
-    document.title = PAGE_TITLE;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <>
-      <Body
-        scrollStart={LANDING_SCROLL_LENGTH}
-        title={TITLE}
-        facts={FACTS}
-        paragraphs={PARAGRAPHS}
-      />
-      <PageNavButtons
-        backHref={ROUTES.architecture.foldPavilion}
-        forwardHref={ROUTES.architecture.basiliskTower}
-      />
-      <Landing
-        scrollLength={LANDING_SCROLL_LENGTH}
-        title={TITLE}
-        subtitle={SUBTITLE}
-        imageSrc={LANDING_IMAGE}
-      />
-    </>
-  );
-};
+export const PageKineticBoardwalk: React.FC = (): React.ReactElement => (
+  <ProjectTemplate
+    projectLandingImage={PROJECT_LANDING_IMAGE}
+    projectTitle={PROJECT_TITLE}
+    projectSubtitle={PROJECT_SUBTITLE}
+    projectPrototypeLink={undefined}
+    projectFacts={PROJECT_FACTS}
+    projectParagraphs={PROJECT_PARAGRAPHS}
+    backRoute={BACK_ROUTE}
+    forwardRoute={FORWARD_ROUTE}
+    pageTitle={PAGE_TITLE}
+  />
+);

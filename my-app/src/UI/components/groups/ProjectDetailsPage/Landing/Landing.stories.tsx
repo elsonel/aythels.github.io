@@ -15,7 +15,9 @@ const BackTextWrapper = styled.div`
 export default {
   title: 'Groups/ProjectDetailsPage/Landing',
   component: Landing,
+  argTypes: { onImageLoad: { action: 'Image loaded' } },
   args: {
+    isTextLoaded: true,
     title: 'KINETIC BOARDWALK',
     subtitle: 'Drifting Landscapes',
     imageSrc: Theme.image.exampleSquareSmall,

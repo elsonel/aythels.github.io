@@ -45,7 +45,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   height: 100vh;
   height: 100dvh;
 
-  background-color: ${({ theme }) => theme.color.background};
+  background: lightblue;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => theme.speed.normal}ms;
@@ -56,5 +56,4 @@ const Content = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background: lightblue;
 `;

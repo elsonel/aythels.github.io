@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 import { Frame } from '../UI/components/atoms/Frame';
 import { AboutPage as AboutPageComponent } from '../UI/components/groups/AboutPage/AboutPage';
 import { Header } from '../UI/components/groups/Header/Header';
@@ -8,102 +7,128 @@ import { HeaderTab } from '../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
 import { ProjectsPage as ProjectsPageComponent } from '../UI/components/groups/ProjectsPage/ProjectsPage';
 import { PROJECT_DATA, BIO_TEXT } from '../utility/constants';
-import { LoadingContext } from '../utility/LoadingContext';
+import { MainPageContext } from '../utility/MainPageContext';
+import {
+  Loading,
+  MINIMUM_DURATION,
+} from '../UI/components/other/Loading/Loading';
+import { ROUTES } from '../utility/routes';
+import { LoadingBlank } from '../UI/components/other/LoadingBlank/LoadingBlank';
+import useOnNewPageMount from '../utility/useOnNewPageMount';
 
-const FRAME_DELAY = 300;
-const HEADING_DELAY = 300;
-
-const TABS: {
-  [key: string]: {
-    title: string;
-    label: string;
-  };
-} = {
-  '/projects': {
-    title: `Elson Liang | Projects`,
-    label: 'PROJECTS',
-  },
-  '/about': {
-    title: `Elson Liang | About`,
-    label: 'ABOUT',
-  },
-};
+const FRAME_DELAY = 200;
+const HEADING_DELAY = 400;
+const CONTENT_DELAY = 500;
+const CONTENT_FADE_OUT_DURATION = 350;
 
 export const MainPage: React.FC = (): React.ReactElement => {
-  const { speed } = useTheme();
-  const { goTo } = useContext(LoadingContext);
+  const { setIsChildDelayed, setIsLoaded, reset } = useContext(MainPageContext);
+  const [isLoaderVisible, setLoaderVisible] = useState(true);
   const currentRoute = useLocation().pathname;
-  const [destinedRoute, setDestinedRoute] = useState<string>(currentRoute);
+  const [navTarget, setNavTarget] = useState<string>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setDestinedRoute(currentRoute);
-  }, [currentRoute]);
+    const timeout = setTimeout(() => {
+      setLoaderVisible(false);
+      setIsLoaded(true);
+    }, MINIMUM_DURATION);
+    return () => {
+      clearTimeout(timeout);
+      reset();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!navTarget) return;
+
+    setIsLoaded(false);
+    const timeout = setTimeout(() => {
+      navigate(navTarget);
+      setIsChildDelayed(false);
+      setIsLoaded(true);
+    }, CONTENT_FADE_OUT_DURATION);
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navTarget]);
 
   return (
     <>
       <Outlet />
-      <Frame delay={speed.loading} />
+      <Frame isLoaded={!isLoaderVisible} delay={FRAME_DELAY} />
       <Header
-        delay={speed.loading + FRAME_DELAY}
+        isLoaded={!isLoaderVisible}
+        delay={HEADING_DELAY}
         tabIcon={
-          <HeaderTabIcon href="/" onClick={() => goTo('/', speed.slow)} />
+          <HeaderTabIcon
+            href={ROUTES.index}
+            onClick={() => setNavTarget(ROUTES.projects)}
+          />
         }
       >
-        {Object.entries(TABS).map(([route, data]) => (
-          <HeaderTab
-            key={route}
-            href={route}
-            isActive={
-              destinedRoute === route ||
-              (route !== '/about' && destinedRoute !== '/about')
-            }
-            onClick={() => {
-              setDestinedRoute(route);
-              goTo(route, speed.slow);
-            }}
-          >
-            {data.label}
-          </HeaderTab>
-        ))}
+        <HeaderTab
+          href={ROUTES.projects}
+          children="PROJECTS"
+          onClick={() => setNavTarget(ROUTES.projects)}
+          isActive={
+            navTarget
+              ? navTarget === ROUTES.projects
+              : currentRoute === ROUTES.projects
+          }
+        />
+        <HeaderTab
+          href={ROUTES.about}
+          children="ABOUT"
+          onClick={() => setNavTarget(ROUTES.about)}
+          isActive={
+            navTarget
+              ? navTarget === ROUTES.about
+              : currentRoute === ROUTES.about
+          }
+        />
       </Header>
+      <Loading isVisible={isLoaderVisible} />
     </>
   );
 };
 
 export const ProjectsPage = (): React.ReactElement => {
-  const { speed } = useTheme();
-  const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);
-
-  useEffect(() => {
-    finishLoad();
-    document.title = `Elson Liang | Projects`;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { isLoaded, isChildDelayed } = useContext(MainPageContext);
+  const [navTarget, setNavTarget] = useState<string>();
+  const navigate = useNavigate();
+  useOnNewPageMount(`ELSON LIANG | Projects`);
 
   return (
-    <ProjectsPageComponent
-      isLoaded={isLoaded}
-      projectData={PROJECT_DATA}
-      defaultHoverText={BIO_TEXT}
-      delay={isFirstLoad ? speed.loading + FRAME_DELAY + HEADING_DELAY : 0}
-    />
+    <>
+      <ProjectsPageComponent
+        isLoaded={isLoaded}
+        projectData={PROJECT_DATA.map((project) => {
+          return {
+            ...project,
+            onClick: () =>
+              !project.isOpeningNewTab && setNavTarget(project.href),
+          };
+        })}
+        defaultHoverText={BIO_TEXT}
+        delay={isChildDelayed ? CONTENT_DELAY : 0}
+      />
+      <LoadingBlank
+        isVisible={!!navTarget}
+        onVisibleComplete={() => navTarget && navigate(navTarget)}
+      />
+    </>
   );
 };
 
 export const AboutPage = (): React.ReactElement => {
-  const { speed } = useTheme();
-  const { isLoaded, finishLoad, isFirstLoad } = useContext(LoadingContext);
-
-  useEffect(() => {
-    finishLoad();
-    document.title = `Elson Liang | About`;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { isLoaded, isChildDelayed } = useContext(MainPageContext);
+  useOnNewPageMount(`ELSON LIANG | About`);
 
   return (
     <AboutPageComponent
       isLoaded={isLoaded}
-      delay={isFirstLoad ? speed.loading + FRAME_DELAY + HEADING_DELAY : 0}
+      delay={isChildDelayed ? CONTENT_DELAY : 0}
     />
   );
 };

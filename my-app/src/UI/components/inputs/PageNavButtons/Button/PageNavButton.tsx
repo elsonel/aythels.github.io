@@ -108,7 +108,7 @@ const StyledButton = styled(ButtonReverse)`
   min-width: ${({ theme }) => theme.size.headerHeight}px;
   height: ${({ theme }) => theme.size.headerHeight}px;
 
-  color: ${({ theme }) => theme.color.textNeutral};
+  color: ${({ theme }) => theme.color.text};
 
   &:hover {
     color: ${({ theme }) => theme.color.background};

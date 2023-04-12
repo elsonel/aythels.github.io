@@ -4,8 +4,10 @@ import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
 import { BodyCenter } from '../../../layout/BodyCenter/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
+export type FactData = { label: string; value: string };
+
 export interface FactsListProps extends React.HTMLAttributes<HTMLDivElement> {
-  facts: { label: string; value: string }[];
+  facts: FactData[];
 }
 
 export const FactsList: React.FC<FactsListProps> = ({

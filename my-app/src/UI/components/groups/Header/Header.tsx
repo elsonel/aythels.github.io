@@ -10,6 +10,7 @@ export interface IHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement<IHeaderTabProps>[];
   isLoaded?: boolean;
   delay?: number;
+  isAnimating?: boolean;
 }
 
 export const Header: React.FC<IHeaderProps> = ({
@@ -17,16 +18,26 @@ export const Header: React.FC<IHeaderProps> = ({
   children = [],
   isLoaded = true,
   delay = 0,
+  isAnimating = true,
   ...props
 }): React.ReactElement => {
   return (
     <Wrapper {...props}>
-      <FadeIn isLoaded={isLoaded} delay={delay} offset={0}>
-        <Content>
-          {tabIcon && <IconWrapper>{tabIcon}</IconWrapper>}
-          <Row>{children}</Row>
-        </Content>
-      </FadeIn>
+      {isAnimating ? (
+        <FadeIn isLoaded={isLoaded} delay={delay} offset={0}>
+          <Content>
+            {tabIcon && <IconWrapper>{tabIcon}</IconWrapper>}
+            <Row>{children}</Row>
+          </Content>
+        </FadeIn>
+      ) : (
+        isLoaded && (
+          <Content>
+            {tabIcon && <IconWrapper>{tabIcon}</IconWrapper>}
+            <Row>{children}</Row>
+          </Content>
+        )
+      )}
     </Wrapper>
   );
 };

@@ -70,7 +70,7 @@ const Wrapper = styled.div<{
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 
   ${({ theme, $isVisible }) =>
-    !$isVisible && `transition: ${theme.speed.slow}ms;`};
+    !$isVisible && `transition: ${theme.speed.normalSlow}ms;`};
 `;
 
 const Content = styled.div<{

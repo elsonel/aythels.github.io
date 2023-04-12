@@ -1,4 +1,5 @@
 export const ROUTES = {
+  index: '/',
   about: '/about',
   projects: '/projects',
   userInterface: {

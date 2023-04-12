@@ -7,6 +7,7 @@ export default {
   args: {
     isLoaded: true,
     delay: 500,
+    isAnimating: true,
   },
 } as Meta;
 

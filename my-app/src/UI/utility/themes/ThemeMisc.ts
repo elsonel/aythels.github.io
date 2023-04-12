@@ -1,5 +1,6 @@
 export interface LayerInterface {
   header: number;
+  landing: number;
   modal: number;
 }
 
@@ -7,6 +8,7 @@ export interface SpeedInterface {
   instant: number;
   fast: number;
   normal: number;
+  normalSlow: number;
   slow: number;
   loading: number;
   stagger: number;
@@ -42,13 +44,15 @@ export interface ThemeMiscInterface {
 
 export const ThemeMisc: ThemeMiscInterface = {
   layer: {
-    header: 9998,
+    header: 9997,
+    landing: 9998,
     modal: 9999,
   },
   speed: {
-    instant: 100,
+    instant: 80,
     fast: 150,
     normal: 250,
+    normalSlow: 350,
     slow: 600,
     loading: 500,
     stagger: 150,

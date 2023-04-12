@@ -9,7 +9,7 @@ import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade'
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { BodyText } from '../BodyText/BodyText';
 import { Divider } from '../Divider/Divider';
-import { FactsList } from '../FactsList/FactsList';
+import { FactData, FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
 
 const STATIONARY_LENGTH = 600;
@@ -19,10 +19,12 @@ function getScrollBlockHeight(contentHeight: number) {
   return STATIONARY_LENGTH + contentScrollHeight;
 }
 
+export type ParagraphData = { title?: string; body: string };
+
 export interface IBodyProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  facts: { label: string; value: string }[];
-  paragraphs: { title?: string; body: string }[];
+  facts: FactData[];
+  paragraphs: ParagraphData[];
   scrollStart?: number;
 }
 

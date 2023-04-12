@@ -9,7 +9,7 @@ export const setIsLoaderVisible = (isVisible: boolean) => {
 };
 
 export const Loader = (): React.ReactElement => {
-  const [isLoaderVisible, setIsLoaderVisible] = useState(true);
+  const [isLoaderVisible, setIsLoaderVisible] = useState(false);
   _setIsLoaderVisible = setIsLoaderVisible;
 
   return <Loading isVisible={isLoaderVisible} />;
