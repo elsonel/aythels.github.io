@@ -3,8 +3,8 @@ export const ROUTES = {
   about: '/about',
   projects: '/projects',
   userInterface: {
-    ['spotlight']: '/projects/portfol.io',
-    ['portfol.io']: '/projects/spotlight',
+    ['spotlight']: '/projects/spotlight',
+    ['portfol.io']: '/projects/portfol.io',
   },
   architecture: {
     ['foldPavilion']: '/projects/fold-pavilion',

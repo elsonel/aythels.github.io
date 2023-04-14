@@ -19,7 +19,7 @@ export const FactsList: React.FC<FactsListProps> = ({
       {facts.map((fact) => (
         <FactWrapper key={fact.label}>
           <FactLabel isWrapped={false}>{fact.label.toUpperCase()}</FactLabel>
-          <FactValue isWrapped={false}>{fact.value}</FactValue>
+          <FactValue>{fact.value}</FactValue>
         </FactWrapper>
       ))}
     </Layout>

@@ -6,12 +6,12 @@ import { SafeNotchPadding } from '../../../components/SafeNotchPadding';
 import { ArchitectureData } from '../data';
 import { GridsData, PanelData } from './data';
 
-export interface PageFoldpavilionProps
+export interface PageProjectFoldPavilionProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageFoldpavilion: React.FC<PageFoldpavilionProps> = ({
-  ...props
-}): React.ReactElement => {
+export const PageProjectFoldPavilion: React.FC<
+  PageProjectFoldPavilionProps
+> = ({ ...props }): React.ReactElement => {
   return (
     <Page title="Fold Pavilion" {...props}>
       <Layout>

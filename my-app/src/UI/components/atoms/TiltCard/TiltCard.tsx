@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
 import Tilt from 'react-parallax-tilt';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { TextTransition } from '../../text/TextTransition/TextTransition';
 import { ThemeInterface } from '../../../utility/themes/Theme';
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
@@ -79,9 +78,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
             </Text>
             <br />
             {isHovered && (
-              <TextDescription weight="light" isVisible={isHovered}>
-                {description}
-              </TextDescription>
+              <TextDescription weight="light">{description}</TextDescription>
             )}
           </TitleTextWrapper>
           <Text
@@ -167,7 +164,7 @@ const Text = styled(Paragraph)<{ $isHovered: boolean }>`
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
-const TextDescription = styled(TextTransition)`
+const TextDescription = styled(Paragraph)`
   color: ${({ theme }) => theme.color.background};
 `;
 

@@ -29,7 +29,6 @@ export interface FontInterface {
   };
   lineHeight: {
     default: string;
-    transition: string;
   };
 }
 
@@ -74,7 +73,6 @@ export const ThemeFont: ThemeFontInterface = {
       },
       lineHeight: {
         default: '1.4',
-        transition: '1.6',
       },
     },
     title: {
@@ -106,8 +104,7 @@ export const ThemeFont: ThemeFontInterface = {
         button: '0.08rem',
       },
       lineHeight: {
-        default: '1.2',
-        transition: '1.6',
+        default: 'normal',
       },
     },
     logo: {
@@ -140,7 +137,6 @@ export const ThemeFont: ThemeFontInterface = {
       },
       lineHeight: {
         default: '1.2',
-        transition: '1.6',
       },
     },
     mono: {
@@ -172,8 +168,7 @@ export const ThemeFont: ThemeFontInterface = {
         button: '0.08rem',
       },
       lineHeight: {
-        default: '1.2',
-        transition: '1.6',
+        default: 'normal',
       },
     },
   },

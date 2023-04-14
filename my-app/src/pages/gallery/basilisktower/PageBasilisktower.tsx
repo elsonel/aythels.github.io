@@ -6,12 +6,12 @@ import { SafeNotchPadding } from '../../../components/SafeNotchPadding';
 import { ArchitectureData } from '../data';
 import { GridsData, PanelData } from './data';
 
-export interface PageBasilisktowerProps
+export interface PageProjectBasiliskTowerProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageBasilisktower: React.FC<PageBasilisktowerProps> = ({
-  ...props
-}): React.ReactElement => {
+export const PageProjectBasiliskTower: React.FC<
+  PageProjectBasiliskTowerProps
+> = ({ ...props }): React.ReactElement => {
   return (
     <Page title="Basilisk Tower" {...props}>
       <Layout>

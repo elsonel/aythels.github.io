@@ -25,7 +25,7 @@ export const MainPage: React.FC = (): React.ReactElement => {
   const { setIsChildDelayed, setIsLoaded, reset } = useContext(MainPageContext);
   const [isLoaderVisible, setLoaderVisible] = useState(true);
   const currentRoute = useLocation().pathname;
-  const [navTarget, setNavTarget] = useState<string>();
+  const [navTarget, setNavTarget] = useState<string>(currentRoute);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const MainPage: React.FC = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (!navTarget) return;
+    if (window.location.pathname === navTarget) return;
 
     setIsLoaded(false);
     const timeout = setTimeout(() => {
@@ -71,21 +71,13 @@ export const MainPage: React.FC = (): React.ReactElement => {
           href={ROUTES.projects}
           children="PROJECTS"
           onClick={() => setNavTarget(ROUTES.projects)}
-          isActive={
-            navTarget
-              ? navTarget === ROUTES.projects
-              : currentRoute === ROUTES.projects
-          }
+          isActive={navTarget === ROUTES.projects}
         />
         <HeaderTab
           href={ROUTES.about}
           children="ABOUT"
           onClick={() => setNavTarget(ROUTES.about)}
-          isActive={
-            navTarget
-              ? navTarget === ROUTES.about
-              : currentRoute === ROUTES.about
-          }
+          isActive={navTarget === ROUTES.about}
         />
       </Header>
       <Loading isVisible={isLoaderVisible} />

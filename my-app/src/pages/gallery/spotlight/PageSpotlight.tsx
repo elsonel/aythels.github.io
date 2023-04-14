@@ -6,10 +6,10 @@ import { SafeNotchPadding } from '../../../components/SafeNotchPadding';
 import { UIUXData } from '../data';
 import { GridsData, PanelData } from './data';
 
-export interface PageSpotlightProps
+export interface PageProjectSpotlightProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageSpotlight: React.FC<PageSpotlightProps> = ({
+export const PageProjectSpotlight: React.FC<PageProjectSpotlightProps> = ({
   ...props
 }): React.ReactElement => {
   return (

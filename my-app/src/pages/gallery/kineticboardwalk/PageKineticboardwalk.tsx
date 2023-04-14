@@ -6,12 +6,12 @@ import { SafeNotchPadding } from '../../../components/SafeNotchPadding';
 import { ArchitectureData } from '../data';
 import { GridsData, PanelData } from './data';
 
-export interface PageKineticboardwalkProps
+export interface PageProjectKineticBoardwalkProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageKineticboardwalk: React.FC<PageKineticboardwalkProps> = ({
-  ...props
-}): React.ReactElement => {
+export const PageProjectKineticBoardwalk: React.FC<
+  PageProjectKineticBoardwalkProps
+> = ({ ...props }): React.ReactElement => {
   return (
     <Page title="Kinetic Boardwalk" {...props}>
       <Layout>
