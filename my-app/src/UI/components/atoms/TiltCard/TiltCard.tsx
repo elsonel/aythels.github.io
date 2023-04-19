@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
 import Tilt from 'react-parallax-tilt';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { ThemeInterface } from '../../../utility/themes/Theme';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   year: 'numeric',

@@ -8,7 +8,7 @@ import { ProjectSectionText } from '../../../atoms/ProjectSectionText';
 import { Grid } from '../../../layout/Grid';
 import { ProjectSection } from '../ProjectSection';
 import { ProjectLayout, ProjectLayoutProps } from './ProjectLayout';
-import { Theme } from '../../../../utility/themes/Theme';
+import { Theme } from '../../../../utilities/themes/Theme';
 
 const Gap = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Link } from '../../inputs/Link';
-import { ThemeInterface } from '../../../utility/themes/Theme';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
 import { FooterIconRow } from '../../groups/Footer/FooterIconRow';
 import { Paragraph } from '../../text/Paragraph';
 import { TextLink } from '../../text/TextLink';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Link } from '../../inputs/Link';
-import { ThemeInterface } from '../../../utility/themes/Theme';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
 import { PageTitle } from '../../atoms/PageTitle';
 import { ButtonReverseText } from '../../inputs/ButtonReverseText';
 import { LinkFake } from '../../inputs/LinkFake';

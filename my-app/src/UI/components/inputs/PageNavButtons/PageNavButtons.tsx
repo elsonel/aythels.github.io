@@ -2,7 +2,7 @@ import React from 'react';
 import { PageNavButton } from './Button/PageNavButton';
 import styled from 'styled-components';
 import { FrameLayoutSticky } from '../../layout/FrameLayoutSticky';
-import { GreaterThan, LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan, LessThan } from '../../../utilities/styles/ResponsiveCSS';
 import { LinkFake } from '../LinkFake/LinkFake';
 
 export interface PageNavButtonsProps

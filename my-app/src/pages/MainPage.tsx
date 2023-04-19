@@ -6,15 +6,15 @@ import { Header } from '../UI/components/groups/Header/Header';
 import { HeaderTab } from '../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { HeaderTabIcon } from '../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
 import { ProjectsPage as ProjectsPageComponent } from '../UI/components/groups/ProjectsPage/ProjectsPage';
-import { PROJECT_DATA, BIO_TEXT } from '../utility/constants';
-import { MainPageContext } from '../utility/MainPageContext';
+import { PROJECT_DATA, BIO_TEXT } from '../utilities/constants';
+import { MainPageContext } from '../utilities/MainPageContext';
 import {
   Loading,
   MINIMUM_DURATION,
 } from '../UI/components/other/Loading/Loading';
-import { ROUTES } from '../utility/routes';
+import { ROUTES } from '../utilities/routes';
 import { LoadingBlank } from '../UI/components/other/LoadingBlank/LoadingBlank';
-import useOnNewPageMount from '../utility/useOnNewPageMount';
+import useOnNewPageMount from '../utilities/useOnNewPageMount';
 
 const FRAME_DELAY = 200;
 const HEADING_DELAY = 400;

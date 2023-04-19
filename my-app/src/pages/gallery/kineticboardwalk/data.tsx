@@ -1,4 +1,4 @@
-import { KineticBoardwalkImages } from 'utility/ImportImages';
+import { KineticBoardwalkImages } from 'utilities/ImportImages';
 
 import {
   IImage,

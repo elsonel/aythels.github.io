@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
 export interface ILogoProps extends React.HTMLAttributes<HTMLDivElement> {}

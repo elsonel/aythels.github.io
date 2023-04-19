@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { IconSVGType } from '../../../utility/themes/ThemeAsset';
+import { IconSVGType } from '../../../utilities/themes/ThemeAsset';
 import { ButtonProps } from '../Button';
 import { ButtonReverse } from '../ButtonReverse';
 import { RowIconTextButton } from '../../atoms/RowIconTextButton';

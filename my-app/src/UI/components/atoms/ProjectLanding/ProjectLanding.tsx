@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
-import { Theme } from '../../../utility/themes/Theme';
+import { LessThanHook } from '../../../utilities/hooks/ResponsiveProps';
+import { Theme } from '../../../utilities/themes/Theme';
 import { IconScroll } from '../IconScroll';
 import { Image } from '../Image/Image';
 import { ImageTitle } from '../ImageTitle';

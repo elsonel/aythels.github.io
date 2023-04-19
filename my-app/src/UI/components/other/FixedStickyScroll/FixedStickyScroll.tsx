@@ -1,8 +1,8 @@
 import useResizeObserver from '@react-hook/resize-observer';
 import React, { useCallback, useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowResize from '../../../utility/hooks/useOnWindowResize';
-import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
+import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
+import useOnWindowScroll from '../../../utilities/hooks/useOnWindowScroll';
 
 export interface FixedStickyScrollProps
   extends React.HTMLAttributes<HTMLDivElement> {

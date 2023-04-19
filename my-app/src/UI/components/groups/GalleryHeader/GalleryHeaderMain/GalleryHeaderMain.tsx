@@ -1,5 +1,5 @@
 import React from 'react';
-import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
+import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
 import { GalleryHeaderBaseProps } from '../GalleryHeaderBase';
 import { GalleryHeaderBrowser } from '../GalleryHeaderBrowser';
 import { GalleryHeaderMobile } from '../GalleryHeaderMobile';

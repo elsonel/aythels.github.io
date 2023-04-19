@@ -3,7 +3,7 @@ import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';
 import { SafeNotchPadding } from '../../components/SafeNotchPadding';
 import { ErrorPanel } from '../../UI/components/groups/ErrorPanel/ErrorPanel';
-import useGoTo from '../../utility/useGoTo';
+import useGoTo from '../../utilities/useGoTo';
 
 export interface Page404Props extends React.HTMLAttributes<HTMLDivElement> {}
 

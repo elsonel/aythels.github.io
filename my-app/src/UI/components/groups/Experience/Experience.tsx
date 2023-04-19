@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 
 export interface ExperienceProps extends React.HTMLAttributes<HTMLDivElement> {

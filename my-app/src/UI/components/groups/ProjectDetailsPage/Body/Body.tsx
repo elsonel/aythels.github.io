@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowResize from '../../../../utility/hooks/useOnWindowResize';
-import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import useOnWindowResize from '../../../../utilities/hooks/useOnWindowResize';
+import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { FrameLayout } from '../../../layout/FrameLayout/FrameLayout';
 import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';

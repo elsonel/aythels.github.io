@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import useOnWindowResizeDelta from '../../../utility/hooks/useOnWindowResizeDelta';
-import useOnWindowScrollDelta from '../../../utility/hooks/useOnWindowScrollDelta';
+import useOnWindowResizeDelta from '../../../utilities/hooks/useOnWindowResizeDelta';
+import useOnWindowScrollDelta from '../../../utilities/hooks/useOnWindowScrollDelta';
 
 export interface StickyEndsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {

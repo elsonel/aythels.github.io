@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { IIconSVG } from '../../atoms/IIconSVG';
 import { ButtonModal, ButtonModalProps } from '../ButtonModal';
 

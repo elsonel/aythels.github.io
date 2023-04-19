@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { Explore, ExploreProps } from './Explore';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { ImageTitle } from '../../atoms/ImageTitle';

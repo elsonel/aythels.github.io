@@ -5,12 +5,12 @@ import {
   IGalleryEntryArt,
 } from '../../components/GalleryGridArt';
 import { GridBreakpoint } from '../../UI/components/layout/Grid';
-import { sortByDate, sortByName } from 'utility/sortData';
+import { sortByDate, sortByName } from 'utilities/sortData';
 import {
   VisualArtsImages,
   UIUXImages,
   ArchitectureImages,
-} from 'utility/ImportImages';
+} from 'utilities/ImportImages';
 
 /* =============================================================================
  * Sorting Data

@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 import { ProjectSectionProps } from '../ProjectSection';
 import { ProjectLandingProps } from '../../../atoms/ProjectLanding';
 import { ProjectMenuHorizontal } from '../../../atoms/ProjectMenuHorizontal';
-import useOnScreen from '../../../../utility/hooks/useOnScreen';
-import { Theme } from '../../../../utility/themes/Theme';
-import { LessThan } from '../../../../utility/styles/ResponsiveCSS';
-import { clamp } from '../../../../utility/scripts/Math';
-import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
+import useOnScreen from '../../../../utilities/hooks/useOnScreen';
+import { Theme } from '../../../../utilities/themes/Theme';
+import { LessThan } from '../../../../utilities/styles/ResponsiveCSS';
+import { clamp } from '../../../../utilities/scripts/Math';
+import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
 
 const HEADER_HEIGHT = Theme.size.headerHeight;
 const TIMELINE_HEIGHT = 40;

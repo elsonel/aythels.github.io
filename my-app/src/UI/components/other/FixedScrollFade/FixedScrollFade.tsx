@@ -1,8 +1,8 @@
 import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
-import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
-import { clamp } from '../../../utility/scripts/Math';
-import { remap } from '../../../utility/scripts/remap';
+import useOnWindowScroll from '../../../utilities/hooks/useOnWindowScroll';
+import { clamp } from '../../../utilities/scripts/Math';
+import { remap } from '../../../utilities/scripts/remap';
 
 export interface FixedScrollFadeProps
   extends React.HTMLAttributes<HTMLDivElement> {

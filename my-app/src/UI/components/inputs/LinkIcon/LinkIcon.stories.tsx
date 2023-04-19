@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { LinkIcon, LinkIconProps } from './LinkIcon';
 import { Linkedin } from '@styled-icons/fa-brands/Linkedin';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 
 export default {
   title: 'Inputs/LinkIcon',

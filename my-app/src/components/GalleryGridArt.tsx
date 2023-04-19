@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { ImageTitle } from 'UI/components/atoms/ImageTitle';
-import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { getSizes } from 'UI/utilities/scripts/ResponsiveImageGenerator';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { GridDynamic } from '../UI/components/layout/GridDynamic';
-import { getAspect } from '../UI/utility/scripts/Aspect';
+import { getAspect } from '../UI/utilities/scripts/Aspect';
 import { GalleryGridProps, IGalleryBase, IGalleryEntry } from './GalleryGrid';
 
 export interface IGalleryEntryArt extends IGalleryBase {

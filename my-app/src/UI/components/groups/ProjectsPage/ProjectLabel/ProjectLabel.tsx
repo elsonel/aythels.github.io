@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreaterThanHook } from '../../../../utility/hooks/ResponsiveProps';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { LinkFake } from '../../../inputs/LinkFake/LinkFake';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { Link } from '../../../inputs/Link/Link';

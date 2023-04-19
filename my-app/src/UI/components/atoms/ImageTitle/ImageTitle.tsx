@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 
 export interface ImageTitleProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GalleryProjectNew, GalleryProjectNewProps } from '.';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { Frame } from '../../atoms/Frame/Frame';
 
 const BREAKPOINTS: GridBreakpoint[] = [

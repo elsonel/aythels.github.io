@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, useTheme } from 'styled-components';
-import { ThemeInterface } from '../../../utility/themes/Theme';
-import { FontInterface } from '../../../utility/themes/ThemeFont';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
+import { FontInterface } from '../../../utilities/themes/ThemeFont';
 
 const getTextElementBySize = (size: keyof FontInterface['size']) => {
   switch (size) {

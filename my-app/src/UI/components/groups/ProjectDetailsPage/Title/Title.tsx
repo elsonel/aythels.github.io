@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { Textfit } from '@namhong2001/react-textfit';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: string;

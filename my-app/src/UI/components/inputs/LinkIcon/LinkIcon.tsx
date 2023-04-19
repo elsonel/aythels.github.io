@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IIconSVG } from '../../atoms/IIconSVG';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { Link, LinkProps } from '../Link';
 
 export interface LinkIconProps extends LinkProps {

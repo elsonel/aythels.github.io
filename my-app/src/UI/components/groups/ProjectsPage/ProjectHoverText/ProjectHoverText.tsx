@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import useType from '../../../../utility/hooks/useType';
-import { zeroPad } from '../../../../utility/scripts/zeroPad';
+import useType from '../../../../utilities/hooks/useType';
+import { zeroPad } from '../../../../utilities/scripts/zeroPad';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
 export interface IProjectHoverTextProps

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Footer } from '../UI/components/groups/Footer/Footer';
-import useGoTo from '../utility/useGoTo';
+import useGoTo from '../utilities/useGoTo';
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { FadeIn } from '../../other/FadeIn/FadeIn';
 import { IHeaderTabProps } from './HeaderTab/HeaderTab';
 import { IHeaderTabIconProps } from './HeaderTabIcon/HeaderTabIcon';

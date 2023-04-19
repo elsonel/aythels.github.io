@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { BodyCenter } from '../../../layout/BodyCenter';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { FactsList } from '../FactsList/FactsList';

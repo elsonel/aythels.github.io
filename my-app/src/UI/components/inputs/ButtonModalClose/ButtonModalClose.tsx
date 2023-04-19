@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IIconSVG } from '../../atoms/IIconSVG';
 import { ButtonModal, ButtonModalProps } from '../ButtonModal';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 
 export interface ButtonModalCloseProps extends ButtonModalProps {}
 

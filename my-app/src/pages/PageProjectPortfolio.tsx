@@ -1,5 +1,5 @@
 import React from 'react';
-import { ROUTES } from '../utility/routes';
+import { ROUTES } from '../utilities/routes';
 import { ProjectTemplate } from './ProjectTemplate';
 
 const PROJECT_LANDING_IMAGE = '/images/examples/landscape.jpg';

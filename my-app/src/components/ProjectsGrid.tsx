@@ -1,8 +1,8 @@
 import styled, { useTheme } from 'styled-components';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
-import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { getSizes } from 'UI/utilities/scripts/ResponsiveImageGenerator';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 import { ThumbnailPanel } from 'UI/components/atoms/ThumbnailPanel';
 import { IGalleryBase } from './GalleryGrid';
 

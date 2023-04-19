@@ -2,7 +2,7 @@ import { Modal } from '../../layout/Modal';
 
 import styled, { keyframes } from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { FadeIn } from '../FadeIn/FadeIn';
 
 export const MINIMUM_DURATION = 1000;

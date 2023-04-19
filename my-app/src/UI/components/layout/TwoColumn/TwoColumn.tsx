@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LessThanHook } from '../../../utility/hooks/ResponsiveProps';
+import { LessThanHook } from '../../../utilities/hooks/ResponsiveProps';
 
 export interface TwoColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: [React.ReactNode, React.ReactNode];

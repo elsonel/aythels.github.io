@@ -4,7 +4,7 @@ import { Linkedin, Github } from '@styled-icons/fa-brands/';
 import { Email } from '@styled-icons/material-rounded/';
 import { LinkIcon } from '../../inputs/LinkIcon';
 import { RowIcon, RowIconProps } from '../../layout/RowIcon';
-import { ThemeInterface } from '../../../utility/themes/Theme';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
 
 export interface AboutSocialRowProps extends RowIconProps {}
 

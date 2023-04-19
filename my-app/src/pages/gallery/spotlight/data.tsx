@@ -1,4 +1,4 @@
-import { SpotlightImages } from 'utility/ImportImages';
+import { SpotlightImages } from 'utilities/ImportImages';
 
 import {
   IImage,

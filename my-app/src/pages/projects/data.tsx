@@ -1,5 +1,5 @@
 import { GridBreakpoint } from '../../UI/components/layout/Grid';
-import { ProjectsImages } from 'utility/ImportImages';
+import { ProjectsImages } from 'utilities/ImportImages';
 import { IProjectEntry } from 'components/ProjectsGrid';
 
 export const Breakpoints: GridBreakpoint[] = [

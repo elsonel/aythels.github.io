@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { ThemeInterface } from '../../../utility/themes/Theme';
+import { ThemeInterface } from '../../../utilities/themes/Theme';
 import {
   FontInterface,
   ThemeFontInterface,
-} from '../../../utility/themes/ThemeFont';
+} from '../../../utilities/themes/ThemeFont';
 import { ButtonText } from '../../inputs/ButtonText';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 

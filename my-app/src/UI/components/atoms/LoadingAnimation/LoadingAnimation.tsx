@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import useOnWindowResize from '../../../utility/hooks/useOnWindowResize';
-import { remap } from '../../../utility/scripts/remap';
+import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
+import { remap } from '../../../utilities/scripts/remap';
 
 // TODO: Refactor this
 

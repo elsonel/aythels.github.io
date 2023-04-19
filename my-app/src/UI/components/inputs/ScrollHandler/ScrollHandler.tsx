@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import useOnWindowScrollDelta from '../../../utility/hooks/useOnWindowScrollDelta';
+import useOnWindowScrollDelta from '../../../utilities/hooks/useOnWindowScrollDelta';
 
 const upKeys: { [key: string]: boolean } = {
   ArrowUp: true,

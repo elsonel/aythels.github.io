@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { ArrowDown } from 'styled-icons/bootstrap';
 import { Github } from 'styled-icons/fa-brands';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { IIconSVG, IIconSVGProps } from './IIconSVG';
 
 export default {

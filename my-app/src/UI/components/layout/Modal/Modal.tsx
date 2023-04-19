@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { GlobalScrollLock } from '../../../utility/styles/GlobalStyles';
+import { GlobalScrollLock } from '../../../utilities/styles/GlobalStyles';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   isVisible?: boolean;

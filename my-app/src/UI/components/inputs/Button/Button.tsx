@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import useOnKeyPress from '../../../utility/hooks/useOnKeyPress';
+import useOnKeyPress from '../../../utilities/hooks/useOnKeyPress';
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;

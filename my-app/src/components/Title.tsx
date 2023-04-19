@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { PageTitle } from 'UI/components/atoms/PageTitle';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 
 export interface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   children: string;

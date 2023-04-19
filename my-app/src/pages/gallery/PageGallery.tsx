@@ -1,7 +1,7 @@
 import { Title } from 'components/Title';
 import React from 'react';
 import { useTheme } from 'styled-components';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 import { Gallery } from '../../components/Gallery';
 import { Layout } from '../../components/Layout';
 import { Page } from '../../components/Page';

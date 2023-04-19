@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowScroll from '../../../../utility/hooks/useOnWindowScroll';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { IconScroll } from '../../../atoms/IconScroll/IconScroll';
 import { Image } from '../../../atoms/Image/Image';
 import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline/LinkWithUnderline';
-import { IfTouchScreen } from '../../../../utility/styles/DetectTouchScreenCSS';
+import { IfTouchScreen } from '../../../../utilities/styles/DetectTouchScreenCSS';
 import { FixedStickyScroll } from '../../../other/FixedStickyScroll';
 import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade';
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';

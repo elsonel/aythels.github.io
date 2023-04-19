@@ -1,4 +1,4 @@
-import { BasiliskTowerImages } from 'utility/ImportImages';
+import { BasiliskTowerImages } from 'utilities/ImportImages';
 
 import {
   IImage,

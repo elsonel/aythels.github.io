@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import useOnImagesLoaded from '../UI/utility/hooks/useOnImagesLoaded';
+import useOnImagesLoaded from '../UI/utilities/hooks/useOnImagesLoaded';
 
 const LOADING_TIMEOUT = 10000;
 

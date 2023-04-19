@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css, Keyframes, keyframes, useTheme } from 'styled-components';
-import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
 
 export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoaded?: boolean;

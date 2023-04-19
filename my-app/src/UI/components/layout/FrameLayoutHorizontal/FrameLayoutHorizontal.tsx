@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 
 export interface IFrameLayoutHorizontalProps
   extends React.HTMLAttributes<HTMLDivElement> {

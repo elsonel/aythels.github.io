@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { Theme } from '../../../../utility/themes/Theme';
+import { Theme } from '../../../../utilities/themes/Theme';
 import { Fact } from '../../../atoms/Fact';
 import { ImageThumbnail } from '../../../atoms/ImageThumbnail';
 import { ProjectSectionImage } from '../../../atoms/ProjectSectionImage';

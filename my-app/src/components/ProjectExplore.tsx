@@ -1,11 +1,11 @@
 import { useTheme } from 'styled-components';
 import { ImageTitle } from 'UI/components/atoms/ImageTitle';
-import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { getSizes } from 'UI/utilities/scripts/ResponsiveImageGenerator';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
 import { Explore, EXPLORE_BREAKPOINTS } from '../UI/components/groups/Explore';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
-import useGoTo from '../utility/useGoTo';
+import useGoTo from '../utilities/useGoTo';
 
 export interface IExplore {
   src: string;

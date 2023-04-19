@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { GridRow, GridRowProps } from './GridRow';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { ImageTitle } from '../../atoms/ImageTitle';
 

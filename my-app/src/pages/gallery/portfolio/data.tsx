@@ -1,4 +1,4 @@
-import { PortfolioImages } from 'utility/ImportImages';
+import { PortfolioImages } from 'utilities/ImportImages';
 
 import {
   IImage,

@@ -1,9 +1,9 @@
 import { ThemeProvider } from 'styled-components';
-import { Theme } from '../src/UI/utility/themes/Theme';
-import { MemoryRouter } from "react-router";
+import { Theme } from '../src/UI/utilities/themes/Theme';
+import { MemoryRouter } from 'react-router';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -11,7 +11,7 @@ export const parameters = {
     },
   },
   layout: 'fullscreen',
-}
+};
 
 export const decorators = [
   (Story) => (
@@ -19,5 +19,9 @@ export const decorators = [
       <Story />
     </ThemeProvider>
   ),
-  (Story) => (<MemoryRouter><Story/></MemoryRouter>)
+  (Story) => (
+    <MemoryRouter>
+      <Story />
+    </MemoryRouter>
+  ),
 ];

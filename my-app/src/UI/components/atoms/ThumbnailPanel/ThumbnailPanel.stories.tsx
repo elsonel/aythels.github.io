@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { ImageThumbnail } from '../ImageThumbnail';
 import { ThumbnailPanel, ThumbnailPanelProps } from './ThumbnailPanel';
 

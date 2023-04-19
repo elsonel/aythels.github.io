@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { GridBreakpoint } from '../../layout/Grid';
 import { ImageThumbnailProps } from '../../atoms/ImageThumbnail';
-import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
 import { HorizontalBulletMenu } from '../../atoms/HorizontalBulletMenu';
 import { GridRow } from '../../layout/GridRow';
 

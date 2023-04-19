@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { BodyCenter } from '../BodyCenter';
 
 const CENTER_WIDTH = 600; // includes horizontal padding

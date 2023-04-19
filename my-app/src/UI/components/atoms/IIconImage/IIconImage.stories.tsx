@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { IIconImage, IIconImageProps } from './IIconImage';
 
 export default {

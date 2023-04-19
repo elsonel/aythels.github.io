@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { ButtonReverseText } from '../../inputs/ButtonReverseText';
-import { Theme, ThemeInterface } from '../../../utility/themes/Theme';
+import { Theme, ThemeInterface } from '../../../utilities/themes/Theme';
 import { Paragraph } from '../../text/Paragraph';
 import { Github } from 'styled-icons/bootstrap';
 import { ExternalLink } from '@styled-icons/feather/ExternalLink';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { Awards } from './Awards/Awards';
 import { Contact } from './Contact/Contact';

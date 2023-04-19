@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { KineticBoardwalkImages } from '../../../../../utility/ImportImages';
-import { clamp } from '../../../../utility/scripts/Math';
-import { GreaterThan } from '../../../../utility/styles/ResponsiveCSS';
+import { KineticBoardwalkImages } from '../../../../../utilities/ImportImages';
+import { clamp } from '../../../../utilities/scripts/Math';
+import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { IconScroll } from '../../../atoms/IconScroll/IconScroll';
 import { Image as IImage } from '../../../atoms/Image/Image';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';

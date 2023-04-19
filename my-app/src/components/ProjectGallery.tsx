@@ -3,7 +3,7 @@ import { ImageThumbnail } from '../UI/components/atoms/ImageThumbnail';
 
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
 import { GalleryProject } from '../UI/components/groups/GalleryProject';
-import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
+import { getSizes } from 'UI/utilities/scripts/ResponsiveImageGenerator';
 import { Fact } from 'UI/components/atoms/GalleryProjectPanel';
 import styled from 'styled-components';
 import { PageTitle } from 'UI/components/atoms/PageTitle';

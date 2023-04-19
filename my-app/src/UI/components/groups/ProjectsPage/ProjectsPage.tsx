@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { GreaterThanQuery } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThanQuery } from '../../../utilities/styles/ResponsiveCSS';
 import { FrameLayout } from '../../layout/FrameLayout/FrameLayout';
 import { FrameLayoutSticky } from '../../layout/FrameLayoutSticky/FrameLayoutSticky';
 import { FadeIn } from '../../other/FadeIn/FadeIn';

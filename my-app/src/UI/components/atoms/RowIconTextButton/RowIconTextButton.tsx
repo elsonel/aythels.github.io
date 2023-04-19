@@ -1,4 +1,4 @@
-import { IconSVGType } from '../../../utility/themes/ThemeAsset';
+import { IconSVGType } from '../../../utilities/themes/ThemeAsset';
 import { RowIconText, RowIconTextProps } from '../../layout/RowIconText';
 import { TextButton } from '../../text/TextButton';
 import { IIconSVG } from '../IIconSVG';

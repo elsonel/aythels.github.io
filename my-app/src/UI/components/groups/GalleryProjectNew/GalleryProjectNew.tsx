@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowScroll from '../../../utility/hooks/useOnWindowScroll';
+import useOnWindowScroll from '../../../utilities/hooks/useOnWindowScroll';
 import { Body } from './Body/Body';
 import { Landing } from './Landing/Landing';
 

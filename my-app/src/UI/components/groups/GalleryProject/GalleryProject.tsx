@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { Fact, GalleryProjectPanel } from '../../atoms/GalleryProjectPanel';
 import { StickyEndsContainer } from '../../layout/StickyEndsContainer';
 import { TwoColumn } from '../../layout/TwoColumn';

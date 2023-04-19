@@ -1,6 +1,6 @@
 /*
 import styled, { useTheme } from 'styled-components';
-import { Theme } from '../../../../utility/themes/Theme';
+import { Theme } from '../../../../utilities/themes/Theme';
 import { IIconSVG } from '../../../atoms/IIconSVG';
 import { Button, ButtonProps } from '../../Button';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
@@ -62,7 +62,7 @@ const Text = styled(Paragraph).attrs(() => ({
 */
 
 import styled, { useTheme } from 'styled-components';
-import { Theme } from '../../../../utility/themes/Theme';
+import { Theme } from '../../../../utilities/themes/Theme';
 import { IIconSVG } from '../../../atoms/IIconSVG';
 import { ButtonProps } from '../../Button';
 import { ButtonReverse } from '../../ButtonReverse';

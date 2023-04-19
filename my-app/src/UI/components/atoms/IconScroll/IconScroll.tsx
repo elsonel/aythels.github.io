@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
-import { IfTouchScreen } from '../../../utility/styles/DetectTouchScreenCSS';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import { IfTouchScreen } from '../../../utilities/styles/DetectTouchScreenCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { IIcon, IIconProps } from '../IIcon';
 
 export interface IconScrollProps extends IIconProps {

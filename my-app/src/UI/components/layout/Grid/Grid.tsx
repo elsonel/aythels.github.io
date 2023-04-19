@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
-import { GreaterThan } from '../../../utility/styles/ResponsiveCSS';
+import useOnImagesLoaded from '../../../utilities/hooks/useOnImagesLoaded';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 
 export const GRID_GAP = 20;
 

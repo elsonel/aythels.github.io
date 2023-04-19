@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GalleryHeaderMain } from '../UI/components/groups/GalleryHeader/GalleryHeaderMain';
-import { IGallerySortable } from '../utility/sortData';
+import { IGallerySortable } from '../utilities/sortData';
 import { GalleryGridProps } from './GalleryGrid';
 
 export interface ITab {

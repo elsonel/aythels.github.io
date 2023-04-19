@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import { GreaterThan, LessThan } from '../../../utility/styles/ResponsiveCSS';
+import { GreaterThan, LessThan } from '../../../utilities/styles/ResponsiveCSS';
 import { LinkWithUnderline } from '../../inputs/LinkWithUnderline/LinkWithUnderline';
 import { BodyWide } from '../../layout/BodyWide/BodyWide';
 import { FadeInParagraph } from '../../text/FadeInParagraph/FadeInParagraph';

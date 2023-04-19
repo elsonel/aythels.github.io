@@ -1,12 +1,12 @@
 import styled, { useTheme } from 'styled-components';
 import { LinkFake } from '../UI/components/inputs/LinkFake';
 import { Grid, GridBreakpoint } from '../UI/components/layout/Grid';
-import useGoTo from '../utility/useGoTo';
-import { IGallerySortable } from '../utility/sortData';
+import useGoTo from '../utilities/useGoTo';
+import { IGallerySortable } from '../utilities/sortData';
 import { ImageThumbnailAspect } from '../UI/components/atoms/ImageThumbnailAspect';
-import { getSizes } from 'UI/utility/scripts/ResponsiveImageGenerator';
+import { getSizes } from 'UI/utilities/scripts/ResponsiveImageGenerator';
 import { ImageTitle } from 'UI/components/atoms/ImageTitle';
-import { ThemeInterface } from 'UI/utility/themes/Theme';
+import { ThemeInterface } from 'UI/utilities/themes/Theme';
 
 export interface IGalleryBase extends IGallerySortable {
   date: Date;

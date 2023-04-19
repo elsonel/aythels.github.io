@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { Grid, GridProps } from './Grid';
 import { ImageThumbnail } from '../../atoms/ImageThumbnail';
-import { Theme } from '../../../utility/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import { ImageTitle } from '../../atoms/ImageTitle';
 
 let key = 0;

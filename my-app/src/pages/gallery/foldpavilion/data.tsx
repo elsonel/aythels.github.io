@@ -1,4 +1,4 @@
-import { FoldPavilionImages } from 'utility/ImportImages';
+import { FoldPavilionImages } from 'utilities/ImportImages';
 
 import {
   IImage,

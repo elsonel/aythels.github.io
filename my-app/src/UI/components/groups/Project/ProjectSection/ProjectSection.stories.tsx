@@ -7,7 +7,7 @@ import { ProjectSectionText } from '../../../atoms/ProjectSectionText';
 import { Grid } from '../../../layout/Grid';
 import { ProjectSection, ProjectSectionProps } from './ProjectSection';
 import { ProjectSectionFactList } from '../../../atoms/ProjectSectionFactList';
-import { Theme } from '../../../../utility/themes/Theme';
+import { Theme } from '../../../../utilities/themes/Theme';
 
 export default {
   title: 'Groups/ProjectSection',

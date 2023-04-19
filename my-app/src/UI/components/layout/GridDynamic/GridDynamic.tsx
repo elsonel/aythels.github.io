@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { distributeIntoChunks } from '../../../utility/scripts/Array';
-import { GreaterThanHook } from '../../../utility/hooks/ResponsiveProps';
+import { distributeIntoChunks } from '../../../utilities/scripts/Array';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
 import { Grid, GridBreakpoint, GridProps } from '../Grid';
-import useOnImagesLoaded from '../../../utility/hooks/useOnImagesLoaded';
+import useOnImagesLoaded from '../../../utilities/hooks/useOnImagesLoaded';
 
 const DEFAULT_BREAKPOINTS: GridBreakpoint[] = [
   {

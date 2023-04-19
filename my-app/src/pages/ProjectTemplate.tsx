@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PageNavButtons } from '../UI/components/inputs/PageNavButtons';
-import { ROUTES } from '../utility/routes';
+import { ROUTES } from '../utilities/routes';
 import {
   Body,
   ParagraphData,
@@ -20,7 +20,7 @@ import { Header } from '../UI/components/groups/Header/Header';
 import { HeaderTabIcon } from '../UI/components/groups/Header/HeaderTabIcon/HeaderTabIcon';
 import { HeaderTab } from '../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { FactData } from '../UI/components/groups/ProjectDetailsPage/FactsList/FactsList';
-import useOnNewPageMount from '../utility/useOnNewPageMount';
+import useOnNewPageMount from '../utilities/useOnNewPageMount';
 
 export interface IProjectTemplateProps {
   projectLandingImage: string;
