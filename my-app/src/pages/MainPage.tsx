@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Frame } from '../UI/components/atoms/Frame';
 import { AboutPage as AboutPageComponent } from '../UI/components/groups/AboutPage/AboutPage';
 import { Header } from '../UI/components/groups/Header/Header';
@@ -23,16 +23,17 @@ const CONTENT_FADE_OUT_DURATION = 350;
 
 export const MainPage: React.FC = (): React.ReactElement => {
   const { setIsChildDelayed, setIsLoaded, reset } = useContext(MainPageContext);
-  const [isLoaderVisible, setLoaderVisible] = useState(true);
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true);
   const currentRoute = useLocation().pathname;
-  const [navTarget, setNavTarget] = useState<string>(currentRoute);
+  const [navTarget, setNavTarget] = useState(currentRoute);
   const navigate = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setLoaderVisible(false);
+      setIsLoaderVisible(false);
       setIsLoaded(true);
     }, MINIMUM_DURATION);
+
     return () => {
       clearTimeout(timeout);
       reset();
@@ -41,7 +42,11 @@ export const MainPage: React.FC = (): React.ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (window.location.pathname === navTarget) return;
+    setNavTarget(currentRoute);
+  }, [currentRoute]);
+
+  useEffect(() => {
+    if (currentRoute === navTarget) return;
 
     setIsLoaded(false);
     const timeout = setTimeout(() => {
@@ -63,7 +68,7 @@ export const MainPage: React.FC = (): React.ReactElement => {
         tabIcon={
           <HeaderTabIcon
             href={ROUTES.index}
-            onClick={() => setNavTarget(ROUTES.projects)}
+            onClick={() => setNavTarget(ROUTES.index)}
           />
         }
       >

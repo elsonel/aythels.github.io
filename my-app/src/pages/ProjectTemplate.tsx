@@ -76,14 +76,14 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
       >
         <HeaderTab
           href={ROUTES.projects}
-          isActive={navTarget ? navTarget === ROUTES.projects : true}
+          isActive={true}
           onClick={() => setNavTarget(ROUTES.projects)}
         >
           PROJECTS
         </HeaderTab>
         <HeaderTab
           href={ROUTES.about}
-          isActive={navTarget ? navTarget === ROUTES.about : false}
+          isActive={false}
           onClick={() => setNavTarget(ROUTES.about)}
         >
           ABOUT
