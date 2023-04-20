@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { GlobalScrollLock } from '../../../utilities/styles/GlobalStyles';
 
@@ -7,30 +7,16 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
-const DELAY = 300;
-
 export const Modal: React.FC<ModalProps> = ({
   isVisible = true,
   children,
   ...props
-}): React.ReactElement => {
-  const [isBackgroundHidden, setIsBackgroundHidden] = useState(isVisible);
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout | undefined;
-    if (isVisible)
-      timeout = setTimeout(() => setIsBackgroundHidden(true), DELAY);
-    else setIsBackgroundHidden(false);
-    return () => clearTimeout(timeout);
-  }, [isVisible]);
-
-  return (
-    <Wrapper $isVisible={isVisible} {...props}>
-      {isBackgroundHidden && <GlobalScrollLock />}
-      <Content>{children}</Content>
-    </Wrapper>
-  );
-};
+}): React.ReactElement => (
+  <Wrapper $isVisible={isVisible} {...props}>
+    {isVisible && <GlobalScrollLock />}
+    <Content>{children}</Content>
+  </Wrapper>
+);
 
 // https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/
 // Can also set 'visibility: hidden' on body to hide background

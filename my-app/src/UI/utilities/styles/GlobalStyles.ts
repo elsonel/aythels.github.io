@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { HideScrollbar } from './ScrollStyles';
+import { HideScrollbar, ScrollStyle } from './ScrollStyles';
 
 export const GlobalScrollLock = createGlobalStyle`
   html, body {
@@ -8,7 +8,19 @@ export const GlobalScrollLock = createGlobalStyle`
 `;
 
 export const GlobalScrollHide = createGlobalStyle`
-  ${HideScrollbar}
+  html, body {
+    ${HideScrollbar}
+  }
+`;
+
+export const GlobalScrollOverlay = createGlobalStyle`
+  html, body {
+    overflow: overlay;
+  }
+`;
+
+export const GlobalScrollStyle = createGlobalStyle`
+  ${ScrollStyle}
 `;
 
 export const GlobalBackground = createGlobalStyle`

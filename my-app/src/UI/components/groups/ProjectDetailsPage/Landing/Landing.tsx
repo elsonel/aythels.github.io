@@ -13,6 +13,7 @@ import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade'
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { Title } from '../Title/Title';
 import { FrameLayoutHorizontal } from '../../../layout/FrameLayoutHorizontal/FrameLayoutHorizontal';
+import { GlobalScrollHide } from '../../../../utilities/styles/GlobalStyles';
 
 export const LANDING_SCROLL_LENGTH = 600;
 
@@ -54,6 +55,7 @@ export const Landing: React.FC<LandingProps> = ({
 
   return (
     <>
+      {isVisible && <GlobalScrollHide />}
       <ScrollBlock scrollLength={scrollLength} />
       <Overlay $isVisible={isVisible} {...props}>
         <OverlayContent $isVisible={isVisible}>

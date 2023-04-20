@@ -5,10 +5,7 @@ import { Theme } from './UI/utilities/themes/Theme';
 import './index.css';
 import { App } from './App';
 import { Loader } from './Loader';
-import {
-  GlobalBackground,
-  GlobalScrollHide,
-} from './UI/utilities/styles/GlobalStyles';
+import { GlobalBackground } from './UI/utilities/styles/GlobalStyles';
 
 // This has to be first to render first
 const rootLoader = createRoot(document.getElementById('root-loader')!);
@@ -25,7 +22,6 @@ root.render(
   <StrictMode>
     <ThemeProvider theme={Theme}>
       <GlobalBackground />
-      <GlobalScrollHide />
       <App />
     </ThemeProvider>
   </StrictMode>

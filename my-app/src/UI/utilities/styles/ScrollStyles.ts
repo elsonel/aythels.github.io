@@ -1,22 +1,20 @@
 import { css } from 'styled-components';
 
 export const ScrollStyle = css`
-  overflow-y: scroll;
-
   ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.color['backgroundHighlight']};
+    width: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.color['textNeutral']};
+    background: ${({ theme }) => theme.color.outline};
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.color.background};
   }
 `;
 
-export const HideScrollbar = css`
+export const HideScrollbar = `
   -ms-overflow-style: none;
   scrollbar-width: none;
   ::-webkit-scrollbar {

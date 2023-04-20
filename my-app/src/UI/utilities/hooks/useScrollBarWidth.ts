@@ -9,7 +9,7 @@ import { useState } from 'react';
  * the scrollbar on most desktop browsers has an actual width that pushes the
  * content aside.
  */
-export default function useScrollBarWidth(
+export default function useScrollbarWidth(
   ref: React.RefObject<HTMLElement> | HTMLElement | null
 ) {
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
