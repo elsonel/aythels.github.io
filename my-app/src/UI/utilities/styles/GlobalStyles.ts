@@ -19,10 +19,6 @@ export const GlobalScrollOverlay = createGlobalStyle`
   }
 `;
 
-export const GlobalScrollStyle = createGlobalStyle`
-  ${ScrollStyle}
-`;
-
 export const GlobalBackground = createGlobalStyle`
   html, body {
     background-color: ${({ theme }) => theme.color.background};

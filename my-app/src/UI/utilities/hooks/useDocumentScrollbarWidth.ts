@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useResizeObserver from '@react-hook/resize-observer';
 
-export default function useDocumentScrollbarWidth(
-  callback?: (progress: number) => void
-) {
+export default function useDocumentScrollbarWidth() {
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
 
-  useEffect(() => {
-    function updateSize() {
-      setScrollbarWidth(
-        window.innerWidth - document.documentElement.offsetWidth
-      );
-    }
-
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, [callback]);
+  useResizeObserver(document.body, () => {
+    setScrollbarWidth(window.innerWidth - document.body.offsetWidth);
+  });
 
   return scrollbarWidth;
 }
