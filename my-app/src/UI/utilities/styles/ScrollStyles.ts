@@ -6,11 +6,11 @@ export const ScrollStyle = css`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.color.outline};
+    background: ${({ theme }) => theme.color.textNeutral};
   }
 
   ::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.color.background};
+    background-color: transparent;
   }
 `;
 

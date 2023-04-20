@@ -5,7 +5,10 @@ import { Theme } from './UI/utilities/themes/Theme';
 import './index.css';
 import { App } from './App';
 import { Loader } from './Loader';
-import { GlobalBackground } from './UI/utilities/styles/GlobalStyles';
+import {
+  GlobalBackground,
+  GlobalScrollStyle,
+} from './UI/utilities/styles/GlobalStyles';
 import { UsingOverlayScrollbar } from './UI/misc/UsingOverlayScrollbar';
 
 // This has to be first to render first
@@ -23,6 +26,7 @@ root.render(
   <StrictMode>
     <ThemeProvider theme={Theme}>
       <GlobalBackground />
+      <GlobalScrollStyle />
       <UsingOverlayScrollbar />
       <App />
     </ThemeProvider>
