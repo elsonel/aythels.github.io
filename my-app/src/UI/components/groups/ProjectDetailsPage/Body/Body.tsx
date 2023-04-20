@@ -11,6 +11,11 @@ import { BodyText } from '../BodyText/BodyText';
 import { Divider } from '../Divider/Divider';
 import { FactData, FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
+import {
+  GlobalScrollOverlay,
+  GlobalScrollHide,
+} from '../../../../utilities/styles/GlobalStyles';
+import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
 
 const STATIONARY_LENGTH = 600;
 
@@ -35,9 +40,10 @@ export const Body: React.FC<IBodyProps> = ({
   scrollStart = 0,
   ...props
 }): React.ReactElement => {
-  const { speed, color } = useTheme();
+  const { speed, color, breakpoint } = useTheme();
   const stagger = speed.stagger;
   const [isLoaded, setIsLoaded] = useState(scrollStart === 0);
+  const isDesktop = GreaterThanHook(breakpoint.header);
   const [height, setHeight] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -64,6 +70,7 @@ export const Body: React.FC<IBodyProps> = ({
 
   return (
     <>
+      {isLoaded && (isDesktop ? <GlobalScrollOverlay /> : <GlobalScrollHide />)}
       <ScrollBlock scrollLength={getScrollBlockHeight(height)} />
       <Wrapper ref={ref} {...props}>
         <FrameLayout>

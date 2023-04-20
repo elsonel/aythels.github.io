@@ -1,11 +1,6 @@
 import React from 'react';
-import styled, { css, useTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
-import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
-import {
-  GlobalScrollHide,
-  GlobalScrollOverlay,
-} from '../../../utilities/styles/GlobalStyles';
 
 export interface IFrameLayoutProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,19 +11,11 @@ export const FrameLayout: React.FC<IFrameLayoutProps> = ({
   children,
 
   ...props
-}): React.ReactElement => {
-  const { breakpoint } = useTheme();
-  const isDesktop = GreaterThanHook(breakpoint.header);
-
-  return (
-    <>
-      {isDesktop ? <GlobalScrollOverlay /> : <GlobalScrollHide />}
-      <Wrapper {...props}>
-        <Content>{children}</Content>
-      </Wrapper>
-    </>
-  );
-};
+}): React.ReactElement => (
+  <Wrapper {...props}>
+    <Content>{children}</Content>
+  </Wrapper>
+);
 
 const Padding = css`
   ${({ theme }) =>

@@ -7,6 +7,11 @@ import { Contact } from './Contact/Contact';
 import { Logo } from './Logo/Logo';
 import { Background } from './Background/Background';
 import { FadeIn } from '../../other/FadeIn/FadeIn';
+import {
+  GlobalScrollHide,
+  GlobalScrollOverlay,
+} from '../../../utilities/styles/GlobalStyles';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
 
 export interface IAboutPageProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoaded?: boolean;
@@ -18,6 +23,8 @@ export const AboutPage: React.FC<IAboutPageProps> = ({
   delay = 0,
   ...props
 }): React.ReactElement => {
+  const { breakpoint } = useTheme();
+  const isDesktop = GreaterThanHook(breakpoint.header);
   const stagger = useTheme().speed.stagger;
   const logoDelay = delay + stagger * 1;
   const backgroundDelay = delay + stagger * 2;
@@ -25,26 +32,29 @@ export const AboutPage: React.FC<IAboutPageProps> = ({
   const contactDelay = delay + stagger * 4;
 
   return (
-    <FrameLayout {...props}>
-      <Wrapper>
-        <FadeIn isLoaded={isLoaded} delay={logoDelay}>
-          <StyledLogo />
-        </FadeIn>
-        <Layout>
-          <BackgroundWrapper>
-            <FadeIn isLoaded={isLoaded} delay={backgroundDelay}>
-              <Background />
-            </FadeIn>
-          </BackgroundWrapper>
-          <StyledFadeIn isLoaded={isLoaded} delay={awardsDelay}>
-            <Awards />
-          </StyledFadeIn>
-          <StyledFadeIn isLoaded={isLoaded} delay={contactDelay}>
-            <Contact />
-          </StyledFadeIn>
-        </Layout>
-      </Wrapper>
-    </FrameLayout>
+    <>
+      {isLoaded && (isDesktop ? <GlobalScrollOverlay /> : <GlobalScrollHide />)}
+      <FrameLayout {...props}>
+        <Wrapper>
+          <FadeIn isLoaded={isLoaded} delay={logoDelay}>
+            <StyledLogo />
+          </FadeIn>
+          <Layout>
+            <BackgroundWrapper>
+              <FadeIn isLoaded={isLoaded} delay={backgroundDelay}>
+                <Background />
+              </FadeIn>
+            </BackgroundWrapper>
+            <StyledFadeIn isLoaded={isLoaded} delay={awardsDelay}>
+              <Awards />
+            </StyledFadeIn>
+            <StyledFadeIn isLoaded={isLoaded} delay={contactDelay}>
+              <Contact />
+            </StyledFadeIn>
+          </Layout>
+        </Wrapper>
+      </FrameLayout>
+    </>
   );
 };
 

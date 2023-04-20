@@ -44,12 +44,12 @@ export interface ThemeMiscInterface {
 
 export const ThemeMisc: ThemeMiscInterface = {
   layer: {
-    header: 9997,
-    landing: 9998,
-    modal: 9999,
+    header: 997,
+    landing: 998,
+    modal: 999,
   },
   speed: {
-    instant: 80,
+    instant: 50,
     fast: 150,
     normal: 250,
     normalSlow: 350,

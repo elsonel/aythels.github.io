@@ -7,6 +7,11 @@ import { FadeIn } from '../../other/FadeIn/FadeIn';
 import { ProjectData } from './helpers';
 import { ProjectHoverText } from './ProjectHoverText/ProjectHoverText';
 import { ProjectList } from './ProjectList/ProjectList';
+import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
+import {
+  GlobalScrollHide,
+  GlobalScrollOverlay,
+} from '../../../utilities/styles/GlobalStyles';
 
 export interface IProjectsPageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -23,6 +28,8 @@ export const ProjectsPage: React.FC<IProjectsPageProps> = ({
   delay = 0,
   ...props
 }): React.ReactElement => {
+  const { breakpoint } = useTheme();
+  const isDesktop = GreaterThanHook(breakpoint.header);
   const [hoveredData, setHoveredData] = useState<{
     index?: number;
     text: string;
@@ -35,38 +42,41 @@ export const ProjectsPage: React.FC<IProjectsPageProps> = ({
   const hoveredTextDelay = delay + 400;
 
   return (
-    <Wrapper {...props}>
-      <FrameLayout>
-        <FadeIn
-          offset="-100%"
-          delay={projectListDelay}
-          duration={600}
-          isLoaded={isLoaded}
-        >
-          <ProjectList
-            projectData={projectData}
-            onHoverEnter={(i) =>
-              setHoveredData({ index: i, text: projectData[i].description })
-            }
-            onHoverLeave={() =>
-              setHoveredData({
-                index: undefined,
-                text: defaultHoverText,
-              })
-            }
-          />
-        </FadeIn>
-      </FrameLayout>
-      <FrameLayoutSticky>
-        <LeftPosition>
-          <FadeIn delay={hoveredTextDelay} isLoaded={isLoaded}>
-            <ProjectHoverText number={hoveredData.index}>
-              {hoveredData.text}
-            </ProjectHoverText>
+    <>
+      {isLoaded && (isDesktop ? <GlobalScrollOverlay /> : <GlobalScrollHide />)}
+      <Wrapper {...props}>
+        <FrameLayout>
+          <FadeIn
+            offset="-100%"
+            delay={projectListDelay}
+            duration={600}
+            isLoaded={isLoaded}
+          >
+            <ProjectList
+              projectData={projectData}
+              onHoverEnter={(i) =>
+                setHoveredData({ index: i, text: projectData[i].description })
+              }
+              onHoverLeave={() =>
+                setHoveredData({
+                  index: undefined,
+                  text: defaultHoverText,
+                })
+              }
+            />
           </FadeIn>
-        </LeftPosition>
-      </FrameLayoutSticky>
-    </Wrapper>
+        </FrameLayout>
+        <FrameLayoutSticky>
+          <LeftPosition>
+            <FadeIn delay={hoveredTextDelay} isLoaded={isLoaded}>
+              <ProjectHoverText number={hoveredData.index}>
+                {hoveredData.text}
+              </ProjectHoverText>
+            </FadeIn>
+          </LeftPosition>
+        </FrameLayoutSticky>
+      </Wrapper>
+    </>
   );
 };
 
