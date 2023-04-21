@@ -104,6 +104,7 @@ export function fillChunks(array: any[], max: number) {
  */
 
 export function getElementAt(array: any[], index: number) {
+  if (array.length === 0) return undefined;
   let i = index % array.length;
   return array.at(i);
 }

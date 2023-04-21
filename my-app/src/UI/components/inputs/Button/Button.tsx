@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import useOnKeyPress from '../../../utilities/hooks/useOnKeyPress';
+import useOnKeyDown from '../../../utilities/hooks/useOnKeyDown';
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
@@ -11,7 +11,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   colorHovered?: string;
   isClickStateEnabled?: boolean;
   keys?: string[];
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onMouseDown?: () => void;
@@ -37,18 +37,20 @@ export const Button: React.FC<ButtonProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
 
-  const onKeyPress = useCallback(
+  const onKeyDown = useCallback(
     (key: string) => {
       if (isDisabled) return;
       if (keys.some((e) => e === key)) {
-        onClick && onClick();
-        if (ref.current) ref.current.focus();
+        if (ref.current) {
+          ref.current.focus();
+          ref.current.click();
+        }
       }
     },
-    [isDisabled, keys, onClick]
+    [isDisabled, keys]
   );
 
-  useOnKeyPress(onKeyPress);
+  useOnKeyDown(onKeyDown);
 
   return (
     <ButtonStyled
@@ -76,7 +78,10 @@ export const Button: React.FC<ButtonProps> = ({
       $color={color}
       $colorHovered={colorHovered || color}
       disabled={isDisabled}
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick && onClick(e);
+      }}
       {...props}
     >
       {children}

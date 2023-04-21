@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { Image, ImageProps } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
@@ -10,71 +10,73 @@ import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 import { Counter } from '../../atoms/Counter/Counter';
 
-const createPane = (srcArray: ImageProps[], index: number) => {
-  const left: ImageProps = getElementAt(srcArray, index - 1);
-  const middle: ImageProps = getElementAt(srcArray, index);
-  const right: ImageProps = getElementAt(srcArray, index + 1);
+const createPane = (srcList: ImageProps[], index: number) => {
+  const left: ImageProps = getElementAt(srcList, index - 1);
+  const middle: ImageProps = getElementAt(srcList, index);
+  const right: ImageProps = getElementAt(srcList, index + 1);
   return [
-    <ImageStyled key={left.src} $index={index - 1} {...left} />,
-    <ImageStyled key={middle.src} $index={index} {...middle} />,
-    <ImageStyled key={right.src} $index={index + 1} {...right} />,
+    <PositionedImage key={left.src} $index={index - 1} {...left} />,
+    <PositionedImage key={middle.src} $index={index} {...middle} />,
+    <PositionedImage key={right.src} $index={index + 1} {...right} />,
   ];
 };
 
-export interface GalleryImageModalEntry extends ImageProps {
-  title?: string;
-}
-
-export interface GalleryImageModalProps extends ModalProps {
-  srcArray: GalleryImageModalEntry[];
-  indexOffset?: number;
+export interface GalleryModalProps extends ModalProps {
+  srcList: ImageProps[];
+  initialIndex?: number;
   onCloseClick?: () => void;
 }
 
-export const GalleryImageModal = ({
-  srcArray,
-  indexOffset = 0,
+export const GalleryModal = ({
+  srcList,
+  initialIndex = 0,
   onCloseClick,
   ...props
-}: GalleryImageModalProps) => {
-  if (srcArray.length === 0) throw new Error('Need at least one image!');
+}: GalleryModalProps) => {
+  if (srcList.length === 0) throw new Error('Need at least one image!');
 
-  const [index, setIndex] = useState(indexOffset);
-  const [currentPane, setCurrentPane] = useState(createPane(srcArray, index));
+  const [index, setIndex] = useState(initialIndex);
+  const [currentPane, setCurrentPane] = useState(createPane(srcList, index));
   const [isAnimated, setIsAnimated] = useState(false);
 
   const changeImage = useCallback(
     (newIndex: number) => {
       setIsAnimated(true);
-      setCurrentPane(createPane(srcArray, newIndex));
+      setCurrentPane(createPane(srcList, newIndex));
       setIndex(newIndex);
     },
-    [srcArray]
+    [srcList]
   );
 
   useEffect(() => {
-    changeImage(indexOffset);
+    changeImage(initialIndex);
     setIsAnimated(false);
-  }, [changeImage, indexOffset]);
+  }, [changeImage, initialIndex]);
+
+  const centerImage = useMemo(
+    () => getElementAt(srcList, index),
+    [index, srcList]
+  );
 
   return (
     <Modal {...props}>
       <Content>
-        <Row>
+        <RowTop>
           <ButtonClosePlaceholder />
-          <Title isWrapped={false}>{getElementAt(srcArray, index).title}</Title>
+          <Title isWrapped={false}>{centerImage.alt}</Title>
           <ButtonModalClose onClick={onCloseClick} />
-        </Row>
+        </RowTop>
         <WrapperMiddle>
           <ImageContainer
-            onTransitionEnd={() => setIsAnimated(false)} // Stop transitions after image has settled to prevent resizing transitions
+            // Disable animation after image settles to prevent resizing transitions
+            onTransitionEnd={() => setIsAnimated(false)}
             $isAnimated={isAnimated}
-            $offset={index}
+            $index={index}
           >
             {currentPane}
           </ImageContainer>
         </WrapperMiddle>
-        <Row>
+        <RowBottom>
           <CounterPlaceholder />
           <ButtonWrapper>
             <ButtonModalNext
@@ -87,10 +89,10 @@ export const GalleryImageModal = ({
             />
           </ButtonWrapper>
           <StyledCounter
-            numerator={srcArray.indexOf(getElementAt(srcArray, index)) + 1}
-            denominator={srcArray.length}
+            numerator={srcList.indexOf(centerImage) + 1}
+            denominator={srcList.length}
           />
-        </Row>
+        </RowBottom>
       </Content>
     </Modal>
   );
@@ -115,12 +117,22 @@ const Row = styled.div`
   align-items: center;
   gap: 20px;
 
-  box-shadow: 0 0 0 1px
-    ${({ theme }) => `${theme.color.backgroundOppositeHighlight}`} inset;
   padding: 0px 10px;
 `;
 
-const Title = styled(Paragraph)`
+const RowTop = styled(Row)`
+  box-shadow: 0 -1px 0 0 ${({ theme }) =>
+      `${theme.color.backgroundOppositeHighlight}`} inset;
+`;
+
+const RowBottom = styled(Row)`
+  box-shadow: 0 1px 0 0
+    ${({ theme }) => `${theme.color.backgroundOppositeHighlight}`} inset;
+`;
+
+const Title = styled(Paragraph).attrs(() => ({
+  isWrapped: false,
+}))`
   flex-grow: 1;
 
   color: ${({ theme }) => theme.color.background};
@@ -154,30 +166,31 @@ const CounterPlaceholder = styled(StyledCounter)`
   pointer-events: none;
 `;
 
-const IMAGE_DISTANCE = 100;
-
 const WrapperMiddle = styled.div`
   flex-grow: 1;
-  //padding: 10px 0px;
+  width: 100%;
 `;
 
-const ImageContainer = styled.div<{ $offset: number; $isAnimated: boolean }>`
+const ImageContainer = styled.div<{ $index: number; $isAnimated: boolean }>`
   position: relative;
   width: 100%;
   height: 100%;
 
-  left: ${({ $offset }) => `${-$offset * IMAGE_DISTANCE}vw`};
+  ${({ $index }) =>
+    `transform: translateX(calc(${-$index} * max(100vw, 100vh)));`}
 
   transition: ${({ theme, $isAnimated }) =>
     $isAnimated ? `${theme.speed.normal}ms ease` : 'none'};
 `;
 
-const ImageStyled = styled(Image)<{ $index: number }>`
+const PositionedImage = styled(Image)<{ $index: number }>`
   position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
 
-  left: ${({ $index }) => `${$index * IMAGE_DISTANCE}vw`};
-
+  ${({ $index }) =>
+    `transform: translateX(calc(${$index} * max(100vw, 100vh)));`}
   object-fit: contain;
 `;

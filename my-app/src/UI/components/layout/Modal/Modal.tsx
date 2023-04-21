@@ -1,22 +1,31 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { GlobalScrollLock } from '../../../utilities/styles/GlobalStyles';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  isVisible?: boolean;
   children?: React.ReactNode;
+  isVisible?: boolean;
+  onCloseComplete?: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({
   isVisible = true,
   children,
+  onCloseComplete,
   ...props
-}): React.ReactElement => (
-  <Wrapper $isVisible={isVisible} {...props}>
-    {isVisible && <GlobalScrollLock />}
-    <Content>{children}</Content>
-  </Wrapper>
-);
+}): React.ReactElement =>
+  createPortal(
+    <Wrapper
+      $isVisible={isVisible}
+      onTransitionEnd={() => !isVisible && onCloseComplete && onCloseComplete()}
+      {...props}
+    >
+      {isVisible && <GlobalScrollLock />}
+      <Content>{children}</Content>
+    </Wrapper>,
+    document.body
+  );
 
 // https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/
 // Can also set 'visibility: hidden' on body to hide background

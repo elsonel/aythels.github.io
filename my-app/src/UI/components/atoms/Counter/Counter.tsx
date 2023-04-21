@@ -22,21 +22,20 @@ export const Counter: React.FC<CounterProps> = ({
 const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
-  gap: 4px;
+  gap: 2px;
   align-items: center;
 `;
 
-const Numerator = styled(Paragraph)`
-  margin-right: 1px;
-  font-weight: ${({ theme }) => theme.font.default.weight.bold};
-  color: ${({ theme }) => theme.color.background};
+const Denominator = styled(Paragraph).attrs(({ theme }) => ({
+  font: theme.font.mono,
+}))`
+  color: ${({ theme }) => theme.color.textNeutral};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   font-size: ${({ theme }) => theme.font.default.size.small};
   overflow-wrap: normal;
 `;
 
-const Denominator = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.font.default.size.small};
-  font-weight: ${({ theme }) => theme.font.default.weight.medium};
-  color: ${({ theme }) => theme.color.textNeutral};
-  overflow-wrap: normal;
+const Numerator = styled(Denominator)`
+  margin-right: 2px;
+  color: ${({ theme }) => theme.color.background};
 `;

@@ -1,13 +1,13 @@
 import { Meta, Story } from '@storybook/react';
-import styled from 'styled-components';
 import { Modal, ModalProps } from './Modal';
 
 export default {
   title: 'Layout/Modal',
   component: Modal,
+  argTypes: { onCloseComplete: { action: 'Completed close' } },
   args: {
-    isVisible: true,
     children: 'Hello World',
+    isVisible: true,
   },
 } as Meta;
 

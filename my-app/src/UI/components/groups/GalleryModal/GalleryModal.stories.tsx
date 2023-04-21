@@ -1,94 +1,92 @@
 import { Meta, Story } from '@storybook/react';
 import { Theme } from '../../../utilities/themes/Theme';
-import { GalleryImageModal, GalleryImageModalProps } from './GalleryImageModal';
+import { GalleryModal, GalleryModalProps } from './GalleryModal';
 
 export default {
-  title: 'Groups/GalleryImageModal',
-  component: GalleryImageModal,
+  title: 'Groups/GalleryModal',
+  component: GalleryModal,
   args: {
-    srcArray: [
+    srcList: [
       {
         src: Theme.image.exampleLandscape,
-        title: 'SKY',
+        alt: 'SKY 1',
       },
       {
         src: Theme.image.exampleSquare,
-        title: 'SQUARE',
+        alt: 'SQUARE 2',
       },
       {
         src: Theme.image.exampleLandscape,
-        title: 'SKY',
+        alt: 'SKY 3',
       },
       {
         src: Theme.image.exampleSquare,
-        title: 'SQUARE',
+        alt: 'SQUARE 4',
       },
       {
         src: Theme.image.examplePortrait,
-        title: 'PORTRAIT',
+        alt: 'PORTRAIT 5',
       },
       {
         src: Theme.image.exampleLandscape,
-        title: 'SKY',
+        alt: 'SKY 6',
       },
       {
         src: Theme.image.exampleSquare,
-        title: 'SQUARE',
+        alt: 'SQUARE 7',
       },
       {
         src: Theme.image.examplePortrait,
-        title: 'PORTRAIT',
+        alt: 'PORTRAIT 8',
       },
       {
         src: Theme.image.examplePortrait,
-        title: 'PORTRAIT',
+        alt: 'PORTRAIT 9',
       },
       {
         src: Theme.image.exampleLandscape,
-        title: 'SKY',
+        alt: 'SKY 10',
       },
       {
         src: Theme.image.exampleSquare,
-        title: 'SQUARE',
+        alt: 'SQUARE 11',
       },
       {
         src: Theme.image.examplePortrait,
-        title: 'PORTRAIT',
+        alt: 'PORTRAIT 12',
       },
     ],
-    indexOffset: 0,
+    initialIndex: 0,
     isVisible: true,
   },
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story<GalleryImageModalProps> = (args) => (
-  <GalleryImageModal {...args} />
-);
+const Template: Story<GalleryModalProps> = (args) => <GalleryModal {...args} />;
 
 export const Basic = Template.bind({});
 
 export const WithOffset = Template.bind({});
 WithOffset.args = {
   ...WithOffset.args,
-  indexOffset: 1,
+  initialIndex: 1,
 };
 
 export const ThreeImage = Template.bind({});
 ThreeImage.args = {
   ...ThreeImage.args,
-  srcArray: [
+  srcList: [
     {
       src: Theme.image.exampleLandscape,
-      title: 'SKY',
+      alt: 'SKY',
     },
     {
       src: Theme.image.exampleSquare,
-      title: 'SQUARE',
+      alt: 'SQUARE',
     },
     {
       src: Theme.image.examplePortrait,
-      title: 'PORTRAIT',
+      alt: 'PORTRAIT',
     },
   ],
 };
@@ -96,14 +94,14 @@ ThreeImage.args = {
 export const TwoImage = Template.bind({});
 TwoImage.args = {
   ...TwoImage.args,
-  srcArray: [
+  srcList: [
     {
       src: Theme.image.exampleLandscape,
-      title: 'SKY',
+      alt: 'SKY',
     },
     {
       src: Theme.image.exampleSquare,
-      title: 'SQUARE',
+      alt: 'SQUARE',
     },
   ],
 };
@@ -111,10 +109,10 @@ TwoImage.args = {
 export const OneImage = Template.bind({});
 OneImage.args = {
   ...OneImage.args,
-  srcArray: [
+  srcList: [
     {
       src: Theme.image.exampleLandscape,
-      title: 'SKY',
+      alt: 'SKY',
     },
   ],
 };
@@ -122,10 +120,10 @@ OneImage.args = {
 export const NoCaption = Template.bind({});
 NoCaption.args = {
   ...NoCaption.args,
-  srcArray: [
+  srcList: [
     {
       src: Theme.image.exampleLandscape,
-      title: undefined,
+      alt: undefined,
     },
   ],
 };
@@ -133,16 +131,14 @@ NoCaption.args = {
 export const LongCaption = Template.bind({});
 LongCaption.args = {
   ...LongCaption.args,
-  srcArray: [
+  srcList: [
     {
       src: Theme.image.exampleLandscape,
-      title:
-        'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
+      alt: 'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
     {
       src: Theme.image.exampleSquare,
-      title:
-        'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
+      alt: 'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
     },
   ],
 };
@@ -150,5 +146,5 @@ LongCaption.args = {
 export const NoImage = Template.bind({});
 NoImage.args = {
   ...NoImage.args,
-  srcArray: [],
+  srcList: [],
 };

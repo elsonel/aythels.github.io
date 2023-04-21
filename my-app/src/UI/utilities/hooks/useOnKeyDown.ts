@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function useOnKeyPress(callback: (key: string) => void) {
+export default function useOnKeyDown(callback: (key: string) => void) {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       callback && callback(e.key);
