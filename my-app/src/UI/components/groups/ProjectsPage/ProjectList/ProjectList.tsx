@@ -70,7 +70,7 @@ const ProjectLabelColumn = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 `;
 
 const Label = styled(Paragraph).attrs(({ theme }) => ({
