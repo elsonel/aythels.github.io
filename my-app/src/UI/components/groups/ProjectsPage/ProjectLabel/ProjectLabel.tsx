@@ -66,18 +66,17 @@ const Subtitle = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
   font: theme.font.mono,
 }))`
-  position: relative;
   text-align: right;
-  font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   font-size: ${({ theme }) => theme.font.mono.size.small};
   color: ${({ theme }) => theme.color.text};
   transition: ${({ theme }) => theme.speed.normal}ms;
 
-  ${GreaterThan(0, `top: 0px;`)}
-  ${GreaterThan(900, `top: 0px;`)}
-  ${GreaterThan(1200, `top: 2px;`)}
-  ${GreaterThan(1400, `top: 3px;`)}
-  ${GreaterThan(1600, `top: 4px;`)}
+  ${GreaterThan(0, `margin-top: 0px; padding-right: 0px;`)}
+  ${GreaterThan(900, `margin-top: 0px; padding-right: 2px;`)}
+  ${GreaterThan(1200, `margin-top: 2px; padding-right: 4px;`)}
+  ${GreaterThan(1400, `margin-top: 3px; padding-right: 6px;`)}
+  ${GreaterThan(1600, `margin-top: 4px; padding-right: 8px;`)}
 `;
 
 const Title = styled(Paragraph).attrs(({ theme }) => ({
@@ -102,6 +101,7 @@ const TextLayout = styled.div`
   ${GreaterThan(0, `flex-direction: column-reverse;`)}
   ${GreaterThan(600, `flex-direction: row;`)}
   transition: ${({ theme }) => theme.speed.normal}ms;
+  gap: 2px;
 
   &:hover {
     padding-right: 20px;
