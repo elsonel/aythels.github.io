@@ -1,7 +1,6 @@
 import { Paragraph } from 'UI/components/text/Paragraph';
 import { Layout } from '../../../components/Layout';
 import { Page } from '../../../components/Page';
-import { ProjectExplore } from '../../../components/ProjectExplore';
 import { ProjectGallery } from '../../../components/ProjectGallery';
 import { SafeNotchPadding } from '../../../components/SafeNotchPadding';
 import { UIUXData } from '../data';
@@ -19,9 +18,6 @@ export const PagePortfolio: React.FC<PagePortfolioProps> = ({
         <SafeNotchPadding>
           <ProjectGallery panelData={PanelData} gridsData={GridsData} />
         </SafeNotchPadding>
-        <ProjectExplore
-          exploreData={UIUXData.filter((e) => e.title != 'PORTFOL.IO')}
-        />
       </Layout>
     </Page>
   );

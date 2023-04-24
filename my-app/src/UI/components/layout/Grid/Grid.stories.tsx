@@ -11,6 +11,7 @@ function createImageThumbnail(src: string, label: string = '2022') {
     <ImageThumbnail
       key={key}
       src={src}
+      alt={src}
       overlayElement={
         <ImageTitle
           color={Theme.color.background}

@@ -15,6 +15,8 @@ export interface SpeedInterface {
 }
 
 export interface SizeInterface {
+  gap: number;
+  gapSmall: number;
   headerHeight: number;
   padding: number;
   paddingVertical: number;
@@ -32,6 +34,7 @@ export interface LinkInterface {
 
 export interface BreakpointInterface {
   header: number;
+  gallery: number;
 }
 
 export interface ThemeMiscInterface {
@@ -53,11 +56,13 @@ export const ThemeMisc: ThemeMiscInterface = {
     fast: 150,
     normal: 250,
     normalSlow: 350,
-    slow: 600,
+    slow: 550,
     loading: 500,
     stagger: 150,
   },
   size: {
+    gap: 20,
+    gapSmall: 10,
     headerHeight: 52,
     padding: 20,
     paddingVertical: 30,
@@ -66,6 +71,7 @@ export const ThemeMisc: ThemeMiscInterface = {
   },
   breakpoint: {
     header: 800,
+    gallery: 1000,
   },
   link: {
     linkedin: 'https://www.linkedin.com/in/elson-liang/',

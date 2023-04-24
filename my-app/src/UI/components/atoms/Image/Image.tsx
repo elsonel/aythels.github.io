@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
   src: string;
-  alt?: string;
+  alt: string;
   srcSet?: string;
   sizes?: string;
 }

@@ -99,6 +99,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             >
               <StyledImage
                 src={src}
+                alt={src}
                 $alignLeft={i % 2 === 0}
                 onLoad={onScroll}
               />

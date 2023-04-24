@@ -1,4 +1,10 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import styled, { useTheme } from 'styled-components';
 import useOnWindowResize from '../../../../utilities/hooks/useOnWindowResize';
 import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
@@ -11,6 +17,9 @@ import { BodyText } from '../BodyText/BodyText';
 import { Divider } from '../Divider/Divider';
 import { FactData, FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
+import { Gallery } from '../Gallery/Gallery';
+import { ImageProps } from '../../../atoms/Image/Image';
+import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
 
 const STATIONARY_LENGTH = 600;
 
@@ -22,26 +31,33 @@ function getScrollBlockHeight(contentHeight: number) {
 export type ParagraphData = { title?: string; body: string };
 
 export interface IBodyProps extends React.HTMLAttributes<HTMLDivElement> {
+  scrollStart?: number;
   title: string;
   facts: FactData[];
   paragraphs: ParagraphData[];
-  scrollStart?: number;
+  imagesDesktop?: ImageProps[][];
+  imagesMobile?: ImageProps[][];
+  onAssetsLoad?: () => void;
 }
 
 export const Body: React.FC<IBodyProps> = ({
+  scrollStart = 0,
   title,
   facts,
   paragraphs,
-  scrollStart = 0,
+  imagesDesktop,
+  imagesMobile,
+  onAssetsLoad,
   ...props
 }): React.ReactElement => {
-  const { speed, color } = useTheme();
+  const { speed, color, breakpoint } = useTheme();
   const stagger = speed.stagger;
-  const [isLoaded, setIsLoaded] = useState(scrollStart === 0);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [height, setHeight] = useState(0);
+  const isDesktop = GreaterThanHook(breakpoint.gallery);
   const ref = useRef<HTMLDivElement>(null);
 
-  const onWindowResize = useCallback(() => {
+  const onResize = useCallback(() => {
     if (!ref.current) return;
     const height = ref.current.getBoundingClientRect().height;
     setHeight(height);
@@ -55,11 +71,28 @@ export const Body: React.FC<IBodyProps> = ({
     [scrollStart]
   );
 
-  useOnWindowResize(onWindowResize);
+  const onModuleAssetsLoad = useCallback(() => {
+    onResize();
+    onAssetsLoad && onAssetsLoad();
+  }, [onAssetsLoad, onResize]);
+
+  useOnWindowResize(onResize);
   useOnWindowScroll(onScroll);
 
   const factsDelay = stagger * 1;
   const paragraphDelay = stagger * 2;
+  const galleryDelay = stagger * 3;
+
+  const images = useMemo(() => {
+    if (isDesktop) {
+      if (imagesDesktop) return imagesDesktop;
+      if (imagesMobile) return imagesMobile;
+    } else {
+      if (imagesMobile) return imagesMobile;
+      if (imagesDesktop) return imagesDesktop;
+    }
+    onModuleAssetsLoad();
+  }, [imagesDesktop, imagesMobile, isDesktop, onModuleAssetsLoad]);
 
   return (
     <>
@@ -74,13 +107,13 @@ export const Body: React.FC<IBodyProps> = ({
             finalOpacity={1}
           >
             <Title
-              onReady={onWindowResize}
+              onReady={onResize}
               color={isLoaded ? color.text : color.background}
             >
               {title}
             </Title>
             <Divider isLoaded={isLoaded} delay={factsDelay} />
-            <FadeIn isLoaded={isLoaded} delay={factsDelay} offset={50}>
+            <FadeIn isLoaded={isLoaded} delay={factsDelay}>
               <FactsList facts={facts} />
             </FadeIn>
             <Divider isLoaded={isLoaded} delay={paragraphDelay} />
@@ -95,6 +128,12 @@ export const Body: React.FC<IBodyProps> = ({
                 </FadeIn>
               ))}
             </BodyLayout>
+            <Divider isLoaded={isLoaded} delay={galleryDelay} />
+            <FadeIn isLoaded={isLoaded} delay={galleryDelay}>
+              {images && (
+                <Gallery images={images} onAllImagesLoad={onModuleAssetsLoad} />
+              )}
+            </FadeIn>
           </FixedScrollFade>
         </FrameLayout>
       </Wrapper>

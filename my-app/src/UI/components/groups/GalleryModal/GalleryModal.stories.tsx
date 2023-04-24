@@ -123,7 +123,7 @@ NoCaption.args = {
   srcList: [
     {
       src: Theme.image.exampleLandscape,
-      alt: undefined,
+      alt: '',
     },
   ],
 };

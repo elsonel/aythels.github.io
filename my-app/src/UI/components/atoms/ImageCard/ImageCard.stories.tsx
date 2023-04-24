@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { ImageCard, IImageCardProps } from './ImageCard';
-import { Theme } from '../../../../utilities/themes/Theme';
+import { Theme } from '../../../utilities/themes/Theme';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -11,10 +11,15 @@ const Wrapper = styled.div`
 export default {
   title: 'Groups/ProjectDetailsPage/ImageCard',
   component: ImageCard,
-  argTypes: { onClick: { action: 'clicked' } },
+  argTypes: {
+    onClick: { action: 'clicked' },
+    onImageLoad: { action: 'loaded' },
+  },
   args: {
-    src: Theme.image.exampleSquareSmall,
-    alt: 'image',
+    imageProps: {
+      src: Theme.image.exampleSquareSmall,
+      alt: 'image',
+    },
   },
   parameters: {
     layout: 'centered',

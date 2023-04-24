@@ -30,6 +30,7 @@ const Thumbnail = styled(ImageThumbnail)`
 const TemplateWithThumbnail: Story<ThumbnailPanelProps> = (args) => (
   <Thumbnail
     src={Theme.image.exampleSquare}
+    alt={Theme.image.exampleSquare}
     isFillingParent={false}
     overlayElement={<ThumbnailPanel {...args} />}
   />

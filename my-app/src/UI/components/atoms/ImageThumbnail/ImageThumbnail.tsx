@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Image, ImageProps } from '../Image/Image';
 import { useState } from 'react';
-import { ImageTitle } from '../ImageTitle';
 
 export interface ImageThumbnailProps extends ImageProps {
   /*

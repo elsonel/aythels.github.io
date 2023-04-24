@@ -21,6 +21,7 @@ import { HeaderTabIcon } from '../UI/components/groups/Header/HeaderTabIcon/Head
 import { HeaderTab } from '../UI/components/groups/Header/HeaderTab/HeaderTab';
 import { FactData } from '../UI/components/groups/ProjectDetailsPage/FactsList/FactsList';
 import useOnNewPageMount from '../utilities/useOnNewPageMount';
+import { ImageProps } from '../UI/components/atoms/Image';
 
 export interface IProjectTemplateProps {
   projectLandingImage: string;
@@ -29,6 +30,8 @@ export interface IProjectTemplateProps {
   projectPrototypeLink?: string;
   projectFacts: FactData[];
   projectParagraphs: ParagraphData[];
+  projectImagesDesktop?: ImageProps[][];
+  projectImagesMobile?: ImageProps[][];
   backRoute?: string;
   forwardRoute?: string;
   pageTitle: string;
@@ -41,14 +44,32 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
   projectPrototypeLink,
   projectFacts,
   projectParagraphs,
+  projectImagesDesktop,
+  projectImagesMobile,
   backRoute,
   forwardRoute,
   pageTitle,
 }): React.ReactElement => {
-  const [isLoadingVisible, setLoadingVisible] = useState(true);
+  const isBodyAssetsLoaded = useRef(false);
+  const isLandingImageLoaded = useRef(false);
+  const [isFinishedLoading, setIsFinishedLoading] = useState(false);
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true);
   const [navTarget, setNavTarget] = useState<string>();
   const navigate = useNavigate();
   useOnNewPageMount(pageTitle);
+
+  useEffect(() => {
+    if (!isFinishedLoading) return;
+
+    const timeout = setTimeout(
+      () => setIsLoaderVisible(false),
+      MINIMUM_DURATION
+    );
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isFinishedLoading]);
 
   return (
     <>
@@ -57,6 +78,13 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
         title={projectTitle}
         facts={projectFacts}
         paragraphs={projectParagraphs}
+        imagesDesktop={projectImagesDesktop}
+        imagesMobile={projectImagesMobile}
+        onAssetsLoad={() => {
+          isBodyAssetsLoaded.current = true;
+          if (isBodyAssetsLoaded.current && isLandingImageLoaded.current)
+            setIsFinishedLoading(true);
+        }}
       />
       <Frame isAnimating={false} />
       <PageNavButtons
@@ -95,12 +123,14 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
         subtitle={projectSubtitle}
         prototypeHref={projectPrototypeLink}
         imageSrc={projectLandingImage}
-        isTextLoaded={!isLoadingVisible}
-        onImageLoad={() =>
-          setTimeout(() => setLoadingVisible(false), MINIMUM_DURATION)
-        }
+        isTextLoaded={!isLoaderVisible}
+        onImageLoad={() => {
+          isLandingImageLoaded.current = true;
+          if (isBodyAssetsLoaded.current && isLandingImageLoaded.current)
+            setIsFinishedLoading(true);
+        }}
       />
-      <Loading isVisible={isLoadingVisible} />
+      <Loading isVisible={isLoaderVisible} />
       <LoadingBlank
         isVisible={!!navTarget}
         onVisibleComplete={() => navTarget && navigate(navTarget)}

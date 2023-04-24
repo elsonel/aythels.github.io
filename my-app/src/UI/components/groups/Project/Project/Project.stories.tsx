@@ -58,10 +58,22 @@ export default {
             },
           ]}
         >
-          <ImageThumbnail src={Theme.image.exampleSquare} />
-          <ImageThumbnail src={Theme.image.exampleSquare} />
-          <ImageThumbnail src={Theme.image.exampleSquare} />
-          <ImageThumbnail src={Theme.image.exampleSquare} />
+          <ImageThumbnail
+            src={Theme.image.exampleSquare}
+            alt={Theme.image.exampleSquare}
+          />
+          <ImageThumbnail
+            src={Theme.image.exampleSquare}
+            alt={Theme.image.exampleSquare}
+          />
+          <ImageThumbnail
+            src={Theme.image.exampleSquare}
+            alt={Theme.image.exampleSquare}
+          />
+          <ImageThumbnail
+            src={Theme.image.exampleSquare}
+            alt={Theme.image.exampleSquare}
+          />
         </Grid>
       </ProjectSection>,
       <ProjectSection title="PROCESS" key={2}>

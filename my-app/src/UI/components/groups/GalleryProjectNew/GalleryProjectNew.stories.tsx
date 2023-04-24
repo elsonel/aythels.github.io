@@ -63,14 +63,22 @@ export default {
     ],
     children: [
       <GridStyled breakpoints={BREAKPOINTS} key={2}>
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
+        <ImageThumbnail
+          src={Theme.image.exampleSquare}
+          alt={Theme.image.exampleSquare}
+        />
+        <ImageThumbnail
+          src={Theme.image.exampleSquare}
+          alt={Theme.image.exampleSquare}
+        />
+        <ImageThumbnail
+          src={Theme.image.exampleSquare}
+          alt={Theme.image.exampleSquare}
+        />
+        <ImageThumbnail
+          src={Theme.image.exampleSquare}
+          alt={Theme.image.exampleSquare}
+        />
       </GridStyled>,
     ],
   },

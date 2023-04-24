@@ -5,6 +5,15 @@ import { ImageThumbnail } from '../../atoms/ImageThumbnail';
 import { Grid, GridBreakpoint } from '../../layout/Grid';
 import { Theme } from '../../../utilities/themes/Theme';
 
+function createImageComponent() {
+  return (
+    <ImageThumbnail
+      src={Theme.image.exampleSquare}
+      alt={Theme.image.exampleSquare}
+    />
+  );
+}
+
 const BREAKPOINTS: GridBreakpoint[] = [
   {
     minWidth: 0,
@@ -62,14 +71,22 @@ export default {
     ],
     children: [
       <GridStyled breakpoints={BREAKPOINTS} key={2}>
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
-        <ImageThumbnail src={Theme.image.exampleSquare} />
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
+        {createImageComponent()}
       </GridStyled>,
     ],
   },
@@ -101,21 +118,22 @@ Short.args = {
   ],
   children: [
     <GridStyled breakpoints={BREAKPOINTS} key={2}>
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
+      {createImageComponent()}
     </GridStyled>,
   ],
 };

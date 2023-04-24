@@ -17,7 +17,9 @@ export const ProjectHoverText: React.FC<IProjectHoverTextProps> = ({
 }): React.ReactElement => {
   const { color } = useTheme();
   const textColor = number === undefined ? color.text : color.primary;
-  const title = useType(number === undefined ? `ABOUT` : zeroPad(number, 3));
+  const title = useType(
+    number === undefined ? `ABOUT` : zeroPad(number + 1, 3)
+  );
 
   return (
     <TextWrapper {...props}>

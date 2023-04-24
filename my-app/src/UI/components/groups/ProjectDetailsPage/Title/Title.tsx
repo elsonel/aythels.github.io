@@ -19,7 +19,7 @@ export const Title: React.FC<TitleProps> = ({
   const { color } = useTheme();
   return (
     <Wrapper {...props}>
-      <StyledTextFit
+      <StyledTextfit
         mode="single"
         forceSingleModeWidth
         min={24}
@@ -27,7 +27,7 @@ export const Title: React.FC<TitleProps> = ({
         onReady={onReady}
       >
         <Text color={colorProp ? colorProp : color.text}>{children}</Text>
-      </StyledTextFit>
+      </StyledTextfit>
     </Wrapper>
   );
 };
@@ -39,17 +39,19 @@ const Wrapper = styled.div`
   ${GreaterThan(800, `padding: 50px 40px;`)}
 `;
 
-const StyledTextFit = styled(Textfit)`
+const StyledTextfit = styled(Textfit)`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Text = styled(Paragraph)`
+const Text = styled(Paragraph).attrs(({ theme }) => ({
+  font: theme.font.title,
+  size: 'h1',
+}))`
   text-align: center;
   font-size: inherit;
-  font-family: ${({ theme }) => theme.font.title.family};
   line-height: 0.84;
   overflow-wrap: normal;
 

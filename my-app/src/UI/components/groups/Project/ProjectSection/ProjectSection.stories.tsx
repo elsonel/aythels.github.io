@@ -61,10 +61,22 @@ ExampleGallery.args = {
   title: 'GALLERY',
   children: [
     <StyledGridSquare>
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
-      <ImageThumbnail src={Theme.image.exampleSquare} />
+      <ImageThumbnail
+        src={Theme.image.exampleSquare}
+        alt={Theme.image.exampleSquare}
+      />
+      <ImageThumbnail
+        src={Theme.image.exampleSquare}
+        alt={Theme.image.exampleSquare}
+      />
+      <ImageThumbnail
+        src={Theme.image.exampleSquare}
+        alt={Theme.image.exampleSquare}
+      />
+      <ImageThumbnail
+        src={Theme.image.exampleSquare}
+        alt={Theme.image.exampleSquare}
+      />
     </StyledGridSquare>,
   ],
 };
