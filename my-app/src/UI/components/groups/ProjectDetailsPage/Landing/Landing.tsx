@@ -190,16 +190,16 @@ const LandingTextWrapper = styled.div`
 
 const Text = styled(Paragraph)`
   text-align: center;
-  color: ${({ theme }) => theme.color.background};
   overflow-wrap: normal;
-  ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.large};`)}
+  color: ${({ theme }) => theme.color.background};
 `;
 
 const Subtitle = styled(Text)`
   position: relative;
   top: -10px;
+  ${({ theme }) =>
+    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
+    GreaterThan(800, `font-size: ${theme.font.default.size.h6};`)}
 `;
 
 const LinkWrapper = styled.div`
@@ -211,6 +211,9 @@ const LinkWrapper = styled.div`
 const LinkText = styled(Text)`
   font-weight: ${({ theme }) => theme.font.default.weight.medium};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
+  ${({ theme }) =>
+    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
+    GreaterThan(800, `font-size: ${theme.font.default.size.large};`)}
 `;
 
 const IconTopGap = styled.div`
