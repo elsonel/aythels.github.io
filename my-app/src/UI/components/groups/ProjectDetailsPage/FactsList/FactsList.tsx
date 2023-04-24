@@ -54,20 +54,21 @@ const FactWrapper = styled.div`
   ${GreaterThan(500, FactRow)}
 `;
 
-const FactLabel = styled(Paragraph)`
+const FactLabel = styled(Paragraph).attrs(({ theme }) => ({
+  font: theme.font.mono,
+}))`
   width: 100%;
   color: ${({ theme }) => theme.color.text};
-  font-weight: ${({ theme }) => theme.font.default.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.large};`)};
+    GreaterThan(0, `font-size: ${theme.font.mono.size.default};`) +
+    GreaterThan(800, `font-size: ${theme.font.mono.size.large};`)};
 `;
 
 const FactValue = styled(Paragraph)`
   width: 100%;
   color: ${({ theme }) => theme.color.text};
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.default};`) +
-    GreaterThan(800, `font-size: ${theme.font.default.size.large};`)};
+    GreaterThan(0, `font-size: ${theme.font.mono.size.default};`) +
+    GreaterThan(800, `font-size: ${theme.font.mono.size.large};`)};
 `;

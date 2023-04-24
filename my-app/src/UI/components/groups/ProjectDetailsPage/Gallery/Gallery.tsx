@@ -125,8 +125,6 @@ const Title = styled(Paragraph).attrs(({ theme }) => ({
 }))`
   text-align: center;
   overflow-wrap: normal;
-  line-height: 0.9;
-
   ${GreaterThan(0, `font-size: 1.5rem; margin: 30px 0px;`)}
   ${GreaterThan(500, `font-size: 2.2rem; margin: 30px 0px;`)} 
   ${GreaterThan(800, `font-size: 3rem; margin: 50px 0px;`)} 

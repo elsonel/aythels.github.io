@@ -36,11 +36,11 @@ const TextWrapper = styled.div`
   height: 240px;
 `;
 
-const LineTextLabel = styled(Paragraph)`
+const LineTextLabel = styled(Paragraph).attrs(({ theme }) => ({
+  font: theme.font.mono,
+}))`
   width: 100%;
-
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 

@@ -97,14 +97,14 @@ export const ThemeFont: ThemeFontInterface = {
         h1: '2rem',
       },
       wordSpacing: {
-        default: '0.1rem',
+        default: '0.2rem',
       },
       letterSpacing: {
         default: 'normal',
         button: '0.08rem',
       },
       lineHeight: {
-        default: 'normal',
+        default: '0.86',
       },
     },
     logo: {
@@ -161,7 +161,7 @@ export const ThemeFont: ThemeFontInterface = {
         h1: '2rem',
       },
       wordSpacing: {
-        default: '0.1rem',
+        default: '-0.3rem',
       },
       letterSpacing: {
         default: 'normal',

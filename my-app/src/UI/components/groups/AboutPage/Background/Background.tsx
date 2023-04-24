@@ -37,13 +37,13 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Title = styled(Paragraph).attrs(() => ({
+const Title = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
   size: 'h5',
+  font: theme.font.mono,
 }))`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   font-size: ${({ theme }) => theme.font.mono.size.h5};
 
   margin-bottom: 20px;

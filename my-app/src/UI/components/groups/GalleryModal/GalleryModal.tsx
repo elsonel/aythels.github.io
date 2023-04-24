@@ -130,18 +130,18 @@ const RowBottom = styled(Row)`
     ${({ theme }) => `${theme.color.backgroundOppositeHighlight}`} inset;
 `;
 
-const Title = styled(Paragraph).attrs(() => ({
+const Title = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.title,
 }))`
   flex-grow: 1;
 
   color: ${({ theme }) => theme.color.background};
-  font-family: ${({ theme }) => theme.font.title.family};
   text-align: center;
 
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.default.size.large};`) +
-    GreaterThan(500, `font-size: ${theme.font.default.size.h6};`)}
+    GreaterThan(0, `font-size: ${theme.font.title.size.large};`) +
+    GreaterThan(500, `font-size: ${theme.font.title.size.h6};`)}
 `;
 
 const ButtonClosePlaceholder = styled.div`

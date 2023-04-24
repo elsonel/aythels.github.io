@@ -52,7 +52,6 @@ const Text = styled(Paragraph).attrs(({ theme }) => ({
 }))`
   text-align: center;
   font-size: inherit;
-  line-height: 0.84;
   overflow-wrap: normal;
 
   transition: ${({ theme }) => theme.speed.slow}ms;

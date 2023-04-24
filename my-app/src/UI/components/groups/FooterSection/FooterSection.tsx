@@ -90,7 +90,6 @@ const Title = styled(Paragraph)`
   ${GreaterThan(1400, `font-size: 9rem;`)}
 
   font-family: ${({ theme }) => theme.font.title.family};
-  line-height: 1;
   margin-bottom: 40px;
 `;
 

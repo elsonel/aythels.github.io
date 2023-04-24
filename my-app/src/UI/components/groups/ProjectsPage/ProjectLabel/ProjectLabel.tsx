@@ -62,25 +62,31 @@ const Wrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const Subtitle = styled(Paragraph).attrs(() => ({
+const Subtitle = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.mono,
 }))`
+  position: relative;
   text-align: right;
-  color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
-  font-family: ${({ theme }) => theme.font.mono.family};
-  transition: ${({ theme }) => theme.speed.normal}ms;
   font-size: ${({ theme }) => theme.font.mono.size.small};
+  color: ${({ theme }) => theme.color.text};
+  transition: ${({ theme }) => theme.speed.normal}ms;
+
+  ${GreaterThan(0, `top: 0px;`)}
+  ${GreaterThan(900, `top: 0px;`)}
+  ${GreaterThan(1200, `top: 2px;`)}
+  ${GreaterThan(1400, `top: 3px;`)}
+  ${GreaterThan(1600, `top: 4px;`)}
 `;
 
-const Title = styled(Paragraph).attrs(() => ({
+const Title = styled(Paragraph).attrs(({ theme }) => ({
   size: 'h1',
+  font: theme.font.title,
 }))`
   text-align: right;
   transition: ${({ theme }) => theme.speed.normal}ms;
   color: ${({ theme }) => theme.color.text};
-  font-family: ${({ theme }) => theme.font.title.family};
-  line-height: 0.8;
   ${GreaterThan(0, `font-size: 2rem;`)}
   ${GreaterThan(900, `font-size: 3rem;`)}
   ${GreaterThan(1200, `font-size: 4rem;`)}

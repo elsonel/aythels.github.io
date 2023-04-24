@@ -64,11 +64,11 @@ const Link = styled(LinkWithUnderline).attrs(({ theme }) => ({
   color: theme.color.text,
 }))``;
 
-const Title = styled(Paragraph).attrs(() => ({
+const Title = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.mono,
 }))`
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   font-size: ${({ theme }) => theme.font.mono.size.large};
 `;

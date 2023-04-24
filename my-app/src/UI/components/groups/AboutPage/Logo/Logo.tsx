@@ -22,14 +22,14 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Name = styled(Paragraph).attrs(() => ({
+const Name = styled(Paragraph).attrs(({ theme }) => ({
   size: 'h1',
   isWrapped: false,
+  font: theme.font.mono,
 }))`
   position: relative;
 
   color: ${({ theme }) => theme.color.text};
-  font-family: ${({ theme }) => theme.font.mono.family};
   font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
   letter-spacing: ${({ theme }) => theme.font.default.letterSpacing.button};
 

@@ -61,11 +61,11 @@ const Wrapper = styled.div`
   user-select: none;
 `;
 
-const MonoText = styled(Paragraph).attrs(() => ({
+const MonoText = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.mono,
 }))`
   color: ${({ theme }) => theme.color.background};
-  font-family: ${({ theme }) => theme.font.mono.family};
   font-weight: ${({ theme }) => theme.font.mono.weight.semiBold};
   letter-spacing: ${({ theme }) => theme.font.mono.letterSpacing.button};
 

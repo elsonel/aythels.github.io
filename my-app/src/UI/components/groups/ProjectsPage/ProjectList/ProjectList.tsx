@@ -73,11 +73,12 @@ const ProjectLabelColumn = styled.div`
   gap: 12px;
 `;
 
-const Label = styled(Paragraph)`
+const Label = styled(Paragraph).attrs(({ theme }) => ({
+  font: theme.font.mono,
+}))`
   text-align: right;
   color: ${({ theme }) => theme.color.text};
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   font-size: ${({ theme }) => theme.font.mono.size.large};
   margin-bottom: 20px;
 `;

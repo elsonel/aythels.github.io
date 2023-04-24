@@ -51,12 +51,12 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const Text = styled(Paragraph).attrs(() => ({
+const Text = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.mono
 }))`
   color: inherit;
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   margin: 0px 10px;
 `;
 */
@@ -115,11 +115,11 @@ const StyledButton = styled(ButtonReverse)`
   }
 `;
 
-const Text = styled(Paragraph).attrs(() => ({
+const Text = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
+  font: theme.font.mono,
 }))`
   color: inherit;
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-family: ${({ theme }) => theme.font.mono.family};
   margin: 0px 10px;
 `;

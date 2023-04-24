@@ -31,7 +31,7 @@ const Denominator = styled(Paragraph).attrs(({ theme }) => ({
 }))`
   color: ${({ theme }) => theme.color.textNeutral};
   font-weight: ${({ theme }) => theme.font.mono.weight.medium};
-  font-size: ${({ theme }) => theme.font.default.size.small};
+  font-size: ${({ theme }) => theme.font.mono.size.small};
   overflow-wrap: normal;
 `;
 
