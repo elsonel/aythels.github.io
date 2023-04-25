@@ -9,6 +9,7 @@ import { InView } from 'react-intersection-observer';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
 const FADE_OFFSET = 30;
+const TITLE_DELAY = 100;
 const FADE_DELAY = 100;
 
 export interface IGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,46 +49,69 @@ export const Gallery: React.FC<IGalleryProps> = ({
         if (preloadedImages.length === imagesFlat.length)
           setIsImagesLoaded(true);
       };
+
+      img.onerror = () => {
+        preloadedImages.push(img);
+        if (preloadedImages.length === imagesFlat.length)
+          setIsImagesLoaded(true);
+      };
     });
   }, [images]);
 
-  const imagesRender = useMemo(() => {
+  const imageCards = useMemo(() => {
     let indexCounter = 0;
 
-    return images.map((row) => (
-      <InView key={JSON.stringify(row)} threshold={0.25} triggerOnce>
-        {({ inView, ref }) => (
-          <Row ref={ref}>
-            {row.map((data, i) => {
-              // the current value of indexCounter
-              const indexCounterCopy = indexCounter.valueOf();
+    return images.map((row) =>
+      row.map((data) => {
+        const indexCounterCopy = indexCounter.valueOf();
 
-              const card = (
+        const component = (
+          <ImageCard
+            key={data.src}
+            imageProps={data}
+            onClick={() => {
+              modalImageIndex.current = indexCounterCopy;
+              setIsModalOpen(true);
+            }}
+          />
+        );
+
+        indexCounter += 1;
+
+        return {
+          component: component,
+          src: data.src,
+        };
+      })
+    );
+  }, [images]);
+
+  const imagesRender = useMemo(
+    () =>
+      imageCards.map((row) => (
+        <InView
+          key={JSON.stringify(row.map((row) => row.src))}
+          threshold={0.25}
+          triggerOnce
+        >
+          {({ inView, ref }) => (
+            <Row ref={ref}>
+              {row.map((card, i) => (
                 <StyledFadeIn
-                  key={data.src}
-                  delay={FADE_DELAY * (i + 1)}
+                  key={card.src}
+                  delay={TITLE_DELAY + FADE_DELAY * i}
                   offset={FADE_OFFSET}
                   isLoaded={inView}
                 >
-                  <ImageCard
-                    imageProps={data}
-                    onClick={() => {
-                      modalImageIndex.current = indexCounterCopy;
-                      setIsModalOpen(true);
-                    }}
-                  />
+                  {card.component}
                 </StyledFadeIn>
-              );
-
-              indexCounter += 1;
-
-              return card;
-            })}
-          </Row>
-        )}
-      </InView>
-    ));
-  }, [images]);
+              ))}
+            </Row>
+          )}
+        </InView>
+      )),
+    [imageCards]
+  );
 
   return (
     <>
@@ -106,7 +130,7 @@ export const Gallery: React.FC<IGalleryProps> = ({
         </Layout>
       </Wrapper>
       <GalleryModal
-        srcList={imagesFlat}
+        images={imagesFlat}
         initialIndex={modalImageIndex.current}
         onCloseClick={() => setIsModalOpen(false)}
         isVisible={isModalOpen}

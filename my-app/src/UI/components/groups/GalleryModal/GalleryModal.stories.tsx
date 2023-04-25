@@ -6,7 +6,7 @@ export default {
   title: 'Groups/GalleryModal',
   component: GalleryModal,
   args: {
-    srcList: [
+    images: [
       {
         src: Theme.image.exampleLandscape,
         alt: 'SKY 1',
@@ -75,7 +75,7 @@ WithOffset.args = {
 export const ThreeImage = Template.bind({});
 ThreeImage.args = {
   ...ThreeImage.args,
-  srcList: [
+  images: [
     {
       src: Theme.image.exampleLandscape,
       alt: 'SKY',
@@ -94,7 +94,7 @@ ThreeImage.args = {
 export const TwoImage = Template.bind({});
 TwoImage.args = {
   ...TwoImage.args,
-  srcList: [
+  images: [
     {
       src: Theme.image.exampleLandscape,
       alt: 'SKY',
@@ -109,7 +109,7 @@ TwoImage.args = {
 export const OneImage = Template.bind({});
 OneImage.args = {
   ...OneImage.args,
-  srcList: [
+  images: [
     {
       src: Theme.image.exampleLandscape,
       alt: 'SKY',
@@ -120,7 +120,7 @@ OneImage.args = {
 export const NoCaption = Template.bind({});
 NoCaption.args = {
   ...NoCaption.args,
-  srcList: [
+  images: [
     {
       src: Theme.image.exampleLandscape,
       alt: '',
@@ -131,7 +131,7 @@ NoCaption.args = {
 export const LongCaption = Template.bind({});
 LongCaption.args = {
   ...LongCaption.args,
-  srcList: [
+  images: [
     {
       src: Theme.image.exampleLandscape,
       alt: 'THIS IS A VERY VERY VERY VERY VERY VERY VERYYYYYYYYYYYYYYYYYYYYYYY LONG TITLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE',
@@ -146,5 +146,5 @@ LongCaption.args = {
 export const NoImage = Template.bind({});
 NoImage.args = {
   ...NoImage.args,
-  srcList: [],
+  images: [],
 };

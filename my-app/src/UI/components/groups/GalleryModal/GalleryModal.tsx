@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import { Image, ImageProps } from '../../atoms/Image';
+import { Image as ImageComponent, ImageProps } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
 import { GreaterThan, LessThan } from '../../../utilities/styles/ResponsiveCSS';
 import { useState } from 'react';
@@ -10,10 +10,10 @@ import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 import { Counter } from '../../atoms/Counter/Counter';
 
-const createPane = (srcList: ImageProps[], index: number) => {
-  const left: ImageProps = getElementAt(srcList, index - 1);
-  const middle: ImageProps = getElementAt(srcList, index);
-  const right: ImageProps = getElementAt(srcList, index + 1);
+const createPane = (images: ImageProps[], index: number) => {
+  const left: ImageProps = getElementAt(images, index - 1);
+  const middle: ImageProps = getElementAt(images, index);
+  const right: ImageProps = getElementAt(images, index + 1);
   return [
     <PositionedImage key={left.src} $index={index - 1} {...left} />,
     <PositionedImage key={middle.src} $index={index} {...middle} />,
@@ -22,51 +22,71 @@ const createPane = (srcList: ImageProps[], index: number) => {
 };
 
 export interface GalleryModalProps extends ModalProps {
-  srcList: ImageProps[];
+  images: ImageProps[];
   initialIndex?: number;
+  isVisible?: boolean;
   onCloseClick?: () => void;
+  onCloseComplete?: () => void;
 }
 
 export const GalleryModal = ({
-  srcList,
+  images,
   initialIndex = 0,
+  isVisible = true,
   onCloseClick,
+  onCloseComplete,
   ...props
 }: GalleryModalProps) => {
-  if (srcList.length === 0) throw new Error('Need at least one image!');
+  if (images.length === 0) throw new Error('Need at least one image!');
 
   const [index, setIndex] = useState(initialIndex);
-  const [currentPane, setCurrentPane] = useState(createPane(srcList, index));
+  const [currentPane, setCurrentPane] = useState(createPane(images, index));
   const [isAnimated, setIsAnimated] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
 
+  // swipe images
   const changeImage = useCallback(
     (newIndex: number) => {
       setIsAnimated(true);
-      setCurrentPane(createPane(srcList, newIndex));
+      setCurrentPane(createPane(images, newIndex));
       setIndex(newIndex);
     },
-    [srcList]
+    [images]
   );
 
+  // This is here to prevent a "flash" result from the previous image when the modal is reopened.
+  useEffect(() => {
+    isVisible && setIsImageVisible(true);
+  }, [isVisible]);
+
+  // Change the image offset when initialIndex changes
   useEffect(() => {
     changeImage(initialIndex);
     setIsAnimated(false);
   }, [changeImage, initialIndex]);
 
+  // The current centered image
   const centerImage = useMemo(
-    () => getElementAt(srcList, index),
-    [index, srcList]
+    () => getElementAt(images, index),
+    [index, images]
   );
 
   return (
-    <Modal {...props}>
+    <Modal
+      {...props}
+      isVisible={isVisible}
+      onCloseComplete={() => {
+        onCloseComplete && onCloseComplete();
+        setIsImageVisible(false);
+      }}
+    >
       <Content>
         <RowTop>
           <ButtonClosePlaceholder />
           <Title isWrapped={false}>{centerImage.alt}</Title>
           <ButtonModalClose onClick={onCloseClick} />
         </RowTop>
-        <WrapperMiddle>
+        <WrapperMiddle $isVisible={isImageVisible}>
           <ImageContainer
             // Disable animation after image settles to prevent resizing transitions
             onTransitionEnd={() => setIsAnimated(false)}
@@ -89,8 +109,8 @@ export const GalleryModal = ({
             />
           </ButtonWrapper>
           <StyledCounter
-            numerator={srcList.indexOf(centerImage) + 1}
-            denominator={srcList.length}
+            numerator={images.indexOf(centerImage) + 1}
+            denominator={images.length}
           />
         </RowBottom>
       </Content>
@@ -166,24 +186,29 @@ const CounterPlaceholder = styled(StyledCounter)`
   pointer-events: none;
 `;
 
-const WrapperMiddle = styled.div`
+const WrapperMiddle = styled.div<{ $isVisible: boolean }>`
   flex-grow: 1;
   width: 100%;
+
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: ${({ theme }) => theme.speed.normal}ms;
 `;
 
-const ImageContainer = styled.div<{ $index: number; $isAnimated: boolean }>`
+const ImageContainer = styled.div<{
+  $index: number;
+  $isAnimated: boolean;
+}>`
   position: relative;
   width: 100%;
   height: 100%;
 
   ${({ $index }) =>
     `transform: translateX(calc(${-$index} * max(100vw, 100vh)));`}
-
   transition: ${({ theme, $isAnimated }) =>
     $isAnimated ? `${theme.speed.normal}ms ease` : 'none'};
 `;
 
-const PositionedImage = styled(Image)<{ $index: number }>`
+const PositionedImage = styled(ImageComponent)<{ $index: number }>`
   position: absolute;
   top: 0px;
   left: 0px;

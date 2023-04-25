@@ -31,7 +31,17 @@ export interface ImageInterface {
   exampleSquare: string;
   exampleSquareSmall: string;
   exampleLandscape: string;
+  exampleLandscape2: string;
+  exampleLandscape3: string;
+  exampleLandscape4: string;
+  exampleLandscape5: string;
+  exampleLandscape6: string;
   examplePortrait: string;
+  examplePortrait2: string;
+  examplePortrait3: string;
+  examplePortrait4: string;
+  examplePortrait5: string;
+  examplePortrait6: string;
 }
 
 export interface ThemeAssetInterface {
@@ -59,6 +69,16 @@ export const ThemeAsset: ThemeAssetInterface = {
     exampleSquare: '/images/examples/square.jpg',
     exampleSquareSmall: '/images/examples/squareSmall.png',
     exampleLandscape: '/images/examples/landscape.jpg',
+    exampleLandscape2: '/images/examples/landscape2.jpg',
+    exampleLandscape3: '/images/examples/landscape3.jpg',
+    exampleLandscape4: '/images/examples/landscape4.jpg',
+    exampleLandscape5: '/images/examples/landscape5.jpg',
+    exampleLandscape6: '/images/examples/landscape6.jpg',
     examplePortrait: '/images/examples/portrait.jpg',
+    examplePortrait2: '/images/examples/portrait2.jpg',
+    examplePortrait3: '/images/examples/portrait3.jpg',
+    examplePortrait4: '/images/examples/portrait4.jpg',
+    examplePortrait5: '/images/examples/portrait5.jpg',
+    examplePortrait6: '/images/examples/portrait6.jpg',
   },
 };
