@@ -3,7 +3,7 @@ import styled, { useTheme } from 'styled-components';
 import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
 import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { IconScroll } from '../../../atoms/IconScroll/IconScroll';
-import { Image } from '../../../atoms/Image/Image';
+import { Image, ImageProps } from '../../../atoms/Image/Image';
 import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 import { LinkWithUnderline } from '../../../inputs/LinkWithUnderline/LinkWithUnderline';
@@ -22,8 +22,7 @@ export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   subtitle: string;
   prototypeHref?: string;
-  imageSrc: string;
-  imageSrcSet?: string;
+  image: ImageProps;
   scrollLength?: number;
   onImageLoad?: (isSuccessful: boolean) => void;
 }
@@ -33,8 +32,7 @@ export const Landing: React.FC<LandingProps> = ({
   title,
   subtitle,
   prototypeHref,
-  imageSrc,
-  imageSrcSet,
+  image,
   scrollLength = LANDING_SCROLL_LENGTH,
   onImageLoad,
   ...props
@@ -68,11 +66,15 @@ export const Landing: React.FC<LandingProps> = ({
           >
             <ImageWrapper $offset={IMAGE_OFFSET}>
               <LandingImage
-                alt={title}
-                src={imageSrc}
-                srcSet={imageSrcSet}
-                onLoad={() => onImageLoad && onImageLoad(true)}
-                onError={() => onImageLoad && onImageLoad(false)}
+                {...image}
+                onLoad={(e) => {
+                  image.onLoad && image.onLoad(e);
+                  onImageLoad && onImageLoad(true);
+                }}
+                onError={(e) => {
+                  image.onError && image.onError(e);
+                  onImageLoad && onImageLoad(false);
+                }}
               />
             </ImageWrapper>
           </FixedScrollFade>

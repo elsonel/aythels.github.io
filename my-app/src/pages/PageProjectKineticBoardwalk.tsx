@@ -1,8 +1,25 @@
 import React from 'react';
 import { ROUTES } from '../utilities/routes';
 import { ProjectTemplate } from './ProjectTemplate';
+import {
+  ArchitectureImages,
+  KineticBoardwalkImages,
+} from '../utilities/ImportImages';
 
-const PROJECT_LANDING_IMAGE = '/images/examples/landscape.jpg';
+const PROJECT_LANDING_IMAGE = {
+  src: ArchitectureImages.get('KineticBoardwalk2560.jpg'),
+  srcSet: `
+    ${ArchitectureImages.get('KineticBoardwalk320.jpg')} 320w,
+    ${ArchitectureImages.get('KineticBoardwalk640.jpg')} 640w,
+    ${ArchitectureImages.get('KineticBoardwalk960.jpg')} 960w,
+    ${ArchitectureImages.get('KineticBoardwalk1280.jpg')} 1280w,
+    ${ArchitectureImages.get('KineticBoardwalk1600.jpg')} 1600w,
+    ${ArchitectureImages.get('KineticBoardwalk1920.jpg')} 1920w,
+    ${ArchitectureImages.get('KineticBoardwalk2240.jpg')} 2240w,
+    ${ArchitectureImages.get('KineticBoardwalk2560.jpg')} 2560w,
+  `,
+  alt: 'Kinetic Boardwalk Landing Image',
+};
 const PROJECT_TITLE = 'KINETIC BOARDWALK';
 const PROJECT_SUBTITLE = 'Drifting Landscapes';
 
@@ -55,6 +72,109 @@ const PROJECT_PARAGRAPHS = [
   },
 ];
 
+/* ========================================================================== */
+
+function getSrcSet(name: string) {
+  return `
+    ${KineticBoardwalkImages.get(`${name}320.jpg`)} 320w,
+    ${KineticBoardwalkImages.get(`${name}640.jpg`)} 640w,
+    ${KineticBoardwalkImages.get(`${name}960.jpg`)} 960w,
+    ${KineticBoardwalkImages.get(`${name}1280.jpg`)} 1280w,
+    ${KineticBoardwalkImages.get(`${name}1600.jpg`)} 1600w,
+    ${KineticBoardwalkImages.get(`${name}1920.jpg`)} 1920w,
+    ${KineticBoardwalkImages.get(`${name}2240.jpg`)} 2240w,
+    ${KineticBoardwalkImages.get(`${name}2560.jpg`)} 2560w,
+  `;
+}
+
+const IMAGES = [
+  {
+    src: KineticBoardwalkImages.get('1a_2560.jpg'),
+    srcSet: getSrcSet('1a_'),
+    alt: 'RENDER',
+  },
+  {
+    src: KineticBoardwalkImages.get('2a_2560.jpg'),
+    srcSet: getSrcSet('2a_'),
+    alt: 'ELEVATION',
+  },
+  {
+    src: KineticBoardwalkImages.get('2b_2560.jpg'),
+    srcSet: getSrcSet('2b_'),
+    alt: 'ELEVATION SECTION',
+  },
+  {
+    src: KineticBoardwalkImages.get('2c_2560.jpg'),
+    srcSet: getSrcSet('2c_'),
+    alt: 'ISOMETRIC',
+  },
+  {
+    src: KineticBoardwalkImages.get('2d_2560.jpg'),
+    srcSet: getSrcSet('2d_'),
+    alt: 'SITE PLAN',
+  },
+  {
+    src: KineticBoardwalkImages.get('2e_2560.jpg'),
+    srcSet: getSrcSet('2e_'),
+    alt: 'EXPLODED ISOMETRIC',
+  },
+  {
+    src: KineticBoardwalkImages.get('2f_2560.jpg'),
+    srcSet: getSrcSet('2f_'),
+    alt: 'EXPLODED TILE ISOMETRIC',
+  },
+  {
+    src: KineticBoardwalkImages.get('3a_2560.jpg'),
+    srcSet: getSrcSet('3a_'),
+    alt: 'COLORS OVERVIEW (ELEVATION)',
+  },
+  {
+    src: KineticBoardwalkImages.get('3b_2560.jpg'),
+    srcSet: getSrcSet('3b_'),
+    alt: 'COLORS OVERVIEW (PLAN',
+  },
+  {
+    src: KineticBoardwalkImages.get('3c_2560.jpg'),
+    srcSet: getSrcSet('3c_'),
+    alt: 'MATERIALS OVERVIEW',
+  },
+  {
+    src: KineticBoardwalkImages.get('3d_2560.jpg'),
+    srcSet: getSrcSet('3d_'),
+    alt: 'TILE VARIATIONS',
+  },
+  {
+    src: KineticBoardwalkImages.get('3e_2560.jpg'),
+    srcSet: getSrcSet('3e_'),
+    alt: 'TILE GROUP MECHANISM',
+  },
+  {
+    src: KineticBoardwalkImages.get('3f_2560.jpg'),
+    srcSet: getSrcSet('3f_'),
+    alt: 'TILE MECHANISM',
+  },
+];
+
+const PROJECT_IMAGES_DESKTOP = [
+  [IMAGES[0]],
+  [IMAGES[1], IMAGES[2], IMAGES[3]],
+  [IMAGES[4], IMAGES[5], IMAGES[6]],
+  [IMAGES[7], IMAGES[8], IMAGES[9]],
+  [IMAGES[10], IMAGES[11], IMAGES[12]],
+];
+
+const PROJECT_IMAGES_MOBILE = [
+  [IMAGES[0]],
+  [IMAGES[1], IMAGES[2]],
+  [IMAGES[3], IMAGES[4]],
+  [IMAGES[5], IMAGES[6]],
+  [IMAGES[7], IMAGES[8]],
+  [IMAGES[9], IMAGES[10]],
+  [IMAGES[11], IMAGES[12]],
+];
+
+/* ========================================================================== */
+
 const BACK_ROUTE = ROUTES.architecture['foldPavilion'];
 const FORWARD_ROUTE = ROUTES.architecture['basiliskTower'];
 const PAGE_TITLE = `ELSON LIANG | Kinetic Boardwalk`;
@@ -67,6 +187,8 @@ export const PageProjectKineticBoardwalk: React.FC = (): React.ReactElement => (
     projectPrototypeLink={undefined}
     projectFacts={PROJECT_FACTS}
     projectParagraphs={PROJECT_PARAGRAPHS}
+    projectImagesDesktop={PROJECT_IMAGES_DESKTOP}
+    projectImagesMobile={PROJECT_IMAGES_MOBILE}
     backRoute={BACK_ROUTE}
     forwardRoute={FORWARD_ROUTE}
     pageTitle={PAGE_TITLE}

@@ -24,7 +24,7 @@ import useOnNewPageMount from '../utilities/useOnNewPageMount';
 import { ImageProps } from '../UI/components/atoms/Image';
 
 export interface IProjectTemplateProps {
-  projectLandingImage: string;
+  projectLandingImage: ImageProps;
   projectTitle: string;
   projectSubtitle: string;
   projectPrototypeLink?: string;
@@ -122,7 +122,7 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
         title={projectTitle}
         subtitle={projectSubtitle}
         prototypeHref={projectPrototypeLink}
-        imageSrc={projectLandingImage}
+        image={projectLandingImage}
         isTextLoaded={!isLoaderVisible}
         onImageLoad={() => {
           isLandingImageLoaded.current = true;

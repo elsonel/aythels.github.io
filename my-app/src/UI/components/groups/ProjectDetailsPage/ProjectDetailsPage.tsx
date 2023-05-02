@@ -36,7 +36,7 @@ export const ProjectDetailsPage: React.FC<IProjectDetailsPageProps> = ({
         scrollLength={LANDING_SCROLL_LENGTH}
         title={title}
         subtitle={'PLACEHOLDER'}
-        imageSrc={image.exampleSquare}
+        image={{ src: image.exampleSquare, alt: 'Landing Image' }}
       />
     </>
   );
