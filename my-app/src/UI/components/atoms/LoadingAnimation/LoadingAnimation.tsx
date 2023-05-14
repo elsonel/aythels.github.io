@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
+import useOnWindowResizeSize from '../../../utilities/hooks/useOnWindowResizeSize';
 import { remap } from '../../../utilities/scripts/remap';
 
 // TODO: Refactor this
@@ -108,7 +108,7 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
     });
   }, []);
 
-  useOnWindowResize(onResize);
+  useOnWindowResizeSize(onResize);
 
   return (
     <Wrapper ref={wrapperRef} {...props}>

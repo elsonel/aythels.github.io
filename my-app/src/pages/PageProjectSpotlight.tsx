@@ -1,22 +1,18 @@
 import React from 'react';
 import { ROUTES } from '../utilities/routes';
 import { ProjectTemplate } from './ProjectTemplate';
-import { SpotlightImages, UIUXImages } from '../utilities/ImportImages';
+import { SpotlightImages } from '../utilities/ImportImages';
 
 const PROJECT_LANDING_IMAGE = {
-  src: UIUXImages.get('Spotlight2560.jpg'),
-  srcSet: `
-    ${UIUXImages.get('Spotlight320.jpg')} 320w,
-    ${UIUXImages.get('Spotlight640.jpg')} 640w,
-    ${UIUXImages.get('Spotlight960.jpg')} 960w,
-    ${UIUXImages.get('Spotlight1280.jpg')} 1280w,
-    ${UIUXImages.get('Spotlight1600.jpg')} 1600w,
-    ${UIUXImages.get('Spotlight1920.jpg')} 1920w,
-    ${UIUXImages.get('Spotlight2240.jpg')} 2240w,
-    ${UIUXImages.get('Spotlight2560.jpg')} 2560w,
-  `,
-  alt: 'Spotlight Landing Image',
+  src: SpotlightImages.get('landing_1280.jpg'),
+  srcSet: SpotlightImages.getSrcSet('landing'),
+  alt: `Spotlight Landing Image`,
 };
+const PROJECT_LANDING_IMAGE_FIT = 'contain';
+const PROJECT_LANDING_IMAGE_BACKGROUND_COLOR = '#251844';
+
+/* ========================================================================== */
+
 const PROJECT_TITLE = 'SPOTLIGHT';
 const PROJECT_SUBTITLE = 'Digital Theater';
 const PROJECT_PROTOTYPE_LINK =
@@ -58,49 +54,36 @@ const PROJECT_PARAGRAPHS = [
 
 /* ========================================================================== */
 
-function getSrcSet(name: string) {
-  return `
-    ${SpotlightImages.get(`${name}320.jpg`)} 320w,
-    ${SpotlightImages.get(`${name}640.jpg`)} 640w,
-    ${SpotlightImages.get(`${name}960.jpg`)} 960w,
-    ${SpotlightImages.get(`${name}1280.jpg`)} 1280w,
-    ${SpotlightImages.get(`${name}1600.jpg`)} 1600w,
-    ${SpotlightImages.get(`${name}1920.jpg`)} 1920w,
-    ${SpotlightImages.get(`${name}2240.jpg`)} 2240w,
-    ${SpotlightImages.get(`${name}2560.jpg`)} 2560w,
-  `;
-}
-
 const IMAGES = [
   {
-    src: SpotlightImages.get('1a_2560.jpg'),
-    srcSet: getSrcSet('1a_'),
-    alt: 'TYPOGRAPHY AND COLORS',
+    src: SpotlightImages.get('1a_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('1a'),
+    alt: 'Brand Typography & Colors',
   },
   {
-    src: SpotlightImages.get('1b_2560.jpg'),
-    srcSet: getSrcSet('1b_'),
-    alt: 'REGISTRATION SCREEN',
+    src: SpotlightImages.get('1b_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('1b'),
+    alt: 'Registration Screen',
   },
   {
-    src: SpotlightImages.get('1c_2560.jpg'),
-    srcSet: getSrcSet('1c_'),
-    alt: 'THEATER SCREEN',
+    src: SpotlightImages.get('1c_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('1c'),
+    alt: 'Theater Screen',
   },
   {
-    src: SpotlightImages.get('2a_2560.jpg'),
-    srcSet: getSrcSet('2a_'),
-    alt: 'LANDING PAGE',
+    src: SpotlightImages.get('2a_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('2a'),
+    alt: 'Landing Page',
   },
   {
-    src: SpotlightImages.get('2b_2560.jpg'),
-    srcSet: getSrcSet('2b_'),
-    alt: 'BROWSING PAGE',
+    src: SpotlightImages.get('2b_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('2b'),
+    alt: 'Media Browsing Page',
   },
   {
-    src: SpotlightImages.get('2c_2560.jpg'),
-    srcSet: getSrcSet('2c_'),
-    alt: 'OVERVIEW PAGE',
+    src: SpotlightImages.get('2c_1280.jpg'),
+    srcSet: SpotlightImages.getSrcSet('2c'),
+    alt: 'Show Overview Page',
   },
 ];
 
@@ -123,6 +106,8 @@ const PAGE_TITLE = `ELSON LIANG | Spotlight`;
 export const PageProjectSpotlight: React.FC = (): React.ReactElement => (
   <ProjectTemplate
     projectLandingImage={PROJECT_LANDING_IMAGE}
+    projectLandingImageFit={PROJECT_LANDING_IMAGE_FIT}
+    projectLandingBackgroundColor={PROJECT_LANDING_IMAGE_BACKGROUND_COLOR}
     projectTitle={PROJECT_TITLE}
     projectSubtitle={PROJECT_SUBTITLE}
     projectPrototypeLink={PROJECT_PROTOTYPE_LINK}

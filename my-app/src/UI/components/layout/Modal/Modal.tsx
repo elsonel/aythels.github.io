@@ -16,19 +16,20 @@ export const Modal: React.FC<ModalProps> = ({
   ...props
 }): React.ReactElement =>
   createPortal(
-    <Wrapper
-      $isVisible={isVisible}
-      onTransitionEnd={() => !isVisible && onCloseComplete && onCloseComplete()}
-      {...props}
-    >
+    <Wrapper $isVisible={isVisible} {...props}>
       {isVisible && <GlobalScrollLock />}
+      <Empty
+        $isVisible={isVisible}
+        onTransitionEnd={() =>
+          !isVisible && onCloseComplete && onCloseComplete()
+        }
+      />
       <Content>{children}</Content>
     </Wrapper>,
     document.body
   );
 
 // https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/
-// Can also set 'visibility: hidden' on body to hide background
 
 const Wrapper = styled.div<{ $isVisible: boolean }>`
   z-index: ${({ theme }) => theme.layer.modal};
@@ -51,4 +52,16 @@ const Content = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
+`;
+
+// Needed because onTransitionEnd set on the parent sometimes fires prematurely
+const Empty = styled.div<{ $isVisible: boolean }>`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transition: inherit;
+  transition-property: inherit;
+  pointer-events: none;
 `;

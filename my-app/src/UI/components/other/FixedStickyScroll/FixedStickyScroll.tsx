@@ -1,7 +1,7 @@
 import useResizeObserver from '@react-hook/resize-observer';
 import React, { useCallback, useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
+import useOnWindowResizeSize from '../../../utilities/hooks/useOnWindowResizeSize';
 import useOnWindowScroll from '../../../utilities/hooks/useOnWindowScroll';
 
 export interface FixedStickyScrollProps
@@ -50,7 +50,7 @@ export const FixedStickyScroll: React.FC<FixedStickyScrollProps> = ({
 
   useResizeObserver(ref, onResize);
 
-  useOnWindowResize(onResize);
+  useOnWindowResizeSize(onResize);
 
   useOnWindowScroll(setTransform);
 

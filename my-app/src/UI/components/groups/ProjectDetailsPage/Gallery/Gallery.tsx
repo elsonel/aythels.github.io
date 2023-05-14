@@ -8,6 +8,8 @@ import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { InView } from 'react-intersection-observer';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
+const WIDTH = 1200;
+
 const FADE_OFFSET = 30;
 const TITLE_DELAY = 100;
 const FADE_DELAY = 100;
@@ -26,23 +28,23 @@ export const Gallery: React.FC<IGalleryProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalImageIndex = useRef<number>();
 
+  const FlattenedImages = useMemo(() => images.flat(), [images]);
+
   // On load
   useEffect(() => {
     if (isImagesLoaded) onAllImagesLoad && onAllImagesLoad();
   }, [isImagesLoaded, onAllImagesLoad]);
 
-  const imagesFlat = useMemo(() => images.flat(), [images]);
-
-  // Preload images
+  // Preload thumbnails
   useEffect(() => {
     setIsImagesLoaded(false);
 
     const imagesFlat = images.flat();
     const preloadedImages: HTMLImageElement[] = [];
 
-    imagesFlat.forEach((data) => {
+    imagesFlat.forEach((image) => {
       const img = new Image();
-      Object.assign(img, data);
+      Object.assign(img, image);
 
       img.onload = () => {
         preloadedImages.push(img);
@@ -62,13 +64,21 @@ export const Gallery: React.FC<IGalleryProps> = ({
     let indexCounter = 0;
 
     return images.map((row) =>
-      row.map((data) => {
+      row.map((image) => {
         const indexCounterCopy = indexCounter.valueOf();
+        const imageSize = `
+          (min-width: ${WIDTH}px) ${WIDTH}px / ${row.length}, 
+          100vw / ${row.length}
+        `;
+        const thumbnailImage = {
+          ...image,
+          sizes: imageSize,
+        };
 
         const component = (
           <ImageCard
-            key={data.src}
-            imageProps={data}
+            key={thumbnailImage.src}
+            imageProps={thumbnailImage}
             onClick={() => {
               modalImageIndex.current = indexCounterCopy;
               setIsModalOpen(true);
@@ -80,7 +90,7 @@ export const Gallery: React.FC<IGalleryProps> = ({
 
         return {
           component: component,
-          src: data.src,
+          src: thumbnailImage.src,
         };
       })
     );
@@ -130,7 +140,7 @@ export const Gallery: React.FC<IGalleryProps> = ({
         </Layout>
       </Wrapper>
       <GalleryModal
-        images={imagesFlat}
+        images={FlattenedImages}
         initialIndex={modalImageIndex.current}
         onCloseClick={() => setIsModalOpen(false)}
         isVisible={isModalOpen}
@@ -157,7 +167,7 @@ const Title = styled(Paragraph).attrs(({ theme }) => ({
 
 const Layout = styled.div`
   box-sizing: border-box;
-  width: min(100%, 1200px);
+  width: min(100%, ${WIDTH}px);
   margin: auto;
 
   ${({ theme }) =>

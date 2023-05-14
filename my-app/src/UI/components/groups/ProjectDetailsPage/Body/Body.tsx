@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import styled, { useTheme } from 'styled-components';
-import useOnWindowResize from '../../../../utilities/hooks/useOnWindowResize';
+import useOnWindowResizeSize from '../../../../utilities/hooks/useOnWindowResizeSize';
 import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
 import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
 import { FrameLayout } from '../../../layout/FrameLayout/FrameLayout';
@@ -17,9 +17,9 @@ import { BodyText } from '../BodyText/BodyText';
 import { Divider } from '../Divider/Divider';
 import { FactData, FactsList } from '../FactsList/FactsList';
 import { Title } from '../Title/Title';
-import { Gallery } from '../Gallery/Gallery';
 import { ImageProps } from '../../../atoms/Image/Image';
 import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
+import { Gallery } from '../Gallery/Gallery';
 
 const STATIONARY_LENGTH = 600;
 
@@ -76,7 +76,7 @@ export const Body: React.FC<IBodyProps> = ({
     onAssetsLoad && onAssetsLoad();
   }, [onAssetsLoad, onResize]);
 
-  useOnWindowResize(onResize);
+  useOnWindowResizeSize(onResize);
   useOnWindowScroll(onScroll);
 
   const factsDelay = stagger * 1;

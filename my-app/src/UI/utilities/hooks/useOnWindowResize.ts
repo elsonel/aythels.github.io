@@ -1,22 +1,12 @@
 import { useLayoutEffect, useState } from 'react';
 
-export default function useOnWindowResize(
-  callback?: (newWidth: number, newHeight: number) => void
-) {
-  const [size, setSize] = useState([0, 0]);
-
+export default function useOnWindowResize(callback?: () => void) {
   useLayoutEffect(() => {
-    function updateSize() {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
+    const onResize = () => {
+      callback && callback();
+    };
 
-      callback && callback(newWidth, newHeight);
-      setSize([newWidth, newHeight]);
-    }
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, [callback]);
-
-  return size; // [width, height]
 }

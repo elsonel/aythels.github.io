@@ -13,6 +13,8 @@ export interface FixedScrollFadeProps
   finalOffsetY?: number;
   initialOpacity?: number;
   finalOpacity?: number;
+  initialBrightness?: number;
+  finalBrightness?: number;
 }
 
 export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
@@ -23,6 +25,8 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
   finalOffsetY = scrollDuration,
   initialOpacity = 1,
   finalOpacity = 0,
+  initialBrightness = 1,
+  finalBrightness = 1,
   ...props
 }): React.ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,11 +49,20 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
         finalOpacity
       );
 
+      const brightness = getValue(
+        scrollY,
+        scrollStart,
+        scrollDuration,
+        initialBrightness,
+        finalBrightness
+      );
+
       const pointerEvents = opacity > 0.1 ? `inherit` : `none`;
 
       return {
         transform: `translateY(${transform}px)`,
         opacity: opacity.toString(),
+        brightness: `brightness(${brightness})`,
         pointerEvents: pointerEvents,
       };
     },
@@ -60,6 +73,8 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
       finalOffsetY,
       initialOpacity,
       finalOpacity,
+      initialBrightness,
+      finalBrightness,
     ]
   );
 
@@ -72,6 +87,7 @@ export const FixedScrollFade: React.FC<FixedScrollFadeProps> = ({
       ref.current.style.transform = style.transform;
       ref.current.style.opacity = style.opacity;
       ref.current.style.pointerEvents = style.pointerEvents;
+      ref.current.style.filter = style.brightness;
     },
     [getStyle]
   );

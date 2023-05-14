@@ -23,6 +23,8 @@ export interface LandingProps extends React.HTMLAttributes<HTMLDivElement> {
   subtitle: string;
   prototypeHref?: string;
   image: ImageProps;
+  imageFit?: 'contain' | 'cover';
+  imageBackgroundColor?: string;
   scrollLength?: number;
   onImageLoad?: (isSuccessful: boolean) => void;
 }
@@ -33,6 +35,8 @@ export const Landing: React.FC<LandingProps> = ({
   subtitle,
   prototypeHref,
   image,
+  imageFit = 'cover',
+  imageBackgroundColor = 'white',
   scrollLength = LANDING_SCROLL_LENGTH,
   onImageLoad,
   ...props
@@ -63,10 +67,17 @@ export const Landing: React.FC<LandingProps> = ({
             finalOffsetY={-IMAGE_OFFSET}
             initialOpacity={1}
             finalOpacity={1}
+            initialBrightness={0.4}
+            finalBrightness={1}
           >
-            <ImageWrapper $offset={IMAGE_OFFSET}>
+            <ImageWrapper
+              $offset={IMAGE_OFFSET}
+              $backgroundColor={imageBackgroundColor}
+            >
               <LandingImage
                 {...image}
+                sizes="100vw"
+                $imageFit={imageFit}
                 onLoad={(e) => {
                   image.onLoad && image.onLoad(e);
                   onImageLoad && onImageLoad(true);
@@ -141,7 +152,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
     $isVisible ? theme.color.background : 'transparent'};
@@ -157,7 +168,10 @@ const OverlayContent = styled.div<{ $isVisible: boolean }>`
   transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
-const ImageWrapper = styled.div<{ $offset: number }>`
+const ImageWrapper = styled.div<{
+  $offset: number;
+  $backgroundColor: string;
+}>`
   width: 100%;
   height: calc(100vh + ${({ $offset }) => $offset}px);
   transition: ${({ theme }) => theme.speed.instant}ms;
@@ -167,12 +181,14 @@ const ImageWrapper = styled.div<{ $offset: number }>`
     height: 100vh;
     transform: none !important;
   `)}
+
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
-const LandingImage = styled(Image)`
+const LandingImage = styled(Image)<{ $imageFit: 'contain' | 'cover' }>`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: ${({ $imageFit }) => $imageFit};
 `;
 
 const LandingTextWrapper = styled.div`

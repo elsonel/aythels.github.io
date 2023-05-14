@@ -1,23 +1,39 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { Image as ImageComponent, ImageProps } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
-import { GreaterThan, LessThan } from '../../../utilities/styles/ResponsiveCSS';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { useState } from 'react';
 import { getElementAt } from '../../../utilities/scripts/Array';
 import { ButtonModalClose } from '../../inputs/ButtonModalClose';
 import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 import { Counter } from '../../atoms/Counter/Counter';
+import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
 
 const createPane = (images: ImageProps[], index: number) => {
   const left: ImageProps = getElementAt(images, index - 1);
   const middle: ImageProps = getElementAt(images, index);
   const right: ImageProps = getElementAt(images, index + 1);
   return [
-    <PositionedImage key={left.src} $index={index - 1} {...left} />,
-    <PositionedImage key={middle.src} $index={index} {...middle} />,
-    <PositionedImage key={right.src} $index={index + 1} {...right} />,
+    <PositionedImage
+      key={left.src}
+      $index={index - 1}
+      {...left}
+      sizes="100vw"
+    />,
+    <PositionedImage
+      key={middle.src}
+      $index={index}
+      {...middle}
+      sizes="100vw"
+    />,
+    <PositionedImage
+      key={right.src}
+      $index={index + 1}
+      {...right}
+      sizes="100vw"
+    />,
   ];
 };
 
@@ -26,7 +42,6 @@ export interface GalleryModalProps extends ModalProps {
   initialIndex?: number;
   isVisible?: boolean;
   onCloseClick?: () => void;
-  onCloseComplete?: () => void;
 }
 
 export const GalleryModal = ({
@@ -34,36 +49,30 @@ export const GalleryModal = ({
   initialIndex = 0,
   isVisible = true,
   onCloseClick,
-  onCloseComplete,
   ...props
 }: GalleryModalProps) => {
-  if (images.length === 0) throw new Error('Need at least one image!');
-
   const [index, setIndex] = useState(initialIndex);
-  const [currentPane, setCurrentPane] = useState(createPane(images, index));
   const [isAnimated, setIsAnimated] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
 
-  // swipe images
-  const changeImage = useCallback(
-    (newIndex: number) => {
-      setIsAnimated(true);
-      setCurrentPane(createPane(images, newIndex));
-      setIndex(newIndex);
-    },
-    [images]
-  );
+  useOnWindowResize(() => setIsAnimated(false));
+
+  useEffect(() => {
+    if (images.length === 0) throw new Error('Need at least one image!');
+  }, [images]);
 
   // This is here to prevent a "flash" result from the previous image when the modal is reopened.
   useEffect(() => {
+    if (!isVisible) return;
     isVisible && setIsImageVisible(true);
   }, [isVisible]);
 
   // Change the image offset when initialIndex changes
   useEffect(() => {
-    changeImage(initialIndex);
+    if (!isVisible) return;
     setIsAnimated(false);
-  }, [changeImage, initialIndex]);
+    setIndex(initialIndex);
+  }, [isVisible, initialIndex]);
 
   // The current centered image
   const centerImage = useMemo(
@@ -72,28 +81,25 @@ export const GalleryModal = ({
   );
 
   return (
-    <Modal
-      {...props}
-      isVisible={isVisible}
-      onCloseComplete={() => {
-        onCloseComplete && onCloseComplete();
-        setIsImageVisible(false);
-      }}
-    >
+    <Modal {...props} isVisible={isVisible}>
       <Content>
         <RowTop>
           <ButtonClosePlaceholder />
           <Title isWrapped={false}>{centerImage.alt}</Title>
-          <ButtonModalClose onClick={onCloseClick} />
+          <ButtonModalClose
+            onClick={() => {
+              onCloseClick && onCloseClick();
+              setIsImageVisible(false);
+            }}
+          />
         </RowTop>
         <WrapperMiddle $isVisible={isImageVisible}>
           <ImageContainer
             // Disable animation after image settles to prevent resizing transitions
-            onTransitionEnd={() => setIsAnimated(false)}
             $isAnimated={isAnimated}
             $index={index}
           >
-            {currentPane}
+            {createPane(images, index)}
           </ImageContainer>
         </WrapperMiddle>
         <RowBottom>
@@ -101,11 +107,17 @@ export const GalleryModal = ({
           <ButtonWrapper>
             <ButtonModalNext
               direction={'LEFT'}
-              onClick={() => changeImage(index - 1)}
+              onClick={() => {
+                setIsAnimated(true);
+                setIndex(index - 1);
+              }}
             />
             <ButtonModalNext
               direction={'RIGHT'}
-              onClick={() => changeImage(index + 1)}
+              onClick={() => {
+                setIsAnimated(true);
+                setIndex(index + 1);
+              }}
             />
           </ButtonWrapper>
           <StyledCounter
@@ -152,16 +164,15 @@ const RowBottom = styled(Row)`
 
 const Title = styled(Paragraph).attrs(({ theme }) => ({
   isWrapped: false,
-  font: theme.font.title,
 }))`
   flex-grow: 1;
-
-  color: ${({ theme }) => theme.color.background};
   text-align: center;
+  font-weight: ${({ theme }) => theme.font.default.weight.bold};
+  color: ${({ theme }) => theme.color.background};
 
   ${({ theme }) =>
-    GreaterThan(0, `font-size: ${theme.font.title.size.large};`) +
-    GreaterThan(500, `font-size: ${theme.font.title.size.h6};`)}
+    GreaterThan(0, `font-size: ${theme.font.title.size.default};`) +
+    GreaterThan(500, `font-size: ${theme.font.title.size.large};`)}
 `;
 
 const ButtonClosePlaceholder = styled.div`

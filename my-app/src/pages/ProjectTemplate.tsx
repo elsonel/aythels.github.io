@@ -25,6 +25,8 @@ import { ImageProps } from '../UI/components/atoms/Image';
 
 export interface IProjectTemplateProps {
   projectLandingImage: ImageProps;
+  projectLandingImageFit?: 'contain' | 'cover';
+  projectLandingBackgroundColor?: string;
   projectTitle: string;
   projectSubtitle: string;
   projectPrototypeLink?: string;
@@ -39,6 +41,8 @@ export interface IProjectTemplateProps {
 
 export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
   projectLandingImage,
+  projectLandingImageFit,
+  projectLandingBackgroundColor,
   projectTitle,
   projectSubtitle,
   projectPrototypeLink,
@@ -123,6 +127,8 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
         subtitle={projectSubtitle}
         prototypeHref={projectPrototypeLink}
         image={projectLandingImage}
+        imageFit={projectLandingImageFit}
+        imageBackgroundColor={projectLandingBackgroundColor}
         isTextLoaded={!isLoaderVisible}
         onImageLoad={() => {
           isLandingImageLoaded.current = true;

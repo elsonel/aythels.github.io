@@ -35,6 +35,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   cursor: pointer;
+  user-select: none;
 `;
 
 const StyledTilt = styled(Tilt)`
@@ -44,6 +45,7 @@ const StyledTilt = styled(Tilt)`
 const StyledImage = styled(Image)`
   width: 100%;
   pointer-events: none;
+  user-select: none;
 `;
 
 const ImageOverlay = styled.div`

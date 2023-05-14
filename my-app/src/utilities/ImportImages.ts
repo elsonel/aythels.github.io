@@ -1,17 +1,31 @@
-interface IImageManager {
+interface ImageManager {
   get: (src: string) => string;
-}
-
-function ImageManager(this: IImageManager, imageList: ImageList) {
-  this.get = (src: string) => {
-    const image = imageList[src];
-    if (image === undefined) throw 'Invalid image: ' + src;
-    return image;
-  };
+  getSrcSet: (src: string) => string;
 }
 
 interface ImageList {
   [src: string]: string;
+}
+
+function ImageManager(this: ImageManager, imageList: ImageList) {
+  this.get = (src: string) => {
+    const image = imageList[src];
+    if (image === undefined) throw new Error('Invalid image: ' + src);
+    return image;
+  };
+
+  this.getSrcSet = (src: string) => {
+    return `
+      ${this.get(`${src}_320.jpg`)} 320w,
+      ${this.get(`${src}_640.jpg`)} 640w,
+      ${this.get(`${src}_960.jpg`)} 960w,
+      ${this.get(`${src}_1280.jpg`)} 1280w,
+      ${this.get(`${src}_1600.jpg`)} 1600w,
+      ${this.get(`${src}_1920.jpg`)} 1920w,
+      ${this.get(`${src}_2240.jpg`)} 2240w,
+      ${this.get(`${src}_2560.jpg`)} 2560w,
+  `;
+  };
 }
 
 // const images = importAll(require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/))
@@ -87,9 +101,7 @@ export const PortfolioImages = new (ImageManager as any)(
 );
 
 export const SpotlightImages = new (ImageManager as any)(
-  importAll(
-    require.context('../assets/spotlight-assets', false, /\.(png|jpe?g|svg)$/)
-  )
+  importAll(require.context('../assets/spotlight', false, /\.(png|jpe?g|svg)$/))
 );
 
 export const ProjectsImages = new (ImageManager as any)(

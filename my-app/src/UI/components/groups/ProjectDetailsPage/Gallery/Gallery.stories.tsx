@@ -2,26 +2,6 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Gallery, IGalleryProps } from './Gallery';
 import { Theme } from './../../../../utilities/themes/Theme';
-/*
-
-import { KineticBoardwalkImages } from '../../../../../utilities/ImportImages';
-
-const IMAGES = [
-  { src: KineticBoardwalkImages.get('2a_2560.jpg'), alt: 'IMAGE 1' },
-  { src: KineticBoardwalkImages.get('2b_2560.jpg'), alt: 'IMAGE 2' },
-  { src: KineticBoardwalkImages.get('2c_2560.jpg'), alt: 'IMAGE 3' },
-  { src: KineticBoardwalkImages.get('2d_2560.jpg'), alt: 'IMAGE 4' },
-  { src: KineticBoardwalkImages.get('2e_2560.jpg'), alt: 'IMAGE 5' },
-  { src: KineticBoardwalkImages.get('2f_2560.jpg'), alt: 'IMAGE 6' },
-  { src: KineticBoardwalkImages.get('3a_2560.jpg'), alt: 'IMAGE 7' },
-  { src: KineticBoardwalkImages.get('3b_2560.jpg'), alt: 'IMAGE 8' },
-  { src: KineticBoardwalkImages.get('3c_2560.jpg'), alt: 'IMAGE 9' },
-  { src: KineticBoardwalkImages.get('3d_2560.jpg'), alt: 'IMAGE 10' },
-  { src: KineticBoardwalkImages.get('3e_2560.jpg'), alt: 'IMAGE 11' },
-  { src: KineticBoardwalkImages.get('3f_2560.jpg'), alt: 'IMAGE 12' },
-];
-
-*/
 
 const IMAGES = [
   { src: Theme.image.examplePortrait, alt: 'IMAGE 1' },
