@@ -67,7 +67,7 @@ export const Landing: React.FC<LandingProps> = ({
             finalOffsetY={-IMAGE_OFFSET}
             initialOpacity={1}
             finalOpacity={1}
-            initialBrightness={0.4}
+            initialBrightness={0.3}
             finalBrightness={1}
           >
             <ImageWrapper

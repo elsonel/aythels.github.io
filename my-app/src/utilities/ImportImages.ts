@@ -10,20 +10,16 @@ interface ImageList {
 function ImageManager(this: ImageManager, imageList: ImageList) {
   this.get = (src: string) => {
     const image = imageList[src];
-    if (image === undefined) throw new Error('Invalid image: ' + src);
+    if (image === undefined) console.error('Invalid image: ' + src);
     return image;
   };
 
   this.getSrcSet = (src: string) => {
     return `
-      ${this.get(`${src}_320.jpg`)} 320w,
-      ${this.get(`${src}_640.jpg`)} 640w,
-      ${this.get(`${src}_960.jpg`)} 960w,
-      ${this.get(`${src}_1280.jpg`)} 1280w,
-      ${this.get(`${src}_1600.jpg`)} 1600w,
-      ${this.get(`${src}_1920.jpg`)} 1920w,
-      ${this.get(`${src}_2240.jpg`)} 2240w,
-      ${this.get(`${src}_2560.jpg`)} 2560w,
+      ${this.get(`${src}_640.png`)} 640w,
+      ${this.get(`${src}_1280.png`)} 1280w,
+      ${this.get(`${src}_1920.png`)} 1920w,
+      ${this.get(`${src}_2560.png`)} 2560w,
   `;
   };
 }
@@ -41,12 +37,6 @@ function importAll(r: __WebpackModuleApi.RequireContext) {
 export const VisualArtsImages = new (ImageManager as any)(
   importAll(
     require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/)
-  )
-);
-
-export const UIUXImages = new (ImageManager as any)(
-  importAll(
-    require.context('../assets/uiux-assets', false, /\.(png|jpe?g|svg)$/)
   )
 );
 
@@ -95,9 +85,7 @@ export const FoldPavilionImages = new (ImageManager as any)(
 //
 
 export const PortfolioImages = new (ImageManager as any)(
-  importAll(
-    require.context('../assets/portfolio-assets', false, /\.(png|jpe?g|svg)$/)
-  )
+  importAll(require.context('../assets/portfolio', false, /\.(png|jpe?g|svg)$/))
 );
 
 export const SpotlightImages = new (ImageManager as any)(

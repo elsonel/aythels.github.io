@@ -4,7 +4,7 @@ import { ProjectTemplate } from './ProjectTemplate';
 import { SpotlightImages } from '../utilities/ImportImages';
 
 const PROJECT_LANDING_IMAGE = {
-  src: SpotlightImages.get('landing_1280.jpg'),
+  src: SpotlightImages.get('landing.png'),
   srcSet: SpotlightImages.getSrcSet('landing'),
   alt: `Spotlight Landing Image`,
 };
@@ -50,38 +50,44 @@ const PROJECT_PARAGRAPHS = [
       Modern entertainment platforms often lack opportunities for close collaborative interactions. Spotlight, however, caters specifically to small groups of friends and family with features such as instant messaging and real-time watch parties. While still differentiating itself from traditional livestreaming sites, Spotlight prioritizes interactions within the user's immediate social circle, thereby creating a more personalized and engaging entertainment experience.
     `,
   },
+  {
+    title: undefined,
+    body: `
+      This product concept and user interface design were made for the Adobe College + Netflix Creative Jam competition.
+    `,
+  },
 ];
 
 /* ========================================================================== */
 
 const IMAGES = [
   {
-    src: SpotlightImages.get('1a_1280.jpg'),
+    src: SpotlightImages.get('1a_1280.png'),
     srcSet: SpotlightImages.getSrcSet('1a'),
     alt: 'Brand Typography & Colors',
   },
   {
-    src: SpotlightImages.get('1b_1280.jpg'),
+    src: SpotlightImages.get('1b_1280.png'),
     srcSet: SpotlightImages.getSrcSet('1b'),
     alt: 'Registration Screen',
   },
   {
-    src: SpotlightImages.get('1c_1280.jpg'),
+    src: SpotlightImages.get('1c_1280.png'),
     srcSet: SpotlightImages.getSrcSet('1c'),
     alt: 'Theater Screen',
   },
   {
-    src: SpotlightImages.get('2a_1280.jpg'),
+    src: SpotlightImages.get('2a_1280.png'),
     srcSet: SpotlightImages.getSrcSet('2a'),
     alt: 'Landing Page',
   },
   {
-    src: SpotlightImages.get('2b_1280.jpg'),
+    src: SpotlightImages.get('2b_1280.png'),
     srcSet: SpotlightImages.getSrcSet('2b'),
     alt: 'Media Browsing Page',
   },
   {
-    src: SpotlightImages.get('2c_1280.jpg'),
+    src: SpotlightImages.get('2c_1280.png'),
     srcSet: SpotlightImages.getSrcSet('2c'),
     alt: 'Show Overview Page',
   },
