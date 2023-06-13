@@ -84,15 +84,12 @@ export const Body: React.FC<IBodyProps> = ({
   const galleryDelay = stagger * 3;
 
   const images = useMemo(() => {
-    if (isDesktop) {
-      if (imagesDesktop) return imagesDesktop;
-      if (imagesMobile) return imagesMobile;
-    } else {
-      if (imagesMobile) return imagesMobile;
-      if (imagesDesktop) return imagesDesktop;
-    }
-    onModuleAssetsLoad();
-  }, [imagesDesktop, imagesMobile, isDesktop, onModuleAssetsLoad]);
+    if (isDesktop && imagesDesktop) return imagesDesktop;
+    if (!isDesktop && imagesMobile) return imagesMobile;
+
+    if (imagesDesktop) return imagesDesktop;
+    if (imagesMobile) return imagesMobile;
+  }, [imagesDesktop, imagesMobile, isDesktop]);
 
   return (
     <>

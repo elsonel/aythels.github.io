@@ -155,7 +155,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   height: 100dvh;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
-    $isVisible ? theme.color.background : 'transparent'};
+    $isVisible ? theme.color.backgroundOpposite : 'transparent'};
   z-index: ${({ theme }) => theme.layer.landing};
 `;
 

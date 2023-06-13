@@ -4,7 +4,7 @@ import { ProjectTemplate } from './ProjectTemplate';
 import { SpotlightImages } from '../utilities/ImportImages';
 
 const PROJECT_LANDING_IMAGE = {
-  src: SpotlightImages.get('landing.png'),
+  src: SpotlightImages.get('landing_1280.png'),
   srcSet: SpotlightImages.getSrcSet('landing'),
   alt: `Spotlight Landing Image`,
 };

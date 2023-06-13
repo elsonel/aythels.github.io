@@ -63,6 +63,15 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
   useOnNewPageMount(pageTitle);
 
   useEffect(() => {
+    const timeout = setTimeout(
+      () => setIsLoaderVisible(false),
+      MAXIUMUM_DURATION
+    );
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
     if (!isFinishedLoading) return;
 
     const timeout = setTimeout(
@@ -70,9 +79,7 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
       MINIMUM_DURATION
     );
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    return () => clearTimeout(timeout);
   }, [isFinishedLoading]);
 
   return (

@@ -9,7 +9,7 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 // https://www.cronyxdigital.com/blog/the-ultimate-website-image-guide
 
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, alt, sizes, ...props }, ref) => (
+  ({ src, alt, ...props }, ref) => (
     <ImageStyled src={src} alt={alt} ref={ref} {...props} />
   )
 );

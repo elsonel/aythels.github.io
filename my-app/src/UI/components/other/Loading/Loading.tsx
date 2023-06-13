@@ -6,6 +6,7 @@ import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { FadeIn } from '../FadeIn/FadeIn';
 
 export const MINIMUM_DURATION = 1000;
+export const MAXIUMUM_DURATION = 5000;
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
   isVisible: boolean;
