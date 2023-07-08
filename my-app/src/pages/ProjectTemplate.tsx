@@ -12,6 +12,7 @@ import {
 import {
   Loading,
   MINIMUM_DURATION,
+  MAXIMUM_DURATION,
 } from '../UI/components/other/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
 import { LoadingBlank } from '../UI/components/other/LoadingBlank/LoadingBlank';
@@ -65,7 +66,7 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
   useEffect(() => {
     const timeout = setTimeout(
       () => setIsLoaderVisible(false),
-      MAXIUMUM_DURATION
+      MAXIMUM_DURATION
     );
 
     return () => clearTimeout(timeout);

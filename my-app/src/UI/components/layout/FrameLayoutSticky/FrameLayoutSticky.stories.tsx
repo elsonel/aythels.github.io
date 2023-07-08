@@ -7,6 +7,7 @@ import {
 } from './FrameLayoutSticky';
 
 const Sticky = styled.div`
+  overflow: hidden;
   box-sizing: border-box;
   width: 100px;
   height: 100%;

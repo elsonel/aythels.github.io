@@ -1,54 +1,24 @@
-import { ISortsData, ITabsData } from '../../components/Gallery';
-import { GalleryGrid, IGalleryEntry } from '../../components/GalleryGrid';
-import {
-  GalleryGridArt,
-  IGalleryEntryArt,
-} from '../../components/GalleryGridArt';
-import { GridBreakpoint } from '../../UI/components/layout/Grid';
-import { sortByDate, sortByName } from 'utilities/sortData';
-import { VisualArtsImages, ArchitectureImages } from 'utilities/ImportImages';
+import { VisualArtsImages } from 'utilities/ImportImages';
 
-/* =============================================================================
- * Sorting Data
- * =============================================================================
- */
-export const SortsData: ISortsData = [
-  {
-    label: 'NEWEST',
-    sort: (data) => sortByDate(data),
-  },
-  {
-    label: 'OLDEST',
-    sort: (data) => sortByDate(data, false),
-  },
-  {
-    label: 'A - Z',
-    sort: (data) => sortByName(data),
-  },
-  {
-    label: 'Z - A',
-    sort: (data) => sortByName(data, false),
-  },
-];
+export type IGalleryEntryArt = {
+  date: Date;
+  subtitle: string;
+  title: string;
+  src: string;
+  srcSet: string;
+  caption: string;
+  width: number;
+  height: number;
+};
 
-/* =============================================================================
- * Visual Arts Data
- * =============================================================================
- */
-const VisualArtsBreakpoints: GridBreakpoint[] = [
-  {
-    minWidth: 0,
-    columnCount: 1,
-  },
-  {
-    minWidth: 700,
-    columnCount: 2,
-  },
-  {
-    minWidth: 1000,
-    columnCount: 3,
-  },
-];
+export type IGalleryEntry = {
+  date: Date;
+  subtitle: string;
+  title: string;
+  src: string;
+  srcSet: string;
+  to: string;
+};
 
 export const VisualArtsData: IGalleryEntryArt[] = [
   {
@@ -183,129 +153,5 @@ export const VisualArtsData: IGalleryEntryArt[] = [
     caption: '2018. Acrylic on canvas',
     width: 2900,
     height: 2360,
-  },
-];
-
-const VisualArtsGrids = SortsData.map((e, i) => (
-  <GalleryGridArt
-    key={'VisualArtsGrids' + i}
-    data={e.sort(VisualArtsData) as IGalleryEntryArt[]}
-    breakpoints={VisualArtsBreakpoints}
-  />
-));
-
-/* =============================================================================
- * UI UX Data
- * =============================================================================
- */
-
-const UIUXBreakpoints: GridBreakpoint[] = [
-  {
-    minWidth: 0,
-    columnCount: 1,
-  },
-  {
-    minWidth: 700,
-    columnCount: 2,
-  },
-  {
-    minWidth: 900,
-    columnCount: 3,
-  },
-];
-
-/* =============================================================================
- * Architecture Data
- * =============================================================================
- */
-const ArchitectureBreakpoints: GridBreakpoint[] = [
-  {
-    minWidth: 0,
-    columnCount: 1,
-  },
-  {
-    minWidth: 700,
-    columnCount: 2,
-  },
-  {
-    minWidth: 900,
-    columnCount: 3,
-  },
-];
-
-export const ArchitectureData: IGalleryEntry[] = [
-  {
-    date: new Date(2022, 5),
-    subtitle: 'Isolated Reunion',
-    title: 'FOLD PAVILION',
-    src: ArchitectureImages.get('FoldPavilion2560.jpg'),
-    srcSet: `
-      ${ArchitectureImages.get('FoldPavilion320.jpg')} 320w,
-      ${ArchitectureImages.get('FoldPavilion640.jpg')} 640w,
-      ${ArchitectureImages.get('FoldPavilion960.jpg')} 960w,
-      ${ArchitectureImages.get('FoldPavilion1280.jpg')} 1280w,
-      ${ArchitectureImages.get('FoldPavilion1600.jpg')} 1600w,
-      ${ArchitectureImages.get('FoldPavilion1920.jpg')} 1920w,
-      ${ArchitectureImages.get('FoldPavilion2240.jpg')} 2240w,
-      ${ArchitectureImages.get('FoldPavilion2560.jpg')} 2560w,
-    `,
-    to: '/gallery/foldpavilion',
-  },
-  {
-    date: new Date(2020, 11),
-    subtitle: 'Drifting Landscapes',
-    title: 'KINETIC BOARDWALK',
-    src: ArchitectureImages.get('KineticBoardwalk2560.jpg'),
-    srcSet: `
-      ${ArchitectureImages.get('KineticBoardwalk320.jpg')} 320w,
-      ${ArchitectureImages.get('KineticBoardwalk640.jpg')} 640w,
-      ${ArchitectureImages.get('KineticBoardwalk960.jpg')} 960w,
-      ${ArchitectureImages.get('KineticBoardwalk1280.jpg')} 1280w,
-      ${ArchitectureImages.get('KineticBoardwalk1600.jpg')} 1600w,
-      ${ArchitectureImages.get('KineticBoardwalk1920.jpg')} 1920w,
-      ${ArchitectureImages.get('KineticBoardwalk2240.jpg')} 2240w,
-      ${ArchitectureImages.get('KineticBoardwalk2560.jpg')} 2560w,
-    `,
-    to: '/gallery/kineticboardwalk',
-  },
-  {
-    date: new Date(2019, 4),
-    subtitle: 'Twisting Spiral',
-    title: 'BASILISK TOWER',
-    src: ArchitectureImages.get('BasiliskTower2560.jpg'),
-    srcSet: `
-      ${ArchitectureImages.get('BasiliskTower320.jpg')} 320w,
-      ${ArchitectureImages.get('BasiliskTower640.jpg')} 640w,
-      ${ArchitectureImages.get('BasiliskTower960.jpg')} 960w,
-      ${ArchitectureImages.get('BasiliskTower1280.jpg')} 1280w,
-      ${ArchitectureImages.get('BasiliskTower1600.jpg')} 1600w,
-      ${ArchitectureImages.get('BasiliskTower1920.jpg')} 1920w,
-      ${ArchitectureImages.get('BasiliskTower2240.jpg')} 2240w,
-      ${ArchitectureImages.get('BasiliskTower2560.jpg')} 2560w,
-    `,
-    to: '/gallery/basilisktower',
-  },
-];
-
-const ArchitectureGrids = SortsData.map((e, i) => (
-  <GalleryGrid
-    key={'ArchitectureGrids' + i}
-    data={e.sort(ArchitectureData) as IGalleryEntry[]}
-    breakpoints={ArchitectureBreakpoints}
-  />
-));
-
-/* =============================================================================
- * Tabs Data
- * =============================================================================
- */
-export const TabsData: ITabsData = [
-  {
-    label: 'ARCHITECTURE',
-    grids: ArchitectureGrids,
-  },
-  {
-    label: 'VISUAL ARTS',
-    grids: VisualArtsGrids,
   },
 ];

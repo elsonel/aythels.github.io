@@ -40,48 +40,6 @@ export const VisualArtsImages = new (ImageManager as any)(
   )
 );
 
-export const ArchitectureImages = new (ImageManager as any)(
-  importAll(
-    require.context(
-      '../assets/architecture-assets',
-      false,
-      /\.(png|jpe?g|svg)$/
-    )
-  )
-);
-
-//
-
-export const KineticBoardwalkImages = new (ImageManager as any)(
-  importAll(
-    require.context(
-      '../assets/kineticboardwalk-assets',
-      false,
-      /\.(png|jpe?g|svg)$/
-    )
-  )
-);
-
-export const BasiliskTowerImages = new (ImageManager as any)(
-  importAll(
-    require.context(
-      '../assets/basilisktower-assets',
-      false,
-      /\.(png|jpe?g|svg)$/
-    )
-  )
-);
-
-export const FoldPavilionImages = new (ImageManager as any)(
-  importAll(
-    require.context(
-      '../assets/foldpavilion-assets',
-      false,
-      /\.(png|jpe?g|svg)$/
-    )
-  )
-);
-
 //
 
 export const PortfolioImages = new (ImageManager as any)(
@@ -92,8 +50,22 @@ export const SpotlightImages = new (ImageManager as any)(
   importAll(require.context('../assets/spotlight', false, /\.(png|jpe?g|svg)$/))
 );
 
-export const ProjectsImages = new (ImageManager as any)(
+//
+
+export const FoldPavilionImages = new (ImageManager as any)(
   importAll(
-    require.context('../assets/projects-assets', false, /\.(png|jpe?g|svg)$/)
+    require.context('../assets/foldpavilion', false, /\.(png|jpe?g|svg)$/)
+  )
+);
+
+export const KineticBoardwalkImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/kineticboardwalk', false, /\.(png|jpe?g|svg)$/)
+  )
+);
+
+export const BasiliskTowerImages = new (ImageManager as any)(
+  importAll(
+    require.context('../assets/basilisktower', false, /\.(png|jpe?g|svg)$/)
   )
 );

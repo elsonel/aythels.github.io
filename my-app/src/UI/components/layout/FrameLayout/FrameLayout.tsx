@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
+import useScrollbarWidthBody from '../../../utilities/hooks/useScrollbarWidthBody';
 
 export interface IFrameLayoutProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,28 +12,34 @@ export const FrameLayout: React.FC<IFrameLayoutProps> = ({
   children,
 
   ...props
-}): React.ReactElement => (
-  <Wrapper {...props}>
-    <Content>{children}</Content>
-  </Wrapper>
-);
+}): React.ReactElement => {
+  const scrollbarWidth = useScrollbarWidthBody();
 
-const Padding = css`
-  ${({ theme }) =>
+  return (
+    <Wrapper $scrollbarWidth={scrollbarWidth} {...props}>
+      <Content>{children}</Content>
+    </Wrapper>
+  );
+};
+
+const Padding = css<{ $scrollbarWidth: number }>`
+  ${({ theme, $scrollbarWidth }) =>
     GreaterThan(
       0,
       `
-        padding: ${theme.size.headerHeight}px 0px 0px 0px;
+        padding-top: ${theme.size.headerHeight}px;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
       `
     ) +
     GreaterThan(
       theme.breakpoint.header,
       `
-        padding: 
-          ${theme.size.headerHeight}px 
-          ${theme.size.padding}px 
-          ${theme.size.padding}px 
-          ${theme.size.headerHeight}px;
+        padding-top: ${theme.size.headerHeight}px;
+        padding-bottom: ${theme.size.padding}px;
+        padding-right: ${Math.max(0, theme.size.padding - $scrollbarWidth)}px;
+        padding-left: ${theme.size.headerHeight}px;
       `
     )}
 `;
@@ -44,7 +51,6 @@ const Wrapper = styled.div`
   ${Padding}
 
   // For child to fill the grid because min-height inheritance is buggy
-  min-height: 100vh;
   min-height: 100dvh;
 
   display: grid;
@@ -63,15 +69,13 @@ const Content = styled.div`
       GreaterThan(
         0,
         `
-        margin-bottom: min(0px, calc(100vh - ${h + p}px));
-        margin-bottom: min(0px, calc(100dvh - ${h + p}px));
+        margin-bottom: min(0px, calc(100dvh - ${h}px));
       `
       ) +
       GreaterThan(
         theme.breakpoint.header,
         `
-        margin-bottom: min(0px, calc(100vh - ${h}px));
-        margin-bottom: min(0px, calc(100dvh - ${h}px));
+        margin-bottom: min(0px, calc(100dvh - ${h + p}px));
       `
       )
     );

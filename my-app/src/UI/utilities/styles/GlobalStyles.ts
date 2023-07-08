@@ -13,12 +13,6 @@ export const GlobalScrollHide = createGlobalStyle`
   }
 `;
 
-export const GlobalScrollOverlay = createGlobalStyle`
-  html, body {
-    overflow: overlay;
-  }
-`;
-
 export const GlobalScrollStyle = createGlobalStyle`
   ${ScrollStyle}
 `;

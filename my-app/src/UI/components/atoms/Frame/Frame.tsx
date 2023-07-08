@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css, Keyframes, keyframes, useTheme } from 'styled-components';
 import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
+import useScrollbarWidthBody from '../../../utilities/hooks/useScrollbarWidthBody';
+import { GlobalScrollHide } from '../../../utilities/styles/GlobalStyles';
 
 export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoaded?: boolean;
@@ -15,46 +17,50 @@ export const Frame: React.FC<IFrameProps> = ({
   ...props
 }): React.ReactElement => {
   const { breakpoint } = useTheme();
+  const scrollbarWidth = useScrollbarWidthBody();
   const isDesktop = GreaterThanHook(breakpoint.header);
 
   return (
-    <Wrapper {...props}>
-      <TransparentTop $isDesktop={isDesktop} />
-      {isDesktop && (
-        <>
-          <TransparentLeft />
-          <TransparentBottom />
-          <Left
-            $isLoaded={isLoaded}
-            $delay={delay}
-            $isAnimating={isAnimating}
-          />
-          <BottomRight
-            $isLoaded={isLoaded}
-            $delay={delay}
-            $isAnimating={isAnimating}
-          />
-        </>
-      )}
-      <Top
+    <>
+      <Wrapper
         $isDesktop={isDesktop}
-        $isLoaded={isLoaded}
-        $delay={delay}
-        $isAnimating={isAnimating}
-      />
-    </Wrapper>
+        $scrollbarWidth={scrollbarWidth}
+        {...props}
+      >
+        <TransparentTop />
+        {isDesktop && (
+          <>
+            <TransparentLeft />
+            <TransparentBottom />
+            <Left
+              $isLoaded={isLoaded}
+              $delay={delay}
+              $isAnimating={isAnimating}
+            />
+            <BottomRight
+              $isLoaded={isLoaded}
+              $delay={delay}
+              $isAnimating={isAnimating}
+            />
+          </>
+        )}
+        <Top $isLoaded={isLoaded} $delay={delay} $isAnimating={isAnimating} />
+      </Wrapper>
+      {!isDesktop && <GlobalScrollHide />}
+    </>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isDesktop: boolean; $scrollbarWidth: number }>`
   box-sizing: border-box;
-  overflow: hidden;
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  width: ${({ $isDesktop, $scrollbarWidth, theme }) =>
+    `calc(100% - ${
+      $isDesktop ? Math.max(0, theme.size.padding - $scrollbarWidth) : 0
+    }px)`};
+  height: ${({ theme }) => `calc(100dvh - ${theme.size.padding}px)`};
   min-height: ${({ theme }) => theme.size.frameMinHeight}px;
   pointer-events: none;
 `;
@@ -76,15 +82,15 @@ const AnimationName = (animation: (props: any) => Keyframes) => css`
   animation-name: ${animation};
 `;
 
-const BottomRightAnimation = ({ theme }: any) => keyframes`
+const BottomRightAnimation = () => keyframes`
   0% {
-    width: 0px;
-    height: 0px;
+    width: 0%;
+    height: 0%;
     opacity: 0;
   }
   100% {
-    width: calc(100% - ${theme.size.padding}px);
-    height: calc(100% - ${theme.size.padding}px);
+    width: 100%;
+    height: 100%;
     opacity: 1;
   }
 `;
@@ -96,8 +102,8 @@ const BottomRight = styled.div<{
 }>`
   box-sizing: border-box;
   position: absolute;
-  right: ${({ theme }) => theme.size.padding}px;
-  bottom: ${({ theme }) => theme.size.padding}px;
+  right: 0px;
+  bottom: 0px;
   width: 0px;
   height: 0px;
   border-right: 1px solid ${({ theme }) => theme.color.outline};
@@ -109,21 +115,18 @@ const BottomRight = styled.div<{
   ${({ $isLoaded }) => $isLoaded && AnimationName(BottomRightAnimation)}
 `;
 
-const TopAnimation = ({ theme, $isDesktop }: any) => keyframes`
+const TopAnimation = () => keyframes`
   0% {
-    width: 0px;
+    width: 0%;
     opacity: 0;
   }
   100% { 
-    width: calc(
-      100% - ${$isDesktop ? theme.size.padding : 0}px
-    );
+    width: 100%;
     opacity: 1;
   }
 `;
 
 const Top = styled.div<{
-  $isDesktop: boolean;
   $isLoaded: boolean;
   $delay: number;
   $isAnimating: boolean;
@@ -132,7 +135,7 @@ const Top = styled.div<{
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 0px; // -> 100%
+  width: 0px;
   height: ${({ theme }) => theme.size.headerHeight}px;
   border-bottom: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
@@ -141,13 +144,13 @@ const Top = styled.div<{
   ${({ $isLoaded }) => $isLoaded && AnimationName(TopAnimation)}
 `;
 
-const LeftAnimation = ({ theme }: any) => keyframes`
+const LeftAnimation = () => keyframes`
   0% {
-    height: 0px;
+    height: 0%;
     opacity: 0;
   }
   100% { 
-    height: calc(100% - ${theme.size.padding}px);
+    height: 100%;
     opacity: 1;
   }
 `;
@@ -162,7 +165,8 @@ const Left = styled.div<{
   top: 0px;
   left: 0px;
   width: ${({ theme }) => theme.size.headerHeight}px;
-  height: 0px; // -> 100% - padding
+  height: 0px;
+
   border-right: 1px solid ${({ theme }) => theme.color.outline};
   opacity: 0;
 
@@ -176,24 +180,23 @@ const Transparent = styled.div`
   pointer-events: auto;
 `;
 
-const TransparentTop = styled(Transparent)<{ $isDesktop: boolean }>`
+const TransparentTop = styled(Transparent)`
   top: 0px;
-  left: ${({ $isDesktop, theme }) =>
-    $isDesktop ? theme.size.headerHeight : 0}px;
+  left: 0px;
   width: 100%;
   height: ${({ theme }) => theme.size.headerHeight}px;
 `;
 
 const TransparentLeft = styled(Transparent)`
-  top: 0px;
+  top: ${({ theme }) => theme.size.headerHeight}px;
   left: 0px;
   width: ${({ theme }) => theme.size.headerHeight}px;
-  height: 100%;
+  height: ${({ theme }) => `calc(100% - ${theme.size.headerHeight}px)`};
 `;
 
 const TransparentBottom = styled(Transparent)`
-  bottom: 0px;
-  left: ${({ theme }) => theme.size.headerHeight}px;
+  top: 100%;
+  left: 0px;
   width: 100%;
   height: ${({ theme }) => theme.size.padding}px;
 `;

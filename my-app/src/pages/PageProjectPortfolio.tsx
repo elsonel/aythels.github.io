@@ -6,7 +6,7 @@ import { PortfolioImages } from '../utilities/ImportImages';
 const PROJECT_LANDING_IMAGE = {
   src: PortfolioImages.get('landing_1280.png'),
   srcSet: PortfolioImages.getSrcSet('landing'),
-  alt: 'Portfol.io Landing Image',
+  alt: 'Portfol.io Hero Image',
 };
 const PROJECT_LANDING_IMAGE_FIT = 'contain';
 const PROJECT_LANDING_IMAGE_BACKGROUND_COLOR = '#350099';
@@ -115,12 +115,12 @@ const IMAGES = [
   {
     src: PortfolioImages.get('3b_1280.png'),
     srcSet: PortfolioImages.getSrcSet('3b'),
-    alt: 'Course "Circuit" Questionnaire - 1',
+    alt: 'Course "Circuit" Questionnaire 1',
   },
   {
     src: PortfolioImages.get('3c_1280.png'),
     srcSet: PortfolioImages.getSrcSet('3c'),
-    alt: 'Course "Circuit" Questionnaire - 2',
+    alt: 'Course "Circuit" Questionnaire 2',
   },
   {
     src: PortfolioImages.get('4a_1280.png'),

@@ -1,25 +1,17 @@
 import React from 'react';
 import { ROUTES } from '../utilities/routes';
 import { ProjectTemplate } from './ProjectTemplate';
-import {
-  ArchitectureImages,
-  FoldPavilionImages,
-} from '../utilities/ImportImages';
+import { FoldPavilionImages } from '../utilities/ImportImages';
 
 const PROJECT_LANDING_IMAGE = {
-  src: ArchitectureImages.get('FoldPavilion2560.jpg'),
-  srcSet: `
-    ${ArchitectureImages.get('FoldPavilion320.jpg')} 320w,
-    ${ArchitectureImages.get('FoldPavilion640.jpg')} 640w,
-    ${ArchitectureImages.get('FoldPavilion960.jpg')} 960w,
-    ${ArchitectureImages.get('FoldPavilion1280.jpg')} 1280w,
-    ${ArchitectureImages.get('FoldPavilion1600.jpg')} 1600w,
-    ${ArchitectureImages.get('FoldPavilion1920.jpg')} 1920w,
-    ${ArchitectureImages.get('FoldPavilion2240.jpg')} 2240w,
-    ${ArchitectureImages.get('FoldPavilion2560.jpg')} 2560w,
-  `,
-  alt: `Fold Pavilion Landing Image`,
+  src: FoldPavilionImages.get('1a_1280.png'),
+  srcSet: FoldPavilionImages.getSrcSet('1a'),
+  alt: `Fold Pavilion Hero Image`,
 };
+const PROJECT_LANDING_IMAGE_FIT = 'cover';
+
+/* ========================================================================== */
+
 const PROJECT_TITLE = 'FOLD PAVILION';
 const PROJECT_SUBTITLE = 'Isolated Reunion';
 
@@ -65,77 +57,70 @@ const PROJECT_PARAGRAPHS = [
 
 /* ========================================================================== */
 
-function getSrcSet(name: string) {
-  return `
-    ${FoldPavilionImages.get(`${name}320.jpg`)} 320w,
-    ${FoldPavilionImages.get(`${name}640.jpg`)} 640w,
-    ${FoldPavilionImages.get(`${name}960.jpg`)} 960w,
-    ${FoldPavilionImages.get(`${name}1280.jpg`)} 1280w,
-    ${FoldPavilionImages.get(`${name}1600.jpg`)} 1600w,
-    ${FoldPavilionImages.get(`${name}1920.jpg`)} 1920w,
-    ${FoldPavilionImages.get(`${name}2240.jpg`)} 2240w,
-    ${FoldPavilionImages.get(`${name}2560.jpg`)} 2560w,
-  `;
-}
-
 const IMAGES = [
   {
-    src: FoldPavilionImages.get('1a_2560.jpg'),
-    srcSet: getSrcSet('1a_'),
-    alt: 'RENDER 1',
+    src: FoldPavilionImages.get('1a_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('1a'),
+    alt: 'Render 1',
   },
   {
-    src: FoldPavilionImages.get('2a_2560.jpg'),
-    srcSet: getSrcSet('2a_'),
-    alt: 'RENDER 2',
+    src: FoldPavilionImages.get('1b_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('1b'),
+    alt: 'Render 2',
   },
   {
-    src: FoldPavilionImages.get('2b_2560.jpg'),
-    srcSet: getSrcSet('2b_'),
-    alt: 'RENDER 3',
+    src: FoldPavilionImages.get('2a_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('2a'),
+    alt: 'Form Concept',
   },
   {
-    src: FoldPavilionImages.get('3a_2560.jpg'),
-    srcSet: getSrcSet('3a_'),
-    alt: 'PLAN',
+    src: FoldPavilionImages.get('2b_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('2b'),
+    alt: 'Early Sketch',
   },
   {
-    src: FoldPavilionImages.get('3b_2560.jpg'),
-    srcSet: getSrcSet('3b_'),
-    alt: 'PLAN SECTION',
+    src: FoldPavilionImages.get('3a_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('3a'),
+    alt: 'Plan',
   },
   {
-    src: FoldPavilionImages.get('3c_2560.jpg'),
-    srcSet: getSrcSet('3c_'),
-    alt: 'FRONT ELEVATION',
+    src: FoldPavilionImages.get('3b_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('3b'),
+    alt: 'Plan Section',
   },
   {
-    src: FoldPavilionImages.get('3d_2560.jpg'),
-    srcSet: getSrcSet('3d_'),
-    alt: 'SIDE ELEVATION AND SECTION',
+    src: FoldPavilionImages.get('3c_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('3c'),
+    alt: 'Front Elevation',
   },
   {
-    src: FoldPavilionImages.get('4a_2560.jpg'),
-    srcSet: getSrcSet('4a_'),
-    alt: 'PAVILION USE CASES',
+    src: FoldPavilionImages.get('3d_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('3d'),
+    alt: 'Side Elevation & Section',
   },
   {
-    src: FoldPavilionImages.get('4b_2560.jpg'),
-    srcSet: getSrcSet('4b_'),
-    alt: 'FORM FABRICATION PROCESS ',
+    src: FoldPavilionImages.get('4a_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('4a'),
+    alt: 'Pavilion Use Cases',
   },
   {
-    src: FoldPavilionImages.get('4c_2560.jpg'),
-    srcSet: getSrcSet('4c_'),
-    alt: 'FACADE FABRICATION PROCESS',
+    src: FoldPavilionImages.get('4b_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('4b'),
+    alt: 'Frame Fabrication Process',
+  },
+  {
+    src: FoldPavilionImages.get('4c_1280.png'),
+    srcSet: FoldPavilionImages.getSrcSet('4c'),
+    alt: 'Facade Construction Process',
   },
 ];
 
 const PROJECT_IMAGES_DESKTOP = [
-  [IMAGES[0], IMAGES[1], IMAGES[2]],
-  [IMAGES[3], IMAGES[4]],
-  [IMAGES[5], IMAGES[6]],
-  [IMAGES[7], IMAGES[8], IMAGES[9]],
+  [IMAGES[0], IMAGES[1]],
+  [IMAGES[2], IMAGES[3]],
+  [IMAGES[4], IMAGES[5]],
+  [IMAGES[6], IMAGES[7]],
+  [IMAGES[8], IMAGES[9], IMAGES[10]],
 ];
 
 const PROJECT_IMAGES_MOBILE = [
@@ -143,7 +128,7 @@ const PROJECT_IMAGES_MOBILE = [
   [IMAGES[2], IMAGES[3]],
   [IMAGES[4], IMAGES[5]],
   [IMAGES[6], IMAGES[7]],
-  [IMAGES[8], IMAGES[9]],
+  [IMAGES[8], IMAGES[9], IMAGES[10]],
 ];
 
 /* ========================================================================== */
@@ -155,6 +140,8 @@ const PAGE_TITLE = `ELSON LIANG | Fold Pavilion`;
 export const PageProjectFoldPavilion: React.FC = (): React.ReactElement => (
   <ProjectTemplate
     projectLandingImage={PROJECT_LANDING_IMAGE}
+    projectLandingImageFit={PROJECT_LANDING_IMAGE_FIT}
+    projectLandingBackgroundColor={undefined}
     projectTitle={PROJECT_TITLE}
     projectSubtitle={PROJECT_SUBTITLE}
     projectPrototypeLink={undefined}

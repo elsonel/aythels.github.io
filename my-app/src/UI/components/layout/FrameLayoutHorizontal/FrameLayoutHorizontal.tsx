@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
+import useScrollbarWidthBody from '../../../utilities/hooks/useScrollbarWidthBody';
 
 export interface IFrameLayoutHorizontalProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,27 +12,31 @@ export const FrameLayoutHorizontal: React.FC<IFrameLayoutHorizontalProps> = ({
   children,
 
   ...props
-}): React.ReactElement => (
-  <Wrapper {...props}>
-    <Content>{children}</Content>
-  </Wrapper>
-);
+}): React.ReactElement => {
+  const scrollbarWidth = useScrollbarWidthBody();
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
+  return (
+    <Wrapper $scrollbarWidth={scrollbarWidth} {...props}>
+      <Content>{children}</Content>
+    </Wrapper>
+  );
+};
 
-const Content = styled.div`
+const Wrapper = styled.div<{ $scrollbarWidth: number }>`
   box-sizing: border-box;
   width: 100%;
 
-  ${({ theme }) =>
+  ${({ theme, $scrollbarWidth }) =>
     GreaterThan(0, `padding-left: 0px; padding-right: 0px;`) +
     GreaterThan(
       theme.breakpoint.header,
       `
-      padding-left: ${theme.size.headerHeight}px;
-      padding-right: ${theme.size.padding}px; 
-    `
+        padding-left: ${theme.size.headerHeight}px;
+        padding-right: ${Math.max(0, theme.size.padding - $scrollbarWidth)}px 
+      `
     )}
+`;
+
+const Content = styled.div`
+  width: 100%;
 `;

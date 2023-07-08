@@ -20,7 +20,7 @@ export default {
     isTextLoaded: true,
     title: 'KINETIC BOARDWALK',
     subtitle: 'Drifting Landscapes',
-    image: { src: Theme.image.exampleSquareSmall, alt: 'Landing Image' },
+    image: { src: Theme.image.exampleSquareSmall, alt: 'Hero Image' },
     prototypeHref: '/',
     scrollLength: 1000,
   },

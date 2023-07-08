@@ -6,7 +6,7 @@ import { SpotlightImages } from '../utilities/ImportImages';
 const PROJECT_LANDING_IMAGE = {
   src: SpotlightImages.get('landing_1280.png'),
   srcSet: SpotlightImages.getSrcSet('landing'),
-  alt: `Spotlight Landing Image`,
+  alt: `Spotlight Hero Image`,
 };
 const PROJECT_LANDING_IMAGE_FIT = 'contain';
 const PROJECT_LANDING_IMAGE_BACKGROUND_COLOR = '#251844';

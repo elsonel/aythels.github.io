@@ -1,7 +1,7 @@
 export const EXAMPLE_FACTS = [
   {
     label: 'TYPE',
-    value: 'Public Mega-Infastructure',
+    value: 'Infastructure',
   },
   {
     label: 'REGION',
