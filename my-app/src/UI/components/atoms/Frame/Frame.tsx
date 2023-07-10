@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled, { css, Keyframes, keyframes, useTheme } from 'styled-components';
 import { GreaterThanHook } from '../../../utilities/hooks/ResponsiveProps';
-import useScrollbarWidthBody from '../../../utilities/hooks/useScrollbarWidthBody';
-import { GlobalScrollHide } from '../../../utilities/styles/GlobalStyles';
+import { GlobalScrollHidden } from '../../../utilities/styles/GlobalStyles';
 
 export interface IFrameProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoaded?: boolean;
@@ -17,16 +16,18 @@ export const Frame: React.FC<IFrameProps> = ({
   ...props
 }): React.ReactElement => {
   const { breakpoint } = useTheme();
-  const scrollbarWidth = useScrollbarWidthBody();
+
   const isDesktop = GreaterThanHook(breakpoint.header);
+
+  const isScrollbarShown = useMemo(
+    () => !isDesktop && <GlobalScrollHidden />,
+    [isDesktop]
+  );
 
   return (
     <>
-      <Wrapper
-        $isDesktop={isDesktop}
-        $scrollbarWidth={scrollbarWidth}
-        {...props}
-      >
+      {isScrollbarShown}
+      <Wrapper $isDesktop={isDesktop} {...props}>
         <TransparentTop />
         {isDesktop && (
           <>
@@ -46,20 +47,17 @@ export const Frame: React.FC<IFrameProps> = ({
         )}
         <Top $isLoaded={isLoaded} $delay={delay} $isAnimating={isAnimating} />
       </Wrapper>
-      {!isDesktop && <GlobalScrollHide />}
     </>
   );
 };
 
-const Wrapper = styled.div<{ $isDesktop: boolean; $scrollbarWidth: number }>`
+const Wrapper = styled.div<{ $isDesktop: boolean }>`
   box-sizing: border-box;
   position: fixed;
   top: 0px;
   left: 0px;
-  width: ${({ $isDesktop, $scrollbarWidth, theme }) =>
-    `calc(100% - ${
-      $isDesktop ? Math.max(0, theme.size.padding - $scrollbarWidth) : 0
-    }px)`};
+  width: ${({ theme, $isDesktop }) =>
+    `calc(100vw - ${$isDesktop ? theme.size.padding : 0}px)`};
   height: ${({ theme }) => `calc(100dvh - ${theme.size.padding}px)`};
   min-height: ${({ theme }) => theme.size.frameMinHeight}px;
   pointer-events: none;

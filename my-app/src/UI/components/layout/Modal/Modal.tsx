@@ -17,7 +17,6 @@ export const Modal: React.FC<ModalProps> = ({
 }): React.ReactElement =>
   createPortal(
     <Wrapper $isVisible={isVisible} {...props}>
-      {isVisible && <GlobalScrollLock />}
       <Empty
         $isVisible={isVisible}
         onTransitionEnd={() =>
@@ -25,6 +24,7 @@ export const Modal: React.FC<ModalProps> = ({
         }
       />
       <Content>{children}</Content>
+      {isVisible && <GlobalScrollLock />}
     </Wrapper>,
     document.body
   );
@@ -38,10 +38,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
 
-  background: lightblue;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: ${({ theme }) => theme.speed.normal}ms;
@@ -49,9 +46,8 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
 `;
 
 const Content = styled.div`
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100dvh;
 `;
 
 // Needed because onTransitionEnd set on the parent sometimes fires prematurely

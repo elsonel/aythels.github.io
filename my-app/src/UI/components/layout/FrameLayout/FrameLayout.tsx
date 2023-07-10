@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
-import useScrollbarWidthBody from '../../../utilities/hooks/useScrollbarWidthBody';
 
 export interface IFrameLayoutProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,45 +9,43 @@ export interface IFrameLayoutProps
 
 export const FrameLayout: React.FC<IFrameLayoutProps> = ({
   children,
-
   ...props
-}): React.ReactElement => {
-  const scrollbarWidth = useScrollbarWidthBody();
-
-  return (
-    <Wrapper $scrollbarWidth={scrollbarWidth} {...props}>
+}): React.ReactElement => (
+  <Wrapper {...props}>
+    <Padding>
       <Content>{children}</Content>
-    </Wrapper>
-  );
-};
+    </Padding>
+  </Wrapper>
+);
 
-const Padding = css<{ $scrollbarWidth: number }>`
-  ${({ theme, $scrollbarWidth }) =>
+const Wrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+`;
+
+const Padding = styled.div`
+  box-sizing: border-box;
+  width: 100vw;
+
+  ${({ theme }) =>
     GreaterThan(
       0,
       `
-        padding-top: ${theme.size.headerHeight}px;
-        padding-bottom: 0px;
-        padding-right: 0px;
-        padding-left: 0px;
-      `
+      padding-top: ${theme.size.headerHeight}px;
+      padding-bottom: 0px;
+      padding-right: 0px;
+      padding-left: 0px;
+    `
     ) +
     GreaterThan(
       theme.breakpoint.header,
       `
-        padding-top: ${theme.size.headerHeight}px;
-        padding-bottom: ${theme.size.padding}px;
-        padding-right: ${Math.max(0, theme.size.padding - $scrollbarWidth)}px;
-        padding-left: ${theme.size.headerHeight}px;
-      `
+      padding-top: ${theme.size.headerHeight}px;
+      padding-bottom: ${theme.size.padding}px;
+      padding-right: ${Math.max(0, theme.size.padding)}px;
+      padding-left: ${theme.size.headerHeight}px;
+    `
     )}
-`;
-
-const Wrapper = styled.div`
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  ${Padding}
 
   // For child to fill the grid because min-height inheritance is buggy
   min-height: 100dvh;

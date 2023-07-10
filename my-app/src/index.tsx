@@ -4,17 +4,13 @@ import { ThemeProvider } from 'styled-components';
 import { Theme } from './UI/utilities/themes/Theme';
 import './index.css';
 import { App } from './App';
-import {
-  GlobalBackground,
-  GlobalScrollStyle,
-} from './UI/utilities/styles/GlobalStyles';
+import { GlobalStyle } from './UI/utilities/styles/GlobalStyles';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
   <StrictMode>
     <ThemeProvider theme={Theme}>
-      <GlobalBackground />
-      <GlobalScrollStyle />
+      <GlobalStyle />
       <App />
     </ThemeProvider>
   </StrictMode>

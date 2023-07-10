@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
 import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';
@@ -13,7 +13,7 @@ import { FixedScrollFade } from '../../../other/FixedScrollFade/FixedScrollFade'
 import { ScrollBlock } from '../../../other/ScrollBlock/ScrollBlock';
 import { Title } from '../Title/Title';
 import { FrameLayoutHorizontal } from '../../../layout/FrameLayoutHorizontal/FrameLayoutHorizontal';
-import { GlobalScrollHide } from '../../../../utilities/styles/GlobalStyles';
+import { GlobalScrollHidden } from '../../../../utilities/styles/GlobalStyles';
 
 export const LANDING_SCROLL_LENGTH = 600;
 
@@ -55,9 +55,14 @@ export const Landing: React.FC<LandingProps> = ({
     else setIsVisible(true);
   });
 
+  const isScrollbarShown = useMemo(
+    () => isVisible && <GlobalScrollHidden />,
+    [isVisible]
+  );
+
   return (
     <>
-      {isVisible && <GlobalScrollHide />}
+      {isScrollbarShown}
       <ScrollBlock scrollLength={scrollLength} />
       <Overlay $isVisible={isVisible} {...props}>
         <OverlayContent $isVisible={isVisible}>
@@ -151,7 +156,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100%;
+  width: 100vw;
   height: 100dvh;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
