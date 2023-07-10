@@ -105,6 +105,14 @@ const TextStyle = css<TextStyleInterface>`
 
   overflow-wrap: anywhere;
   margin: 0px;
+
+  // This has to be written here and not body
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  text-size-adjust: none;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 const P = styled.p`
