@@ -13,7 +13,7 @@ export const PROJECT_DATA: ProjectData[] = [
     href: 'https://forecasting.getcentro.com/',
     isOpeningNewTab: true,
   },
-  {
+  /*{
     group: 'DEVELOPMENT',
     name: 'CENTRO BUDGETING',
     type: 'Web Application',
@@ -21,7 +21,7 @@ export const PROJECT_DATA: ProjectData[] = [
     description: `A web application for tracking monetary transactions daily to aid in achieving personal and collaborative budgeting goals.`,
     href: 'https://web.getcentro.com/',
     isOpeningNewTab: true,
-  },
+  },*/
   {
     group: 'DEVELOPMENT',
     name: 'RPG NODE BOARD',

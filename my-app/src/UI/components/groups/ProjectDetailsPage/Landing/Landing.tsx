@@ -66,7 +66,7 @@ export const Landing: React.FC<LandingProps> = ({
       <ScrollBlock scrollLength={scrollLength} />
       <Overlay $isVisible={isVisible} {...props}>
         <OverlayContent $isVisible={isVisible}>
-          <FixedScrollFade
+          <ImageFixedScrollFade
             scrollStart={0}
             scrollDuration={1000}
             finalOffsetY={-IMAGE_OFFSET}
@@ -93,7 +93,7 @@ export const Landing: React.FC<LandingProps> = ({
                 }}
               />
             </ImageWrapper>
-          </FixedScrollFade>
+          </ImageFixedScrollFade>
           <LandingTextWrapper>
             {prototypeHref && (
               <FixedScrollFade
@@ -157,7 +157,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   top: 0px;
   left: 0px;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   background-color: ${({ $isVisible, theme }) =>
     $isVisible ? theme.color.backgroundOpposite : 'transparent'};
@@ -173,19 +173,22 @@ const OverlayContent = styled.div<{ $isVisible: boolean }>`
   transition: ${({ theme }) => theme.speed.slow}ms;
 `;
 
+const ImageFixedScrollFade = styled(FixedScrollFade)`
+  width: 100%;
+  height: 100%;
+  ${IfTouchScreen(`transform: none !important;`)}
+`;
+
 const ImageWrapper = styled.div<{
   $offset: number;
   $backgroundColor: string;
 }>`
   width: 100%;
-  height: calc(100vh + ${({ $offset }) => $offset}px);
+  height: calc(100% + ${({ $offset }) => $offset}px);
   transition: ${({ theme }) => theme.speed.instant}ms;
   transition-timing-function: linear;
 
-  ${IfTouchScreen(`
-    height: 100vh;
-    transform: none !important;
-  `)}
+  ${IfTouchScreen(`height: 100%;`)}
 
   background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
@@ -199,7 +202,7 @@ const LandingImage = styled(Image)<{ $imageFit: 'contain' | 'cover' }>`
 const LandingTextWrapper = styled.div`
   position: absolute;
   left: 0px;
-  bottom: 0px;
+  bottom: calc(100lvh - 100svh);
   width: 100%;
 
   display: flex;
