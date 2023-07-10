@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ProgressLine } from '../../atoms/ProgressLine';
-import { Tab, TabProps } from '../../inputs/Tab';
+import { Tab } from '../../inputs/Tab';
 
 export interface TabData {
   isSelected?: boolean;
@@ -17,7 +17,8 @@ export const Tabs: React.FC<TabsProps> = ({
   tabs = [],
   ...props
 }): React.ReactElement => {
-  const childRefs = tabs.map(() => useRef<HTMLDivElement>(null));
+  const childRefs = useRef<HTMLDivElement[]>([]);
+
   const [lineStart, setLineStart] = useState(0);
   const [lineWidth, setLineWidth] = useState(0);
 
@@ -25,10 +26,9 @@ export const Tabs: React.FC<TabsProps> = ({
     if (!ref) return;
 
     const selectedButtonIndex = tabs.findIndex((e) => e.isSelected);
-    const selectedRef = childRefs[selectedButtonIndex];
-    if (!selectedRef || !selectedRef.current) return;
+    const selectedRef = childRefs.current[selectedButtonIndex];
 
-    let buttonCoords = selectedRef.current.getBoundingClientRect();
+    let buttonCoords = selectedRef.getBoundingClientRect();
     let parentCoords = ref.getBoundingClientRect();
 
     setLineStart(buttonCoords.left - parentCoords.left);
@@ -39,7 +39,7 @@ export const Tabs: React.FC<TabsProps> = ({
     <Wrapper ref={callback} {...props}>
       <TabRow>
         {tabs.map((e, i) => (
-          <div ref={childRefs[i]} key={i}>
+          <div ref={(node) => node && (childRefs.current[i] = node)} key={i}>
             <Tab isSelected={e.isSelected} onClick={e.onClick}>
               {e.label}
             </Tab>

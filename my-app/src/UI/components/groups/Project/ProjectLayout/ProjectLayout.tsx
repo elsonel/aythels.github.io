@@ -16,10 +16,12 @@ const TOP_OFFSET = HEADER_HEIGHT + TIMELINE_HEIGHT - TOP_TOLERANCE;
 
 function renderMenu(
   allSections: React.ReactElement<ProjectSectionProps>[],
-  allRefs: React.RefObject<HTMLDivElement>[],
+  allElements: HTMLDivElement[],
   selectedIndex: number,
   scrollProgress: number
 ) {
+  if (!allElements[selectedIndex]) return;
+
   return (
     <ProjectMenuHorizontal
       progress={snapProgress(scrollProgress, 1 / (allSections.length + 1))}
@@ -27,7 +29,7 @@ function renderMenu(
         return {
           label: e.props.title ? e.props.title : '',
           isActive: i === selectedIndex,
-          onClick: () => scrollToRef(allRefs[i]),
+          onClick: () => scrollToElement(allElements[i]),
         };
       })}
     />
@@ -53,23 +55,21 @@ function snapProgress(progress: number, factor: number): number {
 }
 
 function remapLocalProgress(
-  allRefs: React.RefObject<HTMLDivElement>[],
+  allElements: HTMLDivElement[],
   selectedIndex: number,
   localProgress: number
 ) {
-  if (!allRefs[selectedIndex] || !allRefs[selectedIndex].current) return 0;
+  if (!allElements[selectedIndex] || !allElements[selectedIndex]) return 0;
 
-  const segmentLength = 1 / (allRefs.length + 1);
+  const segmentLength = 1 / (allElements.length + 1);
   const backSegmentLength = segmentLength * (selectedIndex + 1);
   const remappedProgress = localProgress * segmentLength;
 
   return backSegmentLength + remappedProgress;
 }
 
-function getLocalProgress(selectedRef?: React.RefObject<HTMLDivElement>) {
-  if (!selectedRef || !selectedRef.current) return 0;
-
-  const refCoords = selectedRef.current.getBoundingClientRect();
+function getLocalProgress(selectedElement: HTMLDivElement) {
+  const refCoords = selectedElement.getBoundingClientRect();
   const refProgress = refCoords.top - TOP_OFFSET;
   const refHeight = refCoords.height;
 
@@ -77,10 +77,8 @@ function getLocalProgress(selectedRef?: React.RefObject<HTMLDivElement>) {
   return progressToNextRef;
 }
 
-const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
-  if (!ref || !ref.current) return;
-
-  const refTop = ref.current.getBoundingClientRect().top;
+const scrollToElement = (element: HTMLDivElement) => {
+  const refTop = element.getBoundingClientRect().top;
   const currentScroll = window.pageYOffset;
 
   const scrollY = refTop + currentScroll - TOP_OFFSET;
@@ -116,9 +114,11 @@ export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
   const [scrollTop, setScrollTop] = useState(0);
 
   useOnWindowScroll((scrollTop) => setScrollTop(scrollTop));
-  const allRefs = sections.map(() => useRef<HTMLDivElement>(null));
-  const allIsOnScreen = allRefs.map((ref) =>
-    useOnScreen(ref, [], {
+  const allRefs = useRef<HTMLDivElement[]>([]);
+
+  const allIsOnScreen = allRefs.current.map((ref) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useOnScreen(ref, {
       root: document,
       rootMargin: `-${TOP_OFFSET + 1}px 0px 0px 0px`,
     })
@@ -132,15 +132,17 @@ export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
     }
 
     const TOLERANCE = 0.02;
-    const localProgress = getLocalProgress(allRefs[selectedIndex]);
+    const localProgress = allRefs.current[selectedIndex]
+      ? getLocalProgress(allRefs.current[selectedIndex])
+      : 0;
     const remappedProgress = remapLocalProgress(
-      allRefs,
+      allRefs.current,
       selectedIndex,
       localProgress
     );
     if (Math.abs(remappedProgress - scrollProgress) > TOLERANCE)
       setScrollProgress(remappedProgress);
-  }, [scrollTop]);
+  }, [allRefs, scrollProgress, scrollTop, sections.length, selectedIndex]);
 
   useEffect(() => {
     setSelectedIndex(
@@ -148,18 +150,18 @@ export const ProjectLayout: React.FC<ProjectLayoutProps> = ({
         (e, i) => allIsOnScreen[i] && !allIsOnScreen[i - 1]
       )
     );
-  }, [...allIsOnScreen]);
+  }, [allIsOnScreen]);
 
   return (
     <div {...props}>
       <Content>
         <Header $isLandingVisible={isLandingVisible}>
           <HeaderTopGap />
-          {renderMenu(sections, allRefs, selectedIndex, scrollProgress)}
+          {renderMenu(sections, allRefs.current, selectedIndex, scrollProgress)}
         </Header>
         <SectionWrapper $isLandingVisible={isLandingVisible}>
           {sections.map((e, i) => (
-            <div ref={allRefs[i]} key={i}>
+            <div ref={(node) => node && (allRefs.current[i] = node)} key={i}>
               {e}
             </div>
           ))}

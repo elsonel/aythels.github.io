@@ -4,29 +4,32 @@ import { useEffect, useState, useRef, RefObject } from 'react';
 // Using rootMargin in observer options might bug out dimensions due to Storybook.js viewport
 // Fix by setting the observer root option to document when in Storybook.js!
 export default function useOnScreen(
-  ref: RefObject<HTMLElement>,
-  triggers: any[] = [], // Add triggers
+  ref: RefObject<HTMLElement> | HTMLElement,
   options?: IntersectionObserverInit
 ) {
   const [isOnScreen, setIsOnScreen] = useState(false);
-  const observerRef = useRef<IntersectionObserver>();
+  const [observer, setObserver] = useState<IntersectionObserver>();
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      ([entry]) => setIsOnScreen(entry.isIntersecting),
-      options
+    setObserver(
+      new IntersectionObserver(
+        ([entry]) => setIsOnScreen(entry.isIntersecting),
+        options
+      )
     );
-  }, []);
+  }, [options]);
 
   useEffect(() => {
-    if (!!observerRef.current && !!ref.current) {
-      observerRef.current.observe(ref.current);
+    if (!!observer && ref) {
+      const element = 'current' in ref ? ref.current! : ref;
+      observer.observe(element);
 
       return () => {
-        observerRef.current!.disconnect();
+        observer.unobserve(element);
+        observer!.disconnect();
       };
     }
-  }, [ref, ...triggers]); // Let the triggers fire the effect too on changes
+  }, [ref, observer]); // Let the triggers fire the effect too on changes
 
   return isOnScreen;
 }
