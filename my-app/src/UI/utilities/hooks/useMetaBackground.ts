@@ -19,7 +19,6 @@ export const useMetaBackground = () => {
       }
 
       metaElement.content = backgroundColor ?? color.background;
-      document.body.style.backgroundColor = backgroundColor ?? color.background;
     },
     [color]
   );

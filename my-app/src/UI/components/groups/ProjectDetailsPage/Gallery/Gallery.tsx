@@ -8,6 +8,7 @@ import { FadeIn } from '../../../other/FadeIn/FadeIn';
 import { InView } from 'react-intersection-observer';
 import { Paragraph } from '../../../text/Paragraph/Paragraph';
 
+const IMAGE_SIZE_DIVISOR = 2;
 const WIDTH = 1200;
 
 const FADE_OFFSET = 30;
@@ -67,8 +68,10 @@ export const Gallery: React.FC<IGalleryProps> = ({
       row.map((image) => {
         const indexCounterCopy = indexCounter.valueOf();
         const imageSize = `
-          (min-width: ${WIDTH}px) ${WIDTH}px / ${row.length}, 
-          100vw / ${row.length}
+          (min-width: ${WIDTH}px) ${WIDTH}px / ${
+          row.length * IMAGE_SIZE_DIVISOR
+        }, 
+          100vw / ${row.length * IMAGE_SIZE_DIVISOR}
         `;
         const thumbnailImage = {
           ...image,
