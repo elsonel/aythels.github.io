@@ -48,6 +48,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
 
 const Content = styled.div`
   width: 100vw;
+  height: 100%;
 `;
 
 // Needed because onTransitionEnd set on the parent sometimes fires prematurely
