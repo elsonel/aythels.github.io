@@ -38,6 +38,7 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
   top: 0px;
   left: 0px;
   width: 100%;
+  height: 100dvh;
 
   pointer-events: ${({ $isVisible }) => ($isVisible ? 'auto' : 'none')};
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
@@ -47,7 +48,6 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
 
 const Content = styled.div`
   width: 100vw;
-  height: 100dvh;
 `;
 
 // Needed because onTransitionEnd set on the parent sometimes fires prematurely

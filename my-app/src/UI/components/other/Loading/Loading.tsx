@@ -47,6 +47,7 @@ const Animation = keyframes`
 
 const StyledModal = styled(Modal)`
   transition-duration: ${({ theme }) => theme.speed.loading}ms;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`

@@ -27,6 +27,7 @@ export const LoadingBlank: React.FC<ILoadingBlankProps> = ({
 
 const StyledModal = styled(Modal)`
   transition-duration: ${({ theme }) => theme.speed.normal}ms;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`
