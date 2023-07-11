@@ -7,7 +7,7 @@ import { FadeIn } from '../FadeIn/FadeIn';
 import { useEffect } from 'react';
 import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
-export const MINIMUM_DURATION = 800;
+export const MINIMUM_DURATION = 1000;
 export const MAXIMUM_DURATION = 5000;
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
