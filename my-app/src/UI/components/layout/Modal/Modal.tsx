@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { GlobalScrollLock } from '../../../utilities/styles/GlobalStyles';
+import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
@@ -10,8 +11,8 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Modal: React.FC<ModalProps> = ({
-  isVisible = true,
   children,
+  isVisible = true,
   onCloseComplete,
   ...props
 }): React.ReactElement =>

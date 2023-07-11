@@ -1,9 +1,11 @@
 import { Modal } from '../../layout/Modal';
 
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, useTheme } from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 import { FadeIn } from '../FadeIn/FadeIn';
+import { useEffect } from 'react';
+import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
 export const MINIMUM_DURATION = 800;
 export const MAXIMUM_DURATION = 5000;
@@ -16,6 +18,15 @@ export const Loading: React.FC<LoadingProps> = ({
   isVisible,
   ...props
 }: LoadingProps) => {
+  const { color } = useTheme();
+  const setMetaBackgroundColor = useMetaBackground();
+
+  useEffect(() => {
+    setMetaBackgroundColor(
+      isVisible ? color.backgroundOpposite : color.background
+    );
+  }, [color, isVisible, setMetaBackgroundColor]);
+
   return (
     <StyledModal isVisible={isVisible} {...props}>
       <Wrapper>
@@ -59,8 +70,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: ${({ theme }) => theme.color.backgroundOpposite};
   user-select: none;
+  background-color: ${({ theme }) => theme.color.backgroundOpposite};
 `;
 
 const MonoText = styled(Paragraph).attrs(({ theme }) => ({

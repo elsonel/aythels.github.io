@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import useOnWindowScroll from '../../../../utilities/hooks/useOnWindowScroll';
 import { GreaterThan } from '../../../../utilities/styles/ResponsiveCSS';

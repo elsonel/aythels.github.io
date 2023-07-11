@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Image as ImageComponent, ImageProps } from '../../atoms/Image';
 import { Paragraph } from '../../text/Paragraph';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
@@ -10,6 +10,7 @@ import { ButtonModalNext } from '../../inputs/ButtonModalNext';
 import { Modal, ModalProps } from '../../layout/Modal';
 import { Counter } from '../../atoms/Counter/Counter';
 import useOnWindowResize from '../../../utilities/hooks/useOnWindowResize';
+import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
 const createPane = (images: ImageProps[], index: number) => {
   const left: ImageProps = getElementAt(images, index - 1);
@@ -51,9 +52,17 @@ export const GalleryModal = ({
   onCloseClick,
   ...props
 }: GalleryModalProps) => {
+  const { color } = useTheme();
+  const setMetaBackgroundColor = useMetaBackground();
   const [index, setIndex] = useState(initialIndex);
   const [isAnimated, setIsAnimated] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
+
+  useEffect(() => {
+    setMetaBackgroundColor(
+      isVisible ? color.backgroundOpposite : color.background
+    );
+  }, [color, isVisible, setMetaBackgroundColor]);
 
   useOnWindowResize(() => setIsAnimated(false));
 

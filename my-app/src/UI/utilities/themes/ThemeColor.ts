@@ -29,7 +29,7 @@ export const ThemeColor: ThemeColorInterface = {
     backgroundHighlight: '#e6e6e6',
     background: '#ffffff',
     backgroundOppositeHighlight: '#4d4d4d',
-    backgroundOpposite: 'black',
+    backgroundOpposite: '#000000',
     whiteBackdropDown: `
     linear-gradient(
       to bottom,

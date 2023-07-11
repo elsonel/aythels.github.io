@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
+import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 import { Modal } from '../../layout/Modal';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 export interface ILoadingBlankProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -12,6 +14,15 @@ export const LoadingBlank: React.FC<ILoadingBlankProps> = ({
   onVisibleComplete,
   ...props
 }: ILoadingBlankProps) => {
+  const { color } = useTheme();
+  const setMetaBackgroundColor = useMetaBackground();
+
+  useEffect(() => {
+    setMetaBackgroundColor(
+      isVisible ? color.backgroundOpposite : color.background
+    );
+  }, [color, isVisible, setMetaBackgroundColor]);
+
   return (
     <StyledModal
       isVisible={isVisible}

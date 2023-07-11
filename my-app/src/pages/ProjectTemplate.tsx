@@ -144,11 +144,11 @@ export const ProjectTemplate: React.FC<IProjectTemplateProps> = ({
             setIsFinishedLoading(true);
         }}
       />
-      <Loading isVisible={isLoaderVisible} />
       <LoadingBlank
         isVisible={!!navTarget}
         onVisibleComplete={() => navTarget && navigate(navTarget)}
       />
+      <Loading isVisible={isLoaderVisible} />
     </>
   );
 };
