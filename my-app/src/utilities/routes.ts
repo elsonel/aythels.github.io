@@ -2,6 +2,7 @@ export const ROUTES = {
   index: '/',
   about: '/about',
   projects: '/projects',
+  visualarts: '/projects/visualarts',
   userInterface: {
     ['spotlight']: '/projects/spotlight',
     ['portfol.io']: '/projects/portfol.io',

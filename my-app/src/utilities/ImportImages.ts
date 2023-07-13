@@ -36,7 +36,7 @@ function importAll(r: __WebpackModuleApi.RequireContext) {
 
 export const VisualArtsImages = new (ImageManager as any)(
   importAll(
-    require.context('../assets/visualarts-assets', false, /\.(png|jpe?g|svg)$/)
+    require.context('../assets/visualarts', false, /\.(png|jpe?g|svg)$/)
   )
 );
 

@@ -10,7 +10,7 @@ export interface IProjectLabelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   type: string;
-  year: number;
+  year: string;
   href?: string;
   isOpeningNewTab?: boolean;
   onClick?: () => void;

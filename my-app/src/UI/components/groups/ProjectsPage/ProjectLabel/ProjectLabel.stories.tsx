@@ -12,7 +12,7 @@ export default {
   args: {
     name: 'KINETIC BOARDWALK',
     type: 'Architecture',
-    year: 2020,
+    year: '2020',
     href: '/',
     isOpeningNewTab: false,
   },
