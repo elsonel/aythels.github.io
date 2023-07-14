@@ -10,7 +10,6 @@ export interface SpeedInterface {
   normal: number;
   normalSlow: number;
   slow: number;
-  loading: number;
   stagger: number;
 }
 
@@ -57,7 +56,6 @@ export const ThemeMisc: ThemeMiscInterface = {
     normal: 250,
     normalSlow: 350,
     slow: 550,
-    loading: 500,
     stagger: 150,
   },
   size: {

@@ -1,5 +1,4 @@
 import { Modal } from '../../layout/Modal';
-
 import styled, { keyframes, useTheme } from 'styled-components';
 import { Paragraph } from '../../text/Paragraph/Paragraph';
 import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
@@ -7,7 +6,7 @@ import { FadeIn } from '../FadeIn/FadeIn';
 import { useEffect } from 'react';
 import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
-export const MINIMUM_DURATION = 1000;
+export const MINIMUM_DURATION = 800;
 export const MAXIMUM_DURATION = 3000;
 
 export interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -18,7 +17,7 @@ export const Loading: React.FC<LoadingProps> = ({
   isVisible,
   ...props
 }: LoadingProps) => {
-  const { color } = useTheme();
+  const { color, speed } = useTheme();
   const setMetaBackgroundColor = useMetaBackground();
 
   useEffect(() => {
@@ -31,13 +30,13 @@ export const Loading: React.FC<LoadingProps> = ({
     <StyledModal isVisible={isVisible} {...props}>
       <Wrapper>
         <Row>
-          <FadeIn isLoaded={isVisible} delay={100}>
+          <FadeIn isLoaded={isVisible} duration={speed.normal} delay={60}>
             <MonoText>ELSON LIANG</MonoText>
           </FadeIn>
-          <FadeIn isLoaded={isVisible} delay={200}>
+          <FadeIn isLoaded={isVisible} duration={speed.normal} delay={120}>
             <NormalText>/</NormalText>
           </FadeIn>
-          <FadeIn isLoaded={isVisible} delay={300}>
+          <FadeIn isLoaded={isVisible} duration={speed.normal} delay={180}>
             <NormalText>Portfolio</NormalText>
           </FadeIn>
         </Row>
@@ -57,7 +56,7 @@ const Animation = keyframes`
 `;
 
 const StyledModal = styled(Modal)`
-  transition-duration: ${({ theme }) => theme.speed.loading}ms;
+  transition-duration: ${({ theme }) => theme.speed.normal}ms;
   height: 100vh;
 `;
 
