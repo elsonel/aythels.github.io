@@ -49,8 +49,8 @@ const IMAGES = [
 ];
 
 export const PageVisualArts: React.FC = (): React.ReactElement => {
-  const [isLoaderVisible, setIsLoaderVisible] = useState(true);
-  const [isRedirecting, setIsRedirecting] = useState(false);
+  //const [isLoaderVisible, setIsLoaderVisible] = useState(true);
+  //const [isRedirecting, setIsRedirecting] = useState(false);
   useOnNewPageMount(`ELSON LIANG | Visual Arts`);
   const navigate = useNavigate();
 
@@ -71,12 +71,12 @@ export const PageVisualArts: React.FC = (): React.ReactElement => {
         images={IMAGES}
         initialIndex={0}
         isVisible={true}
-        onCloseClick={() => setIsRedirecting(true)}
+        onCloseClick={() => navigate(ROUTES.projects)}
       />
-      <LoadingBlank
+      {/*      <LoadingBlank
         isVisible={isRedirecting}
         onVisibleComplete={() => navigate(ROUTES.projects)}
-      />
+  />*/}
       {/*<Loading isVisible={isLoaderVisible} />*/}
     </>
   );

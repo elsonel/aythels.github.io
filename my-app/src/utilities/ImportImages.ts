@@ -19,7 +19,6 @@ function ImageManager(this: ImageManager, imageList: ImageList) {
       ${this.get(`${src}_640.png`)} 640w,
       ${this.get(`${src}_1280.png`)} 1280w,
       ${this.get(`${src}_1920.png`)} 1920w,
-      ${this.get(`${src}_2560.png`)} 2560w,
   `;
   };
 }

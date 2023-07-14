@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { GlobalScrollLock } from '../../../utilities/styles/GlobalStyles';
-import { useMetaBackground } from '../../../utilities/hooks/useMetaBackground';
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

@@ -18,9 +18,7 @@ export const LoadingBlank: React.FC<ILoadingBlankProps> = ({
   const setMetaBackgroundColor = useMetaBackground();
 
   useEffect(() => {
-    setMetaBackgroundColor(
-      isVisible ? color.backgroundOpposite : color.background
-    );
+    isVisible && setMetaBackgroundColor(color.backgroundOpposite);
   }, [color, isVisible, setMetaBackgroundColor]);
 
   return (

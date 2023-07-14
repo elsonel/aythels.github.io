@@ -68,67 +68,67 @@ const PROJECT_PARAGRAPHS = [
 
 const IMAGES = [
   {
-    src: KineticBoardwalkImages.get('1a_2560.png'),
+    src: KineticBoardwalkImages.get('1a_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('1a'),
     alt: 'Render',
   },
   {
-    src: KineticBoardwalkImages.get('2a_2560.png'),
+    src: KineticBoardwalkImages.get('2a_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2a'),
     alt: 'Elevation',
   },
   {
-    src: KineticBoardwalkImages.get('2b_2560.png'),
+    src: KineticBoardwalkImages.get('2b_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2b'),
     alt: 'Elevation Section',
   },
   {
-    src: KineticBoardwalkImages.get('2c_2560.png'),
+    src: KineticBoardwalkImages.get('2c_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2c'),
     alt: 'Isometric',
   },
   {
-    src: KineticBoardwalkImages.get('2d_2560.png'),
+    src: KineticBoardwalkImages.get('2d_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2d'),
     alt: 'Site Plan',
   },
   {
-    src: KineticBoardwalkImages.get('2e_2560.png'),
+    src: KineticBoardwalkImages.get('2e_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2e'),
     alt: 'Exploded Isometric (Overview)',
   },
   {
-    src: KineticBoardwalkImages.get('2f_2560.png'),
+    src: KineticBoardwalkImages.get('2f_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('2f'),
     alt: 'Exploded Isometric (Tile)',
   },
   {
-    src: KineticBoardwalkImages.get('3a_2560.png'),
+    src: KineticBoardwalkImages.get('3a_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3a'),
     alt: 'Colors Overview (Plan)',
   },
   {
-    src: KineticBoardwalkImages.get('3b_2560.png'),
+    src: KineticBoardwalkImages.get('3b_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3b'),
     alt: 'Colors Overview (Elevation)',
   },
   {
-    src: KineticBoardwalkImages.get('3c_2560.png'),
+    src: KineticBoardwalkImages.get('3c_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3c'),
     alt: 'Tile Variations',
   },
   {
-    src: KineticBoardwalkImages.get('3d_2560.png'),
+    src: KineticBoardwalkImages.get('3d_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3d'),
     alt: 'Materials Overview',
   },
   {
-    src: KineticBoardwalkImages.get('3e_2560.png'),
+    src: KineticBoardwalkImages.get('3e_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3e'),
     alt: 'Tile Joint Mechanism 1',
   },
   {
-    src: KineticBoardwalkImages.get('3f_2560.png'),
+    src: KineticBoardwalkImages.get('3f_1280.png'),
     srcSet: KineticBoardwalkImages.getSrcSet('3f'),
     alt: 'Tile Joint Mechanism 2',
   },
