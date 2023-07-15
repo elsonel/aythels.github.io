@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Link } from '../../inputs/Link';
 import { ThemeInterface } from '../../../utilities/themes/Theme';
-import { PageTitle } from '../../atoms/PageTitle';
 import { ButtonReverseText } from '../../inputs/ButtonReverseText';
 import { LinkFake } from '../../inputs/LinkFake';
 import { Paragraph } from '../../text/Paragraph';
+import { GreaterThan } from '../../../utilities/styles/ResponsiveCSS';
 
 export interface ErrorPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   homeLink: string;
@@ -23,17 +23,8 @@ export const ErrorPanel: React.FC<ErrorPanelProps> = ({
 
   return (
     <Wrapper {...props}>
-      <Title
-        breakpoints={[
-          {
-            minWidth: 0,
-            size: 'large',
-          },
-        ]}
-        title="404"
-        subtitle="PAGE NOT FOUND"
-        textAlign="center"
-      />
+      <Title textAlign="center">404</Title>
+      <Subtitle>/ PAGE NOT FOUND /</Subtitle>
       <Paragraph size="large" textAlign="center">
         Oops! You've probably stumbled upon a page or project that hasen't been
         implemented yet. Let's get you back on track.
@@ -77,9 +68,25 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const Title = styled(PageTitle)`
-  padding-bottom: 0px;
-  margin-bottom: -8px;
+const Title = styled(Paragraph).attrs(({ theme }) => ({
+  isWrapped: false,
+  font: theme.font.title,
+  size: 'h1',
+}))`
+  color: ${({ theme }) => theme.color.text};
+
+  ${GreaterThan(0, `font-size: 4rem;`)}
+  ${GreaterThan(1200, `font-size: 6rem;`)}
+  ${GreaterThan(1600, `font-size: 8rem;`)}
+`;
+
+const Subtitle = styled(Paragraph).attrs(({ theme }) => ({
+  isWrapped: false,
+  font: theme.font.mono,
+  size: 'h4',
+}))`
+  font-weight: ${({ theme }) => theme.font.mono.weight.medium};
+  color: ${({ theme }) => theme.color.text};
 `;
 
 const WrapperButtonRow = styled.div`
