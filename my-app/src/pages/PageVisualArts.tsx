@@ -14,7 +14,7 @@ const IMAGES = [
   {
     src: VisualArtsImages.get('Night_Skirmishes_1280.png'),
     srcSet: VisualArtsImages.getSrcSet('Night_Skirmishes'),
-    alt: 'Night Skirmishes (2018, Acrylic on Canvas)',
+    alt: 'Night Skirmishes (2018, Digital Painting)',
   },
   {
     src: VisualArtsImages.get('Corruption_1280.png'),
