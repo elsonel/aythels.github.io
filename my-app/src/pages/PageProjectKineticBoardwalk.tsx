@@ -34,7 +34,7 @@ const PROJECT_FACTS = [
   },
   {
     label: 'COMPLETED',
-    value: 'December 2020',
+    value: 'December 2021',
   },
 ];
 

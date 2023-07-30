@@ -72,7 +72,7 @@ export const EXAMPLE_DATA: ProjectData[] = [
     group: 'ARCHIVE',
     name: 'KINETIC BOARDWALK',
     type: 'Architecture',
-    year: '2020',
+    year: '2021',
     description: `Et voluptatem accusantium cum vero velit sed repudiandae. `,
     href: '/',
     isOpeningNewTab: false,

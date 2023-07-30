@@ -62,7 +62,7 @@ export const PROJECT_DATA: ProjectData[] = [
     group: 'ARCHIVE',
     name: 'KINETIC BOARDWALK',
     type: 'Architecture',
-    year: '2020',
+    year: '2021',
     description: `A concept for a waterfront mega-structure comprised of thousands of linked kinetic modular tiles. Serves as both a functional infrastructure against dynamic rising water levels, and as a pedestrian walkway.`,
     href: ROUTES.architecture['kineticBoardwalk'],
     isOpeningNewTab: false,
