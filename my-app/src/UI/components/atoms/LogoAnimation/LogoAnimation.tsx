@@ -1,4 +1,10 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import styled, { keyframes } from 'styled-components';
 import useOnWindowResizeSize from '../../../utilities/hooks/useOnWindowResizeSize';
 import { remap } from '../../../utilities/scripts/remap';
@@ -68,10 +74,13 @@ const renderRows = (columnCount: number, rowCount: number) => {
   return elements;
 };
 
-export interface LoadingAnimationProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface LogoAnimationProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  onAnimationEnd: () => void;
+}
 
-export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
+export const LogoAnimation: React.FC<LogoAnimationProps> = ({
+  onAnimationEnd,
   ...props
 }): React.ReactElement => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -111,6 +120,17 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   useOnWindowResizeSize(onResize);
 
   useLayoutEffect(onResize, [onResize]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onAnimationEnd();
+      // TODO: FIX THIS
+    }, (TRANSITION + TRANSITION_SINGLE) * 2 + 200);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [onAnimationEnd, gridSettings]);
 
   return (
     <Wrapper ref={wrapperRef} {...props}>
