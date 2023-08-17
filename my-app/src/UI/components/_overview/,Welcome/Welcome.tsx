@@ -26,9 +26,8 @@ export const Welcome: React.FC<WelcomeProps> = ({
       </Paragraph>
       <br />
       <Paragraph>
-        This is a completely independent project. Each component was hand-coded
-        from scratch and tested against edge cases and responsiveness. Some
-        components may lack proper documentation.
+        This is a completely independent project. Some components may lack
+        proper documentation.
       </Paragraph>
       <br />
       <Paragraph>Feel free to browse around.</Paragraph>
