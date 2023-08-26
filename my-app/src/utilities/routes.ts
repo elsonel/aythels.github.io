@@ -15,7 +15,7 @@ export const ROUTES = {
 };
 
 export const EXTERNAL_ROUTES = {
-  centroForecasting: 'https://forecasting.getcentro.com/',
+  centroForecasting: 'https://forecasting.financesavi.com/',
   centroBudgeting: 'https://web.getcentro.com/',
   rpgNodeBoard: 'https://github.com/elsonel/rpg-node-board',
 };
