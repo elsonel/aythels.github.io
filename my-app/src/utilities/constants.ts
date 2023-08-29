@@ -1,5 +1,5 @@
 import { ProjectData } from '../UI/components/groups/ProjectsPage/helpers';
-import { ROUTES } from './routes';
+import { ROUTES, EXTERNAL_ROUTES } from './routes';
 
 export const BIO_TEXT = `I'm a software developer with a passion for engineering resilient solutions that integrate well with sophisticated design and user experience.`;
 
@@ -10,7 +10,7 @@ export const PROJECT_DATA: ProjectData[] = [
     type: 'Web Application',
     year: '2022',
     description: `A web application for tracking personal assets, and the impact of major life events and financial scenarios on one's net worth over time.`,
-    href: 'https://forecasting.getcentro.com/',
+    href: EXTERNAL_ROUTES.centroForecasting,
     isOpeningNewTab: true,
   },
   /*{
