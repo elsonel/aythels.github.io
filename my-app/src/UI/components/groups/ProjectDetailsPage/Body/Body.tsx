@@ -21,6 +21,7 @@ import { ImageProps } from '../../../atoms/Image/Image';
 import { GreaterThanHook } from '../../../../utilities/hooks/ResponsiveProps';
 import { Gallery } from '../Gallery/Gallery';
 
+const RESIZE_TIMEOUT = 500;
 const STATIONARY_LENGTH = 600;
 
 function getScrollBlockHeight(contentHeight: number) {
@@ -56,11 +57,21 @@ export const Body: React.FC<IBodyProps> = ({
   const [height, setHeight] = useState(0);
   const isDesktop = GreaterThanHook(breakpoint.gallery);
   const ref = useRef<HTMLDivElement>(null);
+  const resizeTimeoutRef = useRef<NodeJS.Timeout>();
 
   const onResize = useCallback(() => {
     if (!ref.current) return;
-    const height = ref.current.getBoundingClientRect().height;
+    const element = ref.current;
+
+    const height = element.getBoundingClientRect().height;
     setHeight(height);
+
+    // In case the above code doesn't work;
+    if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
+    resizeTimeoutRef.current = setTimeout(() => {
+      const height = element.getBoundingClientRect().height;
+      setHeight(height);
+    }, RESIZE_TIMEOUT);
   }, []);
 
   const onScroll = useCallback(
