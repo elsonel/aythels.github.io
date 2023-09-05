@@ -14,21 +14,31 @@ export const LoadingBlank: React.FC<ILoadingBlankProps> = ({
   onVisibleComplete,
   ...props
 }: ILoadingBlankProps) => {
-  const { color } = useTheme();
+  const { color, speed } = useTheme();
   const setMetaBackgroundColor = useMetaBackground();
 
   useEffect(() => {
     isVisible && setMetaBackgroundColor(color.backgroundOpposite);
   }, [color, isVisible, setMetaBackgroundColor]);
 
+  useEffect(() => {
+    onVisibleComplete && onVisibleComplete();
+  }, [isVisible, onVisibleComplete]);
+
+  useEffect(() => {
+    if (!onVisibleComplete || !isVisible) return;
+
+    const timeout = setTimeout(() => {
+      onVisibleComplete();
+    }, speed.normal);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isVisible, onVisibleComplete, speed]);
+
   return (
-    <StyledModal
-      isVisible={isVisible}
-      onTransitionEnd={() =>
-        isVisible && onVisibleComplete && onVisibleComplete()
-      }
-      {...props}
-    >
+    <StyledModal isVisible={isVisible} {...props}>
       <Wrapper />
     </StyledModal>
   );
