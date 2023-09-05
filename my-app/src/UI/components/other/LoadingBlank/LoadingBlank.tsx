@@ -22,10 +22,6 @@ export const LoadingBlank: React.FC<ILoadingBlankProps> = ({
   }, [color, isVisible, setMetaBackgroundColor]);
 
   useEffect(() => {
-    onVisibleComplete && onVisibleComplete();
-  }, [isVisible, onVisibleComplete]);
-
-  useEffect(() => {
     if (!onVisibleComplete || !isVisible) return;
 
     const timeout = setTimeout(() => {
