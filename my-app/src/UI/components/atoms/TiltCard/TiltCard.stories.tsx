@@ -19,7 +19,7 @@ export default {
   component: TiltCard,
   args: {
     roleLabel: 'FRONTEND DEVELOPER',
-    employerLabel: 'CENTRO',
+    employerLabel: 'SAVI',
     startDate: new Date(),
     endDate: new Date(),
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

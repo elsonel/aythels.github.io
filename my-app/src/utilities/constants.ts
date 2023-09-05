@@ -6,11 +6,11 @@ export const BIO_TEXT = `I'm a software developer with a passion for engineering
 export const PROJECT_DATA: ProjectData[] = [
   {
     group: 'DEVELOPMENT',
-    name: 'CENTRO FORECASTING',
+    name: 'SAVI FORECASTING',
     type: 'Web Application',
     year: '2022',
     description: `A web application for tracking personal assets, and the impact of major life events and financial scenarios on one's net worth over time.`,
-    href: EXTERNAL_ROUTES.centroForecasting,
+    href: EXTERNAL_ROUTES.saviForecasting,
     isOpeningNewTab: true,
   },
   /*{

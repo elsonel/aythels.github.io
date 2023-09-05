@@ -12,7 +12,7 @@ export type ProjectData = {
 export const EXAMPLE_DATA: ProjectData[] = [
   {
     group: 'DEVELOPMENT',
-    name: 'CENTRO FORECASTING',
+    name: 'SAVI FORECASTING',
     type: 'Web Application',
     year: '2022',
     description: `Lorem ipsum dolor sit amet. Eos dolorem iure ea architecto similique aut dignissimos repudiandae.`,
@@ -21,7 +21,7 @@ export const EXAMPLE_DATA: ProjectData[] = [
   },
   {
     group: 'DEVELOPMENT',
-    name: 'CENTRO BUDGETING',
+    name: 'SAVI BUDGETING',
     type: 'Web Application',
     year: '2022',
     description: `Sed reprehenderit quas est saepe rerum ut impedit autem est rerum similique ut rerum ipsum sed sunt ducimus. 

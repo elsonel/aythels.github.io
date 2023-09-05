@@ -4,8 +4,8 @@ export const ROUTES = {
   projects: '/projects',
   visualarts: '/projects/visualarts',
   userInterface: {
-    ['spotlight']: '/projects/spotlight',
     ['portfol.io']: '/projects/portfol.io',
+    ['spotlight']: '/projects/spotlight',
   },
   architecture: {
     ['foldPavilion']: '/projects/fold-pavilion',
@@ -15,7 +15,7 @@ export const ROUTES = {
 };
 
 export const EXTERNAL_ROUTES = {
-  centroForecasting: 'https://forecasting.financesavi.com/',
+  saviForecasting: 'https://forecasting.financesavi.com/',
   centroBudgeting: 'https://web.getcentro.com/',
   rpgNodeBoard: 'https://github.com/elsonel/rpg-node-board',
 };

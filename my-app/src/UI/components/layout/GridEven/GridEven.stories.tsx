@@ -16,7 +16,7 @@ function createCard() {
     <StyledCard
       key={key}
       roleLabel={`FRONTEND DEVELOPER`}
-      employerLabel={`CENTRO`}
+      employerLabel={`SAVI`}
       startDate={new Date()}
       endDate={new Date()}
       description={`Lorem ipsum dolor sit amet, consectetur adipiscing elit,  
